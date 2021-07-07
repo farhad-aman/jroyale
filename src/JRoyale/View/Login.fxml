@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="560.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="LoginController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="560.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
   <tabs>
     <Tab text="Sign In">
       <content>
@@ -18,7 +18,7 @@
                <children>
                   <ImageView fitHeight="720.0" fitWidth="566.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/login/background.jpg" />
+                        <Image url="@../../../resources/login/background.jpg" />
                      </image>
                   </ImageView>
                   <TextField fx:id="loginUsernameTextField" layoutX="130.0" layoutY="250.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 10; -fx-background-color: #F27726;">
@@ -39,7 +39,7 @@
                   </PasswordField>
                   <ImageView fx:id="loginButton" fitHeight="78.0" fitWidth="300.0" layoutX="130.0" layoutY="390.0" onMouseClicked="#loginButtonClicked" onMousePressed="#loginButtonPressed" onMouseReleased="#loginButtonReleased" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/login/loginButton.png" />
+                        <Image url="@../../../resources/login/loginButton.png" />
                      </image>
                   </ImageView>
                </children></AnchorPane>
@@ -51,7 +51,7 @@
                <children>
                   <ImageView fitHeight="758.0" fitWidth="560.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/login/background.jpg" />
+                        <Image url="@../../../resources/login/background.jpg" />
                      </image>
                   </ImageView>
                   <TextField fx:id="signUpUsernameTextField" layoutX="130.0" layoutY="250.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 10; -fx-background-color: #F27726;">
@@ -72,7 +72,7 @@
                   </PasswordField>
                   <ImageView fx:id="signUpButton" fitHeight="78.0" fitWidth="300.0" layoutX="130.0" layoutY="460.0" onMouseClicked="#signUpButtonClicked" onMousePressed="#signUpButtonPressed" onMouseReleased="#signUpButtonReleased" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/login/SignUpButton.png" />
+                        <Image url="@../../../resources/login/SignUpButton.png" />
                      </image>
                   </ImageView>
                   <PasswordField fx:id="signUpConfirmTextField" layoutX="130.0" layoutY="390.0" prefHeight="50.0" prefWidth="300.0" promptText="Confirm Password" style="-fx-background-radius: 10; -fx-background-color: #F27726;">
