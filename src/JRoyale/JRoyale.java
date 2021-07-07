@@ -1,5 +1,3 @@
-package JRoyale;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +9,7 @@ public class JRoyale extends Application
     @Override
     public void start(Stage primaryStage) throws Exception 
     {
-        Parent root = FXMLLoader.load(getClass().getResource("View/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("JRoyale");

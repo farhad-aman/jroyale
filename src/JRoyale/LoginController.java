@@ -1,8 +1,7 @@
-package JRoyale.Controller;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -39,13 +38,13 @@ public class LoginController
     @FXML
     void loginButtonPressed(MouseEvent event) 
     {
-
+        loginButton.setImage(new Image("resources/login/loginButtonPressed.png"));
     }
 
     @FXML
     void loginButtonReleased(MouseEvent event) 
     {
-
+        loginButton.setImage(new Image("resources/login/loginButton.png"));
     }
 
     @FXML
@@ -57,13 +56,13 @@ public class LoginController
     @FXML
     void signUpButtonPressed(MouseEvent event) 
     {
-
+        signUpButton.setImage(new Image("resources/login/signUpButtonPressed.png"));
     }
 
     @FXML
     void signUpButtonReleased(MouseEvent event) 
     {
-
+        signUpButton.setImage(new Image("resources/login/signUpButton.png"));
     }
 
     @FXML
