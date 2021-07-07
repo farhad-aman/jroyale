@@ -1,4 +1,4 @@
-package controller;
+package JRoyale.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
