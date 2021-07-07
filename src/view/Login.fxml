@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="560.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="LoginController">
+  <tabs>
+    <Tab text="Sign In">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="720.0" fitWidth="566.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/login/background.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="loginUsernameTextField" layoutX="130.0" layoutY="250.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 10; -fx-background-color: #F27726;">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="26.0" />
+                     </font>
+                     <effect>
+                        <Reflection />
+                     </effect>
+                  </TextField>
+                  <PasswordField fx:id="loginPasswordTextField" layoutX="130.0" layoutY="320.0" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 10; -fx-background-color: #F27726;">
+                     <effect>
+                        <Reflection />
+                     </effect>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="26.0" />
+                     </font>
+                  </PasswordField>
+                  <ImageView fx:id="loginButton" fitHeight="78.0" fitWidth="300.0" layoutX="130.0" layoutY="390.0" onMouseClicked="#loginButtonClicked" onMousePressed="#loginButtonPressed" onMouseReleased="#loginButtonReleased" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/login/loginButton.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Sign Up">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="758.0" fitWidth="560.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/login/background.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="signUpUsernameTextField" layoutX="130.0" layoutY="250.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 10; -fx-background-color: #F27726;">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="26.0" />
+                     </font>
+                     <effect>
+                        <Reflection />
+                     </effect>
+                  </TextField>
+                  <PasswordField fx:id="signUpPasswordTextField" layoutX="130.0" layoutY="320.0" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 10; -fx-background-color: #F27726;">
+                     <effect>
+                        <Reflection />
+                     </effect>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="26.0" />
+                     </font>
+                  </PasswordField>
+                  <ImageView fx:id="signUpButton" fitHeight="78.0" fitWidth="300.0" layoutX="130.0" layoutY="460.0" onMouseClicked="#signUpButtonClicked" onMousePressed="#signUpButtonPressed" onMouseReleased="#signUpButtonReleased" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/login/SignUpButton.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField fx:id="signUpConfirmTextField" layoutX="130.0" layoutY="390.0" prefHeight="50.0" prefWidth="300.0" promptText="Confirm Password" style="-fx-background-radius: 10; -fx-background-color: #F27726;">
+                     <effect>
+                        <Reflection />
+                     </effect>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="26.0" />
+                     </font>
+                  </PasswordField>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>
