@@ -1,4 +1,6 @@
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -20,55 +22,140 @@ public class LoginController
     private ImageView loginButton;
 
     @FXML
+    private Label loginUsernameLabel;
+
+    @FXML
+    private Label loginPasswordLabel;
+
+    @FXML
     private TextField signUpUsernameTextField;
 
     @FXML
     private PasswordField signUpPasswordTextField;
 
     @FXML
+    private PasswordField signUpConfirmTextField;
+
+    @FXML
     private ImageView signUpButton;
 
     @FXML
-    private PasswordField signUpConfirmTextField;
+    private Label signUpUsernameLabel;
+
+    @FXML
+    private Label signUpPasswordLabel;
+
+    @FXML
+    private Label signUpConfirmLabel;
+
 
     @FXML
     void loginButtonClicked(MouseEvent event) 
     {
-        MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("<path to music file>").toURI().toString()));
-        mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
-        mediaPlayer.play();
+        
     }
 
     @FXML
     void loginButtonPressed(MouseEvent event) 
     {
-        loginButton.setImage(new Image("resources/login/loginButtonPressed.png"));
+        try 
+        {
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
+                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+                    mediaPlayer.play();
+                }
+                
+            });
+            loginButton.setImage(new Image("resources/login/loginButtonPressed.png"));
+        } 
+        catch (Exception e) 
+        {
+            //TODO: handle exception
+        }
     }
 
     @FXML
     void loginButtonReleased(MouseEvent event) 
     {
-        loginButton.setImage(new Image("resources/login/loginButton.png"));
+        try 
+        {
+            loginButton.setImage(new Image("resources/login/loginButton.png"));
+        } 
+        catch (Exception e) 
+        {
+            //TODO: handle exception
+        }
     }
 
     @FXML
     void signUpButtonClicked(MouseEvent event) 
     {
-        MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("<path to music file>").toURI().toString()));
-        mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
-        mediaPlayer.play();
+        
     }
 
     @FXML
     void signUpButtonPressed(MouseEvent event) 
     {
-        signUpButton.setImage(new Image("resources/login/signUpButtonPressed.png"));
+        try 
+        {
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
+                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+                    mediaPlayer.play();
+                }
+                
+            });
+            signUpButton.setImage(new Image("resources/login/signUpButtonPressed.png"));
+        } 
+        catch (Exception e) 
+        {
+            //TODO: handle exception
+        }
     }
 
     @FXML
     void signUpButtonReleased(MouseEvent event) 
     {
-        signUpButton.setImage(new Image("resources/login/signUpButton.png"));
+        try 
+        {
+            signUpButton.setImage(new Image("resources/login/signUpButton.png"));
+        } 
+        catch (Exception e) 
+        {
+            //TODO: handle exception
+        }
+    }
+
+    @FXML
+    void textFieldPressed(MouseEvent event) 
+    {
+        try 
+        {
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
+                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+                    mediaPlayer.play();
+                }
+                
+            });
+        } 
+        catch (Exception e) 
+        {
+            //TODO: handle exception
+        }
     }
 
     @FXML
