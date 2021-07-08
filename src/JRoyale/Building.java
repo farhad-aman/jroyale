@@ -1,9 +1,9 @@
-public class Building extends Card
+public abstract class Building extends Card
 {
 
-    public Building(String id) 
+    public Building(String id, int cost) 
     {
-        super(id);
+        super(id, cost);
     }
     
 }
