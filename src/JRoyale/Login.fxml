@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -12,7 +13,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="560.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
   <tabs>
-    <Tab text="Sign In">
+    <Tab style="-fx-background-color: #0f4cdb;" text="Sign In">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -21,9 +22,9 @@
                         <Image url="@resources/login/background.jpg" />
                      </image>
                   </ImageView>
-                  <AnchorPane layoutX="117.0" layoutY="181.0" prefHeight="329.0" prefWidth="327.0" style="-fx-background-color: rgb(140, 130, 130, 0.7); -fx-background-radius: 50;">
+                  <AnchorPane layoutX="117.0" layoutY="136.0" prefHeight="345.0" prefWidth="327.0" style="-fx-background-color: rgb(140, 130, 130, 0.5); -fx-background-radius: 50;">
                      <children>
-                        <TextField fx:id="loginUsernameTextField" layoutX="14.0" layoutY="52.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
+                        <TextField fx:id="loginUsernameTextField" layoutX="14.0" layoutY="23.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="26.0" />
                            </font>
@@ -31,7 +32,7 @@
                               <Reflection />
                            </effect>
                         </TextField>
-                        <PasswordField fx:id="loginPasswordTextField" layoutX="14.0" layoutY="137.0" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
+                        <PasswordField fx:id="loginPasswordTextField" layoutX="14.0" layoutY="120.0" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
                            <effect>
                               <Reflection />
                            </effect>
@@ -39,17 +40,27 @@
                               <Font name="Arial Rounded MT Bold" size="26.0" />
                            </font>
                         </PasswordField>
-                        <ImageView fx:id="loginButton" fitHeight="78.0" fitWidth="300.0" layoutX="14.0" layoutY="212.0" onMouseClicked="#loginButtonClicked" onMousePressed="#loginButtonPressed" onMouseReleased="#loginButtonReleased" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="loginButton" fitHeight="78.0" fitWidth="300.0" layoutX="14.0" layoutY="231.0" onMouseClicked="#loginButtonClicked" onMousePressed="#loginButtonPressed" onMouseReleased="#loginButtonReleased" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@resources/login/loginButton.png" />
                            </image>
                         </ImageView>
+                        <Label layoutX="76.0" layoutY="86.0" textFill="#dd0f0f">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="78.0" layoutY="183.0" textFill="#dd0f0f">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="Sign Up">
+    <Tab style="-fx-background-color: cyan;" text="Sign Up">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -58,9 +69,9 @@
                         <Image url="@resources/login/background.jpg" />
                      </image>
                   </ImageView>
-                  <AnchorPane layoutX="101.0" layoutY="162.0" prefHeight="366.0" prefWidth="359.0" style="-fx-background-color: rgb(140, 130, 130, 0.7); -fx-background-radius: 50;">
+                  <AnchorPane layoutX="101.0" layoutY="113.0" prefHeight="415.0" prefWidth="359.0" style="-fx-background-color: rgb(140, 130, 130, 0.7); -fx-background-radius: 50;">
                      <children>
-                        <TextField fx:id="signUpUsernameTextField" layoutX="38.0" layoutY="25.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
+                        <TextField fx:id="signUpUsernameTextField" layoutX="38.0" layoutY="14.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="26.0" />
                            </font>
@@ -68,7 +79,7 @@
                               <Reflection />
                            </effect>
                         </TextField>
-                        <PasswordField fx:id="signUpPasswordTextField" layoutX="38.0" layoutY="105.0" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
+                        <PasswordField fx:id="signUpPasswordTextField" layoutX="38.0" layoutY="118.0" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
                            <effect>
                               <Reflection />
                            </effect>
@@ -76,7 +87,7 @@
                               <Font name="Arial Rounded MT Bold" size="26.0" />
                            </font>
                         </PasswordField>
-                        <PasswordField fx:id="signUpConfirmTextField" layoutX="38.0" layoutY="183.0" prefHeight="50.0" prefWidth="300.0" promptText="Confirm Password" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
+                        <PasswordField fx:id="signUpConfirmTextField" layoutX="38.0" layoutY="223.0" prefHeight="50.0" prefWidth="300.0" promptText="Confirm Password" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
                            <effect>
                               <Reflection />
                            </effect>
@@ -84,11 +95,26 @@
                               <Font name="Arial Rounded MT Bold" size="26.0" />
                            </font>
                         </PasswordField>
-                        <ImageView fx:id="signUpButton" fitHeight="78.0" fitWidth="300.0" layoutX="38.0" layoutY="264.0" onMouseClicked="#signUpButtonClicked" onMousePressed="#signUpButtonPressed" onMouseReleased="#signUpButtonReleased" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="signUpButton" fitHeight="78.0" fitWidth="300.0" layoutX="30.0" layoutY="323.0" onMouseClicked="#signUpButtonClicked" onMousePressed="#signUpButtonPressed" onMouseReleased="#signUpButtonReleased" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@resources/login/signUpButton.png" />
                            </image>
                         </ImageView>
+                        <Label layoutX="159.0" layoutY="81.0" textFill="#dd0f0f">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="159.0" layoutY="188.0" textFill="#dd0f0f">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="159.0" layoutY="289.0" textFill="#dd0f0f">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </children></AnchorPane>

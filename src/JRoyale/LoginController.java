@@ -4,10 +4,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 
 public class LoginController 
 {
-
     @FXML
     private TextField loginUsernameTextField;
 
@@ -32,7 +34,9 @@ public class LoginController
     @FXML
     void loginButtonClicked(MouseEvent event) 
     {
-
+        MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("<path to music file>").toURI().toString()));
+        mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+        mediaPlayer.play();
     }
 
     @FXML
@@ -50,7 +54,9 @@ public class LoginController
     @FXML
     void signUpButtonClicked(MouseEvent event) 
     {
-
+        MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("<path to music file>").toURI().toString()));
+        mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+        mediaPlayer.play();
     }
 
     @FXML
