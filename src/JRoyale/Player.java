@@ -8,19 +8,37 @@ public class Player
 
     private Deck deck;
 
-    public Player(String username, String password, int xp, Deck deck)
+    private History history;
+
+    public Player(String username, String password, int xp, Deck deck, History history)
     {
         this.username = username;
         this.password = password;
         this.xp = xp;
         this.deck = deck;
+        this.history = history;
     }
-
+    
     public String getUsername()
     {
         return username;
     }
-
+    
+    public boolean setPassword(String oldPassword, String newPassword, String confirmNewPassword)
+    {
+        if(this.password.equals(oldPassword) && newPassword.equals(confirmNewPassword))
+        {
+            if(newPassword.length() >= 6 && newPassword.length() <= 32)
+            {   
+                this.password = newPassword;
+                saveOnDB();
+                return true;
+            } 
+            return false;
+        }
+        return false;
+    }
+    
     public int getXp()
     {
         return xp;
@@ -43,19 +61,22 @@ public class Player
         this.saveOnDB();
     }
 
-    public boolean setPassword(String oldPassword, String newPassword, String confirmNewPassword)
+
+    public History getHistory()
     {
-        if(this.password.equals(oldPassword) && newPassword.equals(confirmNewPassword))
-        {
-            if(newPassword.length() >= 6 && newPassword.length() <= 32)
-            {   
-                this.password = newPassword;
-                saveOnDB();
-                return true;
-            } 
-            return false;
-        }
-        return false;
+        return history;
+    }
+
+    public void setHistory(History history)
+    {
+        this.history = history;
+        saveOnDB();
+    }
+
+    public void addBattleResult(BattleResult battleResult)
+    {
+        history.addBattleResult(battleResult);
+        saveOnDB();
     }
 
     public void saveOnDB()

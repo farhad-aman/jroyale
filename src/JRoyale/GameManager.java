@@ -14,4 +14,9 @@ public class GameManager
     {
         //DB
     }
+
+    public void setCurrentPlayer(Player player)
+    {
+        this.currentPlayer = player;
+    }
 }
