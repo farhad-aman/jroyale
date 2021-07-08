@@ -1,5 +1,6 @@
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -21,16 +22,32 @@ public class LoginController
     private ImageView loginButton;
 
     @FXML
+    private Label loginUsernameLabel;
+
+    @FXML
+    private Label loginPasswordLabel;
+
+    @FXML
     private TextField signUpUsernameTextField;
 
     @FXML
     private PasswordField signUpPasswordTextField;
 
     @FXML
+    private PasswordField signUpConfirmTextField;
+
+    @FXML
     private ImageView signUpButton;
 
     @FXML
-    private PasswordField signUpConfirmTextField;
+    private Label signUpUsernameLabel;
+
+    @FXML
+    private Label signUpPasswordLabel;
+
+    @FXML
+    private Label signUpConfirmLabel;
+
 
     @FXML
     void loginButtonClicked(MouseEvent event) 

@@ -45,12 +45,12 @@
                               <Image url="@resources/login/loginButton.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="76.0" layoutY="86.0" textFill="#dd0f0f">
+                        <Label fx:id="loginUsernameLabel" layoutX="76.0" layoutY="86.0" textFill="#dd0f0f">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="78.0" layoutY="183.0" textFill="#dd0f0f">
+                        <Label fx:id="loginPasswordLabel" layoutX="78.0" layoutY="183.0" textFill="#dd0f0f">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -100,17 +100,17 @@
                               <Image url="@resources/login/signUpButton.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="159.0" layoutY="81.0" textFill="#dd0f0f">
+                        <Label fx:id="signUpUsernameLabel" layoutX="159.0" layoutY="81.0" textFill="#dd0f0f">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="159.0" layoutY="188.0" textFill="#dd0f0f">
+                        <Label fx:id="signUpPasswordLabel" layoutX="159.0" layoutY="188.0" textFill="#dd0f0f">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="159.0" layoutY="289.0" textFill="#dd0f0f">
+                        <Label fx:id="signUpConfirmLabel" layoutX="159.0" layoutY="289.0" textFill="#dd0f0f">
                            <font>
                               <Font size="18.0" />
                            </font>
