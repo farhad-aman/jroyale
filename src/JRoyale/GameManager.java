@@ -1,8 +1,18 @@
 public class GameManager 
 {
+    private static GameManager gameManager = new GameManager();
+
     private Player currentPlayer;
 
+    private GameManager()
+    {
 
+    }
+
+    private static GameManager getInstance()
+    {
+        return gameManager;
+    }
 
 
     public void login(String username, String password)
