@@ -24,7 +24,7 @@
                   </ImageView>
                   <AnchorPane layoutX="117.0" layoutY="136.0" prefHeight="345.0" prefWidth="327.0" style="-fx-background-color: rgb(140, 130, 130, 0.5); -fx-background-radius: 50;">
                      <children>
-                        <TextField fx:id="loginUsernameTextField" layoutX="14.0" layoutY="23.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
+                        <TextField fx:id="loginUsernameTextField" layoutX="14.0" layoutY="23.0" onMousePressed="#textFieldPressed" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="26.0" />
                            </font>
@@ -32,7 +32,7 @@
                               <Reflection />
                            </effect>
                         </TextField>
-                        <PasswordField fx:id="loginPasswordTextField" layoutX="14.0" layoutY="120.0" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
+                        <PasswordField fx:id="loginPasswordTextField" layoutX="14.0" layoutY="120.0" onMousePressed="#textFieldPressed" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
                            <effect>
                               <Reflection />
                            </effect>
@@ -71,7 +71,7 @@
                   </ImageView>
                   <AnchorPane layoutX="101.0" layoutY="113.0" prefHeight="415.0" prefWidth="359.0" style="-fx-background-color: rgb(140, 130, 130, 0.7); -fx-background-radius: 50;">
                      <children>
-                        <TextField fx:id="signUpUsernameTextField" layoutX="38.0" layoutY="14.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
+                        <TextField fx:id="signUpUsernameTextField" layoutX="38.0" layoutY="14.0" onMousePressed="#textFieldPressed" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="26.0" />
                            </font>
@@ -79,7 +79,7 @@
                               <Reflection />
                            </effect>
                         </TextField>
-                        <PasswordField fx:id="signUpPasswordTextField" layoutX="38.0" layoutY="118.0" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
+                        <PasswordField fx:id="signUpPasswordTextField" layoutX="38.0" layoutY="118.0" onMousePressed="#textFieldPressed" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
                            <effect>
                               <Reflection />
                            </effect>
@@ -87,7 +87,7 @@
                               <Font name="Arial Rounded MT Bold" size="26.0" />
                            </font>
                         </PasswordField>
-                        <PasswordField fx:id="signUpConfirmTextField" layoutX="38.0" layoutY="223.0" prefHeight="50.0" prefWidth="300.0" promptText="Confirm Password" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
+                        <PasswordField fx:id="signUpConfirmTextField" layoutX="38.0" layoutY="223.0" onMousePressed="#textFieldPressed" prefHeight="50.0" prefWidth="300.0" promptText="Confirm Password" style="-fx-background-radius: 50; -fx-background-color: #F27726; -fx-text-inner-color: cyan;">
                            <effect>
                               <Reflection />
                            </effect>
