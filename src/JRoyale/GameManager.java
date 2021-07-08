@@ -9,7 +9,7 @@ public class GameManager
 
     }
 
-    private static GameManager getInstance()
+    public static GameManager getInstance()
     {
         return gameManager;
     }
