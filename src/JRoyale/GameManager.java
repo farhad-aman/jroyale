@@ -2,6 +2,8 @@ public class GameManager
 {
     private static GameManager gameManager = new GameManager();
 
+    private final int frameRate = 40;
+
     private Player currentPlayer;
 
     private GameManager()
