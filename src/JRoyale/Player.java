@@ -79,6 +79,31 @@ public class Player
         saveOnDB();
     }
 
+    public int getLevel()
+    {
+        if(xp < 300)
+        {
+            return 1;
+        }
+        else if(xp < 500)
+        {
+            return 2;
+        }
+        else if(xp < 900)
+        {
+            return 3;
+        }
+        else if(xp < 1700)
+        {
+            return 4;
+        }
+        else if(xp >= 1700)
+        {
+            return 5;
+        }
+        return -1;
+    }
+
     public void saveOnDB()
     {
         //DB

@@ -4,19 +4,28 @@ public class Battle
 {
     private Player player;
     
-    private Timer timer;
-
-    private ScoreBoard scoreBoard;
-
     private BattleField playerField;
-
+    
     private BattleField enemyField;
-
-    private ArrayList<Card> visibleCards;
-
-    private ArrayList<Card> cardQueue;
-
+    
+    private ArrayList<Card> yourCards;
+    
+    private ArrayList<Card> enemyCards;
+    
+    private ScoreBoard scoreBoard;
+    
+    private Timer timer;
+    
     private ElixirBar yourExlixirBar;
-
+    
     private ElixirBar enemyExlixirBar;
+    
+    public Battle(Player player)
+    {
+        this.player = player;
+        scoreBoard = new ScoreBoard();
+        timer = new Timer(180, scoreBoard);
+        yourExlixirBar = new ElixirBar(4, timer);
+        enemyExlixirBar = new ElixirBar(4, timer);
+    }
 }
