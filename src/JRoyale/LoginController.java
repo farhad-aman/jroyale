@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import java.io.File;
+import java.sql.*;
 
 public class LoginController 
 {
@@ -52,7 +53,7 @@ public class LoginController
     @FXML
     void loginButtonClicked(MouseEvent event) 
     {
-        
+//        logIn();
     }
 
     @FXML
@@ -63,20 +64,21 @@ public class LoginController
             Platform.runLater(new Runnable()
             {
                 @Override
-                public void run() 
+                public void run()
                 {
                     MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
                 }
-                
             });
             loginButton.setImage(new Image("resources/login/loginButtonPressed.png"));
         } 
         catch (Exception e) 
         {
+            e.printStackTrace();
             //TODO: handle exception
         }
+        GameManager.getInstance().login(loginUsernameTextField.getText(), loginPasswordTextField.getText());
     }
 
     @FXML
@@ -92,6 +94,7 @@ public class LoginController
         }
     }
 
+
     @FXML
     void signUpButtonClicked(MouseEvent event) 
     {
@@ -106,13 +109,13 @@ public class LoginController
             Platform.runLater(new Runnable()
             {
                 @Override
-                public void run() 
+                public void run()
                 {
                     MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
                 }
-                
+
             });
             signUpButton.setImage(new Image("resources/login/signUpButtonPressed.png"));
         } 
