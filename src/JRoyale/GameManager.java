@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.HashSet;
 import java.util.StringTokenizer;
 
 public class GameManager
@@ -25,14 +24,17 @@ public class GameManager
         return gameManager;
     }
 
-
+    /**
+     * process the given information for log in
+     * @return number for status//-1->username does not exist//0->password does not match//1->information is accurate
+     * */
     public int login(String username, String userPassword)
     {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
             String userName = "root";
-            String password = "<password>";
+            String password = "@#$mg200";
 
             Connection con = DriverManager.getConnection(url, userName, password);
             Statement st = con.createStatement();
@@ -40,16 +42,27 @@ public class GameManager
             st.execute(insertion);
 
             ResultSet rs = st.getResultSet();
-            rs.next();
 
-            if(rs.getString(1) == null)
+            if(!rs.next()) {
+                st.close();
+                rs.close();
+
                 return -1;
+            }
             else if(rs.getString(2).equals(userPassword)){
-                Player player = new Player(rs.getString(1), rs.getString(2), rs.getInt(3), getDeck(rs.getString(4)), getHistory(rs.getString(1)));
+                currentPlayer = new Player(rs.getString(1), rs.getString(2), rs.getInt(3), getDeck(rs.getString(4)), getHistory(rs.getString(1)));
+
+                st.close();
+                rs.close();
+
                 return 1;
             }
-            else
+            else {
+                st.close();
+                rs.close();
+
                 return 0;
+            }
         }
         catch (Exception e) {
             return -1;
@@ -63,7 +76,7 @@ public class GameManager
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
             String userName = "root";
-            String password = "<password>";
+            String password = "@#$mg200";
 
             Connection con = DriverManager.getConnection(url, userName, password);
             Statement st = con.createStatement();
@@ -74,6 +87,9 @@ public class GameManager
 
             while (rs.next())
                 history.addBattleResult(new BattleResult(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));
+
+            st.close();
+            rs.close();
         }
         catch (Exception e){
             e.printStackTrace();
@@ -133,14 +149,47 @@ public class GameManager
         }
         return card;
     }
-
-    public void signUp(String username, String password, String confirmPassword)
+    /**
+     * checks the information and create the new player if the given username is not used before
+     * @return status->-2 : passwords are not the same//-1->information is not accurate//0->username is occupied//1-> player is added
+     * */
+    public int signUp(String username, String userPassword, String confirmPassword)
     {
-        //DB
-    }
+        if(!userPassword.equals(confirmPassword))
+            return -2;
+        else if(!(username.length() >= 3) || !(userPassword.length() >= 6) || !(userPassword.length() <= 32))
+            return -1;
 
-    public void setCurrentPlayer(Player player)
-    {
-        this.currentPlayer = player;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/JRoyale";
+            String userName = "root";
+            String password = "@#$mg200";
+
+            Connection con = DriverManager.getConnection(url, userName, password);
+            Statement st = con.createStatement();
+
+            String insertion = "select * from players where userName=" + userName;
+            st.execute(insertion);
+
+            ResultSet rs = st.getResultSet();
+
+            if(!rs.next()){
+                insertion = "insert into players values(" + userName + "," + userPassword + ", " + 0 + ")";
+
+                rs.close();
+                st.close();
+
+                return 1;
+            }
+            rs.close();
+            st.close();
+
+            return 0;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
     }
 }

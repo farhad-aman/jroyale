@@ -53,112 +53,211 @@ public class LoginController
     @FXML
     void loginButtonClicked(MouseEvent event) 
     {
-//        logIn();
+        logIn();
     }
 
     @FXML
     void loginButtonPressed(MouseEvent event) 
     {
-        try 
-        {
-            Platform.runLater(new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
-                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
-                    mediaPlayer.play();
-                }
-            });
-            loginButton.setImage(new Image("resources/login/loginButtonPressed.png"));
-        } 
-        catch (Exception e) 
-        {
-            e.printStackTrace();
-            //TODO: handle exception
-        }
-        GameManager.getInstance().login(loginUsernameTextField.getText(), loginPasswordTextField.getText());
+//        try
+//        {
+//            Platform.runLater(new Runnable()
+//            {
+//                @Override
+//                public void run()
+//                {
+//                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
+//                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+//                    mediaPlayer.play();
+//                }
+//            });
+//            loginButton.setImage(new Image("resources/login/loginButtonPressed.png"));
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//            //TODO: handle exception
+//        }
     }
 
     @FXML
     void loginButtonReleased(MouseEvent event) 
     {
-        try 
-        {
-            loginButton.setImage(new Image("resources/login/loginButton.png"));
-        } 
-        catch (Exception e) 
-        {
-            //TODO: handle exception
-        }
+//        try
+//        {
+//            loginButton.setImage(new Image("resources/login/loginButton.png"));
+//        }
+//        catch (Exception e)
+//        {
+//            //TODO: handle exception
+//        }
+        logIn();
     }
 
+    private void logIn(){
+        int status = GameManager.getInstance().login(loginUsernameTextField.getText(), loginPasswordTextField.getText());
+
+        if(status == -2){
+            try {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        loginUsernameLabel.setText("Wrong username, try again");
+                        try {
+                            Thread.sleep(4000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        loginUsernameLabel.setText("");
+                    }
+                });
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        else if (status == 0){
+            try {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        loginUsernameLabel.setText("Wrong password, try again");
+                        try {
+                            Thread.sleep(4000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        loginUsernameLabel.setText("");
+                    }
+                });
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        else{
+            openMenu();
+        }
+    }
 
     @FXML
     void signUpButtonClicked(MouseEvent event) 
     {
-        
+        signUp();
     }
 
     @FXML
     void signUpButtonPressed(MouseEvent event) 
     {
-        try 
-        {
-            Platform.runLater(new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
-                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
-                    mediaPlayer.play();
-                }
-
-            });
-            signUpButton.setImage(new Image("resources/login/signUpButtonPressed.png"));
-        } 
-        catch (Exception e) 
-        {
-            //TODO: handle exception
-        }
+//        try
+//        {
+//            Platform.runLater(new Runnable()
+//            {
+//                @Override
+//                public void run()
+//                {
+//                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
+//                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+//                    mediaPlayer.play();
+//                }
+//
+//            });
+//            signUpButton.setImage(new Image("resources/login/signUpButtonPressed.png"));
+//        }
+//        catch (Exception e)
+//        {
+//            //TODO: handle exception
+//        }
     }
 
     @FXML
     void signUpButtonReleased(MouseEvent event) 
     {
-        try 
-        {
-            signUpButton.setImage(new Image("resources/login/signUpButton.png"));
-        } 
-        catch (Exception e) 
-        {
-            //TODO: handle exception
+//        try
+//        {
+//            signUpButton.setImage(new Image("resources/login/signUpButton.png"));
+//        }
+//        catch (Exception e)
+//        {
+//            //TODO: handle exception
+//        }
+        signUp();
+    }
+
+    private void signUp() {
+        int status = GameManager.getInstance().login(loginUsernameTextField.getText(), loginPasswordTextField.getText());
+
+        if(status == -2){
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    signUpConfirmLabel.setText("Wrong password, try again");
+                    try {
+                        Thread.sleep(4000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    signUpConfirmLabel.setText("");
+                }
+            });
         }
+        else if(status == -1){
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    signUpUsernameLabel.setText("Inappropriate username, try again");
+                    signUpPasswordLabel.setText("Inappropriate password, try again");
+                    try {
+                        Thread.sleep(4000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    signUpUsernameLabel.setText("");
+                    signUpPasswordLabel.setText("");
+                }
+            });
+        }
+        else if(status == 0){
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    signUpUsernameLabel.setText("Already exists, try again");
+                    try {
+                        Thread.sleep(4000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    signUpUsernameLabel.setText("");
+                }
+            });
+        }
+        else
+            openMenu();
     }
 
     @FXML
     void textFieldPressed(MouseEvent event) 
     {
-        try 
-        {
-            Platform.runLater(new Runnable()
-            {
-                @Override
-                public void run() 
-                {
-                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
-                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
-                    mediaPlayer.play();
-                }
-                
-            });
-        } 
-        catch (Exception e) 
-        {
-            //TODO: handle exception
-        }
+//        try
+//        {
+//            Platform.runLater(new Runnable()
+//            {
+//                @Override
+//                public void run()
+//                {
+//                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
+//                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+//                    mediaPlayer.play();
+//                }
+//
+//            });
+//        }
+//        catch (Exception e)
+//        {
+//            //TODO: handle exception
+//        }
+    }
+
+    private void openMenu() {
+
     }
 
     @FXML
