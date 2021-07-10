@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 public class GameManager
@@ -157,7 +159,7 @@ public class GameManager
     {
         if(!userPassword.equals(confirmPassword))
             return -2;
-        else if(!(username.length() >= 3) || !(userPassword.length() >= 6) || !(userPassword.length() <= 32))
+        else if(!(username.length() <= 30) || !(username.length() >= 3) || !(userPassword.length() >= 6) || !(userPassword.length() <= 32))
             return -1;
 
         try {
@@ -175,7 +177,9 @@ public class GameManager
             ResultSet rs = st.getResultSet();
 
             if(!rs.next()){
-                insertion = "insert into players values(" + userName + "," + userPassword + ", " + 0 + ")";
+                String deck = createDeck();
+
+                insertion = "insert into players values(" + userName + "," + userPassword + ", " + 0 + ", " + deck + ")";
 
                 rs.close();
                 st.close();
@@ -191,5 +195,32 @@ public class GameManager
             e.printStackTrace();
             return -1;
         }
+    }
+
+    private String createDeck() {
+        String deck = "";
+        ArrayList<String> cards = new ArrayList<>();
+        cards.add("fireBall");
+        cards.add("valkyrie");
+        cards.add("pekka");
+        cards.add("barbarians");
+        cards.add("wizard");
+        cards.add("giant");
+        cards.add("dragon");
+        cards.add("arrows");
+        cards.add("cannon");
+        cards.add("rage");
+        cards.add("inferno");
+        cards.add("archer");
+
+        Random rand = new Random();
+
+        while(cards.size() > 4){
+            int index = rand.nextInt(cards.size());
+
+            deck = deck.concat(cards.get(index) + ":");
+            cards.remove(index);
+        }
+        return deck;
     }
 }

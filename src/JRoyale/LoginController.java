@@ -183,7 +183,7 @@ public class LoginController
     }
 
     private void signUp() {
-        int status = GameManager.getInstance().login(loginUsernameTextField.getText(), loginPasswordTextField.getText());
+        int status = GameManager.getInstance().signUp(signUpUsernameTextField.getText(), signUpPasswordTextField.getText(), signUpConfirmTextField.getText());
 
         if(status == -2){
             Platform.runLater(new Runnable() {
