@@ -45,13 +45,15 @@ public class GameManager
 
             ResultSet rs = st.getResultSet();
 
-            if(!rs.next()) {
+            if(!rs.next()) 
+            {
                 st.close();
                 rs.close();
 
                 return -1;
             }
-            else if(rs.getString(2).equals(userPassword)){
+            else if(rs.getString(2).equals(userPassword))
+            {
                 currentPlayer = new Player(rs.getString(1), rs.getString(2), rs.getInt(3), getDeck(rs.getString(4)), getHistory(rs.getString(1)));
 
                 st.close();
@@ -59,22 +61,26 @@ public class GameManager
 
                 return 1;
             }
-            else {
+            else 
+            {
                 st.close();
                 rs.close();
 
                 return 0;
             }
         }
-        catch (Exception e) {
+        catch (Exception e) 
+        {
             return -1;
         }
     }
 
-    private History getHistory(String playerName) {
+    private History getHistory(String playerName) 
+    {
         History history = new History();
 
-        try {
+        try 
+        {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
             String USERNAME = "root";
@@ -93,13 +99,15 @@ public class GameManager
             st.close();
             rs.close();
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return history;
     }
 
-    private Deck getDeck(String deckString){
+    private Deck getDeck(String deckString)
+    {
         Deck deck = new Deck();
         StringTokenizer tokens = new StringTokenizer(deckString, ":");
 
@@ -109,7 +117,8 @@ public class GameManager
         return deck;
     }
 
-    private Card getCard(String id) {
+    private Card getCard(String id) 
+    {
         Card card;
 
         switch (id){
@@ -151,6 +160,7 @@ public class GameManager
         }
         return card;
     }
+
     /**
      * checks the information and create the new player if the given username is not used before
      * @return status->-2 : passwords are not the same//-1->information is not accurate//0->username is occupied//1-> player is added
@@ -158,16 +168,19 @@ public class GameManager
     public int signUp(String username, String userPassword, String confirmPassword)
     {
         System.out.println("gameManager line 160 started");
-        if(!userPassword.equals(confirmPassword)) {
+        if(!userPassword.equals(confirmPassword)) 
+        {
             System.out.println("gameManager line 162 started");
             return -2;
         }
-        else if(!(username.length() <= 30) || !(username.length() >= 3) || !(userPassword.length() >= 6) || !(userPassword.length() <= 32)) {
+        else if(!(username.length() <= 30) || !(username.length() >= 3) || !(userPassword.length() >= 6) || !(userPassword.length() <= 32)) 
+        {
             System.out.println("gameManager line 166 started");
             return -1;
         }
 
-        try {
+        try 
+        {
             System.out.println("gameManager line 171 started");
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
@@ -182,7 +195,8 @@ public class GameManager
 
             ResultSet rs = st.getResultSet();
 
-            if(!rs.next()){
+            if(!rs.next())
+            {
                 System.out.println("gameManager line 186 started\t\tuserName:" + username);
                 String deck = createDeck(username, userPassword);
 
@@ -201,13 +215,15 @@ public class GameManager
 
             return 0;
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             e.printStackTrace();
             return -1;
         }
     }
 
-    private String createDeck(String username, String userPassword) {
+    private String createDeck(String username, String userPassword) 
+    {
         System.out.println("gameManager line 209 started");
         String deck = "";
         ArrayList<String> cards = new ArrayList<>();
@@ -227,7 +243,8 @@ public class GameManager
         Player player = new Player(username, userPassword, 0, new Deck(), null);
         Random rand = new Random();
 
-        while(cards.size() > 4){
+        while(cards.size() > 4)
+        {
             int index = rand.nextInt(cards.size());
 
             deck = deck.concat(cards.get(index) + ":");

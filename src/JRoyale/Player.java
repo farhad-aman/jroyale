@@ -75,7 +75,8 @@ public class Player
     {
         history.addBattleResult(battleResult);
 
-        try{
+        try
+        {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
             String USERNAME = "root";
@@ -88,7 +89,9 @@ public class Player
             st.execute(insertion);
 
             st.close();
-        }catch (Exception e){
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
@@ -120,7 +123,8 @@ public class Player
 
     public void saveOnDB()
     {
-        try{
+        try
+        {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
             String USERNAME = "root";
@@ -135,12 +139,15 @@ public class Player
             st.execute(insertion);
 
             st.close();
-        }catch (Exception e){
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
 
-    private String getDeckString() {
+    private String getDeckString() 
+    {
         String deckString = "";
 
         for(Card card : deck.getCards())

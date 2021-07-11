@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="MenuController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuController">
   <tabs>
     <Tab text="Profile">
       <content>
@@ -29,64 +30,121 @@
                         <Image url="@resources/menu/menuBackground.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="436.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="archerImageView" fitHeight="150.0" fitWidth="150.0" layoutX="682.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/cards/archer/archer150.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="436.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="barbariansImageView" fitHeight="150.0" fitWidth="150.0" layoutX="682.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/cards/barbarians/barbarians150.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="436.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="wizardImageView" fitHeight="150.0" fitWidth="150.0" layoutX="682.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/cards/wizard/wizard150.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="436.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="dragonImageView" fitHeight="150.0" fitWidth="150.0" layoutX="682.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/cards/dragon/dragon150.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="686.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="giantImageView" fitHeight="150.0" fitWidth="150.0" layoutX="932.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/cards/giant/giant150.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="686.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="pekkaImageView" fitHeight="150.0" fitWidth="150.0" layoutX="932.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/cards/pekka/pekka150.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="686.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cannonImageView" fitHeight="150.0" fitWidth="150.0" layoutX="932.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/cards/cannon/cannon150.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="686.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="valkyrieImageView" fitHeight="150.0" fitWidth="150.0" layoutX="932.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/cards/valkyrie/valkyrie150.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="936.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="fireballImageView" fitHeight="150.0" fitWidth="150.0" layoutX="1182.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/cards/fireball/fireball150.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="936.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="arrowsImageView" fitHeight="150.0" fitWidth="150.0" layoutX="1182.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/cards/arrows/arrows150.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="936.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="infernoImageView" fitHeight="150.0" fitWidth="150.0" layoutX="1182.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/cards/inferno/inferno150.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="936.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rageImageView" fitHeight="150.0" fitWidth="150.0" layoutX="1182.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/cards/rage/rage150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="card1" fitHeight="150.0" fitWidth="150.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/blank150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="card5" fitHeight="150.0" fitWidth="150.0" layoutX="230.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/blank150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="card2" fitHeight="150.0" fitWidth="150.0" layoutX="40.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/blank150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="card6" fitHeight="150.0" fitWidth="150.0" layoutX="230.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/blank150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="card3" fitHeight="150.0" fitWidth="150.0" layoutX="40.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/blank150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="card7" fitHeight="150.0" fitWidth="150.0" layoutX="230.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/blank150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="card4" fitHeight="150.0" fitWidth="150.0" layoutX="40.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/blank150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="card8" fitHeight="150.0" fitWidth="150.0" layoutX="230.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/blank150.jpg" />
+                     </image>
+                  </ImageView>
+                  <CheckBox fx:id="archerCheckBox" layoutX="642.0" layoutY="107.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="0.0" />
+                  <CheckBox fx:id="barbariansCheckBox" layoutX="642.0" layoutY="287.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="0.0" />
+                  <CheckBox fx:id="dragonCheckBox" layoutX="642.0" layoutY="467.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="0.0" />
+                  <CheckBox fx:id="wizardCheckBox" layoutX="642.0" layoutY="647.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="0.0" />
+                  <CheckBox fx:id="cannonCheckBox" layoutX="892.0" layoutY="647.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="0.0" />
+                  <CheckBox fx:id="valkyrieCheckBox" layoutX="892.0" layoutY="467.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="0.0" />
+                  <CheckBox fx:id="pekkaCheckBox" layoutX="892.0" layoutY="287.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="0.0" />
+                  <CheckBox fx:id="giantCheckBox" layoutX="892.0" layoutY="107.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="0.0" />
+                  <CheckBox fx:id="fireballCheckBox" layoutX="1142.0" layoutY="107.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="0.0" />
+                  <CheckBox fx:id="arrowsCheckBox" layoutX="1142.0" layoutY="287.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="0.0" />
+                  <CheckBox fx:id="rageCheckBox" layoutX="1142.0" layoutY="467.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="0.0" />
+                  <CheckBox fx:id="infernoCheckBox" layoutX="1142.0" layoutY="647.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="0.0" />
+                  <ImageView fx:id="saveDeckButton" fitHeight="88.0" fitWidth="199.0" layoutX="1369.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/menu/saveDeckButton.png" />
                      </image>
                   </ImageView>
                </children></AnchorPane>
