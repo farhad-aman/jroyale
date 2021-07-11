@@ -86,6 +86,8 @@ public class Player
 
             String insertion = "insert into gameHistory values(userName = " + '\"' + username + '\"' + ", botDifficulty = " + '\"' + battleResult.getBotDifficulty() + '\"' + ", yourScore = " + '\"' + battleResult.getYourScore() + '\"' + ", enemyScore = " + '\"' + battleResult.getEnemyScore() + '\"' + ")";
             st.execute(insertion);
+
+            st.close();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -131,6 +133,8 @@ public class Player
                     "set pass = " + '\"' + password + '\"' + ", xp = " + '\"' + xp + '\"' + ", deck = " + '\"' + getDeckString() + '\"'  +
                     " where userName=" + '\"' + username + '\"';
             st.execute(insertion);
+
+            st.close();
         }catch (Exception e){
             e.printStackTrace();
         }
