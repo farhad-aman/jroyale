@@ -5,11 +5,14 @@ import java.sql.Statement;
 public class Player
 {
     private final String username;
+
     private String password;
+
     private int xp;
+
     private Deck deck;
+
     private History history;
-    private int botDifficulty;
 
     public Player(String username, String password, int xp, Deck deck, History history)
     {
@@ -19,11 +22,7 @@ public class Player
         this.deck = deck;
         this.history = history;
     }
-
-    public void setBotDifficulty(int botDifficulty) {
-        this.botDifficulty = botDifficulty;
-    }
-
+    
     public String getUsername()
     {
         return username;
@@ -155,14 +154,5 @@ public class Player
             deckString = deckString.concat(card.getId() + ":");
 
         return deckString;
-    }
-
-    public Bot getPreferredBot() {
-        if(botDifficulty == 1)
-            return new Bot1();
-        else if(botDifficulty == 2)
-            return new Bot2();
-        else
-            return new Bot3();
     }
 }

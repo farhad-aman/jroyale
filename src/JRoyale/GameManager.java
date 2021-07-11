@@ -11,8 +11,9 @@ import java.util.StringTokenizer;
 public class GameManager
 {
     private static GameManager gameManager = new GameManager();
+
     private final int frameRate = 40;
-    private Battle battle;
+
     private Player currentPlayer;
 
     private GameManager()
@@ -159,6 +160,7 @@ public class GameManager
         }
         return card;
     }
+
     /**
      * checks the information and create the new player if the given username is not used before
      * @return status->-2 : passwords are not the same//-1->information is not accurate//0->username is occupied//1-> player is added
@@ -221,7 +223,8 @@ public class GameManager
     }
 
     private String createDeck(String username, String userPassword) 
-    { 
+    {
+        System.out.println("gameManager line 209 started");
         String deck = "";
         ArrayList<String> cards = new ArrayList<>();
         cards.add("fireBall");
@@ -258,26 +261,5 @@ public class GameManager
 
     public Player getCurrentPlayer() {
         return currentPlayer;
-    }
-
-    public void battle(int difficulty){
-        currentPlayer.setBotDifficulty(difficulty);
-
-        battle = new Battle();
-        //opening new scene
-    }
-
-    public void stepAll() {
-        battle.stepAll();
-    }
-    /**
-     * @return the number indicating the flow of the game//-2->tower bonus must be calculated to find the winner//-1->bot won the game//0->game is on process//1->player won the game
-     * */
-    public int getStatus() {
-        return battle.getStatus();
-    }
-
-    public Battle getBattle() {
-        return battle;
     }
 }

@@ -2,27 +2,31 @@ import java.util.ArrayList;
 
 public class Battle 
 {
-    private Tile[][] tiles;
     private Player player;
-    private Bot bot;
+    
     private Arena playerField;
+    
     private Arena enemyField;
+    
     private ArrayList<Card> yourCards;
+    
     private ArrayList<Card> enemyCards;
+    
     private ScoreBoard scoreBoard;
+    
     private BattleTimer battleTimer;
+    
     private ElixirBar yourExlixirBar;
+    
     private ElixirBar enemyExlixirBar;
     
     public Battle()
     {
         this.player = GameManager.getInstance().getCurrentPlayer();
-        bot = player.getPreferredBot();
         scoreBoard = new ScoreBoard();
         battleTimer = new BattleTimer(180, scoreBoard);
         yourExlixirBar = new ElixirBar(4, battleTimer);
         enemyExlixirBar = new ElixirBar(4, battleTimer);
-        tiles = new Tile[playerField.getRows()][playerField.getColumns()];
     }
 
     public void stepAll() {
