@@ -5,7 +5,7 @@ import java.util.TimerTask;
 
 public class BattleController {
     Timer timer;
-    Battle battle = new Battle();
+    private GameManager gm = GameManager.getInstance();
     Arena arena = new Arena();
     int FPS = 40;//frame per second
 
@@ -28,10 +28,10 @@ public class BattleController {
     }
 
     private void move() {
-        battle.stepAll();
-        arena.updateView(battle);
+        gm.stepAll();
+        arena.updateView(gm.getBattle());
 
-        int status = battle.getStatus();//-2->towers bonus must be calculated//-1->bot won//0->incomplete//1->player won
+        int status = gm.getStatus();//-2->towers bonus must be calculated//-1->bot won//0->incomplete//1->player won
 
         if(status == 1){
             //player won

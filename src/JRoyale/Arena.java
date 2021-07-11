@@ -6,7 +6,7 @@ public class Arena extends Group
     private int rows = 14;
     private int columns = 18;
     private ImageView[][] field;
-    private final double tileLength = 15.00;
+    private final double tileLength = 40.00;
 
     public Arena(){field = new ImageView[rows][columns];}
 
@@ -29,5 +29,13 @@ public class Arena extends Group
                 this.getChildren().add(iv);
             }
         }
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getColumns() {
+        return columns;
     }
 }
