@@ -258,4 +258,8 @@ public class GameManager
 
         return deck;
     }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
 }

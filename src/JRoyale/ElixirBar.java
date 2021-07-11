@@ -4,21 +4,21 @@ public class ElixirBar
 
     private int elixir;
     
-    private Timer timer;
+    private BattleTimer battleTimer;
 
     private int stepLimit = 80;
 
     private int stepValue;
 
-    public ElixirBar(int initElixir, Timer timer)
+    public ElixirBar(int initElixir, BattleTimer battleTimer)
     {
         this.elixir = initElixir;
-        this.timer = timer;
+        this.battleTimer = battleTimer;
     }
 
     public void step()
     {
-        if(timer.getTime() == 60)
+        if(battleTimer.getTime() == 60)
         {
             stepLimit = 40;
         }

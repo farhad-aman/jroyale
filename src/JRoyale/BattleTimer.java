@@ -1,4 +1,4 @@
-public class Timer 
+public class BattleTimer
 {
     private int time; 
 
@@ -8,7 +8,7 @@ public class Timer
 
     private int stepValue;
 
-    public Timer(int time, ScoreBoard scoreBoard)
+    public BattleTimer(int time, ScoreBoard scoreBoard)
     {
         this.time = time;
         this.scoreBoard = scoreBoard;
