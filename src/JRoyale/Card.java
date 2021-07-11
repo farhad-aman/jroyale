@@ -34,5 +34,4 @@ public abstract class Card
         }
         return false;
     }
-
 }

@@ -1,4 +1,8 @@
-public class Player 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class Player
 {
     private final String username;
 
@@ -47,7 +51,7 @@ public class Player
     public void setXp(int xp)
     {
         this.xp = xp;
-        this.saveOnDB();
+        saveOnDB();
     }
 
     public Deck getDeck()
@@ -58,7 +62,7 @@ public class Player
     public void setDeck(Deck deck)
     {
         this.deck = deck;
-        this.saveOnDB();
+        saveOnDB();
     }
 
 
@@ -67,16 +71,26 @@ public class Player
         return history;
     }
 
-    public void setHistory(History history)
-    {
-        this.history = history;
-        saveOnDB();
-    }
-
     public void addBattleResult(BattleResult battleResult)
     {
         history.addBattleResult(battleResult);
-        saveOnDB();
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/JRoyale";
+            String USERNAME = "root";
+            String password = "@#$mg200";
+
+            Connection con = DriverManager.getConnection(url, USERNAME, password);
+            Statement st = con.createStatement();
+
+            String insertion = "insert into gameHistory values(userName = " + '\"' + username + '\"' + ", botDifficulty = " + '\"' + battleResult.getBotDifficulty() + '\"' + ", yourScore = " + '\"' + battleResult.getYourScore() + '\"' + ", enemyScore = " + '\"' + battleResult.getEnemyScore() + '\"' + ")";
+            st.execute(insertion);
+
+            st.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public int getLevel()
@@ -106,6 +120,32 @@ public class Player
 
     public void saveOnDB()
     {
-        //DB
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/JRoyale";
+            String USERNAME = "root";
+            String password = "@#$mg200";
+
+            Connection con = DriverManager.getConnection(url, USERNAME, password);
+            Statement st = con.createStatement();
+
+            String insertion = "update from players" +
+                    "set pass = " + '\"' + password + '\"' + ", xp = " + '\"' + xp + '\"' + ", deck = " + '\"' + getDeckString() + '\"'  +
+                    " where userName=" + '\"' + username + '\"';
+            st.execute(insertion);
+
+            st.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private String getDeckString() {
+        String deckString = "";
+
+        for(Card card : deck.getCards())
+            deckString = deckString.concat(card.getId() + ":");
+
+        return deckString;
     }
 }

@@ -100,17 +100,17 @@
                               <Image url="@resources/login/signUpButton.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="signUpUsernameLabel" layoutX="38.0" layoutY="80.0" textFill="#dd0f0f">
+                        <Label fx:id="signUpUsernameLabel" layoutX="72.0" layoutY="82.0" textFill="#dd0f0f">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="signUpPasswordLabel" layoutX="38.0" layoutY="188.0" textFill="#dd0f0f">
+                        <Label fx:id="signUpPasswordLabel" layoutX="72.0" layoutY="188.0" textFill="#dd0f0f">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="signUpConfirmLabel" layoutX="38.0" layoutY="290.0" textFill="#dd0f0f">
+                        <Label fx:id="signUpConfirmLabel" layoutX="72.0" layoutY="290.0" textFill="#dd0f0f">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
