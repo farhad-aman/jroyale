@@ -17,6 +17,10 @@ public class Deck
         }
     }
 
+    public HashSet<Card> getCards() {
+        return cards;
+    }
+
     public void setCards(HashSet<Card> cards)
     {
         if(cards.size() == 8)

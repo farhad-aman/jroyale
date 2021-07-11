@@ -49,13 +49,6 @@ public class LoginController
     @FXML
     private Label signUpConfirmLabel;
 
-
-//    @FXML
-//    void loginButtonClicked(MouseEvent event)
-//    {
-//        logIn();
-//    }
-
     @FXML
     void loginButtonPressed(MouseEvent event) 
     {
@@ -138,13 +131,6 @@ public class LoginController
         else
             openMenu();
     }
-
-//    @FXML
-//    void signUpButtonClicked(MouseEvent event)
-//    {
-//        System.out.println("loginController line 144 started");
-//        signUp();
-//    }
 
     @FXML
     void signUpButtonPressed(MouseEvent event) 
