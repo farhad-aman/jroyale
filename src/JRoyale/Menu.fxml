@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="MenuController">
+  <tabs>
+    <Tab text="Profile">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="770.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/menu/menuBackground.jpg" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Battle Deck">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="770.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/menu/menuBackground.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="436.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/cards/archer/archer150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="436.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/cards/barbarians/barbarians150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="436.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/cards/wizard/wizard150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="436.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/cards/dragon/dragon150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="686.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/cards/giant/giant150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="686.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/cards/pekka/pekka150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="686.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/cards/cannon/cannon150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="686.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/cards/valkyrie/valkyrie150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="936.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/cards/fireball/fireball150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="936.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/cards/arrows/arrows150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="936.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/cards/inferno/inferno150.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="936.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/cards/rage/rage150.jpg" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Battle History">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="770.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/menu/menuBackground.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Training Camp">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="770.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/menu/menuBackground.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>
