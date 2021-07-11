@@ -1,19 +1,22 @@
-import java.util.ArrayList;
+public abstract class Bot 
+{
+    private Deck deck;
 
-public abstract class Bot {
     int difficulty;
-    private ArrayList<Card> cards;
 
-    public Bot(int difficulty, ArrayList<Card> cards) {
+    public Bot(Deck deck, int difficulty) 
+    {
+        this.deck = deck;
         this.difficulty = difficulty;
-        this.cards = cards;
     }
 
-    public int getDifficulty() {
+    public int getDifficulty() 
+    {
         return difficulty;
     }
 
-    public ArrayList<Card> getCards() {
-        return cards;
+    public Deck getDeck()
+    {
+        return deck;
     }
 }

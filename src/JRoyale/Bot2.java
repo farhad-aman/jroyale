@@ -1,14 +1,9 @@
-import java.util.ArrayList;
+public class Bot2 extends Bot
+{
 
-public class Bot2 extends Bot{
-    int difficulty;
-    private ArrayList<Card> cards;
-
-    public Bot2() {
-        super(2, createDeck());
+    public Bot2() 
+    {
+        super(null, 2);
     }
 
-    private static ArrayList<Card> createDeck() {
-        return null;
-    }
 }

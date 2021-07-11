@@ -12,7 +12,7 @@ public abstract class Troop extends Card
 
     private final int count; 
 
-    private final int[] hp;
+    private final int[] initHP;
 
     private final int[] damage;
 
@@ -24,7 +24,7 @@ public abstract class Troop extends Card
                  double range, 
                  boolean areaSplash, 
                  int count,
-                 int[] hp,
+                 int[] initHP,
                  int[] damage) 
     {
         super(id, cost);
@@ -34,7 +34,7 @@ public abstract class Troop extends Card
         this.range = range;
         this.areaSplash = areaSplash;
         this.count = count;
-        this.hp = hp;
+        this.initHP = initHP;
         this.damage = damage;
     }
     

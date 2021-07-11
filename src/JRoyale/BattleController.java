@@ -1,51 +1,67 @@
 import javafx.application.Platform;
+import javafx.fxml.FXML;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class BattleController {
-    Timer timer;
-    Battle battle = new Battle();
-    Arena arena = new Arena();
-    int FPS = 40;//frame per second
+public class BattleController 
+{
+    /**
+     * the timer for handling game loop
+     */
+    private Timer timer;
 
-    public void initialize(){
-        startTimer();
-    }
+    /**
+     * the main model object that use singleton
+     */
+    private GameManager gameManager = GameManager.getInstance();
 
-    private void startTimer() {
+    /**
+     * starts main process of a battle in the game
+     */
+    private void startTimer() 
+    {
         this.timer = new Timer();
-        TimerTask timerTask = new TimerTask() {
+        TimerTask timerTask = new TimerTask() 
+        {
+            @Override
             public void run() {
-                Platform.runLater(new Runnable() {
-                    public void run() {
-                        move();
+                Platform.runLater(new Runnable() 
+                {
+                    @Override
+                    public void run() 
+                    {
+                        int status = gameManager.battleStep();
+                        updateView();
+                        finishBattle(status);
                     }
                 });
             }
         };
-        this.timer.schedule(timerTask, 0, 1000 / FPS);
+        this.timer.schedule(timerTask, 0, 1000 / GameManager.FPS);
     }
 
-    private void move() {
-        battle.stepAll();
-        arena.updateView(battle);
+    /**
+     * updates all battle view based on new situation of model
+     */
+    private void updateView()
+    {
 
-        int status = battle.getStatus();//-2->towers bonus must be calculated//-1->bot won//0->incomplete//1->player won
-
-        if(status == 1){
-            //player won
-        }
-        else if(status == -1){
-            //bot won
-        }
-        else if (status == -2){
-            //clarifies the winner
-        }
     }
-
-    private void finishGame(int status){
+    
+    /**
+     * check the status from model to decide finish the game
+     * @param status
+     */
+    private void finishBattle(int status)
+    {
         timer.cancel();
         //the end -->show the winner
+    }
+
+    @FXML
+    public void initialize()
+    {
+        startTimer();
     }
 }

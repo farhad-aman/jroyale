@@ -1,5 +1,3 @@
-import javafx.application.Platform;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,9 +10,11 @@ public class GameManager
 {
     private static GameManager gameManager = new GameManager();
 
-    private final int frameRate = 40;
-
+    public static final int FPS = 40;
+    
     private Player currentPlayer;
+    
+    private Battle battle;
 
     private GameManager()
     {
@@ -261,5 +261,30 @@ public class GameManager
 
     public Player getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public boolean createBattle(int botDifficulty)
+    {
+        if(botDifficulty == 1)
+        {
+            this.battle = new Battle(new Bot1());
+            return true; 
+        }
+        else if(botDifficulty == 2)
+        {
+            this.battle = new Battle(new Bot2());
+            return true;
+        }
+        else if(botDifficulty == 3)
+        {
+            this.battle = new Battle(new Bot3());
+            return true;
+        }
+        return false;
+    }
+
+    public int battleStep()
+    {
+        return battle.step();
     }
 }

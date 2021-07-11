@@ -1,21 +1,35 @@
 public class ScoreBoard 
 {
-    private int yourStars;
+    private int playerStars;
 
-    private int enemyStars;
+    private int botStars;
+
+    private int totalPlayerTowersHP;
+
+    private int totalBotTowersHP;
 
     public void step()
     {
-
+        
     }
 
-    public int getYourStars()
+    public int getPlayerStars()
     {
-        return yourStars;
+        return playerStars;
     }
 
-    public int getEnemyStars()
+    public int getBotStars()
     {
-        return enemyStars;
+        return botStars;
+    }
+
+    public int getTotalPlayerTowersHP()
+    {
+        return totalPlayerTowersHP;
+    }
+
+    public int getTotalBotTowersHP()
+    {
+        return totalBotTowersHP;
     }
 }
