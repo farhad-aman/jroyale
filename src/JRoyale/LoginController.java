@@ -50,11 +50,11 @@ public class LoginController
     private Label signUpConfirmLabel;
 
 
-    @FXML
-    void loginButtonClicked(MouseEvent event) 
-    {
-        logIn();
-    }
+//    @FXML
+//    void loginButtonClicked(MouseEvent event)
+//    {
+//        logIn();
+//    }
 
     @FXML
     void loginButtonPressed(MouseEvent event) 
@@ -93,56 +93,58 @@ public class LoginController
 //        }
         logIn();
     }
-
+    /**
+     * asks GameManager.getInstance().login() for login and based on the given status interacts with the user//-1->username does not exist//0->password does not match//1->information is accurate
+     * */
     private void logIn(){
         int status = GameManager.getInstance().login(loginUsernameTextField.getText(), loginPasswordTextField.getText());
 
-        if(status == -2){
+        if(status == -1){
             try {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        loginUsernameLabel.setText("Wrong username, try again");
-                        try {
-                            Thread.sleep(4000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        loginUsernameLabel.setText("");
-                    }
-                });
+//                Platform.runLater(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        loginUsernameLabel.setText("Wrong username, try again");
+//                        try {
+//                            Thread.sleep(4000);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                        loginUsernameLabel.setText("");
+//                    }
+//                });
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
         else if (status == 0){
             try {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        loginUsernameLabel.setText("Wrong password, try again");
-                        try {
-                            Thread.sleep(4000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        loginUsernameLabel.setText("");
-                    }
-                });
+//                Platform.runLater(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        loginUsernameLabel.setText("Wrong password, try again");
+//                        try {
+//                            Thread.sleep(4000);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                        loginUsernameLabel.setText("");
+//                    }
+//                });
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
-        else{
+        else
             openMenu();
-        }
     }
 
-    @FXML
-    void signUpButtonClicked(MouseEvent event) 
-    {
-        signUp();
-    }
+//    @FXML
+//    void signUpButtonClicked(MouseEvent event)
+//    {
+//        System.out.println("loginController line 144 started");
+//        signUp();
+//    }
 
     @FXML
     void signUpButtonPressed(MouseEvent event) 
@@ -181,53 +183,55 @@ public class LoginController
 //        }
         signUp();
     }
-
+    /**
+     * asks GameManager.getInstance().signUp() for sign up and based on the given status interacts with the user//status->-2 : passwords are not the same//-1->information is not accurate//0->username is occupied//1-> player is added
+     * */
     private void signUp() {
         int status = GameManager.getInstance().signUp(signUpUsernameTextField.getText(), signUpPasswordTextField.getText(), signUpConfirmTextField.getText());
 
         if(status == -2){
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    signUpConfirmLabel.setText("Wrong password, try again");
-                    try {
-                        Thread.sleep(4000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    signUpConfirmLabel.setText("");
-                }
-            });
+//            Platform.runLater(new Runnable() {
+//                @Override
+//                public void run() {
+//                    signUpConfirmLabel.setText("Wrong password, try again");
+//                    try {
+//                        Thread.sleep(4000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    signUpConfirmLabel.setText("");
+//                }
+//            });
         }
         else if(status == -1){
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    signUpUsernameLabel.setText("Inappropriate username, try again");
-                    signUpPasswordLabel.setText("Inappropriate password, try again");
-                    try {
-                        Thread.sleep(4000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    signUpUsernameLabel.setText("");
-                    signUpPasswordLabel.setText("");
-                }
-            });
+//            Platform.runLater(new Runnable() {
+//                @Override
+//                public void run() {
+//                    signUpUsernameLabel.setText("Inappropriate username, try again");
+//                    signUpPasswordLabel.setText("Inappropriate password, try again");
+//                    try {
+//                        Thread.sleep(4000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    signUpUsernameLabel.setText("");
+//                    signUpPasswordLabel.setText("");
+//                }
+//            });
         }
         else if(status == 0){
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    signUpUsernameLabel.setText("Already exists, try again");
-                    try {
-                        Thread.sleep(4000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    signUpUsernameLabel.setText("");
-                }
-            });
+//            Platform.runLater(new Runnable() {
+//                @Override
+//                public void run() {
+//                    signUpUsernameLabel.setText("Username already exists, try again");
+//                    try {
+//                        Thread.sleep(4000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    signUpUsernameLabel.setText("");
+//                }
+//            });
         }
         else
             openMenu();
@@ -257,7 +261,7 @@ public class LoginController
     }
 
     private void openMenu() {
-
+        System.out.println("Menu opened!?!?!?!?!");
     }
 
     @FXML

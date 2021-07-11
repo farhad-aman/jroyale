@@ -35,12 +35,12 @@ public class GameManager
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
-            String userName = "root";
+            String USERNAME = "root";
             String password = "@#$mg200";
 
-            Connection con = DriverManager.getConnection(url, userName, password);
+            Connection con = DriverManager.getConnection(url, USERNAME, password);
             Statement st = con.createStatement();
-            String insertion = "select * from players where userName=" + userName;
+            String insertion = "select * from players where userName=" + '\"' + username + '\"';
             st.execute(insertion);
 
             ResultSet rs = st.getResultSet();
@@ -77,12 +77,12 @@ public class GameManager
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
-            String userName = "root";
+            String USERNAME = "root";
             String password = "@#$mg200";
 
-            Connection con = DriverManager.getConnection(url, userName, password);
+            Connection con = DriverManager.getConnection(url, USERNAME, password);
             Statement st = con.createStatement();
-            String insertion = "select * from history where userName=" + userName;
+            String insertion = "select * from gameHistory where userName=" + '\"' + playerName + '\"';
             st.execute(insertion);
 
             ResultSet rs = st.getResultSet();
@@ -157,35 +157,45 @@ public class GameManager
      * */
     public int signUp(String username, String userPassword, String confirmPassword)
     {
-        if(!userPassword.equals(confirmPassword))
+        System.out.println("gameManager line 160 started");
+        if(!userPassword.equals(confirmPassword)) {
+            System.out.println("gameManager line 162 started");
             return -2;
-        else if(!(username.length() <= 30) || !(username.length() >= 3) || !(userPassword.length() >= 6) || !(userPassword.length() <= 32))
+        }
+        else if(!(username.length() <= 30) || !(username.length() >= 3) || !(userPassword.length() >= 6) || !(userPassword.length() <= 32)) {
+            System.out.println("gameManager line 166 started");
             return -1;
+        }
 
         try {
+            System.out.println("gameManager line 171 started");
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
-            String userName = "root";
+            String USERNAME = "root";
             String password = "@#$mg200";
 
-            Connection con = DriverManager.getConnection(url, userName, password);
+            Connection con = DriverManager.getConnection(url, USERNAME, password);
             Statement st = con.createStatement();
 
-            String insertion = "select * from players where userName=" + userName;
+            String insertion = "select * from players where userName=" + '\"' + username + '\"';
             st.execute(insertion);
 
             ResultSet rs = st.getResultSet();
 
             if(!rs.next()){
-                String deck = createDeck();
+                System.out.println("gameManager line 186 started\t\tuserName:" + username);
+                String deck = createDeck(username, userPassword);
 
-                insertion = "insert into players values(" + userName + "," + userPassword + ", " + 0 + ", " + deck + ")";
+                System.out.println("gameManager line 189 started\t\t" + "UserName:" + username);
+                insertion = "insert into players values(" + '\"' +  username + '\"' + "," +  '\"' +  userPassword + '\"' + ", " + 0 + ", " +  '\"' +  deck + '\"' + ")";
+                st.execute(insertion);
 
                 rs.close();
                 st.close();
 
                 return 1;
             }
+            System.out.println("gameManager line 198 started\t\t" + username);
             rs.close();
             st.close();
 
@@ -197,7 +207,8 @@ public class GameManager
         }
     }
 
-    private String createDeck() {
+    private String createDeck(String username, String userPassword) {
+        System.out.println("gameManager line 209 started");
         String deck = "";
         ArrayList<String> cards = new ArrayList<>();
         cards.add("fireBall");
@@ -213,14 +224,21 @@ public class GameManager
         cards.add("inferno");
         cards.add("archer");
 
+        Player player = new Player(username, userPassword, 0, new Deck(), null);
         Random rand = new Random();
 
         while(cards.size() > 4){
             int index = rand.nextInt(cards.size());
 
             deck = deck.concat(cards.get(index) + ":");
+
+            player.getDeck().addCard(getCard(cards.get(index)));
+
             cards.remove(index);
         }
+        System.out.println("gameManager line 237 started");
+        currentPlayer = player;
+
         return deck;
     }
 }
