@@ -25,7 +25,7 @@
                         <Image url="@resources/menu/menuBackground.jpg" />
                      </image>
                   </ImageView>
-                  <PasswordField fx:id="oldPasswordField" layoutX="1000.0" layoutY="185.0" onMousePressed="#oldPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="Old Password" style="-fx-background-radius: 30; -fx-background-color: rgb(13, 77, 5, 1); -fx-text-inner-color: #f8a71d;">
+                  <PasswordField fx:id="oldPasswordField" layoutX="1000.0" layoutY="125.0" onMousePressed="#oldPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="Old Password" style="-fx-background-radius: 30; -fx-background-color: rgb(13, 77, 5, 1); -fx-text-inner-color: #f8a71d;">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
                      </font>
@@ -33,7 +33,7 @@
                         <Reflection />
                      </effect>
                   </PasswordField>
-                  <PasswordField fx:id="newPasswordField" layoutX="1000.0" layoutY="295.0" onMousePressed="#newPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="New Password" style="-fx-background-color: rgb(13, 77, 5, 1); -fx-background-radius: 30; -fx-text-inner-color: #F8A71D;">
+                  <PasswordField fx:id="newPasswordField" layoutX="1000.0" layoutY="254.0" onMousePressed="#newPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="New Password" style="-fx-background-color: rgb(13, 77, 5, 1); -fx-background-radius: 30; -fx-text-inner-color: #F8A71D;">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
                      </font>
@@ -41,7 +41,7 @@
                         <Reflection />
                      </effect>
                   </PasswordField>
-                  <PasswordField fx:id="confirmPasswordField" layoutX="1000.0" layoutY="405.0" onMousePressed="#confirmPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="Confirm New Password" style="-fx-background-radius: 30; -fx-background-color: rgb(13, 77, 5, 1); -fx-text-inner-color: #F8A71D;">
+                  <PasswordField fx:id="confirmPasswordField" layoutX="1000.0" layoutY="385.0" onMousePressed="#confirmPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="Confirm New Password" style="-fx-background-radius: 30; -fx-background-color: rgb(13, 77, 5, 1); -fx-text-inner-color: #F8A71D;">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
                      </font>
@@ -94,6 +94,21 @@
                         <InnerShadow />
                      </effect>
                   </AnchorPane>
+                  <Label layoutX="1000.0" layoutY="206.0" prefHeight="34.0" prefWidth="376.0" textFill="#dd0f0f">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1000.0" layoutY="334.0" prefHeight="36.0" prefWidth="377.0" textFill="#dd0f0f">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1000.0" layoutY="466.0" prefHeight="33.0" prefWidth="384.0" textFill="#dd0f0f">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
       </content>
     </Tab>
@@ -272,6 +287,11 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
+                  <Label layoutX="1369.0" layoutY="440.0" prefHeight="34.0" prefWidth="223.0" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
       </content>
     </Tab>
