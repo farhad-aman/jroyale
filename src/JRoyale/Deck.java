@@ -6,7 +6,19 @@ public class Deck
     
     public Deck()
     {
-        cards = new HashSet<>();
+        this.cards = new HashSet<>();
+    }
+
+    public Deck(HashSet<Card> cards)
+    {
+        if(cards.size() == 8)
+        {
+            this.cards = cards;
+        }
+        else
+        {
+            cards = new HashSet<>();
+        }
     }
 
     public void addCard(Card card)

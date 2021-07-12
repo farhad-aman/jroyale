@@ -1,7 +1,6 @@
 import java.io.File;
 import java.util.ArrayList;
-
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
+import java.util.HashSet;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -186,73 +185,39 @@ public class MenuController
                 @Override
                 public void run() 
                 {
+                    oldPasswordLabel.setText("");
+                    newPasswordLabel.setText("");
+                    confirmPasswordLabel.setText("");
                     changePasswordButton.setImage(new Image("resources/menu/changePasswordButtonPressed.png"));
                     MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
+                    int status = gameManager.getCurrentPlayer().setPassword(oldPasswordField.getText(), newPasswordField.getText(), confirmPasswordField.getText());
+                    if(status == 0)
+                    {
+                        oldPasswordLabel.setText("Old Password Is Invalid");
+                    }
+                    else if(status == 1)
+                    {
+                        confirmPasswordLabel.setText("New Password Is Not Equals To Confirm Password");
+                    }
+                    else if(status == 2)
+                    {
+                        newPasswordLabel.setText("New Password Lenght Is Not Between 6 & 32");
+                    }
+                    else if(status == 3)
+                    {
+                        oldPasswordLabel.setText("Password Successfully Changed");
+                        oldPasswordField.setText("");
+                        newPasswordField.setText("");
+                        confirmPasswordField.setText("");
+                    }
                 }
             });    
         } 
         catch (Exception e) 
         {
             //TODO: handle exception
-        }
-        
-        int status = gameManager.getCurrentPlayer().setPassword(oldPasswordField.getText(), newPasswordField.getText(), confirmPasswordField.getText());
-        if(status == 0)
-        {
-            oldPasswordLabel.setText("Old Password Is Invalid");
-            try 
-            {
-                Thread.sleep(5000);   
-            } 
-            catch (Exception e) 
-            {
-                //TODO: handle exception
-            }
-            oldPasswordLabel.setText("");
-        }
-        else if(status == 1)
-        {
-            confirmPasswordLabel.setText("New Password Is Not Equals To Confirm Password");
-            try 
-            {
-                Thread.sleep(5000);   
-            } 
-            catch (Exception e) 
-            {
-                //TODO: handle exception
-            }
-            confirmPasswordLabel.setText("");
-        }
-        else if(status == 2)
-        {
-            newPasswordLabel.setText("New Password Lenght Is Not Between 6 & 32");
-            try 
-            {
-                Thread.sleep(5000);   
-            } 
-            catch (Exception e) 
-            {
-                //TODO: handle exception
-            }
-            newPasswordLabel.setText("");
-        }
-        else if(status == 3)
-        {
-            oldPasswordLabel.setText("Password Successfully Changed");
-            oldPasswordField.setText("");
-            newPasswordField.setText("");
-            confirmPasswordField.setText("");
-            try 
-            {
-                Thread.sleep(5000);   
-            } 
-            catch (Exception e) 
-            {
-                //TODO: handle exception
-            }
-            oldPasswordLabel.setText("");
         }
     }
 
@@ -373,10 +338,68 @@ public class MenuController
                 @Override
                 public void run() 
                 {
+                    saveDeckLabel.setText("");
                     saveDeckButton.setImage(new Image("resources/menu/saveDeckButtonPressed.png"));
                     MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
+                    HashSet<Card> newCards = new HashSet<>();
+                    if(archerCheckBox.isSelected())
+                    {
+                        newCards.add((Card)archerCheckBox.getUserData());
+                    }
+                    if(arrowsCheckBox.isSelected())
+                    {
+                        newCards.add((Card)arrowsCheckBox.getUserData());
+                    }
+                    if(barbariansCheckBox.isSelected())
+                    {
+                        newCards.add((Card)barbariansCheckBox.getUserData());
+                    }
+                    if(cannonCheckBox.isSelected())
+                    {
+                        newCards.add((Card)cannonCheckBox.getUserData());
+                    }
+                    if(dragonCheckBox.isSelected())
+                    {
+                        newCards.add((Card)dragonCheckBox.getUserData());
+                    }
+                    if(fireballCheckBox.isSelected())
+                    {
+                        newCards.add((Card)fireballCheckBox.getUserData());
+                    }
+                    if(giantCheckBox.isSelected())
+                    {
+                        newCards.add((Card)giantCheckBox.getUserData());
+                    }
+                    if(infernoCheckBox.isSelected())
+                    {
+                        newCards.add((Card)infernoCheckBox.getUserData());
+                    }
+                    if(pekkaCheckBox.isSelected())
+                    {
+                        newCards.add((Card)pekkaCheckBox.getUserData());
+                    }
+                    if(rageCheckBox.isSelected())
+                    {
+                        newCards.add((Card)rageCheckBox.getUserData());
+                    }
+                    if(valkyrieCheckBox.isSelected())
+                    {
+                        newCards.add((Card)valkyrieCheckBox.getUserData());
+                    }
+                    if(wizardCheckBox.isSelected())
+                    {
+                        newCards.add((Card)wizardCheckBox.getUserData());
+                    }
+                    if(newCards.size() != 8)
+                    {
+                        saveDeckLabel.setText("Please Choose Exacly 8 Cards");
+                    }
+                    else
+                    {
+                        gameManager.getCurrentPlayer().setDeck(new Deck(newCards));
+                    }
                 }
             });    
         } 
@@ -415,7 +438,9 @@ public class MenuController
     void initialize()
     {
         usernameValue.setText(gameManager.getCurrentPlayer().getUsername());
+
         xpValue.setText(Integer.toString(gameManager.getCurrentPlayer().getXp()));
+
         if(gameManager.getCurrentPlayer().getLevel() == 1)
         {
             levelImageView.setImage(new Image("resources/menu/level1.png"));
@@ -436,6 +461,7 @@ public class MenuController
         {
             levelImageView.setImage(new Image("resources/menu/level5.png"));
         }
+
         ArrayList<Card> deck = new ArrayList<>();
         for(Card c : gameManager.getCurrentPlayer().getDeck().getCards())
         {
@@ -450,5 +476,20 @@ public class MenuController
         card6.setImage(deck.get(5).getImage(0));
         card7.setImage(deck.get(6).getImage(0));
         card8.setImage(deck.get(7).getImage(0));
+
+        archerCheckBox.setUserData(new Archer());
+        arrowsCheckBox.setUserData(new Arrows());
+        barbariansCheckBox.setUserData(new Barbarians());
+        cannonCheckBox.setUserData(new Cannon());
+        dragonCheckBox.setUserData(new Dragon());
+        fireballCheckBox.setUserData(new Fireball());
+        giantCheckBox.setUserData(new Giant());
+        infernoCheckBox.setUserData(new Inferno());
+        pekkaCheckBox.setUserData(new Pekka());
+        rageCheckBox.setUserData(new Rage());
+        valkyrieCheckBox.setUserData(new Valkyrie());
+        wizardCheckBox.setUserData(new Wizard());
+
+
     }
 }
