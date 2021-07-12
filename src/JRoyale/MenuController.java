@@ -161,6 +161,18 @@ public class MenuController
     private ImageView hardButton;
 
     @FXML
+    private Label oldPasswordLabel;
+
+    @FXML
+    private Label newPasswordLabel;
+
+    @FXML
+    private Label confirmPasswordLabel;
+
+    @FXML
+    private Label saveDeckLabel;
+
+    @FXML
     void changePasswordButtonPressed(MouseEvent event) 
     {
         try 
