@@ -1,14 +1,20 @@
+import java.io.File;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class MenuController 
 {
+    private GameManager gameManager = GameManager.getInstance();
 
     @FXML
     private PasswordField oldPasswordField;
@@ -157,51 +163,123 @@ public class MenuController
     @FXML
     void changePasswordButtonPressed(MouseEvent event) 
     {
-
+        try 
+        {
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    changePasswordButton.setImage(new Image("resources/menu/changePasswordButtonPressed.png"));
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/click1.mp3").toURI().toString()));
+                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+                    mediaPlayer.play();
+                }
+                
+            });    
+        } 
+        catch (Exception e) 
+        {
+            //TODO: handle exception
+        }
     }
 
     @FXML
     void changePasswordButtonReleased(MouseEvent event) 
     {
-
+        try 
+        {
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    changePasswordButton.setImage(new Image("resources/menu/changePasswordButton.png"));
+                }
+                
+            });    
+        } 
+        catch (Exception e) 
+        {
+            //TODO: handle exception
+        }
     }
 
     @FXML
     void confirmPasswordFieldPressed(MouseEvent event) 
     {
-
-    }
-
-    @FXML
-    void easyButtonPressed(MouseEvent event) 
-    {
-
-    }
-
-    @FXML
-    void easyButtonReleased(MouseEvent event) 
-    {
-
-    }
-
-    @FXML
-    void hardButtonPressed(MouseEvent event) 
-    {
-
-    }
-
-    @FXML
-    void hardButtonReleased(MouseEvent event) 
-    {
-
+        try 
+        {
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/click1.mp3").toURI().toString()));
+                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+                    mediaPlayer.play();
+                }
+                
+            });    
+        } 
+        catch (Exception e) 
+        {
+            //TODO: handle exception
+        }
     }
 
     @FXML
     void newPasswordFieldPressed(MouseEvent event) 
     {
-
+        try 
+        {
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/click1.mp3").toURI().toString()));
+                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+                    mediaPlayer.play();
+                }
+                
+            });    
+        } 
+        catch (Exception e) 
+        {
+            //TODO: handle exception
+        }
     }
 
+    @FXML
+    void oldPasswordFieldPressed(MouseEvent event) 
+    {
+        try 
+        {
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/click1.mp3").toURI().toString()));
+                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+                    mediaPlayer.play();
+                }
+                
+            });    
+        } 
+        catch (Exception e) 
+        {
+            //TODO: handle exception
+        }
+    }
+
+    @FXML
+    void easyButtonPressed(MouseEvent event) 
+    {
+        
+    }
+    
     @FXML
     void normalButtonPressed(MouseEvent event) 
     {
@@ -209,27 +287,54 @@ public class MenuController
     }
 
     @FXML
-    void normalButtonReleased(MouseEvent event) 
+    void hardButtonPressed(MouseEvent event) 
     {
-
-    }
-
-    @FXML
-    void oldPasswordFieldPressed(MouseEvent event) 
-    {
-
+        
     }
 
     @FXML
     void saveDeckButtonPressed(MouseEvent event) 
     {
-
+        try 
+        {
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    changePasswordButton.setImage(new Image("resources/menu/saveDeckButtonPressed.png"));
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/click1.mp3").toURI().toString()));
+                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+                    mediaPlayer.play();
+                }
+                
+            });    
+        } 
+        catch (Exception e) 
+        {
+            //TODO: handle exception
+        }
     }
 
     @FXML
     void saveDeckButtonReleased(MouseEvent event) 
     {
-
+        try 
+        {
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    changePasswordButton.setImage(new Image("resources/menu/changePasswordButton.png"));
+                }
+                
+            });    
+        } 
+        catch (Exception e) 
+        {
+            //TODO: handle exception
+        }
     }
 
 }
