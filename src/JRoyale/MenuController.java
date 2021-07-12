@@ -187,7 +187,6 @@ public class MenuController
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
                 }
-                
             });    
         } 
         catch (Exception e) 
@@ -265,7 +264,6 @@ public class MenuController
                 {
                     changePasswordButton.setImage(new Image("resources/menu/changePasswordButton.png"));
                 }
-                
             });    
         } 
         catch (Exception e) 
@@ -288,7 +286,6 @@ public class MenuController
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
                 }
-                
             });    
         } 
         catch (Exception e) 
@@ -311,7 +308,6 @@ public class MenuController
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
                 }
-                
             });    
         } 
         catch (Exception e) 
@@ -334,7 +330,6 @@ public class MenuController
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
                 }
-                
             });    
         } 
         catch (Exception e) 
@@ -379,7 +374,6 @@ public class MenuController
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
                 }
-                
             });    
         } 
         catch (Exception e) 
@@ -400,7 +394,6 @@ public class MenuController
                 {
                     changePasswordButton.setImage(new Image("resources/menu/changePasswordButton.png"));
                 }
-                
             });    
         } 
         catch (Exception e) 
