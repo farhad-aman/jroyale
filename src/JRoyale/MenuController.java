@@ -399,6 +399,7 @@ public class MenuController
                     else
                     {
                         gameManager.getCurrentPlayer().setDeck(new Deck(newCards));
+                        setCurrentDeckPics();
                     }
                 }
             });    
@@ -434,6 +435,24 @@ public class MenuController
 
     }
 
+    private void setCurrentDeckPics()
+    {
+        ArrayList<Card> deck = new ArrayList<>();
+        for(Card c : gameManager.getCurrentPlayer().getDeck().getCards())
+        {
+            deck.add(c);
+            c.loadImages();
+        }
+        card1.setImage(deck.get(0).getImage(0));
+        card2.setImage(deck.get(1).getImage(0));
+        card3.setImage(deck.get(2).getImage(0));
+        card4.setImage(deck.get(3).getImage(0));
+        card5.setImage(deck.get(4).getImage(0));
+        card6.setImage(deck.get(5).getImage(0));
+        card7.setImage(deck.get(6).getImage(0));
+        card8.setImage(deck.get(7).getImage(0));
+    }
+
     @FXML
     void initialize()
     {
@@ -462,20 +481,7 @@ public class MenuController
             levelImageView.setImage(new Image("resources/menu/level5.png"));
         }
 
-        ArrayList<Card> deck = new ArrayList<>();
-        for(Card c : gameManager.getCurrentPlayer().getDeck().getCards())
-        {
-            deck.add(c);
-            c.loadImages();
-        }
-        card1.setImage(deck.get(0).getImage(0));
-        card2.setImage(deck.get(1).getImage(0));
-        card3.setImage(deck.get(2).getImage(0));
-        card4.setImage(deck.get(3).getImage(0));
-        card5.setImage(deck.get(4).getImage(0));
-        card6.setImage(deck.get(5).getImage(0));
-        card7.setImage(deck.get(6).getImage(0));
-        card8.setImage(deck.get(7).getImage(0));
+        setCurrentDeckPics();
 
         archerCheckBox.setUserData(new Archer());
         arrowsCheckBox.setUserData(new Arrows());
