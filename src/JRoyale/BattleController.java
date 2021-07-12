@@ -10,14 +10,12 @@ public class BattleController
      * the timer for handling game loop
      */
     private Timer timer;
-
     /**
      * the main model object that use singleton
      */
     private GameManager gameManager = GameManager.getInstance();
 
     private ArenaView battleView = new ArenaView();
-
     /**
      * starts main process of a battle in the game
      */
@@ -60,7 +58,7 @@ public class BattleController
     private void finishBattle(int status)
     {
         timer.cancel();
-        //the end -->show the winner
+        //the end -->show the winner and get back to the menu
     }
 
     @FXML

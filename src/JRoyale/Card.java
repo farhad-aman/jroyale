@@ -1,6 +1,13 @@
-public abstract class Card 
+import javafx.scene.image.Image;
+
+import java.util.HashMap;
+import java.util.HashSet;
+
+public abstract class Card
 {
     private final String id;
+
+    protected HashMap<Integer, Image> pics;
 
     private final int cost;
 
@@ -34,4 +41,12 @@ public abstract class Card
         }
         return false;
     }
+    /**
+     * @return the relevant picture for the status//0->for deck(150.jpg)//troops://1->moving to right//2->moving to left//3->fighting to right//4->fighting to left//5->dying to right//6->dying to left//buildings://7->cannon ball//8->cannon turning right//9->cannon turning left//10->inferno.gif//11->spells gif
+     * */
+    public Image getImage(int status){
+        return pics.get(status);
+    }
+
+    public abstract void loadImages();
 }

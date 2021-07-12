@@ -32,6 +32,7 @@ public class Battle
         for(Card c : player.getDeck().getCards())
         {
             playerCardsQueue.add(c);
+            c.loadImages();
         } 
         Collections.shuffle(playerCardsQueue);
 
@@ -39,6 +40,7 @@ public class Battle
         for(Card c : bot.getDeck().getCards())
         {
             botCardsQueue.add(c);
+            c.loadImages();
         } 
         Collections.shuffle(botCardsQueue);
 
@@ -56,7 +58,7 @@ public class Battle
     }
 
     /**
-     * @return the number indicating the flow of the game////-1->bot won the game//0->game is on process//1->player won the game
+     * @return the number indicating the flow of the game//-1->bot won the game//0->game is on process//1->player won the game
      * */
     private int getStatus() 
     {

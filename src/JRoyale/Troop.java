@@ -38,10 +38,7 @@ public abstract class Troop extends Card
         this.damage = damage;
     }
     
-    public int getHitSpeed()
-    {
-        return hitSpeed;
-    }
+    public int getHitSpeed() { return hitSpeed; }
 
     public int getSpeed()
     {
