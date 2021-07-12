@@ -16,7 +16,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuController">
   <tabs>
-    <Tab text="Profile">
+    <Tab style="-fx-background-color: rgb(191, 124, 22, 08); -fx-background-radius: 5;" text="Profile">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -25,7 +25,7 @@
                         <Image url="@resources/menu/menuBackground.jpg" />
                      </image>
                   </ImageView>
-                  <PasswordField fx:id="oldPasswordField" layoutX="1000.0" layoutY="185.0" onMousePressed="#oldPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="Old Password" style="-fx-background-radius: 30; -fx-background-color: #42A5E0; -fx-text-inner-color: #F8A71D;">
+                  <PasswordField fx:id="oldPasswordField" layoutX="1000.0" layoutY="185.0" onMousePressed="#oldPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="Old Password" style="-fx-background-radius: 30; -fx-background-color: rgb(13, 77, 5, 1); -fx-text-inner-color: #f8a71d;" text="fgjkdukd">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
                      </font>
@@ -33,7 +33,7 @@
                         <Reflection />
                      </effect>
                   </PasswordField>
-                  <PasswordField fx:id="newPasswordField" layoutX="1000.0" layoutY="295.0" onMousePressed="#newPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="New Password" style="-fx-background-color: #42A5E0; -fx-background-radius: 30; -fx-text-inner-color: #F8A71D;">
+                  <PasswordField fx:id="newPasswordField" layoutX="1000.0" layoutY="295.0" onMousePressed="#newPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="New Password" style="-fx-background-color: rgb(13, 77, 5, 1); -fx-background-radius: 30; -fx-text-inner-color: #F8A71D;">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
                      </font>
@@ -41,7 +41,7 @@
                         <Reflection />
                      </effect>
                   </PasswordField>
-                  <PasswordField fx:id="confirmPasswordField" layoutX="1000.0" layoutY="405.0" onMousePressed="#confirmPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="Confirm New Password" style="-fx-background-radius: 30; -fx-background-color: #42A5E0; -fx-text-inner-color: #F8A71D;">
+                  <PasswordField fx:id="confirmPasswordField" layoutX="1000.0" layoutY="405.0" onMousePressed="#confirmPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="Confirm New Password" style="-fx-background-radius: 30; -fx-background-color: rgb(13, 77, 5, 1); -fx-text-inner-color: #F8A71D;">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
                      </font>
@@ -57,7 +57,7 @@
                         <Reflection />
                      </effect>
                   </ImageView>
-                  <AnchorPane layoutX="50.0" layoutY="85.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: rgba(210, 229, 236, 0.5); -fx-background-radius: 30;">
+                  <AnchorPane layoutX="50.0" layoutY="85.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: rgba(97, 104, 104, 0.7); -fx-background-radius: 30;">
                      <children>
                         <Label layoutX="60.0" layoutY="100.0" text="Username :" textFill="#f8a71d">
                            <font>
@@ -97,73 +97,14 @@
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="Battle Deck">
+    <Tab style="-fx-background-color: rgb(94, 40, 35, 0.8); -fx-background-radius: 5;" text="Battle Deck">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="770.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
+                  <AnchorPane layoutX="932.0" layoutY="40.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: red;" />
+                  <ImageView fitHeight="770.0" fitWidth="1600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/menu/menuBackground.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="archerImageView" fitHeight="150.0" fitWidth="150.0" layoutX="682.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/cards/archer/archer150.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="barbariansImageView" fitHeight="150.0" fitWidth="150.0" layoutX="682.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/cards/barbarians/barbarians150.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="wizardImageView" fitHeight="150.0" fitWidth="150.0" layoutX="682.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/cards/wizard/wizard150.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="dragonImageView" fitHeight="150.0" fitWidth="150.0" layoutX="682.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/cards/dragon/dragon150.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="giantImageView" fitHeight="150.0" fitWidth="150.0" layoutX="932.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/cards/giant/giant150.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="pekkaImageView" fitHeight="150.0" fitWidth="150.0" layoutX="932.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/cards/pekka/pekka150.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="cannonImageView" fitHeight="150.0" fitWidth="150.0" layoutX="932.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/cards/cannon/cannon150.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="valkyrieImageView" fitHeight="150.0" fitWidth="150.0" layoutX="932.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/cards/valkyrie/valkyrie150.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="fireballImageView" fitHeight="150.0" fitWidth="150.0" layoutX="1182.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/cards/fireball/fireball150.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="arrowsImageView" fitHeight="150.0" fitWidth="150.0" layoutX="1182.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/cards/arrows/arrows150.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="infernoImageView" fitHeight="150.0" fitWidth="150.0" layoutX="1182.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/cards/inferno/inferno150.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="rageImageView" fitHeight="150.0" fitWidth="150.0" layoutX="1182.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/cards/rage/rage150.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="card1" fitHeight="150.0" fitWidth="150.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
@@ -223,10 +164,118 @@
                         <Image url="@resources/menu/saveDeckButton.png" />
                      </image>
                   </ImageView>
+                  <AnchorPane layoutX="930.0" layoutY="38.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #098686; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="giantImageView" fitHeight="150.0" fitWidth="150.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/cards/giant/giant150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="1180.0" layoutY="38.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #b93726; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="fireballImageView" fitHeight="150.0" fitWidth="150.0" layoutX="2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/cards/fireball/fireball150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="1180.0" layoutY="218.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #51794d; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="arrowsImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/cards/arrows/arrows150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="1180.0" layoutY="398.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #63148d; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="rageImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/cards/rage/rage150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="1174.0" layoutY="578.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #510c0c; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="infernoImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/cards/inferno/inferno150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="927.0" layoutY="578.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #4f250c; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="cannonImageView" fitHeight="150.0" fitWidth="150.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/cards/cannon/cannon150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="932.0" layoutY="398.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #6fab6d; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="valkyrieImageView" fitHeight="150.0" fitWidth="150.0" layoutX="2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/cards/valkyrie/valkyrie150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="932.0" layoutY="227.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #94341e; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="pekkaImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/cards/pekka/pekka150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="680.0" layoutY="40.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #46570e; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="archerImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/cards/archer/archer150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="680.0" layoutY="218.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #403427; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="barbariansImageView" fitHeight="150.0" fitWidth="150.0" layoutX="2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/cards/barbarians/barbarians150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="680.0" layoutY="398.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-radius: 5; -fx-background-color: #41166f;">
+                     <children>
+                        <ImageView fx:id="dragonImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/cards/dragon/dragon150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="680.0" layoutY="578.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-radius: 5; -fx-background-color: #9ac9c2;">
+                     <children>
+                        <ImageView fx:id="wizardImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/cards/wizard/wizard150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="Battle History">
+      <Tab style="-fx-background-color: #0c75b2; -fx-background-radius: 5;" text="Battle History">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -235,12 +284,12 @@
                         <Image url="@resources/menu/menuBackground.jpg" />
                      </image>
                   </ImageView>
-                  <TableView fx:id="historyTable" layoutX="300.0" layoutY="35.0" prefHeight="700.0" prefWidth="1000.0">
+                  <TableView fx:id="historyTable" layoutX="300.0" layoutY="35.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-border-color: #0e3c57; -fx-border-width: 6; -fx-font-size: 14px;">
                     <columns>
-                      <TableColumn fx:id="botDifficultyColumn" editable="false" prefWidth="75.0" sortable="false" text="Bot Difficulty" />
-                      <TableColumn fx:id="playerStarsColumn" editable="false" prefWidth="75.0" sortable="false" text="Player Stars" />
-                        <TableColumn fx:id="botStarsColumn" editable="false" prefWidth="75.0" sortable="false" text="Bot Stars" />
-                        <TableColumn fx:id="winnerColumn" editable="false" prefWidth="75.0" sortable="false" text="Winner" />
+                      <TableColumn fx:id="botDifficultyColumn" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #3d4f8d;" text="Bot Difficulty" />
+                      <TableColumn fx:id="playerStarsColumn" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #0c75b2;" text="Player Stars" />
+                        <TableColumn fx:id="botStarsColumn" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #0c75b2;" text="Bot Stars" />
+                        <TableColumn fx:id="winnerColumn" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #d79b11;" text="Winner" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -250,7 +299,7 @@
             </AnchorPane>
         </content>
       </Tab>
-      <Tab text="Training Camp">
+      <Tab style="-fx-background-color: rgb(90, 45, 138, 0.9); -fx-background-radius: 5;" text="Training Camp">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
