@@ -7,9 +7,7 @@ public class Battle
 
     private Bot bot;
     
-    private Arena playerField;
-    
-    private Arena botField;
+    private Arena battleField;
     
     private ArrayList<Card> playerCardsQueue;
     
@@ -28,8 +26,7 @@ public class Battle
         this.player = GameManager.getInstance().getCurrentPlayer();
         this.bot = bot;
 
-        playerField = new Arena();
-        botField = new Arena();
+        battleField = new Arena();
 
         playerCardsQueue = new ArrayList<Card>();
         for(Card c : player.getDeck().getCards())
@@ -54,7 +51,7 @@ public class Battle
 
     public int step() 
     {
-        //moving every creature
+        battleField.step();
         return getStatus();
     }
 
@@ -91,5 +88,9 @@ public class Battle
             }
         }
         return 0;
+    }
+
+    public Arena getBattleField() {
+        return battleField;
     }
 }

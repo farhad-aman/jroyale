@@ -287,4 +287,8 @@ public class GameManager
     {
         return battle.step();
     }
+
+    public Battle getBattle() {
+        return battle;
+    }
 }

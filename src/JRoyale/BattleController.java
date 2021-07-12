@@ -16,6 +16,8 @@ public class BattleController
      */
     private GameManager gameManager = GameManager.getInstance();
 
+    private BattleView battleView = new BattleView();
+
     /**
      * starts main process of a battle in the game
      */
@@ -33,7 +35,9 @@ public class BattleController
                     {
                         int status = gameManager.battleStep();
                         updateView();
-                        finishBattle(status);
+
+                        if(status != 0)
+                            finishBattle(status);
                     }
                 });
             }
@@ -46,7 +50,7 @@ public class BattleController
      */
     private void updateView()
     {
-
+        battleView.updateView(gameManager.getBattle().getBattleField());
     }
     
     /**
