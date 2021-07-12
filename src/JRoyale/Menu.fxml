@@ -33,7 +33,7 @@
                         <Reflection />
                      </effect>
                   </PasswordField>
-                  <PasswordField fx:id="newPasswordField" layoutX="1000.0" layoutY="254.0" onMousePressed="#newPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="New Password" style="-fx-background-color: rgb(13, 77, 5, 1); -fx-background-radius: 30; -fx-text-inner-color: #F8A71D;">
+                  <PasswordField fx:id="newPasswordField" layoutX="1000.0" layoutY="254.0" onMousePressed="#newPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="New Password (6 - 32)" style="-fx-background-color: rgb(13, 77, 5, 1); -fx-background-radius: 30; -fx-text-inner-color: #F8A71D;">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
                      </font>
@@ -117,7 +117,7 @@
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <AnchorPane layoutX="932.0" layoutY="40.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: red;" />
-                  <ImageView fitHeight="770.0" fitWidth="1600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="770.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/menu/menuBackground.jpg" />
                      </image>

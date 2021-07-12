@@ -194,6 +194,63 @@ public class MenuController
         {
             //TODO: handle exception
         }
+        
+        int status = gameManager.getCurrentPlayer().setPassword(oldPasswordField.getText(), newPasswordField.getText(), confirmPasswordField.getText());
+        if(status == 0)
+        {
+            oldPasswordLabel.setText("Old Password Is Invalid");
+            try 
+            {
+                Thread.sleep(5000);   
+            } 
+            catch (Exception e) 
+            {
+                //TODO: handle exception
+            }
+            oldPasswordLabel.setText("");
+        }
+        else if(status == 1)
+        {
+            confirmPasswordLabel.setText("New Password Is Not Equals To Confirm Password");
+            try 
+            {
+                Thread.sleep(5000);   
+            } 
+            catch (Exception e) 
+            {
+                //TODO: handle exception
+            }
+            confirmPasswordLabel.setText("");
+        }
+        else if(status == 2)
+        {
+            newPasswordLabel.setText("New Password Lenght Is Not Between 6 & 32");
+            try 
+            {
+                Thread.sleep(5000);   
+            } 
+            catch (Exception e) 
+            {
+                //TODO: handle exception
+            }
+            newPasswordLabel.setText("");
+        }
+        else if(status == 3)
+        {
+            oldPasswordLabel.setText("Password Successfully Changed");
+            oldPasswordField.setText("");
+            newPasswordField.setText("");
+            confirmPasswordField.setText("");
+            try 
+            {
+                Thread.sleep(5000);   
+            } 
+            catch (Exception e) 
+            {
+                //TODO: handle exception
+            }
+            oldPasswordLabel.setText("");
+        }
     }
 
     @FXML
@@ -289,19 +346,22 @@ public class MenuController
     @FXML
     void easyButtonPressed(MouseEvent event) 
     {
-        
+        gameManager.createBattle(1);
+        openBattle();
     }
     
     @FXML
     void normalButtonPressed(MouseEvent event) 
     {
-
+        gameManager.createBattle(2);
+        openBattle();
     }
 
     @FXML
     void hardButtonPressed(MouseEvent event) 
     {
-        
+        gameManager.createBattle(3);
+        openBattle();
     }
 
     @FXML
@@ -349,4 +409,8 @@ public class MenuController
         }
     }
 
+    private void openBattle()
+    {
+
+    }
 }

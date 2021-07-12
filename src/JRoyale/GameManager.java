@@ -259,7 +259,8 @@ public class GameManager
         return deck;
     }
 
-    public Player getCurrentPlayer() {
+    public Player getCurrentPlayer() 
+    {
         return currentPlayer;
     }
 

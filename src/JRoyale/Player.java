@@ -28,19 +28,39 @@ public class Player
         return username;
     }
     
-    public boolean setPassword(String oldPassword, String newPassword, String confirmNewPassword)
+    /**
+     * changes the password of the player
+     * @param oldPassword
+     * @param newPassword
+     * @param confirmNewPassword
+     * @return 0 if old password is incorrect // 1 if new password not equla to confirm new password // 2 if new password lenth is invalid // 3 successfully changed
+     */
+    public int setPassword(String oldPassword, String newPassword, String confirmNewPassword)
     {
-        if(this.password.equals(oldPassword) && newPassword.equals(confirmNewPassword))
+        if(this.password.equals(oldPassword))
         {
-            if(newPassword.length() >= 6 && newPassword.length() <= 32)
-            {   
-                this.password = newPassword;
-                saveOnDB();
-                return true;
-            } 
-            return false;
+            if(newPassword.equals(confirmNewPassword))
+            {
+                if(newPassword.length() >= 6 && newPassword.length() <= 32)
+                {   
+                    this.password = newPassword;
+                    saveOnDB();
+                    return 3;
+                } 
+                else
+                {
+                    return 2;
+                }
+            }
+            else
+            {
+                return 1;
+            }
         }
-        return false;
+        else 
+        {
+            return 0;
+        }
     }
     
     public int getXp()
@@ -64,7 +84,6 @@ public class Player
         this.deck = deck;
         saveOnDB();
     }
-
 
     public History getHistory()
     {
