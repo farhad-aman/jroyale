@@ -16,7 +16,7 @@ public class BattleController
      */
     private GameManager gameManager = GameManager.getInstance();
 
-    private BattleView battleView = new BattleView();
+    private ArenaView battleView = new ArenaView();
 
     /**
      * starts main process of a battle in the game
@@ -50,7 +50,7 @@ public class BattleController
      */
     private void updateView()
     {
-        battleView.updateView(gameManager.getBattle().getBattleField());
+        
     }
     
     /**

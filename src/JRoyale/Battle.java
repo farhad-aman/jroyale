@@ -7,11 +7,7 @@ public class Battle
 
     private Bot bot;
     
-<<<<<<< HEAD
-    private Arena battleField;
-=======
     private Arena arena;
->>>>>>> 231dc044c18d20eb2db3db3087b03b341bfd80cd
     
     private ArrayList<Card> playerCardsQueue;
     
@@ -30,11 +26,7 @@ public class Battle
         this.player = GameManager.getInstance().getCurrentPlayer();
         this.bot = bot;
 
-<<<<<<< HEAD
-        battleField = new Arena();
-=======
         arena = new Arena();
->>>>>>> 231dc044c18d20eb2db3db3087b03b341bfd80cd
 
         playerCardsQueue = new ArrayList<Card>();
         for(Card c : player.getDeck().getCards())
@@ -59,7 +51,7 @@ public class Battle
 
     public int step() 
     {
-        battleField.step();
+        arena.step();
         return getStatus();
     }
 
@@ -98,7 +90,8 @@ public class Battle
         return 0;
     }
 
-    public Arena getBattleField() {
-        return battleField;
+    public Arena getArena() 
+    {
+        return arena;
     }
 }
