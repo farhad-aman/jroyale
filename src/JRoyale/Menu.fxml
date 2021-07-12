@@ -5,6 +5,8 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
@@ -47,7 +49,7 @@
                         <Reflection />
                      </effect>
                   </PasswordField>
-                  <ImageView fx:id="changePasswordButton" fitHeight="70.0" fitWidth="400.0" layoutX="1000.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="changePasswordButton" fitHeight="70.0" fitWidth="400.0" layoutX="1000.0" layoutY="515.0" onMousePressed="#changePasswordButtonPressed" onMouseReleased="#changePasswordButtonReleased" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/menu/changePasswordButton.png" />
                      </image>
@@ -82,7 +84,7 @@
                               <Font name="Arial Rounded MT Bold" size="40.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="levelImageView" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@resources/menu/level1.png" />
                            </image>
@@ -233,6 +235,17 @@
                         <Image url="@resources/menu/menuBackground.jpg" />
                      </image>
                   </ImageView>
+                  <TableView fx:id="historyTable" layoutX="300.0" layoutY="35.0" prefHeight="700.0" prefWidth="1000.0">
+                    <columns>
+                      <TableColumn fx:id="botDifficultyColumn" editable="false" prefWidth="75.0" sortable="false" text="Bot Difficulty" />
+                      <TableColumn fx:id="playerStarsColumn" editable="false" prefWidth="75.0" sortable="false" text="Player Stars" />
+                        <TableColumn fx:id="botStarsColumn" editable="false" prefWidth="75.0" sortable="false" text="Bot Stars" />
+                        <TableColumn fx:id="winnerColumn" editable="false" prefWidth="75.0" sortable="false" text="Winner" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
                </children>
             </AnchorPane>
         </content>
