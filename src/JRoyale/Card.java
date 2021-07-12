@@ -1,7 +1,6 @@
 import javafx.scene.image.Image;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 public abstract class Card
 {
@@ -13,6 +12,7 @@ public abstract class Card
 
     public Card(String id, int cost)
     {
+        this.pics = new HashMap<>();
         this.id = id;
         this.cost = cost;
     }
@@ -44,7 +44,8 @@ public abstract class Card
     /**
      * @return the relevant picture for the status//0->for deck(150.jpg)//troops://1->moving to right//2->moving to left//3->fighting to right//4->fighting to left//5->dying to right//6->dying to left//buildings://7->cannon ball//8->cannon turning right//9->cannon turning left//10->inferno.gif//11->spells gif
      * */
-    public Image getImage(int status){
+    public Image getImage(int status)
+    {
         return pics.get(status);
     }
 

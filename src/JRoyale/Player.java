@@ -99,7 +99,7 @@ public class Player
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
             String USERNAME = "root";
-            String password = "@#$mg200";
+            String password = GameManager.dbPassword;
 
             Connection con = DriverManager.getConnection(url, USERNAME, password);
             Statement st = con.createStatement();
@@ -147,7 +147,7 @@ public class Player
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
             String USERNAME = "root";
-            String password = "@#$mg200";
+            String password = GameManager.dbPassword;
 
             Connection con = DriverManager.getConnection(url, USERNAME, password);
             Statement st = con.createStatement();

@@ -10,6 +10,8 @@ public class GameManager
 {
     private static GameManager gameManager = new GameManager();
 
+    public static final String dbPassword = "@#$mg200";
+
     public static final int FPS = 40;
     
     private Player currentPlayer;
@@ -32,11 +34,12 @@ public class GameManager
      * */
     public int login(String username, String userPassword)
     {
-        try {
+        try 
+        {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
             String USERNAME = "root";
-            String password = "@#$mg200";
+            String password = GameManager.dbPassword;
 
             Connection con = DriverManager.getConnection(url, USERNAME, password);
             Statement st = con.createStatement();
@@ -84,7 +87,7 @@ public class GameManager
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
             String USERNAME = "root";
-            String password = "@#$mg200";
+            String password = GameManager.dbPassword;
 
             Connection con = DriverManager.getConnection(url, USERNAME, password);
             Statement st = con.createStatement();
@@ -185,7 +188,7 @@ public class GameManager
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
             String USERNAME = "root";
-            String password = "@#$mg200";
+            String password = GameManager.dbPassword;
 
             Connection con = DriverManager.getConnection(url, USERNAME, password);
             Statement st = con.createStatement();

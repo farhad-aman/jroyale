@@ -1,4 +1,8 @@
 import java.io.File;
+import java.util.ArrayList;
+
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -341,22 +345,22 @@ public class MenuController
     @FXML
     void easyButtonPressed(MouseEvent event) 
     {
-        gameManager.createBattle(1);
-        openBattle();
+        /*gameManager.createBattle(1);
+        openBattle();*/
     }
     
     @FXML
     void normalButtonPressed(MouseEvent event) 
     {
-        gameManager.createBattle(2);
-        openBattle();
+        /*gameManager.createBattle(2);
+        openBattle();*/
     }
 
     @FXML
     void hardButtonPressed(MouseEvent event) 
     {
-        gameManager.createBattle(3);
-        openBattle();
+        /*gameManager.createBattle(3);
+        openBattle();*/
     }
 
     @FXML
@@ -369,7 +373,7 @@ public class MenuController
                 @Override
                 public void run() 
                 {
-                    changePasswordButton.setImage(new Image("resources/menu/saveDeckButtonPressed.png"));
+                    saveDeckButton.setImage(new Image("resources/menu/saveDeckButtonPressed.png"));
                     MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
@@ -392,7 +396,7 @@ public class MenuController
                 @Override
                 public void run() 
                 {
-                    changePasswordButton.setImage(new Image("resources/menu/changePasswordButton.png"));
+                    saveDeckButton.setImage(new Image("resources/menu/saveDeckButton.png"));
                 }
             });    
         } 
@@ -405,5 +409,46 @@ public class MenuController
     private void openBattle()
     {
 
+    }
+
+    @FXML
+    void initialize()
+    {
+        usernameValue.setText(gameManager.getCurrentPlayer().getUsername());
+        xpValue.setText(Integer.toString(gameManager.getCurrentPlayer().getXp()));
+        if(gameManager.getCurrentPlayer().getLevel() == 1)
+        {
+            levelImageView.setImage(new Image("resources/menu/level1.png"));
+        }
+        else if(gameManager.getCurrentPlayer().getLevel() == 2)
+        {
+            levelImageView.setImage(new Image("resources/menu/level2.png"));
+        }
+        else if(gameManager.getCurrentPlayer().getLevel() == 3)
+        {
+            levelImageView.setImage(new Image("resources/menu/level3.png"));
+        }
+        else if(gameManager.getCurrentPlayer().getLevel() == 4)
+        {
+            levelImageView.setImage(new Image("resources/menu/level4.png"));
+        }
+        else if(gameManager.getCurrentPlayer().getLevel() == 5)
+        {
+            levelImageView.setImage(new Image("resources/menu/level5.png"));
+        }
+        ArrayList<Card> deck = new ArrayList<>();
+        for(Card c : gameManager.getCurrentPlayer().getDeck().getCards())
+        {
+            deck.add(c);
+            c.loadImages();
+        }
+        card1.setImage(deck.get(0).getImage(0));
+        card2.setImage(deck.get(1).getImage(0));
+        card3.setImage(deck.get(2).getImage(0));
+        card4.setImage(deck.get(3).getImage(0));
+        card5.setImage(deck.get(4).getImage(0));
+        card6.setImage(deck.get(5).getImage(0));
+        card7.setImage(deck.get(6).getImage(0));
+        card8.setImage(deck.get(7).getImage(0));
     }
 }

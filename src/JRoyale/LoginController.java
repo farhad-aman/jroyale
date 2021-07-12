@@ -63,19 +63,22 @@ public class LoginController
                 @Override
                 public void run()
                 {
+                    loginUsernameLabel.setText("");
+                    loginPasswordLabel.setText("");
+                    logIn();
+                    System.out.println("login ok");
                     MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
+                    loginButton.setImage(new Image("resources/login/loginButtonPressed.png"));
                 }
             });
-            loginButton.setImage(new Image("resources/login/loginButtonPressed.png"));
         }
         catch (Exception e)
         {
             e.printStackTrace();
             //TODO: handle exception
         }
-        logIn();
     }
 
     @FXML
@@ -83,7 +86,14 @@ public class LoginController
     {
         try
         {
-            loginButton.setImage(new Image("resources/login/loginButton.png"));
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    loginButton.setImage(new Image("resources/login/loginButton.png"));
+                }
+            });
         }
         catch (Exception e)
         {
@@ -98,6 +108,8 @@ public class LoginController
     {
         int status = GameManager.getInstance().login(loginUsernameTextField.getText(), loginPasswordTextField.getText());
 
+        System.out.println(status);
+
         if(status == -1)
         {
             try 
@@ -108,15 +120,6 @@ public class LoginController
                     public void run() 
                     {
                         loginUsernameLabel.setText("Wrong Username, Try Again");
-                        try 
-                        {
-                            Thread.sleep(5000);
-                        } 
-                        catch (InterruptedException e) 
-                        {
-                            e.printStackTrace();
-                        }
-                        loginUsernameLabel.setText("");
                     }
                 });
             }
@@ -135,15 +138,6 @@ public class LoginController
                     public void run() 
                     {
                         loginUsernameLabel.setText("Wrong Password, Try Again");
-                        try 
-                        {
-                            Thread.sleep(5000);
-                        } 
-                        catch (InterruptedException e) 
-                        {
-                            e.printStackTrace();
-                        }
-                        loginUsernameLabel.setText("");
                     }
                 });
             }
@@ -168,18 +162,22 @@ public class LoginController
                 @Override
                 public void run()
                 {
+                    signUpUsernameLabel.setText("");
+                    signUpPasswordLabel.setText("");
+                    signUpConfirmLabel.setText("");
+                    signUp();
+                    System.out.println("sign up ok");
                     MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
+                    signUpButton.setImage(new Image("resources/login/signUpButtonPressed.png"));
                 }
             });
-            signUpButton.setImage(new Image("resources/login/signUpButtonPressed.png"));
         }
         catch (Exception e)
         {
             //TODO: handle exception
         }
-        signUp();
     }
 
     @FXML
@@ -187,7 +185,14 @@ public class LoginController
     {
         try
         {
-            signUpButton.setImage(new Image("resources/login/signUpButton.png"));
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    signUpButton.setImage(new Image("resources/login/signUpButton.png"));
+                }
+            });
         }
         catch (Exception e)
         {
@@ -202,6 +207,8 @@ public class LoginController
     {
         int status = GameManager.getInstance().signUp(signUpUsernameTextField.getText(), signUpPasswordTextField.getText(), signUpConfirmTextField.getText());
 
+        System.out.println(status);
+
         if(status == -2)
         {
             Platform.runLater(new Runnable() 
@@ -210,15 +217,6 @@ public class LoginController
                 public void run() 
                 {
                     signUpConfirmLabel.setText("Wrong password, try again");
-                    try 
-                    {
-                        Thread.sleep(5000);
-                    } 
-                    catch (InterruptedException e) 
-                    {
-                        e.printStackTrace();
-                    }
-                    signUpConfirmLabel.setText("");
                 }
             });
         }
@@ -231,16 +229,6 @@ public class LoginController
                 {
                     signUpUsernameLabel.setText("Inappropriate username, try again");
                     signUpPasswordLabel.setText("Inappropriate password, try again");
-                    try 
-                    {
-                        Thread.sleep(5000);
-                    } 
-                    catch (InterruptedException e) 
-                    {
-                        e.printStackTrace();
-                    }
-                    signUpUsernameLabel.setText("");
-                    signUpPasswordLabel.setText("");
                 }
             });
         }
@@ -252,15 +240,6 @@ public class LoginController
                 public void run() 
                 {
                     signUpUsernameLabel.setText("Username already exists, try again");
-                    try 
-                    {
-                        Thread.sleep(5000);
-                    } 
-                    catch (InterruptedException e) 
-                    {
-                        e.printStackTrace();
-                    }
-                    signUpUsernameLabel.setText("");
                 }
             });
         }
@@ -303,6 +282,8 @@ public class LoginController
         {
             root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
             stage.setScene(new Scene(root));
+            stage.setX(-10);
+            stage.setY(0);
         } 
         catch (IOException e) 
         {

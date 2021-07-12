@@ -328,17 +328,17 @@
                         <Image url="@resources/menu/menuBackground.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="easyButton" fitHeight="200.0" fitWidth="500.0" layoutX="550.0" layoutY="45.0" onMousePressed="#easyButtonPressed" onMouseReleased="#easyButtonReleased" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="easyButton" fitHeight="200.0" fitWidth="500.0" layoutX="550.0" layoutY="45.0" onMousePressed="#easyButtonPressed" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/menu/easyButton.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="normalButton" fitHeight="200.0" fitWidth="500.0" layoutX="550.0" layoutY="285.0" onMousePressed="#normalButtonPressed" onMouseReleased="#normalButtonReleased" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="normalButton" fitHeight="200.0" fitWidth="500.0" layoutX="550.0" layoutY="285.0" onMousePressed="#normalButtonPressed" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/menu/normalButton.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="hardButton" fitHeight="200.0" fitWidth="500.0" layoutX="550.0" layoutY="525.0" onMousePressed="#hardButtonPressed" onMouseReleased="#hardButtonReleased" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="hardButton" fitHeight="200.0" fitWidth="500.0" layoutX="550.0" layoutY="525.0" onMousePressed="#hardButtonPressed" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/menu/hardButton.png" />
                      </image>

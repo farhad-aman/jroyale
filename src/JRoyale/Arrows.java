@@ -14,6 +14,6 @@ public class Arrows extends Spell
      * */
     public void loadImages(){
         pics.put(0, new Image("resources/cards/arrows/arrows150.jpg"));
-        pics.put(11, new Image("resources/cards/arrows/arrows.gif"));
+       // pics.put(11, new Image("resources/cards/arrows/arrows.gif"));
     }
 }
