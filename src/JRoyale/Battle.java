@@ -7,9 +7,7 @@ public class Battle
 
     private Bot bot;
     
-    private Arena playerField;
-    
-    private Arena botField;
+    private Arena arena;
     
     private ArrayList<Card> playerCardsQueue;
     
@@ -28,8 +26,7 @@ public class Battle
         this.player = GameManager.getInstance().getCurrentPlayer();
         this.bot = bot;
 
-        playerField = new Arena();
-        botField = new Arena();
+        arena = new Arena();
 
         playerCardsQueue = new ArrayList<Card>();
         for(Card c : player.getDeck().getCards())
