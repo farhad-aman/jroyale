@@ -82,9 +82,9 @@
                               <Font name="Arial Rounded MT Bold" size="40.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/blank150.jpg" />
+                              <Image url="@resources/menu/level1.png" />
                            </image>
                         </ImageView>
                      </children>
