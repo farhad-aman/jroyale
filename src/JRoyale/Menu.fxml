@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -53,6 +55,43 @@
                         <Reflection />
                      </effect>
                   </ImageView>
+                  <AnchorPane layoutX="50.0" layoutY="85.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: rgba(210, 229, 236, 0.5); -fx-background-radius: 30;">
+                     <children>
+                        <Label layoutX="60.0" layoutY="100.0" text="Username :" textFill="#f8a71d">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="60.0" layoutY="276.0" text="XP :" textFill="#f8a71d">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="60.0" layoutY="450.0" text="Level :" textFill="#f8a71d">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="usernameValue" layoutX="294.0" layoutY="100.0" textFill="#f8a71d">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="145.0" layoutY="276.0" textFill="#f8a71d" fx:id="xpValue">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="40.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/blank150.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </AnchorPane>
                </children></AnchorPane>
       </content>
     </Tab>
