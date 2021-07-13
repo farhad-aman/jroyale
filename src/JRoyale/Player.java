@@ -98,10 +98,8 @@ public class Player
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
-            String USERNAME = "root";
-            String password = GameManager.dbPassword;
 
-            Connection con = DriverManager.getConnection(url, USERNAME, password);
+            Connection con = DriverManager.getConnection(url, "root", GameManager.dbPassword);
             Statement st = con.createStatement();
 
             String insertion = "insert into gameHistory values(userName = " + '\"' + username + '\"' + ", botDifficulty = " + '\"' + battleResult.getBotDifficulty() + '\"' + ", yourScore = " + '\"' + battleResult.getYourScore() + '\"' + ", enemyScore = " + '\"' + battleResult.getEnemyScore() + '\"' + ")";
@@ -146,10 +144,8 @@ public class Player
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
-            String USERNAME = "root";
-            String password = GameManager.dbPassword;
 
-            Connection con = DriverManager.getConnection(url, USERNAME, password);
+            Connection con = DriverManager.getConnection(url, "root", GameManager.dbPassword);
             Statement st = con.createStatement();
 
             String insertion = "update players" +

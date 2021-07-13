@@ -10,7 +10,7 @@ public class GameManager
 {
     private static GameManager gameManager = new GameManager();
 
-    public static final String dbPassword = "@#$mg200";
+    public static final String dbPassword = "Farhad_1380+";
 
     public static final int FPS = 40;
     
@@ -38,10 +38,8 @@ public class GameManager
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
-            String USERNAME = "root";
-            String password = GameManager.dbPassword;
 
-            Connection con = DriverManager.getConnection(url, USERNAME, password);
+            Connection con = DriverManager.getConnection(url, "root", GameManager.dbPassword);
             Statement st = con.createStatement();
             String insertion = "select * from players where userName=" + '\"' + username + '\"';
             st.execute(insertion);
@@ -187,10 +185,8 @@ public class GameManager
             System.out.println("gameManager line 171 started");
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
-            String USERNAME = "root";
-            String password = GameManager.dbPassword;
 
-            Connection con = DriverManager.getConnection(url, USERNAME, password);
+            Connection con = DriverManager.getConnection(url, "root", GameManager.dbPassword);
             Statement st = con.createStatement();
 
             String insertion = "select * from players where userName=" + '\"' + username + '\"';
