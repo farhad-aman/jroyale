@@ -10,12 +10,14 @@ public class BattleController
      * the timer for handling game loop
      */
     private Timer timer;
+
     /**
      * the main model object that use singleton
      */
     private GameManager gameManager = GameManager.getInstance();
 
-    private ArenaView battleView = new ArenaView();
+    private ArenaView arenaView = new ArenaView();
+    
     /**
      * starts main process of a battle in the game
      */
@@ -25,7 +27,8 @@ public class BattleController
         TimerTask timerTask = new TimerTask() 
         {
             @Override
-            public void run() {
+            public void run() 
+            {
                 Platform.runLater(new Runnable() 
                 {
                     @Override
