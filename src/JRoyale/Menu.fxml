@@ -20,12 +20,12 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="770.0" fitWidth="1600.0" onMousePressed="#changePasswordButtonPressed" onMouseReleased="#changePasswordButtonReleased" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="770.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/menu/menuBackground.jpg" />
                      </image>
                   </ImageView>
-                  <PasswordField fx:id="oldPasswordField" layoutX="1000.0" layoutY="125.0" onMousePressed="#oldPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="Old Password" style="-fx-background-radius: 30; -fx-background-color: rgb(13, 77, 5, 1); -fx-text-inner-color: #f8a71d;">
+                  <PasswordField fx:id="oldPasswordField" layoutX="1001.0" layoutY="85.0" onMousePressed="#oldPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="Old Password" style="-fx-background-radius: 30; -fx-background-color: rgb(13, 77, 5, 1); -fx-text-inner-color: #f8a71d;">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
                      </font>
@@ -33,7 +33,7 @@
                         <Reflection />
                      </effect>
                   </PasswordField>
-                  <PasswordField fx:id="newPasswordField" layoutX="1000.0" layoutY="254.0" onMousePressed="#newPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="New Password (6 - 32)" style="-fx-background-color: rgb(13, 77, 5, 1); -fx-background-radius: 30; -fx-text-inner-color: #F8A71D;">
+                  <PasswordField fx:id="newPasswordField" layoutX="1001.0" layoutY="215.0" onMousePressed="#newPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="New Password (6 - 32)" style="-fx-background-color: rgb(13, 77, 5, 1); -fx-background-radius: 30; -fx-text-inner-color: #F8A71D;">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
                      </font>
@@ -41,7 +41,7 @@
                         <Reflection />
                      </effect>
                   </PasswordField>
-                  <PasswordField fx:id="confirmPasswordField" layoutX="1000.0" layoutY="385.0" onMousePressed="#confirmPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="Confirm New Password" style="-fx-background-radius: 30; -fx-background-color: rgb(13, 77, 5, 1); -fx-text-inner-color: #F8A71D;">
+                  <PasswordField fx:id="confirmPasswordField" layoutX="1001.0" layoutY="345.0" onMousePressed="#confirmPasswordFieldPressed" prefHeight="70.0" prefWidth="400.0" promptText="Confirm New Password" style="-fx-background-radius: 30; -fx-background-color: rgb(13, 77, 5, 1); -fx-text-inner-color: #F8A71D;">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
                      </font>
@@ -49,7 +49,7 @@
                         <Reflection />
                      </effect>
                   </PasswordField>
-                  <ImageView fx:id="changePasswordButton" fitHeight="70.0" fitWidth="400.0" layoutX="1000.0" layoutY="513.0" onMousePressed="#changePasswordButtonPressed" onMouseReleased="#changePasswordButtonReleased" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="changePasswordButton" fitHeight="70.0" fitWidth="400.0" layoutX="1001.0" layoutY="475.0" onMousePressed="#changePasswordButtonPressed" onMouseReleased="#changePasswordButtonReleased" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/menu/changePasswordButton.png" />
                      </image>
@@ -94,21 +94,29 @@
                         <InnerShadow />
                      </effect>
                   </AnchorPane>
-                  <Label fx:id="oldPasswordLabel" alignment="CENTER" layoutX="968.0" layoutY="207.0" prefHeight="34.0" prefWidth="465.0" textFill="#dd0f0f">
+                  <Label fx:id="oldPasswordLabel" alignment="CENTER" layoutX="969.0" layoutY="167.0" prefHeight="34.0" prefWidth="465.0" textFill="#dd0f0f">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="newPasswordLabel" alignment="CENTER" layoutX="968.0" layoutY="335.0" prefHeight="36.0" prefWidth="465.0" textFill="#dd0f0f">
+                  <Label fx:id="newPasswordLabel" alignment="CENTER" layoutX="969.0" layoutY="299.0" prefHeight="36.0" prefWidth="465.0" textFill="#dd0f0f">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="confirmPasswordLabel" alignment="CENTER" layoutX="968.0" layoutY="468.0" prefHeight="33.0" prefWidth="465.0" textFill="#dd0f0f">
+                  <Label fx:id="confirmPasswordLabel" alignment="CENTER" layoutX="969.0" layoutY="431.0" prefHeight="33.0" prefWidth="465.0" textFill="#dd0f0f">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
                   </Label>
+                  <ImageView fx:id="logoutButton" fitHeight="70.0" fitWidth="400.0" layoutX="1001.0" layoutY="605.0" onMousePressed="#logoutButtonPressed" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/menu/logoutButton.png" />
+                     </image>
+                     <effect>
+                        <Reflection />
+                     </effect>
+                  </ImageView>
                </children></AnchorPane>
       </content>
     </Tab>

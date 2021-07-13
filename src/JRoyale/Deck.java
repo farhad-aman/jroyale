@@ -40,4 +40,15 @@ public class Deck
             this.cards = cards;
         }
     }
+
+    @Override
+    public String toString() 
+    {
+        String s = "";
+        for(Card c : cards)
+        {
+            s += c.getId() + " - ";
+        }
+        return s;
+    }
 }

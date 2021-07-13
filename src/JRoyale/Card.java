@@ -41,6 +41,13 @@ public abstract class Card
         }
         return false;
     }
+
+    @Override
+    public int hashCode() 
+    {
+        return id.hashCode();
+    }
+
     /**
      * @return the relevant picture for the status//0->for deck(150.jpg)//troops://1->moving to right//2->moving to left//3->fighting to right//4->fighting to left//5->dying to right//6->dying to left//buildings://7->cannon ball//8->cannon turning right//9->cannon turning left//10->inferno.gif//11->spells gif
      * */

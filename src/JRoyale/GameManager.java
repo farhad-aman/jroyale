@@ -4,13 +4,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.StringTokenizer;
 
 public class GameManager
 {
     private static GameManager gameManager = new GameManager();
 
-    public static final String dbPassword = "Farhad_1380+";
+    public static final String dbPassword = "@#$mg200";
 
     public static final int FPS = 40;
     
@@ -26,6 +25,12 @@ public class GameManager
     public static GameManager getInstance()
     {
         return gameManager;
+    }
+
+    public void logout()
+    {
+        currentPlayer = null;
+        battle = null;
     }
 
     /**
@@ -56,6 +61,8 @@ public class GameManager
             else if(rs.getString(2).equals(userPassword))
             {
                 currentPlayer = new Player(rs.getString(1), rs.getString(2), rs.getInt(3), getDeck(rs.getString(4)), getHistory(rs.getString(1)));
+
+                System.out.println(currentPlayer.getDeck());
 
                 st.close();
                 rs.close();
@@ -110,10 +117,11 @@ public class GameManager
     private Deck getDeck(String deckString)
     {
         Deck deck = new Deck();
-        StringTokenizer tokens = new StringTokenizer(deckString, ":");
-
-        while(tokens.hasMoreTokens())
-            deck.addCard(getCard(tokens.nextToken()));
+        
+        for(String id : deckString.split(":"))
+        {
+            deck.addCard(getCard(id));
+        }
 
         return deck;
     }
@@ -123,37 +131,37 @@ public class GameManager
         Card card;
 
         switch (id){
-            case "barbarians":
+            case "Barbarians":
                 card = new Barbarians();
                 break;
-            case "wizard":
+            case "Wizard":
                 card = new Wizard();
                 break;
-            case "giant":
+            case "Giant":
                 card = new Giant();
                 break;
-            case "inferno":
+            case "Inferno":
                 card = new Inferno();
                 break;
-            case "archer":
+            case "Archer":
                 card = new Archer();
                 break;
-            case "rage":
+            case "Rage":
                 card = new Rage();
                 break;
-            case "arrows":
+            case "Arrows":
                 card = new Arrows();
                 break;
-            case "dragon":
+            case "Dragon":
                 card = new Dragon();
                 break;
-            case "pekka":
+            case "Pekka":
                 card = new Pekka();
                 break;
-            case "valkyrie":
+            case "Valkyrie":
                 card = new Valkyrie();
                 break;
-            case "fireBall":
+            case "Fireball":
                 card = new Fireball();
                 break;
             default:

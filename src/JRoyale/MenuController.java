@@ -1,9 +1,13 @@
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -14,11 +18,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MenuController 
 {
     private GameManager gameManager = GameManager.getInstance();
+
+    private MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/menuSoundTrack.mp3").toURI().toString()));
 
     @FXML
     private PasswordField oldPasswordField;
@@ -31,6 +38,9 @@ public class MenuController
 
     @FXML
     private ImageView changePasswordButton;
+
+    @FXML
+    private ImageView logoutButton;
 
     @FXML
     private Label usernameValue;
@@ -431,9 +441,37 @@ public class MenuController
         }
     }
 
+    @FXML
+    void logoutButtonPressed(MouseEvent event) 
+    {
+        openLogin();
+    }
+
     private void openBattle()
     {
 
+    }
+
+    private void openLogin()
+    {
+        Stage stage = (Stage)saveDeckButton.getScene().getWindow();
+        Parent root;
+        try 
+        {
+            root = FXMLLoader.load(getClass().getResource("login.fxml"));
+            stage.setScene(new Scene(root));
+            stage.setX(600);
+            stage.setY(100);
+            mediaPlayer.pause();
+            mediaPlayer.seek(Duration.ZERO);
+            gameManager.logout();
+        } 
+        catch (IOException e) 
+        {
+            System.out.println("cant read fxml");
+            e.printStackTrace();
+        }
+        System.out.println("login opened!?!?!?!?!");
     }
 
     private void setCurrentDeckPics()
@@ -482,8 +520,6 @@ public class MenuController
             levelImageView.setImage(new Image("resources/menu/level5.png"));
         }
 
-        setCurrentDeckPics();
-
         archerCheckBox.setUserData(new Archer());
         arrowsCheckBox.setUserData(new Arrows());
         barbariansCheckBox.setUserData(new Barbarians());
@@ -497,7 +533,8 @@ public class MenuController
         valkyrieCheckBox.setUserData(new Valkyrie());
         wizardCheckBox.setUserData(new Wizard());
 
-        MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/menuSoundTrack.mp3").toURI().toString()));
+        setCurrentDeckPics();
+        
         mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
         Thread thread = new Thread(new Runnable()
         {
