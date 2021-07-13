@@ -228,27 +228,37 @@ public class LoginController
         System.out.println("Menu opened!?!?!?!?!");
     }
     
-    public void showMessage(String message, Label... labels){
-        Runnable task = new Runnable() {
+    public void showMessage(String message, Label... labels)
+    {
+        Runnable task = new Runnable() 
+        {
             @Override
-            public void run() {
-                Platform.runLater(new Runnable() {
+            public void run() 
+            {
+                Platform.runLater(new Runnable() 
+                {
                     @Override
-                    public void run() {
+                    public void run() 
+                    {
                         for(Label label : labels)
                             label.setText(message);
                     }
                 });
 
-                try {
+                try 
+                {
                     Thread.sleep(4000);
-                } catch (InterruptedException e) {
+                } 
+                catch (InterruptedException e) 
+                {
                     e.printStackTrace();
                 }
 
-                Platform.runLater(new Runnable() {
+                Platform.runLater(new Runnable() 
+                {
                     @Override
-                    public void run() {
+                    public void run() 
+                    {
                         for(Label label : labels)
                             label.setText("");
                     }
