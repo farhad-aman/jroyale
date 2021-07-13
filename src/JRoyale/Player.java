@@ -152,7 +152,7 @@ public class Player
             Connection con = DriverManager.getConnection(url, USERNAME, password);
             Statement st = con.createStatement();
 
-            String insertion = "update from players" +
+            String insertion = "update players" +
                     "set pass = " + '\"' + password + '\"' + ", xp = " + '\"' + xp + '\"' + ", deck = " + '\"' + getDeckString() + '\"'  +
                     " where userName=" + '\"' + username + '\"';
             st.execute(insertion);
