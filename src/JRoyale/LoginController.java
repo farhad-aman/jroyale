@@ -65,10 +65,10 @@ public class LoginController
                 {
                     logIn();
                     System.out.println("login ok");
-                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\click1.mp3").toURI().toString()));
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources\\login\\click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
-                    loginButton.setImage(new Image("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\loginButtonPressed.png"));
+                    loginButton.setImage(new Image("resources\\login\\loginButtonPressed.png"));
                 }
             });
         }
@@ -89,7 +89,7 @@ public class LoginController
                 @Override
                 public void run() 
                 {
-                    loginButton.setImage(new Image("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\loginButton.png"));
+                    loginButton.setImage(new Image("resources\\login\\loginButton.png"));
                 }
             });
         }
@@ -130,10 +130,10 @@ public class LoginController
                 {
                     signUp();
                     System.out.println("sign up ok");
-                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\click1.mp3").toURI().toString()));
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources\\login\\click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
-                    signUpButton.setImage(new Image("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\signUpButtonPressed.png"));
+                    signUpButton.setImage(new Image("resources\\login\\signUpButtonPressed.png"));
                 }
             });
         }
@@ -153,7 +153,7 @@ public class LoginController
                 @Override
                 public void run() 
                 {
-                    signUpButton.setImage(new Image("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\signUpButton.png"));
+                    signUpButton.setImage(new Image("resources\\login\\signUpButton.png"));
                 }
             });
         }
@@ -194,7 +194,7 @@ public class LoginController
                 @Override
                 public void run()
                 {
-                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\click1.mp3").toURI().toString()));
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources\\login\\click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
                 }
@@ -215,7 +215,7 @@ public class LoginController
         Parent root;
         try 
         {
-            root = FXMLLoader.load(getClass().getResource("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\Menu.fxml"));
+            root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
             stage.setScene(new Scene(root));
             stage.setX(-10);
             stage.setY(0);
