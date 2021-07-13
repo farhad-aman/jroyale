@@ -1,8 +1,10 @@
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class JRoyale extends Application
 {
@@ -14,6 +16,14 @@ public class JRoyale extends Application
         primaryStage.setScene(scene);
         primaryStage.setTitle("JRoyale");
         primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>()
+        {
+            @Override
+            public void handle(WindowEvent event) 
+            {
+                System.exit(0);
+            }
+        });
         primaryStage.show();
     }
 

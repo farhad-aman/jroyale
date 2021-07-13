@@ -153,7 +153,7 @@ public class Player
             Statement st = con.createStatement();
 
             String insertion = "update players" +
-                    "set pass = " + '\"' + password + '\"' + ", xp = " + '\"' + xp + '\"' + ", deck = " + '\"' + getDeckString() + '\"'  +
+                    " set pass = " + '\"' + password + '\"' + ", xp = " + '\"' + xp + '\"' + ", deck = " + '\"' + getDeckString() + '\"'  +
                     " where userName=" + '\"' + username + '\"';
             st.execute(insertion);
 

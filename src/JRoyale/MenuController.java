@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 public class MenuController 
 {
@@ -496,6 +497,29 @@ public class MenuController
         valkyrieCheckBox.setUserData(new Valkyrie());
         wizardCheckBox.setUserData(new Wizard());
 
-
+        MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/menuSoundTrack.mp3").toURI().toString()));
+        mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+        Thread thread = new Thread(new Runnable()
+        {
+            @Override
+            public void run() 
+            {
+                while(true)
+                {
+                    mediaPlayer.seek(Duration.ZERO);
+                    mediaPlayer.play();
+                    try 
+                    {
+                        Thread.sleep(120000);
+                    } 
+                    catch (InterruptedException e) 
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        thread.start();
+       
     }
 }
