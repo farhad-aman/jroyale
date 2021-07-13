@@ -49,7 +49,7 @@
                         <Reflection />
                      </effect>
                   </PasswordField>
-                  <ImageView fx:id="changePasswordButton" fitHeight="70.0" fitWidth="400.0" layoutX="1000.0" layoutY="515.0" onMousePressed="#changePasswordButtonPressed" onMouseReleased="#changePasswordButtonReleased" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="changePasswordButton" fitHeight="70.0" fitWidth="400.0" layoutX="1000.0" layoutY="513.0" onMousePressed="#changePasswordButtonPressed" onMouseReleased="#changePasswordButtonReleased" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/menu/changePasswordButton.png" />
                      </image>
@@ -94,19 +94,19 @@
                         <InnerShadow />
                      </effect>
                   </AnchorPane>
-                  <Label fx:id="oldPasswordLabel" layoutX="1000.0" layoutY="206.0" prefHeight="34.0" prefWidth="376.0" textFill="#dd0f0f">
+                  <Label fx:id="oldPasswordLabel" alignment="CENTER" layoutX="1012.0" layoutY="207.0" prefHeight="34.0" prefWidth="376.0" textFill="#dd0f0f">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="newPasswordLabel" layoutX="1000.0" layoutY="334.0" prefHeight="36.0" prefWidth="377.0" textFill="#dd0f0f">
+                  <Label fx:id="newPasswordLabel" alignment="CENTER" layoutX="1012.0" layoutY="333.0" prefHeight="36.0" prefWidth="377.0" textFill="#dd0f0f">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="confirmPasswordLabel" layoutX="1000.0" layoutY="466.0" prefHeight="33.0" prefWidth="384.0" textFill="#dd0f0f">
+                  <Label fx:id="confirmPasswordLabel" alignment="CENTER" layoutX="1012.0" layoutY="466.0" prefHeight="33.0" prefWidth="384.0" textFill="#dd0f0f">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
                   </Label>
                </children></AnchorPane>
@@ -287,9 +287,9 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <Label fx:id="saveDeckLabel" layoutX="1369.0" layoutY="440.0" prefHeight="34.0" prefWidth="223.0" textFill="RED">
+                  <Label fx:id="saveDeckLabel" alignment="CENTER" layoutX="1357.0" layoutY="427.0" prefHeight="34.0" prefWidth="223.0" textFill="RED">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
                   </Label>
                </children></AnchorPane>

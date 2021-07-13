@@ -394,7 +394,7 @@ public class MenuController
                     }
                     if(newCards.size() != 8)
                     {
-                        saveDeckLabel.setText("Please Choose Exacly 8 Cards");
+                        saveDeckLabel.setText("Choose Exacly 8 Cards");
                     }
                     else
                     {
