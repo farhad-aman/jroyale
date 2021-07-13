@@ -67,10 +67,10 @@ public class LoginController
                     loginPasswordLabel.setText("");
                     logIn();
                     System.out.println("login ok");
-                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
-                    loginButton.setImage(new Image("resources/login/loginButtonPressed.png"));
+                    loginButton.setImage(new Image("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\loginButtonPressed.png"));
                 }
             });
         }
@@ -91,7 +91,7 @@ public class LoginController
                 @Override
                 public void run() 
                 {
-                    loginButton.setImage(new Image("resources/login/loginButton.png"));
+                    loginButton.setImage(new Image("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\loginButton.png"));
                 }
             });
         }
@@ -167,10 +167,10 @@ public class LoginController
                     signUpConfirmLabel.setText("");
                     signUp();
                     System.out.println("sign up ok");
-                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
-                    signUpButton.setImage(new Image("resources/login/signUpButtonPressed.png"));
+                    signUpButton.setImage(new Image("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\signUpButtonPressed.png"));
                 }
             });
         }
@@ -190,7 +190,7 @@ public class LoginController
                 @Override
                 public void run() 
                 {
-                    signUpButton.setImage(new Image("resources/login/signUpButton.png"));
+                    signUpButton.setImage(new Image("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\signUpButton.png"));
                 }
             });
         }
@@ -207,7 +207,7 @@ public class LoginController
     {
         int status = GameManager.getInstance().signUp(signUpUsernameTextField.getText(), signUpPasswordTextField.getText(), signUpConfirmTextField.getText());
 
-        System.out.println(status);
+        System.out.println("status: " + status);
 
         if(status == -2)
         {
@@ -259,7 +259,7 @@ public class LoginController
                 @Override
                 public void run()
                 {
-                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
                 }
@@ -280,7 +280,7 @@ public class LoginController
         Parent root;
         try 
         {
-            root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+            root = FXMLLoader.load(getClass().getResource("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\Menu.fxml"));
             stage.setScene(new Scene(root));
             stage.setX(-10);
             stage.setY(0);
@@ -291,6 +291,38 @@ public class LoginController
             e.printStackTrace();
         }
         System.out.println("Menu opened!?!?!?!?!");
+    }
+    
+    public void showMessage(String message, Label... labels){
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        for(Label label : labels)
+                            label.setText(message);
+                    }
+                });
+
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        for(Label label : labels)
+                            label.setText("");
+                    }
+                });
+            }
+        };
+
+        Thread showThread = new Thread(task);
+        showThread.start();
     }
 
     @FXML
