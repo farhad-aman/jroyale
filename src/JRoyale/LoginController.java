@@ -63,8 +63,6 @@ public class LoginController
                 @Override
                 public void run()
                 {
-                    loginUsernameLabel.setText("");
-                    loginPasswordLabel.setText("");
                     logIn();
                     System.out.println("login ok");
                     MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\click1.mp3").toURI().toString()));
@@ -111,41 +109,9 @@ public class LoginController
         System.out.println(status);
 
         if(status == -1)
-        {
-            try 
-            {
-                Platform.runLater(new Runnable() 
-                {
-                    @Override
-                    public void run() 
-                    {
-                        loginUsernameLabel.setText("Wrong Username, Try Again");
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
+                showMessage("Wrong Username, Try Again", loginUsernameLabel);
         else if (status == 0)
-        {
-            try 
-            {
-                Platform.runLater(new Runnable() 
-                {
-                    @Override
-                    public void run() 
-                    {
-                        loginUsernameLabel.setText("Wrong Password, Try Again");
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
+            showMessage("Wrong Password, Try Again", loginPasswordLabel);
         else
         {
             openMenu();
@@ -162,9 +128,6 @@ public class LoginController
                 @Override
                 public void run()
                 {
-                    signUpUsernameLabel.setText("");
-                    signUpPasswordLabel.setText("");
-                    signUpConfirmLabel.setText("");
                     signUp();
                     System.out.println("sign up ok");
                     MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("C:\\Users\\Kian\\IdeaProjects\\JRoyale\\src\\JRoyale\\resources\\login\\click1.mp3").toURI().toString()));
@@ -210,39 +173,11 @@ public class LoginController
         System.out.println("status: " + status);
 
         if(status == -2)
-        {
-            Platform.runLater(new Runnable() 
-            {
-                @Override
-                public void run() 
-                {
-                    signUpConfirmLabel.setText("Wrong password, try again");
-                }
-            });
-        }
+            showMessage("Wrong confirm password, try again", signUpConfirmLabel);
         else if(status == -1)
-        {
-            Platform.runLater(new Runnable() 
-            {
-                @Override
-                public void run() 
-                {
-                    signUpUsernameLabel.setText("Inappropriate username, try again");
-                    signUpPasswordLabel.setText("Inappropriate password, try again");
-                }
-            });
-        }
+            showMessage("Inappropriate information, try again", signUpUsernameLabel, signUpPasswordLabel);
         else if(status == 0)
-        {
-            Platform.runLater(new Runnable() 
-            {
-                @Override
-                public void run() 
-                {
-                    signUpUsernameLabel.setText("Username already exists, try again");
-                }
-            });
-        }
+            showMessage("Username already exists, try another one", signUpUsernameLabel);
         else
         {
             openMenu();
