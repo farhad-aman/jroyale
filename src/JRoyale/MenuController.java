@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -151,19 +154,19 @@ public class MenuController
     private ImageView saveDeckButton;
 
     @FXML
-    private TableView<?> historyTable;
+    private TableView<BattleResult> historyTable;
 
     @FXML
-    private TableColumn<?, ?> botDifficultyColumn;
+    private TableColumn<BattleResult, String> botDifficultyColumn;
 
     @FXML
-    private TableColumn<?, ?> playerStarsColumn;
+    private TableColumn<BattleResult, Integer> playerStarsColumn;
 
     @FXML
-    private TableColumn<?, ?> botStarsColumn;
+    private TableColumn<BattleResult, Integer> botStarsColumn;
 
     @FXML
-    private TableColumn<?, ?> winnerColumn;
+    private TableColumn<BattleResult, String> winnerColumn;
 
     @FXML
     private ImageView easyButton;
@@ -472,13 +475,13 @@ public class MenuController
             c.loadImages();
         }
         card1.setImage(deck.get(0).getImage(0));
-        card2.setImage(deck.get(1).getImage(0));
-        card3.setImage(deck.get(2).getImage(0));
-        card4.setImage(deck.get(3).getImage(0));
-        card5.setImage(deck.get(4).getImage(0));
-        card6.setImage(deck.get(5).getImage(0));
-        card7.setImage(deck.get(6).getImage(0));
-        card8.setImage(deck.get(7).getImage(0));
+        // card2.setImage(deck.get(1).getImage(0));
+        // card3.setImage(deck.get(2).getImage(0));
+        // card4.setImage(deck.get(3).getImage(0));
+        // card5.setImage(deck.get(4).getImage(0));
+        // card6.setImage(deck.get(5).getImage(0));
+        // card7.setImage(deck.get(6).getImage(0));
+        // card8.setImage(deck.get(7).getImage(0));
     }
 
     @FXML
@@ -546,7 +549,35 @@ public class MenuController
             }
         });
         thread.start();
-       
+ 
+        ObservableList<BattleResult> data = FXCollections.observableArrayList();
+
+        botDifficultyColumn.setCellValueFactory(new PropertyValueFactory<BattleResult,String>("botDifficulty"));
+
+        playerStarsColumn.setCellValueFactory(
+                new PropertyValueFactory<BattleResult, Integer>("yourScore")
+        );
+
+        botStarsColumn.setCellValueFactory(
+                new PropertyValueFactory<BattleResult, Integer>("enemyScore")
+        );
+
+        winnerColumn.setCellValueFactory(
+                new PropertyValueFactory<BattleResult, String>("winner")
+        );
+
+        historyTable.setItems(data);
+        historyTable.getColumns().addAll(botDifficultyColumn, playerStarsColumn, botStarsColumn, winnerColumn);
+    
+        addHistory(data);
+    }
+
+    private void addHistory(ObservableList<BattleResult> data){
+        ArrayList<BattleResult> battles = GameManager.getInstance().getCurrentPlayer().getHistory().getBattleResults();
+
+        if(battles != null)
+        for(BattleResult br : battles)
+        data.add(br);
     }
     
     public void showMessage(String message, Label... labels)
@@ -568,7 +599,7 @@ public class MenuController
 
                 try 
                 {
-                    Thread.sleep(2500);
+                    Thread.sleep(3000);
                 } 
                 catch (InterruptedException e) 
                 {

@@ -109,7 +109,7 @@ public class LoginController
        System.out.println(status);
 
        if(status == -1)
-               showMessage("Wrong Username, Try Again", loginUsernameLabel);
+            showMessage("Wrong Username, Try Again", loginUsernameLabel);
        else if (status == 0)
            showMessage("Wrong Password, Try Again", loginPasswordLabel);
        else
@@ -247,7 +247,7 @@ public class LoginController
 
                 try 
                 {
-                    Thread.sleep(1500);
+                    Thread.sleep(3000);
                 } 
                 catch (InterruptedException e) 
                 {

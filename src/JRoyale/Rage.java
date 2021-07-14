@@ -13,7 +13,7 @@ public class Rage extends Spell
      * */
     public void loadImages(){
         pics.put(0, new Image("resources/cards/rage/rage150.jpg"));
-        pics.put(-1, new Image("resources/cards/rage/rage150wb.jpg"));
+        // pics.put(-1, new Image("resources/cards/rage/rage150wb.jpg"));
        // pics.put(11, new Image("resources/rage/archer/rage.gif"));
     }
 }

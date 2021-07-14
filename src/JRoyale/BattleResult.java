@@ -4,6 +4,8 @@ public class BattleResult
 
     private String botDifficulty;
 
+    private String winner;
+
     private int yourScore;
 
     private int enemyScore;
@@ -14,6 +16,11 @@ public class BattleResult
         this.botDifficulty = botDifficulty;
         this.yourScore = yourScore;
         this.enemyScore = enemyScore;
+
+        if(yourScore > enemyScore)
+        winner = username;
+        else
+        winner = botDifficulty + " Bot";
     }
 
     public String getUsername()
@@ -34,5 +41,9 @@ public class BattleResult
     public int getEnemyScore()
     {
         return enemyScore;
+    }
+
+    public String getWinner(){
+        return winner;
     }
 }
