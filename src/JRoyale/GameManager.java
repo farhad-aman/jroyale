@@ -38,9 +38,11 @@ public class GameManager
      * @return number for status//-1->username does not exist//0->password does not match//1->information is accurate
      * */
     public int login(String username, String userPassword)
-    {System.out.println("game manager line 41 started");
+    {
+        System.out.println("game manager line 41 started");
         try 
-        {System.out.println("game manager line 43 started");
+        {
+            System.out.println("game manager line 43 started");
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
 
@@ -50,7 +52,7 @@ public class GameManager
             st.execute(insertion);
 
             ResultSet rs = st.getResultSet();
-System.out.println("game manager line 53 started");
+            System.out.println("game manager line 53 started");
             if(!rs.next()) 
             {
                 System.out.println("game manager line 56 started");

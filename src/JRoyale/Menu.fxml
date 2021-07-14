@@ -117,6 +117,11 @@
                         <Reflection />
                      </effect>
                   </ImageView>
+                  <ImageView fx:id="muteButton" fitHeight="80.0" fitWidth="80.0" layoutX="1506.0" layoutY="14.0" onMousePressed="#muteButtonPressed" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/menu/musicOn.png" />
+                     </image>
+                  </ImageView>
                </children></AnchorPane>
       </content>
     </Tab>
