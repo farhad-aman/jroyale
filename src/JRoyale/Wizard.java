@@ -26,7 +26,7 @@ public class Wizard extends Troop
         pics.put(2, new Image("resources/cards/wizard/wizardRunBackward.gif"));
         pics.put(3, new Image("resources/cards/wizard/wizardAttackForward.gif"));
         pics.put(4, new Image("resources/cards/wizard/wizardAttackBackward.gif"));
-        pics.put(5, new Image("resources/cards/wizard/wizardDeath.gif"));
-        pics.put(6, new Image("resources/cards/wizard/wizardDeath.gif"));
+        pics.put(5, new Image("resources/cards/wizard/wizardDeathForward.gif"));
+        pics.put(6, new Image("resources/cards/wizard/wizardDeathBackward.gif"));
     }
 }

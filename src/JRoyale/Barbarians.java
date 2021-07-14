@@ -25,7 +25,7 @@ public class Barbarians extends Troop
         pics.put(2, new Image("resources/cards/barbarians/barbariansRunBackward.gif"));
         pics.put(3, new Image("resources/cards/barbarians/barbariansAttackForward.gif"));
         pics.put(4, new Image("resources/cards/barbarians/barbariansAttackBackward.gif"));
-        pics.put(5, new Image("resources/cards/barbarians/barbariansDeath.gif"));
-        pics.put(6, new Image("resources/cards/barbarians/barbariansDeath.gif"));
+        pics.put(5, new Image("resources/cards/barbarians/barbariansDeathForward.gif"));
+        pics.put(6, new Image("resources/cards/barbarians/barbariansDeathBackward.gif"));
     }
 }

@@ -25,7 +25,7 @@ public class Dragon extends Troop
         pics.put(2, new Image("resources/cards/dragon/dragonFlyBackward.gif"));
         pics.put(3, new Image("resources/cards/dragon/dragonAttackForward.gif"));
         pics.put(4, new Image("resources/cards/dragon/dragonAttackBackward.gif"));
-        pics.put(5, new Image("resources/cards/dragon/dragonDeath.gif"));
-        pics.put(6, new Image("resources/cards/dragon/dragonDeath.gif"));
+        pics.put(5, new Image("resources/cards/dragon/dragonDeathForward.gif"));
+        pics.put(6, new Image("resources/cards/dragon/dragonDeathBackward.gif"));
     }
 }

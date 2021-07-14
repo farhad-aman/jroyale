@@ -25,7 +25,7 @@ public class Archer extends Troop
         pics.put(2, new Image("resources/cards/archer/archerRunBackward.gif"));
         pics.put(3, new Image("resources/cards/archer/archerAttackForward.gif"));
         pics.put(4, new Image("resources/cards/archer/archerAttackBackward.gif"));
-        pics.put(5, new Image("resources/cards/archer/archerDeath.gif"));
-        pics.put(6, new Image("resources/cards/archer/archerDeath.gif"));
+        pics.put(5, new Image("resources/cards/archer/archerDeathForward.gif"));
+        pics.put(6, new Image("resources/cards/archer/archerDeathBackward.gif"));
     }
 }

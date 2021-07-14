@@ -26,7 +26,7 @@ public class Valkyrie extends Troop
         pics.put(2, new Image("resources/cards/valkyrie/valkyrieRunBackward.gif"));
         pics.put(3, new Image("resources/cards/valkyrie/valkyrieAttackForward.gif"));
         pics.put(4, new Image("resources/cards/valkyrie/valkyrieAttackBackward.gif"));
-        pics.put(5, new Image("resources/cards/valkyrie/valkyrieDeath.gif"));
-        pics.put(6, new Image("resources/cards/valkyrie/valkyrieDeath.gif"));
+        pics.put(5, new Image("resources/cards/valkyrie/valkyrieDeathForward.gif"));
+        pics.put(6, new Image("resources/cards/valkyrie/valkyrieDeathBackward.gif"));
     }
 }

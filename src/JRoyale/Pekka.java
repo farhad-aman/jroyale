@@ -25,7 +25,7 @@ public class Pekka extends Troop
         pics.put(2, new Image("resources/cards/pekka/pekkaRunBackward.gif"));
         pics.put(3, new Image("resources/cards/pekka/pekkaAttackForward.gif"));
         pics.put(4, new Image("resources/cards/pekka/pekkaAttackBackward.gif"));
-        pics.put(5, new Image("resources/cards/pekka/pekkaDeath.gif"));
-        pics.put(6, new Image("resources/cards/pekka/pekkaDeath.gif"));
+        pics.put(5, new Image("resources/cards/pekka/pekkaDeathForward.gif"));
+        pics.put(6, new Image("resources/cards/pekka/pekkaDeathBackward.gif"));
     }
 }

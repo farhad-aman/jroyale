@@ -25,7 +25,7 @@ public class Giant extends Troop
         pics.put(2, new Image("resources/cards/giant/giantWalkBackward.gif"));
         pics.put(3, new Image("resources/cards/giant/giantAttackForward.gif"));
         pics.put(4, new Image("resources/cards/giant/giantAttackBackward.gif"));
-        pics.put(5, new Image("resources/cards/giant/giantDeath.gif"));
-        pics.put(6, new Image("resources/cards/giant/giantDeath.gif"));
+        pics.put(5, new Image("resources/cards/giant/giantDeathForward.gif"));
+        pics.put(6, new Image("resources/cards/giant/giantDeathBackward.gif"));
     }
 }
