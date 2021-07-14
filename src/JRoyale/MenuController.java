@@ -25,7 +25,7 @@ public class MenuController
 {
     private GameManager gameManager = GameManager.getInstance();
 
-    private MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/menuSoundTrack.mp3").toURI().toString()));
+    private MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources\\menu\\menuSoundTrack.mp3").toURI().toString()));
 
     @FXML
     private PasswordField oldPasswordField;
@@ -204,25 +204,15 @@ public class MenuController
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
                     int status = gameManager.getCurrentPlayer().setPassword(oldPasswordField.getText(), newPasswordField.getText(), confirmPasswordField.getText());
+                    
                     if(status == 0)
-                    {
-                        oldPasswordLabel.setText("Old Password Is Invalid");
-                    }
+                        showMessage("Old Password Is Invalid", oldPasswordLabel);
                     else if(status == 1)
-                    {
-                        confirmPasswordLabel.setText("New Password Is Not Equals To Confirm Password");
-                    }
+                        showMessage("New Password Is Not Equals To Confirm Password", confirmPasswordLabel);
                     else if(status == 2)
-                    {
-                        newPasswordLabel.setText("New Password Lenght Is Not Between 6 & 32");
-                    }
+                        showMessage("New Password Lenght Is Not Between 6 & 32", newPasswordLabel);
                     else if(status == 3)
-                    {
-                        oldPasswordLabel.setText("Password Successfully Changed");
-                        oldPasswordField.setText("");
-                        newPasswordField.setText("");
-                        confirmPasswordField.setText("");
-                    }
+                        showMessage("Password Successfully Changed", oldPasswordLabel);
                 }
             });    
         } 
@@ -349,7 +339,6 @@ public class MenuController
                 @Override
                 public void run() 
                 {
-                    saveDeckLabel.setText("");
                     saveDeckButton.setImage(new Image("resources/menu/saveDeckButtonPressed.png"));
                     MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
@@ -405,8 +394,8 @@ public class MenuController
                     }
                     if(newCards.size() != 8)
                     {
-                        saveDeckLabel.setText("Choose Exacly 8 Cards");
-                    }
+                        showMessage("Choose Exacly 8 Cards", saveDeckLabel);
+                    }   
                     else
                     {
                         gameManager.getCurrentPlayer().setDeck(new Deck(newCards));
@@ -558,5 +547,47 @@ public class MenuController
         });
         thread.start();
        
+    }
+    
+    public void showMessage(String message, Label... labels)
+    {
+        Runnable task = new Runnable() 
+        {
+            @Override
+            public void run() 
+            {
+                Platform.runLater(new Runnable() 
+                {
+                    @Override
+                    public void run() 
+                    {
+                        for(Label label : labels)
+                            label.setText(message);
+                    }
+                });
+
+                try 
+                {
+                    Thread.sleep(2500);
+                } 
+                catch (InterruptedException e) 
+                {
+                    e.printStackTrace();
+                }
+
+                Platform.runLater(new Runnable() 
+                {
+                    @Override
+                    public void run() 
+                    {
+                        for(Label label : labels)
+                            label.setText("");
+                    }
+                });
+            }
+        };
+
+        Thread showThread = new Thread(task);
+        showThread.start();
     }
 }

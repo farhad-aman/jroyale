@@ -56,46 +56,46 @@ public class LoginController
     @FXML
     void loginButtonPressed(MouseEvent event) 
     {
-        try
-        {
-            Platform.runLater(new Runnable()
-            {
-                @Override
-                public void run()
-                {
+       try
+       {
+           Platform.runLater(new Runnable()
+           {
+               @Override
+               public void run()
+               {
                     logIn();
-                    System.out.println("login ok");
-                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources\\login\\click1.mp3").toURI().toString()));
-                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
-                    mediaPlayer.play();
-                    loginButton.setImage(new Image("resources\\login\\loginButtonPressed.png"));
-                }
-            });
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            //TODO: handle exception
-        }
+                   System.out.println("login ok");
+                   MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources\\login\\click1.mp3").toURI().toString()));
+                   mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+                   mediaPlayer.play();
+                   loginButton.setImage(new Image("resources\\login\\loginButtonPressed.png"));
+               }
+           });
+       }
+       catch (Exception e)
+       {
+           e.printStackTrace();
+        //    TODO: handle exception
+       }
     }
 
     @FXML
     void loginButtonReleased(MouseEvent event) 
     {
-        try
-        {
-            Platform.runLater(new Runnable()
-            {
-                @Override
-                public void run() 
-                {
-                    loginButton.setImage(new Image("resources\\login\\loginButton.png"));
-                }
-            });
-        }
-        catch (Exception e)
-        {
-            //TODO: handle exception
+       try
+       {
+           Platform.runLater(new Runnable()
+           {
+               @Override
+               public void run()
+               {
+                   loginButton.setImage(new Image("resources\\login\\loginButton.png"));
+               }
+           });
+       }
+       catch (Exception e)
+       {
+           //TODO: handle exception
         }
     }
 
@@ -104,18 +104,18 @@ public class LoginController
      * */
     private void logIn()
     {
-        int status = GameManager.getInstance().login(loginUsernameTextField.getText(), loginPasswordTextField.getText());
+       int status = GameManager.getInstance().login(loginUsernameTextField.getText(), loginPasswordTextField.getText());
 
-        System.out.println(status);
+       System.out.println(status);
 
-        if(status == -1)
-                showMessage("Wrong Username, Try Again", loginUsernameLabel);
-        else if (status == 0)
-            showMessage("Wrong Password, Try Again", loginPasswordLabel);
-        else
-        {
+       if(status == -1)
+               showMessage("Wrong Username, Try Again", loginUsernameLabel);
+       else if (status == 0)
+           showMessage("Wrong Password, Try Again", loginPasswordLabel);
+       else
+       {
             openMenu();
-        }
+       }
     }
 
     @FXML
@@ -247,7 +247,7 @@ public class LoginController
 
                 try 
                 {
-                    Thread.sleep(4000);
+                    Thread.sleep(1500);
                 } 
                 catch (InterruptedException e) 
                 {
