@@ -42,7 +42,7 @@
             <Font name="Arial Rounded MT Bold" size="66.0" />
          </font>
       </Label>
-      <ProgressBar fx:id="elixirBarProgressBar" layoutX="-230.0" layoutY="415.0" prefHeight="40.0" prefWidth="600.0" progress="0.7" rotate="-90.0" style="-fx-accent: #EF41F3;" />
+      <ProgressBar fx:id="elixirBarProgressBar" layoutX="-230.0" layoutY="415.0" prefHeight="40.0" prefWidth="600.0" progress="0.6" rotate="-90.0" style="-fx-accent: #EF41F3;" />
       <Line endX="-5.0" endY="475.0" layoutX="90.0" layoutY="204.0" startX="-35.0" startY="475.0" strokeWidth="2.0" />
       <Line endX="-5.0" endY="475.0" layoutX="90.0" layoutY="144.0" startX="-35.0" startY="475.0" strokeWidth="2.0" />
       <Line endX="-5.0" endY="475.0" layoutX="90.0" layoutY="84.0" startX="-35.0" startY="475.0" strokeWidth="2.0" />

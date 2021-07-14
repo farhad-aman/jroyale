@@ -20,6 +20,9 @@ public class BattleController
      */
     private GameManager gameManager = GameManager.getInstance();
 
+    /**
+     * the arena view element in view 
+     */
     private ArenaView arenaView = new ArenaView();
 
     @FXML
@@ -81,8 +84,12 @@ public class BattleController
     {
         updateElixirBarView();
         updateCardsQueueView();
+        updateBattleTimerView();
     }
     
+    /**
+     * updates elixir bar in view based on elixir bar model
+     */
     private void updateElixirBarView()
     {
         double elixir = gameManager.getBattle().getPlayerElixirBar().getElixir();
@@ -90,6 +97,9 @@ public class BattleController
         elixirBarLabel.setText(Integer.toString((int)Math.floor(elixir)));
     }
 
+    /**
+     * shows available cards and next card in view based on model 
+     */
     private void updateCardsQueueView()
     {
         ArrayList<Card> cards = gameManager.getBattle().getPlayerCardsQueue();
@@ -98,7 +108,17 @@ public class BattleController
         card2ImageView.setImage(cards.get(5).getImage(0));
         card3ImageView.setImage(cards.get(6).getImage(0));
         card4ImageView.setImage(cards.get(7).getImage(0));
+    }
 
+    /**
+     * updates battle timer in view based on battle timer model
+     */
+    private void updateBattleTimerView()
+    {
+        int time = gameManager.getBattle().getBattleTimer().getTime();
+        int minutes = time / 60;
+        int seconds = time % 60;
+        battleTimerLabel.setText(minutes + ":" + seconds); 
     }
 
     /**
