@@ -104,10 +104,42 @@ public class BattleController
     {
         ArrayList<Card> cards = gameManager.getBattle().getPlayerCardsQueue();
         nextCardImageView.setImage(cards.get(3).getImage(0));
-        card1ImageView.setImage(cards.get(4).getImage(0));
-        card2ImageView.setImage(cards.get(5).getImage(0));
-        card3ImageView.setImage(cards.get(6).getImage(0));
-        card4ImageView.setImage(cards.get(7).getImage(0));
+
+        if(gameManager.getBattle().getPlayerElixirBar().getElixir() >= cards.get(4).getCost())
+        {
+            card1ImageView.setImage(cards.get(4).getImage(0));
+        }
+        else
+        {
+            card1ImageView.setImage(cards.get(4).getImage(-1));
+        }
+
+        if(gameManager.getBattle().getPlayerElixirBar().getElixir() >= cards.get(5).getCost())
+        {
+            card2ImageView.setImage(cards.get(5).getImage(0));
+        }
+        else
+        {
+            card2ImageView.setImage(cards.get(5).getImage(-1));
+        }
+        
+        if(gameManager.getBattle().getPlayerElixirBar().getElixir() >= cards.get(6).getCost())
+        {
+            card3ImageView.setImage(cards.get(6).getImage(0));
+        }
+        else
+        {
+            card3ImageView.setImage(cards.get(6).getImage(-1));
+        }
+
+        if(gameManager.getBattle().getPlayerElixirBar().getElixir() >= cards.get(7).getCost())
+        {
+            card4ImageView.setImage(cards.get(7).getImage(0));
+        }
+        else
+        {
+            card4ImageView.setImage(cards.get(7).getImage(-1));
+        }
     }
 
     /**

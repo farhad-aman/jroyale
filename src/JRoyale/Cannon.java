@@ -15,6 +15,7 @@ public class Cannon extends Building
     public void loadImages()
     {
         pics.put(0, new Image("resources/cards/cannon/cannon150.jpg"));
+        pics.put(-1, new Image("resources/cards/cannon/cannon150wb.jpg"));
         pics.put(3, new Image("resources/cards/cannon/cannonShootRight.gif"));
         pics.put(4, new Image("resources/cards/cannon/cannonShootLeft.gif"));
         pics.put(7, new Image("resources/cards/cannon/cannonball.gif"));

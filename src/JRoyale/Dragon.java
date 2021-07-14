@@ -21,6 +21,7 @@ public class Dragon extends Troop
      * */
     public void loadImages(){
         pics.put(0, new Image("resources/cards/dragon/dragon150.jpg"));
+        pics.put(-1, new Image("resources/cards/dragon/dragon150wb.jpg"));
         pics.put(1, new Image("resources/cards/dragon/dragonFlyForward.gif"));
         pics.put(2, new Image("resources/cards/dragon/dragonFlyBackward.gif"));
         pics.put(3, new Image("resources/cards/dragon/dragonAttackForward.gif"));

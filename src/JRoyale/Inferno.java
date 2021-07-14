@@ -18,6 +18,7 @@ public class Inferno extends Building
     public void loadImages()
     {
         pics.put(0, new Image("resources/cards/inferno/inferno150.jpg"));
+        pics.put(-1, new Image("resources/cards/inferno/inferno150wb.jpg"));
         pics.put(10, new Image("resources/cards/inferno/inferno.gif"));
     }
 }

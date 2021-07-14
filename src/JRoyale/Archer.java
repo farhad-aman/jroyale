@@ -21,6 +21,7 @@ public class Archer extends Troop
      * */
     public void loadImages(){
         pics.put(0, new Image("resources/cards/archer/archer150.jpg"));
+        pics.put(-1, new Image("resources/cards/archer/archer150wb.jpg"));
         pics.put(1, new Image("resources/cards/archer/archerRunForward.gif"));
         pics.put(2, new Image("resources/cards/archer/archerRunBackward.gif"));
         pics.put(3, new Image("resources/cards/archer/archerAttackForward.gif"));
