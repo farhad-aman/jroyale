@@ -16,6 +16,7 @@ public class Valkyrie extends Troop
               new int[] {0, 880, 968, 1064, 1170, 1284}, 
               new int[] {0, 120, 132, 145, 159, 175});
     }
+    
     /**
      * loads the proper pics for status//0->for deck(150.jpg)//troops://1->moving to right//2->moving to left//3->fighting to right//4->fighting to left//5->dying to right//6->dying to left//buildings://7->cannon ball//8->cannon turning right//9->cannon turning left//10->inferno.gif//11->spells gif
      * */

@@ -32,4 +32,12 @@ public class Inferno extends Building
         return maxDamage[level];
     }
 
+    
+    @Override
+    public void step(Creature creature) 
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

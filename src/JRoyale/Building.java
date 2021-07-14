@@ -51,4 +51,10 @@ public abstract class Building extends Card
         return initHP[level];
     }
 
+    @Override
+    public void step(Creature creature) 
+    {
+        // TODO Auto-generated method stub
+        
+    }
 }

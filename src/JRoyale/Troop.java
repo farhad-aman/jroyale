@@ -77,4 +77,11 @@ public abstract class Troop extends Card
     {
         return damage[level];
     }
+
+    @Override
+    public void step(Creature creature) 
+    {
+        // TODO Auto-generated method stub
+        
+    }
 }

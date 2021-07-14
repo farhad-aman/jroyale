@@ -73,35 +73,6 @@ public class Creature
     public Creature(Card card, int level, Point2D position, int side) 
     {
         this.card = card;
-        if(card instanceof Troop)
-        {
-            troop = (Troop)card;
-        }
-        else
-        {
-            building = (Building)card;
-        }
-        this.level = level;
-        if(troop != null)
-        {
-            this.hp = troop.getInitHP(level);
-            this.lifeTime = 1000000;
-            this.damage = troop.getDamage(level);
-        }
-        else
-        {
-            this.hp = building.getInitHP(level);
-            this.lifeTime = building.getInitLifeTime();
-            if(building instanceof Inferno)
-            {
-                this.damage = ((Inferno)building).getMinDamage(level);
-                this.maxDamage = ((Inferno)building).getMaxDamage(level);
-            }
-            else
-            {
-                this.damage = ((Cannon)building).getDamage(level);
-            }
-        }
         this.position = position;
         this.side = side;
         status = 0;
@@ -162,7 +133,7 @@ public class Creature
      */
     public boolean hit(Creature creature)
     {
-        return creature.getHit(card.);
+        return false;
     }
 
     /**

@@ -30,4 +30,11 @@ public class Giant extends Troop
         pics.put(5, new Image("resources/cards/giant/giantDeathForward.gif"));
         pics.put(6, new Image("resources/cards/giant/giantDeathBackward.gif"));
     }
+
+    @Override
+    public void step(Creature creature) 
+    {
+        // TODO Auto-generated method stub
+        
+    }
 }
