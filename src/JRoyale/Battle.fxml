@@ -57,5 +57,25 @@
             <Font name="Arial Rounded MT Bold" size="33.0" />
          </font>
       </Label>
+      <ImageView fx:id="playerScoreImageView" fitHeight="70.0" fitWidth="140.0" layoutX="823.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/battle/0star.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="botScoreImageView" fitHeight="70.0" fitWidth="140.0" layoutX="963.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/battle/0star.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="playerUsernameLabel" alignment="CENTER_RIGHT" layoutX="320.0" prefHeight="70.0" prefWidth="500.0" text="gggggggggggggggggggggggggggggg : " textFill="#009e3a">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="botUsernameLabel" layoutX="1100.0" prefHeight="70.0" prefWidth="500.0" text=" : gggggggggggggggggggggggggggggg" textFill="#e40000">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

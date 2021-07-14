@@ -2,6 +2,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
@@ -48,6 +49,18 @@ public class BattleController
 
     @FXML
     private Label elixirBarLabel;
+
+    @FXML
+    private ImageView playerScoreImageView;
+
+    @FXML
+    private ImageView botScoreImageView;
+
+    @FXML
+    private Label playerUsernameLabel;
+
+    @FXML
+    private Label botUsernameLabel;
     
     /**
      * starts main process of a battle in the game
@@ -82,6 +95,7 @@ public class BattleController
      */
     private void updateView()
     {
+        updateScoreBoardView();
         updateElixirBarView();
         updateCardsQueueView();
         updateBattleTimerView();
@@ -154,6 +168,46 @@ public class BattleController
     }
 
     /**
+     * updates view of score board based on model
+     */
+    private void updateScoreBoardView()
+    {
+        if(gameManager.getBattle().getScoreBoard().getPlayerStars() == 0)
+        {   
+            playerScoreImageView.setImage(new Image("resources/battle/0star.png"));
+        }
+        else if(gameManager.getBattle().getScoreBoard().getPlayerStars() == 1)
+        {
+            playerScoreImageView.setImage(new Image("resources/battle/1star.png"));
+        }
+        else if(gameManager.getBattle().getScoreBoard().getPlayerStars() == 2)
+        {
+            playerScoreImageView.setImage(new Image("resources/battle/2star.png"));
+        }
+        else if(gameManager.getBattle().getScoreBoard().getPlayerStars() == 3)
+        {
+            playerScoreImageView.setImage(new Image("resources/battle/3star.png"));
+        }
+
+        if(gameManager.getBattle().getScoreBoard().getBotStars() == 0)
+        {   
+            botScoreImageView.setImage(new Image("resources/battle/0star.png"));
+        }
+        else if(gameManager.getBattle().getScoreBoard().getBotStars() == 1)
+        {
+            botScoreImageView.setImage(new Image("resources/battle/1star.png"));
+        }
+        else if(gameManager.getBattle().getScoreBoard().getBotStars() == 2)
+        {
+            botScoreImageView.setImage(new Image("resources/battle/2star.png"));
+        }
+        else if(gameManager.getBattle().getScoreBoard().getBotStars() == 3)
+        {
+            botScoreImageView.setImage(new Image("resources/battle/3star.png"));
+        }
+    }
+
+    /**
      * check the status from model to decide finish the game
      * @param status
      */
@@ -166,6 +220,8 @@ public class BattleController
     @FXML
     public void initialize()
     {
+        playerUsernameLabel.setText(gameManager.getCurrentPlayer().getUsername() + " : ");
+        botUsernameLabel.setText(" : " + gameManager.getBattle().getBot().getUsername());
         startTimer();
     }
 }
