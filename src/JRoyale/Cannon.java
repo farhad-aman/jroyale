@@ -15,11 +15,16 @@ public class Cannon extends Building
     public void loadImages()
     {
         pics.put(0, new Image("resources/cards/cannon/cannon150.jpg"));
-        // pics.put(-1, new Image("resources/cards/cannon/cannon150wb.jpg"));
+        pics.put(-1, new Image("resources/cards/cannon/cannon150wb.jpg"));
         pics.put(3, new Image("resources/cards/cannon/cannonShootRight.gif"));
         pics.put(4, new Image("resources/cards/cannon/cannonShootLeft.gif"));
         pics.put(7, new Image("resources/cards/cannon/cannonball.gif"));
         pics.put(8, new Image("resources/cards/cannon/cannonTurnRight.gif"));
         pics.put(9, new Image("resources/cards/cannon/cannonTurnLeft.gif"));
+    }
+
+    public int getDamage(int level)
+    {
+        return damage[level];
     }
 }

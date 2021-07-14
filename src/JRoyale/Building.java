@@ -6,7 +6,7 @@ public abstract class Building extends Card
 
     private final double range;
 
-    private final int lifeTime;
+    private final int initLifeTime;
 
     private final int[] initHP;
 
@@ -15,20 +15,40 @@ public abstract class Building extends Card
                     int hitSpeed, 
                     String target, 
                     double range, 
-                    int lifeTime, 
+                    int initLifeTime, 
                     int[] initHP) 
     {
         super(id, cost);
         this.hitSpeed = hitSpeed;
         this.target = target;
         this.range = range;
-        this.lifeTime = lifeTime;
+        this.initLifeTime = initLifeTime;
         this.initHP = initHP;
+    }
+
+    public int getHitSpeed()
+    {
+        return hitSpeed;
+    }
+
+    public String getTarget()
+    {
+        return target;
     }
 
     public double getRange()
     {
         return range;
     }
-    
+
+    public int getInitLifeTime()
+    {
+        return initLifeTime;
+    }
+
+    public int getInitHP(int level)
+    {
+        return initHP[level];
+    }
+
 }

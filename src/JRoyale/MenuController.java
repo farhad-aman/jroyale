@@ -319,22 +319,22 @@ public class MenuController
     @FXML
     void easyButtonPressed(MouseEvent event) 
     {
-        /*gameManager.createBattle(1);
-        openBattle();*/
+        gameManager.createBattle(1);
+        openBattle();
     }
     
     @FXML
     void normalButtonPressed(MouseEvent event) 
     {
-        /*gameManager.createBattle(2);
-        openBattle();*/
+        gameManager.createBattle(2);
+        openBattle();
     }
 
     @FXML
     void hardButtonPressed(MouseEvent event) 
     {
-        /*gameManager.createBattle(3);
-        openBattle();*/
+        gameManager.createBattle(3);
+        openBattle();
     }
 
     @FXML
@@ -446,7 +446,23 @@ public class MenuController
 
     private void openBattle()
     {
-        
+        Stage stage = (Stage)saveDeckButton.getScene().getWindow();
+        Parent root;
+        try 
+        {
+            root = FXMLLoader.load(getClass().getResource("Battle.fxml"));
+            stage.setScene(new Scene(root));
+            stage.setX(0);
+            stage.setY(40);
+            mediaPlayer.pause();
+            mediaPlayer.seek(Duration.ZERO);
+        } 
+        catch (IOException e) 
+        {
+            System.out.println("cant read fxml");
+            e.printStackTrace();
+        }
+        System.out.println("battle opened opened!?!?!?!?!");
     }
 
     private void openLogin()
@@ -455,7 +471,7 @@ public class MenuController
         Parent root;
         try 
         {
-            root = FXMLLoader.load(getClass().getResource("login.fxml"));
+            root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             stage.setScene(new Scene(root));
             stage.setX(600);
             stage.setY(100);

@@ -38,7 +38,10 @@ public abstract class Troop extends Card
         this.damage = damage;
     }
     
-    public int getHitSpeed() { return hitSpeed; }
+    public int getHitSpeed() 
+    {
+        return hitSpeed; 
+    }
 
     public int getSpeed()
     {
@@ -63,5 +66,15 @@ public abstract class Troop extends Card
     public int getCount()
     {
         return count;
+    }
+    
+    public int getInitHP(int level)
+    {
+        return initHP[level];
+    }
+
+    public int getDamage(int level)
+    {
+        return damage[level];
     }
 }

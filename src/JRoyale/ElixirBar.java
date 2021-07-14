@@ -8,12 +8,12 @@ public class ElixirBar
     /**
      * the amount of elixir adds every frame
      */
-    private final double slowStep = 0.0125;
+    private final double slowStep = 1.0 / (GameManager.FPS * 2);
 
     /**
      * the amount of elixir adds every frame in last minute of the battle
      */
-    private final double fastStep = 0.025;
+    private final double fastStep = 1.0 / GameManager.FPS;
     
     /**
      * the current amount of elixir

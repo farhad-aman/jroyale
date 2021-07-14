@@ -9,7 +9,7 @@ public class GameManager
 {
     private static GameManager gameManager = new GameManager();
 
-    public static final String dbPassword = "@#$mg200";
+    public static final String dbPassword = "";
 
     public static final int FPS = 40;
     
@@ -302,7 +302,8 @@ public class GameManager
         return battle.step();
     }
 
-    public Battle getBattle() {
+    public Battle getBattle() 
+    {
         return battle;
     }
 }
