@@ -1,6 +1,10 @@
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,6 +21,30 @@ public class BattleController
     private GameManager gameManager = GameManager.getInstance();
 
     private ArenaView arenaView = new ArenaView();
+
+    @FXML
+    private ImageView nextCardImageView;
+
+    @FXML
+    private ImageView card1ImageView;
+
+    @FXML
+    private ImageView card2ImageView;
+
+    @FXML
+    private ImageView card3ImageView;
+
+    @FXML
+    private ImageView card4ImageView;
+
+    @FXML
+    private Label battleTimerLabel;
+
+    @FXML
+    private ProgressBar elixirBarProgressBar;
+
+    @FXML
+    private Label elixirBarLabel;
     
     /**
      * starts main process of a battle in the game
@@ -51,9 +79,28 @@ public class BattleController
      */
     private void updateView()
     {
-        
+        updateElixirBarView();
+        updateCardsQueueView();
     }
     
+    private void updateElixirBarView()
+    {
+        double elixir = gameManager.getBattle().getPlayerElixirBar().getElixir();
+        elixirBarProgressBar.setProgress(elixir / 10);
+        elixirBarLabel.setText(Integer.toString((int)Math.floor(elixir)));
+    }
+
+    private void updateCardsQueueView()
+    {
+        ArrayList<Card> cards = gameManager.getBattle().getPlayerCardsQueue();
+        nextCardImageView.setImage(cards.get(3).getImage(0));
+        card1ImageView.setImage(cards.get(4).getImage(0));
+        card2ImageView.setImage(cards.get(5).getImage(0));
+        card3ImageView.setImage(cards.get(6).getImage(0));
+        card4ImageView.setImage(cards.get(7).getImage(0));
+
+    }
+
     /**
      * check the status from model to decide finish the game
      * @param status

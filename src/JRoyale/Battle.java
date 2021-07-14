@@ -47,8 +47,8 @@ public class Battle
         scoreBoard = new ScoreBoard();
         battleTimer = new BattleTimer(180);
 
-        playerElixirBar = new ElixirBar(4, battleTimer);
-        botElixirBar = new ElixirBar(4, battleTimer);
+        playerElixirBar = new ElixirBar();
+        botElixirBar = new ElixirBar();
     }
 
     public int step() 
@@ -92,8 +92,48 @@ public class Battle
         return 0;
     }
 
+    public Player getPlayer()
+    {
+        return player;
+    }
+
+    public Bot getBot()
+    {
+        return bot;
+    }
+
     public Arena getArena() 
     {
         return arena;
+    }
+
+    public ArrayList<Card> getPlayerCardsQueue()
+    {
+        return playerCardsQueue;
+    }
+
+    public ArrayList<Card> getBotCardsQueue()
+    {
+        return botCardsQueue;
+    }
+
+    public ScoreBoard getScoreBoard()
+    {
+        return scoreBoard;
+    }
+
+    public BattleTimer getBattleTimer()
+    {
+        return battleTimer;
+    }
+
+    public ElixirBar getPlayerElixirBar()
+    {
+        return playerElixirBar;
+    }
+
+    public ElixirBar getBotElixirBar()
+    {
+        return botElixirBar;
     }
 }

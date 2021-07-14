@@ -8,10 +8,10 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BattleController">
    <children>
       <ImageView fitHeight="800.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true" />
-      <AnchorPane layoutX="320.0" layoutY="40.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: gray;" />
+      <AnchorPane layoutX="320.0" layoutY="70.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: gray;" />
       <ImageView fx:id="nextCardImageView" fitHeight="100.0" fitWidth="100.0" layoutX="180.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/blank150.jpg" />
@@ -37,7 +37,7 @@
             <Image url="@resources/blank150.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="battleTimerLabel" alignment="CENTER" layoutX="20.0" layoutY="20.0" prefHeight="100.0" prefWidth="140.0" text="0:00" textFill="#009746">
+      <Label fx:id="battleTimerLabel" alignment="CENTER" layoutX="20.0" layoutY="20.0" prefHeight="100.0" prefWidth="140.0" text="3:00" textFill="#009746">
          <font>
             <Font name="Arial Rounded MT Bold" size="66.0" />
          </font>
@@ -52,7 +52,7 @@
       <Line endX="-5.0" endY="475.0" layoutX="90.0" layoutY="-156.0" startX="-35.0" startY="475.0" strokeWidth="2.0" />
       <Line endX="-5.0" endY="475.0" layoutX="90.0" layoutY="-216.0" startX="-35.0" startY="475.0" strokeWidth="2.0" />
       <Line endX="-5.0" endY="475.0" layoutX="90.0" layoutY="-276.0" startX="-35.0" startY="475.0" strokeWidth="2.0" />
-      <Label alignment="CENTER" layoutX="50.0" layoutY="743.0" prefHeight="40.0" prefWidth="40.0" text="5" textFill="#ef41f3">
+      <Label fx:id="elixirBarLabel" alignment="CENTER" layoutX="50.0" layoutY="743.0" prefHeight="40.0" prefWidth="40.0" text="6" textFill="#ef41f3">
          <font>
             <Font name="Arial Rounded MT Bold" size="33.0" />
          </font>

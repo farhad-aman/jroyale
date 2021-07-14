@@ -2,41 +2,57 @@ public class ElixirBar
 {
     private final int elixirLimit = 10;
 
-    private int elixir;
+    private final double slowStep = 0.0125;
+
+    private final double fastStep = 0.025;
     
-    private BattleTimer battleTimer;
+    private double elixir;
+    
+    private int nextFrameTakeExir;
 
-    private int stepLimit = 80;
-
-    private int stepValue;
-
-    public ElixirBar(int initElixir, BattleTimer battleTimer)
+    public ElixirBar()
     {
-        this.elixir = initElixir;
-        this.battleTimer = battleTimer;
+        this.elixir = 6;
+        this.nextFrameTakeExir = 0;
     }
 
     public void step()
     {
-        if(battleTimer.getTime() == 60)
+        if(nextFrameTakeExir > 0)
         {
-            stepLimit = 40;
+            elixir -= nextFrameTakeExir;
         }
-        if(stepValue >= stepLimit)
+        if(elixir >= elixirLimit)
         {
-            stepValue = 0;
-            if(elixir < elixirLimit)
-            {
-                elixir++;
-            }
+            elixir = elixirLimit;
         }
         else
         {
-            stepValue++;
+            if(GameManager.getInstance().getBattle().getBattleTimer().getTime() <= 60)
+            {
+                elixir += fastStep;
+            }
+            else 
+            {
+                elixir += slowStep;
+            }
         }
     }
 
-    public int getElixir()
+    public boolean takeExir(int cost)
+    {
+        if(elixir < cost)
+        {
+            return false;
+        }
+        else
+        {
+            this.nextFrameTakeExir = cost;
+            return true;
+        }
+    }
+
+    public double getElixir()
     {
         return elixir;
     }
