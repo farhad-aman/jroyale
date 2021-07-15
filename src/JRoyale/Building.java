@@ -26,6 +26,7 @@ public abstract class Building extends Card
         this.initHP = initHP;
     }
 
+    @Override
     public int getHitSpeed()
     {
         return hitSpeed;
@@ -81,6 +82,7 @@ public abstract class Building extends Card
                 }
             }
         }
-        
     }
+
+    public abstract int getDamage(int level);
 }

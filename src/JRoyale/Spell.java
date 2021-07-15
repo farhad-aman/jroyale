@@ -12,5 +12,9 @@ public abstract class Spell extends Card
     {
         return radius;
     }
-    
+
+    @Override
+    public int getDamage(int leve) {
+        return 0;
+    }
 }

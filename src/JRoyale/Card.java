@@ -59,4 +59,13 @@ public abstract class Card
     public abstract void loadImages();
 
     public abstract void step(Creature creature);
+
+    public abstract int getDamage(int level);
+
+    public int getSpeed()
+    {
+        return 0;
+    }
+
+    public int getHitSpeed(){return 0;}
 }

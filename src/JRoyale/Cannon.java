@@ -23,10 +23,8 @@ public class Cannon extends Building
         pics.put(9, new Image("resources/cards/cannon/cannonTurnLeft.gif"));
     }
 
-    public int getDamage(int level)
-    {
+    @Override
+    public int getDamage(int level) {
         return damage[level];
     }
-
-    
 }
