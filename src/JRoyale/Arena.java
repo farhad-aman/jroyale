@@ -39,4 +39,8 @@ public class Arena
             c.step();
         }
     }
+
+    public ArrayList<Creature> getCreatures() {
+        return creatures;
+    }
 }

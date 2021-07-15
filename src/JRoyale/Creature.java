@@ -63,6 +63,10 @@ public class Creature
      */
     private int hitStepValue;
 
+    private boolean underRage;
+
+    private int rageTimeRemained;//in milliseconds
+
     /**
      * creates a new creature
      * @param card
@@ -76,6 +80,10 @@ public class Creature
         this.level = level;
         this.position = position;
         this.side = side;
+
+        underRage = false;
+        rageTimeRemained = 0;
+
         if(card instanceof Building)
         {
             this.hp = ((Building)card).getInitHP(level);
@@ -88,9 +96,25 @@ public class Creature
         }
     }
 
+    public int getSide() {
+        return side;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public boolean isUnderRage() {
+        return underRage;
+    }
+
     public Card getCard() 
     {
         return card;
+    }
+
+    public int getRageTimeRemained() {
+        return rageTimeRemained;
     }
 
     public Point2D getPosition() 
@@ -123,6 +147,14 @@ public class Creature
         return followTarget;
     }
 
+    public void setUnderRage(boolean newUnderRage) {
+        this.underRage = newUnderRage;
+    }
+
+    public void setRageTimeRemained(int rageTimeRemained) {
+        this.rageTimeRemained = rageTimeRemained;
+    }
+
     public void setFollowTarget(Creature creature)
     {
         this.followTarget = creature;
@@ -136,6 +168,13 @@ public class Creature
     public void step()
     {
         card.step(this);
+
+        if(underRage){
+            rageTimeRemained -= 1000 / GameManager.FPS;
+
+            if(rageTimeRemained == 0)
+                underRage = false;
+        }
     }
 
     /**

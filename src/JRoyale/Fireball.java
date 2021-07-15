@@ -1,5 +1,7 @@
 import javafx.scene.image.Image;
 
+import java.util.Iterator;
+
 public class Fireball extends Spell
 {
     private final int[] damage = {0, 325, 357, 393, 432, 474};
@@ -17,11 +19,17 @@ public class Fireball extends Spell
         pics.put(-1, new Image("resources/cards/fireball/fireball150wb.jpg"));
        // pics.put(11, new Image("resources/fireball/archer/fireball.gif"));
     }
-    
+
     @Override
-    public void step(Creature creature) 
-    {
-        // TODO Auto-generated method stub
-        
+    public void step(Creature creature){
+        Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
+
+        while (it.hasNext()) {
+            Creature tempTarget = it.next();
+
+            if(tempTarget.getPosition().distance(creature.getPosition()) <= super.getRadius() && creature.getSide() != tempTarget.getSide()){
+                tempTarget.getHit(damage[creature.getLevel()]);
+            }
+        }
     }
 }

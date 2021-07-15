@@ -1,5 +1,7 @@
 import javafx.scene.image.Image;
 
+import java.util.Iterator;
+
 public class Rage extends Spell
 {
     private final int duration[] = {0, 6000, 6500, 7000, 7500, 8000};
@@ -13,14 +15,22 @@ public class Rage extends Spell
      * */
     public void loadImages(){
         pics.put(0, new Image("resources/cards/rage/rage150.jpg"));
-        // pics.put(-1, new Image("resources/cards/rage/rage150wb.jpg"));
+         pics.put(-1, new Image("resources/cards/rage/rage150wb.jpg"));
        // pics.put(11, new Image("resources/rage/archer/rage.gif"));
     }
 
+
     @Override
-    public void step(Creature creature) 
-    {
-        // TODO Auto-generated method stub
-        
+    public void step(Creature creature){
+        Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
+
+        while (it.hasNext()) {
+            Creature tempTarget = it.next();
+
+            if(tempTarget.getPosition().distance(creature.getPosition()) <= super.getRadius() && creature.getSide() == tempTarget.getSide()){
+                tempTarget.setUnderRage(true);
+                tempTarget.setRageTimeRemained(duration[creature.getLevel()]);
+            }
+        }
     }
 }

@@ -1,5 +1,7 @@
 import javafx.scene.image.Image;
 
+import java.util.Iterator;
+
 public class Arrows extends Spell
 {
     private final int[] damage = {0, 144, 156, 174, 189, 210};
@@ -19,9 +21,15 @@ public class Arrows extends Spell
     }
 
     @Override
-    public void step(Creature creature) 
-    {
-        // TODO Auto-generated method stub
-        
+    public void step(Creature creature){
+        Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
+
+        while (it.hasNext()) {
+            Creature tempTarget = it.next();
+
+            if(tempTarget.getPosition().distance(creature.getPosition()) <= super.getRadius() && creature.getSide() != tempTarget.getSide()){
+                tempTarget.getHit(damage[creature.getLevel()]);
+            }
+        }
     }
 }
