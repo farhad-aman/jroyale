@@ -29,14 +29,7 @@ public class Arena
         Iterator<Creature> it = creatures.iterator();
         while(it.hasNext())
         {
-            if(it.next().isEliminated())
-            {
-                it.remove();
-            }
-        }
-        for(Creature c : creatures)
-        {
-            c.step();
+            it.next().step();
         }
     }
 }
