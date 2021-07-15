@@ -16,4 +16,11 @@ public class Rage extends Spell
         // pics.put(-1, new Image("resources/cards/rage/rage150wb.jpg"));
        // pics.put(11, new Image("resources/rage/archer/rage.gif"));
     }
+
+    @Override
+    public void step(Creature creature) 
+    {
+        // TODO Auto-generated method stub
+        
+    }
 }

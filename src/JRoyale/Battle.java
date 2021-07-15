@@ -1,3 +1,4 @@
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -54,6 +55,10 @@ public class Battle
     public int step() 
     {
         arena.step();
+        playerElixirBar.step();
+        botElixirBar.step();
+        scoreBoard.step();
+        battleTimer.step();
         return getStatus();
     }
 

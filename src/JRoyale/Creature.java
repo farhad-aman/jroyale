@@ -64,7 +64,7 @@ public class Creature
     private int hitStepValue;
 
     /**
-     * 
+     * creates a new creature
      * @param card
      * @param position
      * @param side
@@ -73,9 +73,19 @@ public class Creature
     public Creature(Card card, int level, Point2D position, int side) 
     {
         this.card = card;
+        this.level = level;
         this.position = position;
         this.side = side;
-        status = 0;
+        if(card instanceof Building)
+        {
+            this.hp = ((Building)card).getInitHP(level);
+            this.lifeTime = ((Building)card).getInitHP(level);
+        }
+        else if(card instanceof Troop)
+        {
+            this.hp = ((Troop)card).getInitHP(level);
+            this.lifeTime = 1000000;
+        }
     }
 
     public Card getCard() 
@@ -98,16 +108,14 @@ public class Creature
         this.status = status;
     }
 
-    public void step(Arena arena, int direction)//bot creatures move to left(1) and player creatures move to right(2)
+    public int getHP()
     {
-        if(killTarget == null)
-        {
-            
-        }
-        else
-        {
+        return hp;
+    }
 
-        }
+    public void step()
+    {
+        card.step(this);
     }
 
     /**

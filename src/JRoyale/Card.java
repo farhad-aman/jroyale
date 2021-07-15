@@ -2,8 +2,6 @@ import javafx.scene.image.Image;
 
 import java.util.HashMap;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 public abstract class Card
 {
     private final String id;
