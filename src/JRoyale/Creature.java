@@ -113,9 +113,19 @@ public class Creature
         return killTarget;
     }
 
+    public void setKillTarget(Creature creature)
+    {
+        this.killTarget = creature;
+    }
+
     public Creature getFollowTarget()
     {
         return followTarget;
+    }
+
+    public void setFollowTarget(Creature creature)
+    {
+        this.followTarget = creature;
     }
 
     public int getHP()
@@ -179,5 +189,10 @@ public class Creature
     public boolean isCreatureInRange(Creature creature)
     {
         return false;
+    }
+
+    public void followCreature(Creature creature)
+    {
+        
     }
 }

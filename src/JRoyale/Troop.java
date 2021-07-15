@@ -1,3 +1,5 @@
+import javafx.scene.control.Cell;
+
 public abstract class Troop extends Card
 {
     private final int hitSpeed;
@@ -83,11 +85,34 @@ public abstract class Troop extends Card
     {        
         if(creature.getKillTarget() == null)
         {
-            
+            creature.setFollowTarget(creature.findNearestValidCreature());
+            if(creature.isCreatureInRange(creature.getFollowTarget()))
+            {
+                creature.setKillTarget(creature.getFollowTarget());
+                creature.hit(creature.getKillTarget());
+            }
+            else
+            {
+                creature.followCreature(creature.getFollowTarget());
+            }
         }
         else
         {
-
+            if(creature.isEliminated())
+            {
+                creature.setKillTarget(null);
+            }
+            else
+            {
+                if(creature.isCreatureInRange(creature.getKillTarget()))
+                {
+                    creature.hit(creature.getKillTarget());
+                }
+                else
+                {
+                    creature.followCreature(creature.getKillTarget());
+                }
+            }
         }
     }
 
