@@ -54,7 +54,33 @@ public abstract class Building extends Card
     @Override
     public void step(Creature creature) 
     {
-        // TODO Auto-generated method stub
+        if(creature.getKillTarget() == null)
+        {
+            Creature target = creature.findNearestValidCreature();
+            if(creature.isCreatureInRange(target))
+            {
+                creature.setKillTarget(target);
+                creature.hit(creature.getKillTarget());
+            }
+        }
+        else
+        {
+            if(creature.getKillTarget().isEliminated())
+            {
+                creature.setKillTarget(null);
+            }
+            else
+            {
+                if(creature.isCreatureInRange(creature.getKillTarget()))
+                {
+                    creature.hit(creature.getKillTarget());
+                }
+                else
+                {
+                    creature.setKillTarget(null);
+                }
+            }
+        }
         
     }
 }

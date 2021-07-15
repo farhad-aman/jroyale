@@ -1,5 +1,3 @@
-import javafx.scene.control.Cell;
-
 public abstract class Troop extends Card
 {
     private final int hitSpeed;
@@ -98,7 +96,7 @@ public abstract class Troop extends Card
         }
         else
         {
-            if(creature.isEliminated())
+            if(creature.getKillTarget().isEliminated())
             {
                 creature.setKillTarget(null);
             }
