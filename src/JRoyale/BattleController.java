@@ -162,6 +162,10 @@ public class BattleController
     private void updateBattleTimerView()
     {
         int time = gameManager.getBattle().getBattleTimer().getTime();
+        if(time == 60)
+        {
+            
+        }
         int minutes = time / 60;
         int seconds = time % 60;
         battleTimerLabel.setText(minutes + ":" + seconds); 

@@ -178,7 +178,7 @@ public class Creature
 
     public int getDistance(Creature creature)
     {
-        return 0;
+        return (int)position.distance(creature.position);
     }
 
     public Creature findNearestValidCreature()
