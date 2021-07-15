@@ -108,6 +108,16 @@ public class Creature
         this.status = status;
     }
 
+    public Creature getKillTarget()
+    {
+        return killTarget;
+    }
+
+    public Creature getFollowTarget()
+    {
+        return followTarget;
+    }
+
     public int getHP()
     {
         return hp;
@@ -153,6 +163,21 @@ public class Creature
         {
             return true;
         }
+        return false;
+    }
+
+    public int getDistance(Creature creature)
+    {
+        return 0;
+    }
+
+    public Creature findNearestValidCreature()
+    {
+        return null;
+    }
+
+    public boolean isCreatureInRange(Creature creature)
+    {
         return false;
     }
 }

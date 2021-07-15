@@ -80,8 +80,15 @@ public abstract class Troop extends Card
 
     @Override
     public void step(Creature creature) 
-    {
-        // TODO Auto-generated method stub
-        
+    {        
+        if(creature.getKillTarget() == null)
+        {
+            
+        }
+        else
+        {
+
+        }
     }
+
 }
