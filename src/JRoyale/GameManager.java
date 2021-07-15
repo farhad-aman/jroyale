@@ -9,7 +9,7 @@ public class GameManager
 {
     private static GameManager gameManager = new GameManager();
 
-    public static final String dbPassword = "@#$mg200";
+    public static final String dbPassword = "";
 
     public static final int FPS = 40;
     

@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -164,11 +165,18 @@ public class BattleController
         int time = gameManager.getBattle().getBattleTimer().getTime();
         if(time == 60)
         {
-            
+            battleTimerLabel.setStyle("-fx-text-fill: red");
         }
         int minutes = time / 60;
         int seconds = time % 60;
-        battleTimerLabel.setText(minutes + ":" + seconds); 
+        if(seconds < 10)
+        {
+            battleTimerLabel.setText(minutes + ":0" + seconds);
+        }
+        else
+        {
+            battleTimerLabel.setText(minutes + ":" + seconds); 
+        }
     }
 
     /**

@@ -453,9 +453,8 @@ public class MenuController
             root = FXMLLoader.load(getClass().getResource("Battle.fxml"));
             stage.setScene(new Scene(root));
             stage.setX(0);
-            stage.setY(40);
-            mediaPlayer.pause();
-            mediaPlayer.seek(Duration.ZERO);
+            stage.setY(0);
+            mediaPlayer.setVolume(0);
         } 
         catch (IOException e) 
         {
@@ -475,8 +474,7 @@ public class MenuController
             stage.setScene(new Scene(root));
             stage.setX(600);
             stage.setY(100);
-            mediaPlayer.pause();
-            mediaPlayer.seek(Duration.ZERO);
+            mediaPlayer.setVolume(0);
             gameManager.logout();
         } 
         catch (IOException e) 
