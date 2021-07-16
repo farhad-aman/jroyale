@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+
+import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 
 public class Archer extends Troop
@@ -30,5 +33,38 @@ public class Archer extends Troop
         pics.put(4, new Image("resources/cards/archer/archerAttackBackward.gif"));
         pics.put(5, new Image("resources/cards/archer/archerDeathForward.gif"));
         pics.put(6, new Image("resources/cards/archer/archerDeathBackward.gif"));
+    }
+
+    @Override
+    public ArrayList<Creature> makeCreature(Point2D center, int side) 
+    {
+        Point2D c1 = new Point2D(center.getX() - 20, center.getY());
+        Point2D c2 = new Point2D(center.getX() + 20, center.getY());
+        ArrayList<Creature> creatures = new ArrayList<>();
+        if(side == -1)
+        {
+            if(GameManager.getInstance().getBattle().getBot() instanceof Bot1)
+            {
+                creatures.add(new Creature(this, 1, c1, -1));
+                creatures.add(new Creature(this, 1, c2, -1));
+            }
+            else if(GameManager.getInstance().getBattle().getBot() instanceof Bot2)
+            {
+                creatures.add(new Creature(this, 3, c1, -1));
+                creatures.add(new Creature(this, 3, c2, -1));
+            }
+            else
+            {
+                creatures.add(new Creature(this, 5, c1, -1));
+                creatures.add(new Creature(this, 5, c2, -1));
+            }
+            
+        }
+        else
+        {
+            creatures.add(new Creature(this, GameManager.getInstance().getCurrentPlayer().getLevel(), c1, 1));
+            creatures.add(new Creature(this, GameManager.getInstance().getCurrentPlayer().getLevel(), c2, 1));
+        }
+        return creatures;
     }
 }

@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+
+import javafx.geometry.Point2D;
+
 public abstract class Building extends Card
 {
     private final int hitSpeed;
@@ -85,4 +89,5 @@ public abstract class Building extends Card
     }
 
     public abstract int getDamage(int level);
+
 }
