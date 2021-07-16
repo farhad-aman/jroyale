@@ -1,6 +1,7 @@
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -222,7 +223,9 @@ public class LoginController
         try 
         {
             root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            scene.setCursor(new ImageCursor(new Image("resources/cursor.png")));
+            stage.setScene(scene);
             stage.setX(-10);
             stage.setY(0);
         } 
@@ -279,7 +282,7 @@ public class LoginController
     @FXML
     void initialize()
     {
-        
+
     }
 
 }

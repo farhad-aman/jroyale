@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -451,7 +452,9 @@ public class MenuController
         try 
         {
             root = FXMLLoader.load(getClass().getResource("Battle.fxml"));
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            scene.setCursor(new ImageCursor(new Image("resources/cursor.png")));
+            stage.setScene(scene);
             stage.setX(-10);
             stage.setY(0);
             mediaPlayer.setVolume(0);
@@ -471,7 +474,9 @@ public class MenuController
         try 
         {
             root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            scene.setCursor(new ImageCursor(new Image("resources/cursor.png")));
+            stage.setScene(scene);
             stage.setX(600);
             stage.setY(100);
             mediaPlayer.setVolume(0);
