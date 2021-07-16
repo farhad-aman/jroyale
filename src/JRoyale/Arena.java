@@ -34,9 +34,13 @@ public class Arena
                 it.remove();
             }
         }
-        for(Creature c : creatures)
-        {
+        it = creatures.iterator();
+        while (it.hasNext()){
+            Creature c = it.next();
             c.step();
+
+            if(c.getCard() instanceof Spell)
+                it.remove();
         }
     }
 

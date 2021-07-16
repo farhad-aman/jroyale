@@ -37,12 +37,14 @@ public abstract class Troop extends Card
         this.initHP = initHP;
         this.damage = damage;
     }
-    
-    public int getHitSpeed() 
+
+    @Override
+    public int getHitSpeed()
     {
         return hitSpeed; 
     }
 
+    @Override
     public int getSpeed()
     {
         return speed;

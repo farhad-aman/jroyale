@@ -63,7 +63,15 @@ public class Creature
      */
     private int hitStepValue;
 
+    private int hitSpeed;
+
+    private int speed;
+
+    private int speedValue;
+
     private boolean underRage;
+
+    private int damage;
 
     private int rageTimeRemained;//in milliseconds
 
@@ -83,6 +91,14 @@ public class Creature
 
         underRage = false;
         rageTimeRemained = 0;
+
+        speed = card.getSpeed();
+        speedValue = 0;
+
+        hitSpeed = card.getHitSpeed();
+        hitStepValue = 0;
+
+        damage = card.getDamage(level);
 
         if(card instanceof Building)
         {
@@ -207,7 +223,8 @@ public class Creature
      */
     public boolean hit(Creature creature)
     {
-        return false;
+        creature.getHit((int) (damage * (underRage ? 1.4 : 1)));
+        return creature.isEliminated();
     }
 
     /**
@@ -238,7 +255,10 @@ public class Creature
     }
 
     public void followCreature(Creature creature)
-    {
-        
+    {//TODO: applying rage effect if necessary for following speed
+
+        hitStepValue += (underRage ? 1.4 : 1) * GameManager.FPS;
+        if(hitStepValue > hitSpeed)
+            hitStepValue = speedValue;
     }
 }

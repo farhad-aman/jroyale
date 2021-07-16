@@ -13,5 +13,9 @@ public class King extends Building
         // TODO Auto-generated method stub
         
     }
-    
+
+    @Override
+    public int getDamage(int level) {
+        return damage[level];
+    }
 }

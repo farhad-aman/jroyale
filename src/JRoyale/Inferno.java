@@ -40,4 +40,8 @@ public class Inferno extends Building
         
     }
 
+    @Override
+    public int getDamage(int level) {
+        return 0;//TODO: handle the damage amount
+    }
 }
