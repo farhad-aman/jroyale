@@ -1,5 +1,6 @@
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -90,56 +91,40 @@ public class BattleController
     @FXML
     void card1Pressed(MouseEvent event) 
     {
-        if(gameManager.getBattle().getPlayerCardsQueue().get(4).getCost() < gameManager.getBattle().getPlayerElixirBar().getElixir())
+        if(gameManager.getBattle().getPlayerCardsQueue().get(4).getCost() <= gameManager.getBattle().getPlayerElixirBar().getElixir())
         {
             chosenCard = gameManager.getBattle().getPlayerCardsQueue().get(4);
             chosenCardNumber = 1;
-        }
-        else
-        {
-
         }
     }
 
     @FXML
     void card2Pressed(MouseEvent event) 
     {
-        if(gameManager.getBattle().getPlayerCardsQueue().get(5).getCost() < gameManager.getBattle().getPlayerElixirBar().getElixir())
+        if(gameManager.getBattle().getPlayerCardsQueue().get(5).getCost() <= gameManager.getBattle().getPlayerElixirBar().getElixir())
         {
             chosenCard = gameManager.getBattle().getPlayerCardsQueue().get(5);
             chosenCardNumber = 2;
-        }
-        else
-        {
-            
         }
     }
 
     @FXML
     void card3Pressed(MouseEvent event) 
     {
-        if(gameManager.getBattle().getPlayerCardsQueue().get(6).getCost() < gameManager.getBattle().getPlayerElixirBar().getElixir())
+        if(gameManager.getBattle().getPlayerCardsQueue().get(6).getCost() <= gameManager.getBattle().getPlayerElixirBar().getElixir())
         {
             chosenCard = gameManager.getBattle().getPlayerCardsQueue().get(6);
             chosenCardNumber = 3;
-        }
-        else
-        {
-            
         }
     }
 
     @FXML
     void card4Pressed(MouseEvent event) 
     {
-        if(gameManager.getBattle().getPlayerCardsQueue().get(7).getCost() < gameManager.getBattle().getPlayerElixirBar().getElixir())
+        if(gameManager.getBattle().getPlayerCardsQueue().get(7).getCost() <= gameManager.getBattle().getPlayerElixirBar().getElixir())
         {
             chosenCard = gameManager.getBattle().getPlayerCardsQueue().get(7);
             chosenCardNumber = 4;
-        }
-        else
-        {
-            
         }
     }
 
@@ -148,6 +133,21 @@ public class BattleController
     {
         int x = (int)event.getX();
         int y = (int)event.getY();
+        if(chosenCard != null)
+        {
+            if(chosenCard instanceof Spell)
+            {
+                ArrayList<Creature> creatures = chosenCard.makeCreature(new Point2D(x, y), 1);
+                for(Creature c : creatures)
+                {
+                    gameManager.getBattle().getArena().getCreatures().add(c);
+                } 
+            }
+            else
+            {
+
+            }
+        }
                 
     }
 
