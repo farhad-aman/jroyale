@@ -44,7 +44,8 @@ public class Arena
         }
     }
 
-    public ArrayList<Creature> getCreatures() {
+    public ArrayList<Creature> getCreatures() 
+    {
         return creatures;
     }
 }

@@ -452,7 +452,7 @@ public class MenuController
         {
             root = FXMLLoader.load(getClass().getResource("Battle.fxml"));
             stage.setScene(new Scene(root));
-            stage.setX(0);
+            stage.setX(-10);
             stage.setY(0);
             mediaPlayer.setVolume(0);
         } 

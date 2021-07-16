@@ -4,8 +4,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -234,6 +236,28 @@ public class BattleController
     {
         playerUsernameLabel.setText(gameManager.getCurrentPlayer().getUsername() + " : ");
         botUsernameLabel.setText(" : " + gameManager.getBattle().getBot().getUsername());
-        startTimer();
+        
+        MediaPlayer mediaPlayerGo = new MediaPlayer(new Media(new File("resources/battle/go.mp3").toURI().toString()));
+        mediaPlayerGo.setVolume(0.5);//volume percentage 0 to 1
+        Thread thread = new Thread(new Runnable()
+        {
+            @Override
+            public void run() 
+            {
+                mediaPlayerGo.play();
+                try 
+                {
+                    Thread.sleep(3000);
+                } 
+                catch (InterruptedException e) 
+                {
+                    e.printStackTrace();
+                }
+                startTimer();
+            }
+        });
+        thread.start();
+
+        
     }
 }

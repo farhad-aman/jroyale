@@ -81,7 +81,6 @@ public class Creature
      * @param position
      * @param side
      */
-
     public Creature(Card card, int level, Point2D position, int side) 
     {
         this.card = card;
@@ -255,7 +254,8 @@ public class Creature
     }
 
     public void followCreature(Creature creature)
-    {//TODO: applying rage effect if necessary for following speed
+    {
+        //TODO: applying rage effect if necessary for following speed
 
         hitStepValue += (underRage ? 1.4 : 1) * GameManager.FPS;
         if(hitStepValue > hitSpeed)

@@ -15,7 +15,8 @@ public class King extends Building
     }
 
     @Override
-    public int getDamage(int level) {
+    public int getDamage(int level) 
+    {
         return damage[level];
     }
 }

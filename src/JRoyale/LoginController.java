@@ -180,6 +180,12 @@ public class LoginController
             showMessage("Username already exists, try another one", signUpUsernameLabel);
         else
         {
+            try 
+            {
+                Thread.sleep(3000);    
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
             openMenu();
         }
     }

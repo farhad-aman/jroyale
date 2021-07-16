@@ -67,5 +67,8 @@ public abstract class Card
         return 0;
     }
 
-    public int getHitSpeed(){return 0;}
+    public int getHitSpeed()
+    {
+        return 0;
+    }
 }

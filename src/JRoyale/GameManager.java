@@ -9,7 +9,7 @@ public class GameManager
 {
     private static GameManager gameManager = new GameManager();
 
-    public static final String dbPassword = "@#$mg200";
+    public static final String dbPassword = "";
 
     public static final int FPS = 40;
     
@@ -240,20 +240,20 @@ public class GameManager
         System.out.println("gameManager line 209 started");
         String deck = "";
         ArrayList<String> cards = new ArrayList<>();
-        cards.add("fireBall");
-        cards.add("valkyrie");
-        cards.add("pekka");
-        cards.add("barbarians");
-        cards.add("wizard");
-        cards.add("giant");
-        cards.add("dragon");
-        cards.add("arrows");
-        cards.add("cannon");
-        cards.add("rage");
-        cards.add("inferno");
-        cards.add("archer");
+        cards.add("Fireball");
+        cards.add("Valkyrie");
+        cards.add("Pekka");
+        cards.add("Barbarians");
+        cards.add("Wizard");
+        cards.add("Giant");
+        cards.add("Dragon");
+        cards.add("Arrows");
+        cards.add("Cannon");
+        cards.add("Rage");
+        cards.add("Inferno");
+        cards.add("Archer");
 
-        Player player = new Player(username, userPassword, 0, new Deck(), null);
+        Player player = new Player(username, userPassword, 0, new Deck(), getHistory(username));
         Random rand = new Random();
 
         while(cards.size() > 4)
