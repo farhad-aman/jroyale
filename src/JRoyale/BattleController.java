@@ -5,6 +5,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
@@ -34,6 +35,9 @@ public class BattleController
     private Card chosenCard;
 
     private int chosenCardNumber;
+
+    @FXML
+    private AnchorPane arenaPane;
 
     @FXML
     private ImageView nextCardImageView;
@@ -137,6 +141,14 @@ public class BattleController
         {
             
         }
+    }
+
+    @FXML
+    void arenaPanePressed(MouseEvent event) 
+    {
+        int x = (int)event.getX();
+        int y = (int)event.getY();
+                
     }
 
     /**

@@ -15,7 +15,7 @@
          <image>
             <Image url="@resources/battle/battleBackground.jpg" />
          </image></ImageView>
-      <AnchorPane layoutX="320.0" layoutY="70.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: gray;">
+      <AnchorPane fx:id="arenaPane" layoutX="320.0" layoutY="70.0" onMousePressed="#arenaPanePressed" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: gray;">
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
