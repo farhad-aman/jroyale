@@ -22,8 +22,8 @@ public class Valkyrie extends Troop
      * */
     public void loadImages()
     {
-        pics.put(0, new Image("resources/cards/valkyrie/valkyrie150.jpg"));
-        // pics.put(-1, new Image("resources/cards/valkyrie/valkyrie150wb.jpg"));
+        pics.put(0, new Image("resources/cards/valkyrie/valkyrie150.png"));
+        pics.put(-1, new Image("resources/cards/valkyrie/valkyrie150wb.jpg"));
         pics.put(1, new Image("resources/cards/valkyrie/valkyrieRunForward.gif"));
         pics.put(2, new Image("resources/cards/valkyrie/valkyrieRunBackward.gif"));
         pics.put(3, new Image("resources/cards/valkyrie/valkyrieAttackForward.gif"));

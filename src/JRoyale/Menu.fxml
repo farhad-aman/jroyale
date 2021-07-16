@@ -196,7 +196,7 @@
                      <children>
                         <ImageView fx:id="giantImageView" fitHeight="150.0" fitWidth="150.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/cards/giant/giant150.jpg" />
+                              <Image url="@resources/cards/giant/giant150.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -205,7 +205,7 @@
                      <children>
                         <ImageView fx:id="fireballImageView" fitHeight="150.0" fitWidth="150.0" layoutX="2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/cards/fireball/fireball150.jpg" />
+                              <Image url="@resources/cards/fireball/fireball150.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -214,7 +214,7 @@
                      <children>
                         <ImageView fx:id="arrowsImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/cards/arrows/arrows150.jpg" />
+                              <Image url="@resources/cards/arrows/arrows150.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -223,16 +223,16 @@
                      <children>
                         <ImageView fx:id="rageImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/cards/rage/rage150.jpg" />
+                              <Image url="@resources/cards/rage/rage150.png" />
                            </image>
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="1174.0" layoutY="578.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #510c0c; -fx-background-radius: 5;">
+                  <AnchorPane layoutX="1180.0" layoutY="578.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #510c0c; -fx-background-radius: 5;">
                      <children>
                         <ImageView fx:id="infernoImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/cards/inferno/inferno150.jpg" />
+                              <Image url="@resources/cards/inferno/inferno150.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -241,7 +241,7 @@
                      <children>
                         <ImageView fx:id="cannonImageView" fitHeight="150.0" fitWidth="150.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/cards/cannon/cannon150.jpg" />
+                              <Image url="@resources/cards/cannon/cannon150.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -250,16 +250,16 @@
                      <children>
                         <ImageView fx:id="valkyrieImageView" fitHeight="150.0" fitWidth="150.0" layoutX="2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/cards/valkyrie/valkyrie150.jpg" />
+                              <Image url="@resources/cards/valkyrie/valkyrie150.png" />
                            </image>
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="932.0" layoutY="227.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #94341e; -fx-background-radius: 5;">
+                  <AnchorPane layoutX="932.0" layoutY="218.0" prefHeight="155.0" prefWidth="155.0" style="-fx-background-color: #94341e; -fx-background-radius: 5;">
                      <children>
                         <ImageView fx:id="pekkaImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/cards/pekka/pekka150.jpg" />
+                              <Image url="@resources/cards/pekka/pekka150.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -268,7 +268,7 @@
                      <children>
                         <ImageView fx:id="archerImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/cards/archer/archer150.jpg" />
+                              <Image url="@resources/cards/archer/archer150.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -277,7 +277,7 @@
                      <children>
                         <ImageView fx:id="barbariansImageView" fitHeight="150.0" fitWidth="150.0" layoutX="2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/cards/barbarians/barbarians150.jpg" />
+                              <Image url="@resources/cards/barbarians/barbarians150.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -286,7 +286,7 @@
                      <children>
                         <ImageView fx:id="dragonImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/cards/dragon/dragon150.jpg" />
+                              <Image url="@resources/cards/dragon/dragon150.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -295,7 +295,7 @@
                      <children>
                         <ImageView fx:id="wizardImageView" fitHeight="150.0" fitWidth="150.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/cards/wizard/wizard150.jpg" />
+                              <Image url="@resources/cards/wizard/wizard150.png" />
                            </image>
                         </ImageView>
                      </children>

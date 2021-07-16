@@ -16,7 +16,7 @@ public class Fireball extends Spell
      * */
     public void loadImages()
     {
-        pics.put(0, new Image("resources/cards/fireball/fireball150.jpg"));
+        pics.put(0, new Image("resources/cards/fireball/fireball150.png"));
         pics.put(-1, new Image("resources/cards/fireball/fireball150wb.jpg"));
        // pics.put(11, new Image("resources/fireball/archer/fireball.gif"));
     }

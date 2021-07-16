@@ -22,7 +22,7 @@ public class Wizard extends Troop
      * */
     public void loadImages()
     {
-        pics.put(0, new Image("resources/cards/wizard/wizard150.jpg"));
+        pics.put(0, new Image("resources/cards/wizard/wizard150.png"));
         pics.put(-1, new Image("resources/cards/wizard/wizard150wb.jpg"));
         pics.put(1, new Image("resources/cards/wizard/wizardRunForward.gif"));
         pics.put(2, new Image("resources/cards/wizard/wizardRunBackward.gif"));

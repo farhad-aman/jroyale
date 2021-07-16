@@ -21,7 +21,7 @@ public class Giant extends Troop
      * */
     public void loadImages()
     {
-        pics.put(0, new Image("resources/cards/giant/giant150.jpg"));
+        pics.put(0, new Image("resources/cards/giant/giant150.png"));
         pics.put(-1, new Image("resources/cards/giant/giant150wb.jpg"));
         pics.put(1, new Image("resources/cards/giant/giantWalkForward.gif"));
         pics.put(2, new Image("resources/cards/giant/giantWalkBackward.gif"));

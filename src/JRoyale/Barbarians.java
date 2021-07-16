@@ -25,7 +25,7 @@ public class Barbarians extends Troop
      * */
     public void loadImages()
     {
-        pics.put(0, new Image("resources/cards/barbarians/barbarians150.jpg"));
+        pics.put(0, new Image("resources/cards/barbarians/barbarians150.png"));
         pics.put(-1, new Image("resources/cards/barbarians/barbarians150wb.jpg"));
         pics.put(1, new Image("resources/cards/barbarians/barbariansRunForward.gif"));
         pics.put(2, new Image("resources/cards/barbarians/barbariansRunBackward.gif"));
