@@ -10,7 +10,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BattleController">
    <children>
-      <ImageView fitHeight="800.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="800.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Downloads/battleBackground.jpg" />
+         </image></ImageView>
       <AnchorPane layoutX="320.0" layoutY="70.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: gray;">
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">

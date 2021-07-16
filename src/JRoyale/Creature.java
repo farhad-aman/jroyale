@@ -96,15 +96,18 @@ public class Creature
         }
     }
 
-    public int getSide() {
+    public int getSide() 
+    {
         return side;
     }
 
-    public int getLevel() {
+    public int getLevel() 
+    {
         return level;
     }
 
-    public boolean isUnderRage() {
+    public boolean isUnderRage() 
+    {
         return underRage;
     }
 
@@ -113,7 +116,8 @@ public class Creature
         return card;
     }
 
-    public int getRageTimeRemained() {
+    public int getRageTimeRemained() 
+    {
         return rageTimeRemained;
     }
 
@@ -147,11 +151,13 @@ public class Creature
         return followTarget;
     }
 
-    public void setUnderRage(boolean newUnderRage) {
+    public void setUnderRage(boolean newUnderRage) 
+    {
         this.underRage = newUnderRage;
     }
 
-    public void setRageTimeRemained(int rageTimeRemained) {
+    public void setRageTimeRemained(int rageTimeRemained) 
+    {
         this.rageTimeRemained = rageTimeRemained;
     }
 
@@ -169,7 +175,8 @@ public class Creature
     {
         card.step(this);
 
-        if(underRage){
+        if(underRage)
+        {
             rageTimeRemained -= 1000 / GameManager.FPS;
 
             if(rageTimeRemained == 0)
