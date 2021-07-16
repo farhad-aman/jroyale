@@ -4,8 +4,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Rectangle;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -28,6 +30,10 @@ public class BattleController
      * the arena view element in view 
      */
     private ArenaView arenaView = new ArenaView();
+
+    private Card chosenCard;
+
+    private int chosenCardNumber;
 
     @FXML
     private ImageView nextCardImageView;
@@ -64,7 +70,75 @@ public class BattleController
 
     @FXML
     private Label botUsernameLabel;
+
+    @FXML
+    private Rectangle card1Border;
+
+    @FXML
+    private Rectangle card2Border;
+
+    @FXML
+    private Rectangle card3Border;
+
+    @FXML
+    private Rectangle card4Border;
     
+    @FXML
+    void card1Pressed(MouseEvent event) 
+    {
+        if(gameManager.getBattle().getPlayerCardsQueue().get(4).getCost() < gameManager.getBattle().getPlayerElixirBar().getElixir())
+        {
+            chosenCard = gameManager.getBattle().getPlayerCardsQueue().get(4);
+            chosenCardNumber = 1;
+        }
+        else
+        {
+
+        }
+    }
+
+    @FXML
+    void card2Pressed(MouseEvent event) 
+    {
+        if(gameManager.getBattle().getPlayerCardsQueue().get(5).getCost() < gameManager.getBattle().getPlayerElixirBar().getElixir())
+        {
+            chosenCard = gameManager.getBattle().getPlayerCardsQueue().get(5);
+            chosenCardNumber = 2;
+        }
+        else
+        {
+            
+        }
+    }
+
+    @FXML
+    void card3Pressed(MouseEvent event) 
+    {
+        if(gameManager.getBattle().getPlayerCardsQueue().get(6).getCost() < gameManager.getBattle().getPlayerElixirBar().getElixir())
+        {
+            chosenCard = gameManager.getBattle().getPlayerCardsQueue().get(6);
+            chosenCardNumber = 3;
+        }
+        else
+        {
+            
+        }
+    }
+
+    @FXML
+    void card4Pressed(MouseEvent event) 
+    {
+        if(gameManager.getBattle().getPlayerCardsQueue().get(7).getCost() < gameManager.getBattle().getPlayerElixirBar().getElixir())
+        {
+            chosenCard = gameManager.getBattle().getPlayerCardsQueue().get(7);
+            chosenCardNumber = 4;
+        }
+        else
+        {
+            
+        }
+    }
+
     /**
      * starts main process of a battle in the game
      */
@@ -156,6 +230,42 @@ public class BattleController
         else
         {
             card4ImageView.setImage(cards.get(7).getImage(-1));
+        }
+
+        if(chosenCardNumber == 1)
+        {
+            card1Border.setVisible(true);
+            card2Border.setVisible(false);
+            card3Border.setVisible(false);
+            card4Border.setVisible(false);
+        }
+        else if(chosenCardNumber == 2)
+        {
+            card1Border.setVisible(false);
+            card2Border.setVisible(true);
+            card3Border.setVisible(false);
+            card4Border.setVisible(false);
+        }
+        else if(chosenCardNumber == 3)
+        {
+            card1Border.setVisible(false);
+            card2Border.setVisible(false);
+            card3Border.setVisible(true);
+            card4Border.setVisible(false);
+        }
+        else if(chosenCardNumber == 4)
+        {
+            card1Border.setVisible(false);
+            card2Border.setVisible(false);
+            card3Border.setVisible(false);
+            card4Border.setVisible(true);
+        }
+        else
+        {
+            card1Border.setVisible(false);
+            card2Border.setVisible(false);
+            card3Border.setVisible(false);
+            card4Border.setVisible(false);
         }
     }
 

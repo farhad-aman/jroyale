@@ -1,5 +1,6 @@
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Card
@@ -71,4 +72,6 @@ public abstract class Card
     {
         return 0;
     }
+
+    public abstract ArrayList<Creature> makeCreature();
 }
