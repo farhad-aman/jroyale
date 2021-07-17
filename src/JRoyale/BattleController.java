@@ -145,7 +145,22 @@ public class BattleController
             }
             else
             {
+                if(GameManager.getInstance().getBattle().getArena().getBotUpPrincess().isEliminated() && GameManager.getInstance().getBattle().getArena().getBotDownPrincess().isEliminated())
+                {
+                    
+                }
+                else if(GameManager.getInstance().getBattle().getArena().getBotUpPrincess().isEliminated())
+                {
 
+                }
+                else if(GameManager.getInstance().getBattle().getArena().getBotDownPrincess().isEliminated())
+                {
+
+                }
+                else
+                {
+
+                }
             }
         }
                 
