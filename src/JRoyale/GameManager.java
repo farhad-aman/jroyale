@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class GameManager
@@ -316,5 +317,33 @@ public class GameManager
     public Bot getCurrentBot()
     {
         return currentBot;
+    }
+
+    public static Deck getRandomDeck()
+    {
+        ArrayList<Card> cards = new ArrayList<>();
+        cards.add(new Archer());
+        cards.add(new Arrows());
+        cards.add(new Barbarians());
+        cards.add(new Cannon());
+        cards.add(new Dragon());
+        cards.add(new Fireball());
+        cards.add(new Giant());
+        cards.add(new Inferno());
+        cards.add(new Pekka());
+        cards.add(new Rage());
+        cards.add(new Valkyrie());
+        cards.add(new Wizard());
+        Collections.shuffle(cards);
+        cards.remove(0);
+        cards.remove(0);
+        cards.remove(0);
+        cards.remove(0);
+        Deck deck = new Deck();
+        for(Card c : cards)
+        {
+            deck.addCard(c);
+        }
+        return deck;
     }
 }
