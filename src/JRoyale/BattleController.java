@@ -146,6 +146,8 @@ public class BattleController
                     gameManager.getBattle().getPlayerCardsQueue().remove(chosenCardNumber + 3);
                     gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
                     gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
+                    chosenCard = null;
+                    chosenCardNumber = 0;
                 } 
             }
             else

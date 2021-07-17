@@ -32,7 +32,7 @@ public class Arena
         playerUpPrincess = princess.makeCreature(new Point2D(220, 140), 1).get(0);
         playerDownPrincess = princess.makeCreature(new Point2D(220, 580), 1).get(0);
         botUpPrincess = princess.makeCreature(new Point2D(1060, 140), -1).get(0);
-        botDownPrincess = princess.makeCreature(new Point2D(106, 580), -1).get(0);
+        botDownPrincess = princess.makeCreature(new Point2D(1060, 580), -1).get(0);
         creatures.add(playerKing);
         creatures.add(botKing);
         creatures.add(playerUpPrincess);
