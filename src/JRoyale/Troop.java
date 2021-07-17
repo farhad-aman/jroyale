@@ -11,7 +11,7 @@ public abstract class Troop extends Card
 
     private final boolean areaSplash;
 
-    private final int count; 
+    private final int count;
 
     private final int[] initHP;
 
@@ -19,12 +19,12 @@ public abstract class Troop extends Card
 
     public Troop(String type,
                  String id,
-                 int cost, 
-                 int hitSpeed, 
-                 int speed, 
-                 String target, 
-                 double range, 
-                 boolean areaSplash, 
+                 int cost,
+                 int hitSpeed,
+                 int speed,
+                 String target,
+                 double range,
+                 boolean areaSplash,
                  int count,
                  int[] initHP,
                  int[] damage)
@@ -41,7 +41,7 @@ public abstract class Troop extends Card
     @Override
     public int getHitSpeed()
     {
-        return hitSpeed; 
+        return hitSpeed;
     }
 
     @Override
@@ -59,7 +59,7 @@ public abstract class Troop extends Card
     {
         return count;
     }
-    
+
     public int getInitHP(int level)
     {
         return initHP[level];
@@ -71,8 +71,8 @@ public abstract class Troop extends Card
     }
 
     @Override
-    public void step(Creature creature) 
-    {        
+    public void step(Creature creature)
+    {
         if(creature.getKillTarget() == null)
         {
             creature.setFollowTarget(creature.findNearestValidCreature());
@@ -88,21 +88,18 @@ public abstract class Troop extends Card
         }
         else
         {
-            if(creature.getKillTarget().isEliminated())
+            if(creature.isCreatureInRange(creature.getKillTarget()))
             {
-                creature.setKillTarget(null);
+                creature.hit(creature.getKillTarget());
             }
             else
             {
-                if(creature.isCreatureInRange(creature.getKillTarget()))
-                {
-                    creature.hit(creature.getKillTarget());
-                }
-                else
-                {
-                    creature.followCreature(creature.getKillTarget());
-                }
+                creature.followCreature(creature.getKillTarget());
             }
+        }
+        if(creature.getKillTarget().isEliminated())
+        {
+            creature.setKillTarget(null);
         }
     }
 }

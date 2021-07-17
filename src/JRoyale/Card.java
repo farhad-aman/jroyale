@@ -80,6 +80,10 @@ public abstract class Card
 
     public String getTarget() {return target;}
 
+    public String getType() {
+        return type;
+    }
+
     public int getSpeed()
     {
         return 0;
@@ -125,7 +129,7 @@ public abstract class Card
             Creature tempCreature = it.next();
             double tempDistance = creature.getDistance(tempCreature);
 
-                if(tempDistance < distance && creature.getCard().getTarget().equals(getTarget())) {
+                if(tempDistance < distance && creature.getCard().getTarget().equals(tempCreature.getCard().getType()) && creature.getSide() != tempCreature.getSide()) {
                         target = tempCreature;
                         distance = tempDistance;
                 }

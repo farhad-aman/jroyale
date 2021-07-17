@@ -76,7 +76,10 @@ public class Creature
 
     private int rageTimeRemained;//in milliseconds
 
-    private Point2D targetPosition;
+    /**
+     * demonstrate the creature status toward the bridges in the map from the player vision//0->king or princess//down bridge is the nearer bridge//1->before bridge//2->on the bridge//3->after the bridge//top bridge is the nearer bridge//4->before bridge//5->on the bridge//6->after the bridge
+     * */
+    private int bridgeStatus;
 
     /**
      * creates a new creature
@@ -100,6 +103,8 @@ public class Creature
         hitStepValue = 0;
 
         damage = card.getDamage(level);
+
+        updateBridgeStatus();
 
         if(card instanceof Building)
         {
@@ -153,6 +158,29 @@ public class Creature
         this.status = status;
     }
 
+    public int updateBridgeStatus() {
+        if(position.getY() > 360){
+            if(position.getX() < 600)
+                bridgeStatus = 1;
+            else if(position.getX() >= 600 && position.getX() < 680)
+                bridgeStatus = 2;
+            else
+                bridgeStatus = 3;
+        }
+        else{
+            if(position.getX() < 600)
+                bridgeStatus = 4;
+            else if(position.getX() >= 600 && position.getX() < 680)
+                bridgeStatus = 5;
+            else
+                bridgeStatus = 6;
+        }
+        if(card instanceof King || card instanceof Princess)
+            bridgeStatus = 0;
+
+        return bridgeStatus;
+    }
+
     public void setPosition(Point2D position) {this.position = position;}
 
     public Creature getKillTarget()
@@ -192,11 +220,7 @@ public class Creature
 
     public void step()
     {
-        if(hitStepValue >= hitSpeed) {
-            card.step(this);
-            hitStepValue -= hitSpeed;
-        }
-        hitStepValue += 1000/ GameManager.FPS * (underRage ? 1.4 : 1);
+        card.step(this);
 
         if(underRage)
         {
@@ -230,7 +254,13 @@ public class Creature
      */
     public boolean hit(Creature creature)
     {
-        creature.getHit((int) (damage * (underRage ? 1.4 : 1)));
+        if(hitStepValue >= hitSpeed) {
+            creature.getHit((int) (damage * (underRage ? 1.4 : 1)));
+            hitStepValue = 0;
+        }
+        else
+            hitStepValue += hitSpeed / GameManager.FPS;
+
         return creature.isEliminated();
     }
 
@@ -267,7 +297,7 @@ public class Creature
     public void followCreature(Creature creature)
     {
         for(int i = 0;i < speed * 40 * (underRage ? 1.4 : 1);i++)
-        pixelMove();
+            pixelMove();
 
         hitStepValue += (underRage ? 1.4 : 1) * GameManager.FPS;
         if(hitStepValue > hitSpeed)
@@ -288,7 +318,7 @@ public class Creature
         if(notInViewRange(position.add(0, -1)))
             probablePositions.add(position.add(side, 0));
 
-        Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
+        Point2D tempTargetPosition = findTempTargetPosition();
         probablePositions = inRangePoints(probablePositions);
 
         if(probablePositions.size() != 0){
@@ -307,6 +337,27 @@ public class Creature
 
             moveCreaturesBackward(findInViewRangeCreatures(position));
         }
+    }
+
+    private Point2D findTempTargetPosition() {
+        Creature target = killTarget == null ? followTarget : killTarget;
+        int enemyBridgeStatus = target.updateBridgeStatus();
+
+        if(enemyBridgeStatus == bridgeStatus || enemyBridgeStatus == 0 ||(enemyBridgeStatus == 3 && bridgeStatus == 4) || (enemyBridgeStatus == 4 && bridgeStatus == 3) || (enemyBridgeStatus == 3 && bridgeStatus == 6) || (enemyBridgeStatus == 6 && bridgeStatus == 3)){
+            return target.position;
+        }
+        else if(bridgeStatus == 1 || bridgeStatus == 4 || bridgeStatus == 6 || bridgeStatus == 3){
+            if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100))
+                return target.getPosition().distance(600, 140) < target.getPosition().distance(600, 580) ? new Point2D(600, position.getY()) : new Point2D(600, position.getY());
+
+            Point2D bridge = target.getPosition().distance(600, 140) < target.getPosition().distance(600, 580) ? new Point2D(600, 140) : new Point2D(600, 580);
+
+            if(position.getY() < bridge.getY())
+                return new Point2D(bridge.getX(), bridge.getY() - 20);
+            else
+                return new Point2D(bridge.getX(), bridge.getY() + 20);
+        }
+        return null;
     }
 
     private void moveCreaturesBackward(ArrayList<Creature> inRanges) {
