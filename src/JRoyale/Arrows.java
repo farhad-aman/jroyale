@@ -30,7 +30,7 @@ public class Arrows extends Spell
         {
             Creature tempTarget = it.next();
 
-            if(tempTarget.getPosition().distance(creature.getPosition()) <= super.getRadius() && creature.getSide() != tempTarget.getSide())
+            if(tempTarget.getPosition().distance(creature.getPosition()) <= super.getRange() && creature.getSide() != tempTarget.getSide())
             {
                 tempTarget.getHit(damage[creature.getLevel()]);
             }

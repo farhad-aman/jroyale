@@ -4,17 +4,9 @@ import javafx.geometry.Point2D;
 
 public abstract class Spell extends Card
 {
-    private final double radius;
-
-    public Spell(String id, int cost, double radius) 
+    public Spell(String id, int cost, double range)
     {
-        super(id, cost);
-        this.radius = radius;
-    }
-
-    public double getRadius()
-    {
-        return radius;
+        super(id, cost, range, "junk");
     }
 
     @Override
@@ -23,4 +15,6 @@ public abstract class Spell extends Card
         return 0;
     }
 
+    @Override
+    public Creature findNearestValidCreature(Creature creature) {return null;}
 }

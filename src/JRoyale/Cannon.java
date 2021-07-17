@@ -1,5 +1,8 @@
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Cannon extends Building
 { 
     public final int damage[] = {0, 60, 66, 72, 79, 87};

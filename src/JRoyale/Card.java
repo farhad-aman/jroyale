@@ -3,6 +3,7 @@ import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public abstract class Card
 {
@@ -12,11 +13,17 @@ public abstract class Card
 
     private final int cost;
 
-    public Card(String id, int cost)
+    private final double range;
+
+    private final String target;
+
+    public Card(String id, int cost, double range, String target)
     {
         this.pics = new HashMap<>();
         this.id = id;
         this.cost = cost;
+        this.range = range;
+        this.target = target;
     }
 
     public String getId()
@@ -27,6 +34,10 @@ public abstract class Card
     public int getCost()
     {
         return cost;
+    }
+
+    public double getRange() {
+        return range;
     }
 
     @Override
@@ -64,6 +75,8 @@ public abstract class Card
 
     public abstract int getDamage(int level);
 
+    public String getTarget() {return target;}
+
     public int getSpeed()
     {
         return 0;
@@ -98,5 +111,22 @@ public abstract class Card
             creatures.add(new Creature(this, GameManager.getInstance().getCurrentPlayer().getLevel(), center, 1));
         }
         return creatures;
+    }
+
+    public Creature findNearestValidCreature(Creature creature) {
+        Creature target = null;
+        double distance = 100000.00;
+        Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
+
+        while (it.hasNext()){
+            Creature tempCreature = it.next();
+            double tempDistance = creature.getDistance(tempCreature);
+
+                if(creature.getCard().getTarget().equals(getTarget()) && tempDistance < distance && tempDistance <= getRange()) {
+                    target = tempCreature;
+                    distance = tempDistance;
+                }
+        }
+        return target;
     }
 }

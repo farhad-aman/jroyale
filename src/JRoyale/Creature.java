@@ -1,7 +1,6 @@
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -71,8 +70,6 @@ public class Creature
 
     private int speed;
 
-    private int speedValue;
-
     private boolean underRage;
 
     private int damage;
@@ -98,7 +95,6 @@ public class Creature
         rageTimeRemained = 0;
 
         speed = card.getSpeed();
-        speedValue = 0;
 
         hitSpeed = card.getHitSpeed();
         hitStepValue = 0;
@@ -194,7 +190,11 @@ public class Creature
 
     public void step()
     {
-        card.step(this);
+        if(hitStepValue >= hitSpeed) {
+            card.step(this);
+            hitStepValue -= hitSpeed;
+        }
+        hitStepValue += 1000/ GameManager.FPS * (underRage ? 1.4 : 1);
 
         if(underRage)
         {
@@ -251,37 +251,39 @@ public class Creature
 
     public Creature findNearestValidCreature()
     {
-        return null;
+        return card.findNearestValidCreature(this);
     }
 
     public boolean isCreatureInRange(Creature creature)
     {
+        if(creature.getPosition().distance(position) <= card.getRange())
+            return true;
+
         return false;
     }
 
     public void followCreature(Creature creature)
-    {//TODO: applying rage effect if necessary for following speed
+    {
+        for(int i = 0;i < speed * 40 * (underRage ? 1.4 : 1);i++)
         pixelMove();
-
-
 
         hitStepValue += (underRage ? 1.4 : 1) * GameManager.FPS;
         if(hitStepValue > hitSpeed)
-            hitStepValue = speedValue;
+            hitStepValue = hitSpeed;
     }
 
     private void pixelMove(){
         ArrayList<Point2D> probablePositions = new ArrayList<>();
 
-        if(notInRange(position.add(side, 0)))
+        if(notInViewRange(position.add(side, 0)))
             probablePositions.add(position.add(side, 0));
-        if(notInRange(position.add(side, -1)))
+        if(notInViewRange(position.add(side, -1)))
             probablePositions.add(position.add(side, -1));
-        if(notInRange(position.add(side, 1)))
+        if(notInViewRange(position.add(side, 1)))
             probablePositions.add(position.add(side, 1));
-        if(notInRange(position.add(0, 1)))
+        if(notInViewRange(position.add(0, 1)))
             probablePositions.add(position.add(side, 0));
-        if(notInRange(position.add(0, -1)))
+        if(notInViewRange(position.add(0, -1)))
             probablePositions.add(position.add(side, 0));
 
         Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
@@ -310,15 +312,15 @@ public class Creature
 
         side *= -1;
 
-        if(notInRange(position.add(side, 0)))
+        if(notInViewRange(position.add(side, 0)))
             probablePositions.add(position.add(side, 0));
-        if(notInRange(position.add(side, -1)))
+        if(notInViewRange(position.add(side, -1)))
             probablePositions.add(position.add(side, -1));
-        if(notInRange(position.add(side, 1)))
+        if(notInViewRange(position.add(side, 1)))
             probablePositions.add(position.add(side, 1));
-        if(notInRange(position.add(0, 1)))
+        if(notInViewRange(position.add(0, 1)))
             probablePositions.add(position.add(side, 0));
-        if(notInRange(position.add(0, -1)))
+        if(notInViewRange(position.add(0, -1)))
             probablePositions.add(position.add(side, 0));
 
         side *= -1;
@@ -356,7 +358,7 @@ public class Creature
         return newPosition;
     }
 
-    private boolean notInRange(Point2D newPosition){
+    private boolean notInViewRange(Point2D newPosition){
         Iterator<Creature>it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 
         while (it.hasNext()){

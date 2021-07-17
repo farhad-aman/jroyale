@@ -9,10 +9,6 @@ public abstract class Troop extends Card
 
     private final int speed;
 
-    private final String target;
-    
-    private final double range;
-
     private final boolean areaSplash;
 
     private final int count; 
@@ -30,13 +26,11 @@ public abstract class Troop extends Card
                  boolean areaSplash, 
                  int count,
                  int[] initHP,
-                 int[] damage) 
+                 int[] damage)
     {
-        super(id, cost);
+        super(id, cost, range, target);
         this.hitSpeed = hitSpeed;
         this.speed = speed;
-        this.target = target;
-        this.range = range;
         this.areaSplash = areaSplash;
         this.count = count;
         this.initHP = initHP;
@@ -53,16 +47,6 @@ public abstract class Troop extends Card
     public int getSpeed()
     {
         return speed;
-    }
-
-    public String getTarget()
-    {
-        return target;
-    }
-
-    public double getRange()
-    {
-        return range;
     }
 
     public boolean isAreaSplash()
