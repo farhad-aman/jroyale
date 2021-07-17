@@ -136,12 +136,21 @@ public abstract class Card
             Creature tempCreature = it.next();
             double tempDistance = creature.getDistance(tempCreature);
 
-                if(tempDistance < distance && creature.getCard().getTarget().equals(tempCreature.getCard().getType()) && creature.getSide() != tempCreature.getSide()) 
+                if(tempDistance < distance && canHit(creature.getCard().getTarget(), tempCreature.getCard().getType()) && creature.getSide() != tempCreature.getSide())
                 {
                     target = tempCreature;
                     distance = tempDistance;
                 }
         }
         return target;
+    }
+
+    private boolean canHit(String ability, String targetType){
+        if(ability.equals("both") || ability.equals(targetType))
+            return true;
+        else if(ability.equals("ground") && targetType.equals("building")){
+                return true;
+        }
+        return false;
     }
 }

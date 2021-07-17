@@ -102,11 +102,9 @@ public abstract class Troop extends Card
                 creature.followCreature(creature.getKillTarget());
             }
         }
-        if(creature.getKillTarget().isEliminated())
+        if(creature.getKillTarget() != null && creature.getKillTarget().isEliminated())
         {
             creature.setKillTarget(null);
-
-
         }
     }
 }

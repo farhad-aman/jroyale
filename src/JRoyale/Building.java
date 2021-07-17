@@ -70,7 +70,7 @@ public abstract class Building extends Card
                 creature.setKillTarget(null);
             }
         }
-        if(creature.getKillTarget().isEliminated())
+        if(creature.getKillTarget() != null && creature.getKillTarget().isEliminated())
         {
             creature.setKillTarget(null);
         }

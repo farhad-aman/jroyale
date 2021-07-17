@@ -265,7 +265,7 @@ public class Creature
             if(card instanceof Troop && ((Troop) card).isAreaSplash()) {
                 if(card instanceof Valkyrie){
                     for(Creature c : GameManager.getInstance().getBattle().getArena().getCreatures())
-                        if(c.getPosition().distance(creature.position) < 40 && c.getSide() != side && c.getCard().getType().equals("ground") || c.getCard().getType().equals("building"))
+                        if(c.getPosition().distance(position) < 40 && c.getSide() != side && c.getCard().getType().equals("ground") || c.getCard().getType().equals("building"))
                             c.getHit((int) (damage * (underRage ? 1.4 : 1)));
                 }
                 else{
@@ -316,7 +316,20 @@ public class Creature
 
         return false;
     }
-
+/*Exception in thread "JavaFX Application Thread" java.lang.NullPointerException
+        at Building.step(Building.java:73)
+        at Creature.step(Creature.java:229)
+        at Arena.step(Arena.java:69)
+        at Battle.step(Battle.java:56)
+        at GameManager.battleStep(GameManager.java:308)
+        at BattleController$1$1.run(BattleController.java:187)
+        at com.sun.javafx.application.PlatformImpl.lambda$null$5(PlatformImpl.java:295)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at com.sun.javafx.application.PlatformImpl.lambda$runLater$6(PlatformImpl.java:294)
+        at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+        at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+        at com.sun.glass.ui.win.WinApplication.lambda$null$4(WinApplication.java:185)
+        at java.lang.Thread.run(Thread.java:748)*/
     public void followCreature(Creature creature)
     {
         for(int i = 0;i < speed * (underRage ? 1.4 : 1);i++)
