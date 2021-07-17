@@ -104,11 +104,11 @@ public abstract class Card
         ArrayList<Creature> creatures = new ArrayList<>();
         if(side == -1)
         {
-            if(GameManager.getInstance().getBattle().getBot() instanceof Bot1)
+            if(GameManager.getInstance().getCurrentBot() instanceof Bot1)
             {
                 creatures.add(new Creature(this, 1, center, -1));
             }
-            else if(GameManager.getInstance().getBattle().getBot() instanceof Bot2)
+            else if(GameManager.getInstance().getCurrentBot() instanceof Bot2)
             {
                 creatures.add(new Creature(this, 3, center, -1));
             }

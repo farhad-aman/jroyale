@@ -37,6 +37,8 @@ public class BattleController
 
     private int chosenCardNumber;
 
+    private MediaPlayer battleBackgroundMusic = new MediaPlayer(new Media(new File("resources/battle/battleBackgroundMusic.mp3").toURI().toString()));
+
     @FXML
     private AnchorPane arenaPane;
 
@@ -390,7 +392,16 @@ public class BattleController
                 {
                     e.printStackTrace();
                 }
-                startTimer();
+                Platform.runLater(new Runnable()
+                {
+                    @Override
+                    public void run() 
+                    {
+                        startTimer();
+                    }
+                });
+                battleBackgroundMusic.setVolume(0.2);//volume percentage 0 to 1
+                battleBackgroundMusic.play();
             }
         });
         thread.start();

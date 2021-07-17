@@ -9,11 +9,13 @@ public class GameManager
 {
     private static GameManager gameManager = new GameManager();
 
-    public static final String dbPassword = "@#$mg200";
+    public static final String dbPassword = "";
 
     public static final int FPS = 40;
     
     private Player currentPlayer;
+
+    private Bot currentBot;
     
     private Battle battle;
 
@@ -30,6 +32,7 @@ public class GameManager
     public void logout()
     {
         currentPlayer = null;
+        currentBot = null;
         battle = null;
     }
 
@@ -281,17 +284,20 @@ public class GameManager
     {
         if(botDifficulty == 1)
         {
-            this.battle = new Battle(new Bot1());
+            currentBot = new Bot1();
+            this.battle = new Battle(currentBot);
             return true; 
         }
         else if(botDifficulty == 2)
         {
-            this.battle = new Battle(new Bot2());
+            currentBot = new Bot2();
+            this.battle = new Battle(currentBot);
             return true;
         }
         else if(botDifficulty == 3)
         {
-            this.battle = new Battle(new Bot3());
+            currentBot = new Bot3();
+            this.battle = new Battle(currentBot);
             return true;
         }
         return false;
@@ -305,5 +311,10 @@ public class GameManager
     public Battle getBattle() 
     {
         return battle;
+    }
+
+    public Bot getCurrentBot()
+    {
+        return currentBot;
     }
 }
