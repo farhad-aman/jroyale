@@ -360,7 +360,8 @@ public class Creature
      * sets the new position and update the status
      * @param newPosition to set
      * */
-    private void setPositionAndStatus(Point2D newPosition) {
+    private void setPositionAndStatus(Point2D newPosition) 
+    {
             if (newPosition.getX() < position.getX())
                 status = 2;
             else
