@@ -453,7 +453,7 @@ public class MenuController
         {
             root = FXMLLoader.load(getClass().getResource("Battle.fxml"));
             Scene scene = new Scene(root);
-            scene.setCursor(new ImageCursor(new Image("resources/cursor.png")));
+            scene.setCursor(new ImageCursor(new Image("resources/cursor2.png")));
             stage.setScene(scene);
             stage.setX(-10);
             stage.setY(0);
@@ -475,7 +475,7 @@ public class MenuController
         {
             root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             Scene scene = new Scene(root);
-            scene.setCursor(new ImageCursor(new Image("resources/cursor.png")));
+            scene.setCursor(new ImageCursor(new Image("resources/cursor2.png")));
             stage.setScene(scene);
             stage.setX(600);
             stage.setY(100);

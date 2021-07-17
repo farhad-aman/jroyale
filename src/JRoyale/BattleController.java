@@ -133,8 +133,8 @@ public class BattleController
     @FXML
     void arenaPanePressed(MouseEvent event) 
     {
-        int x = (int)event.getX();
-        int y = (int)event.getY();
+        double x = event.getX();
+        double y = event.getY();
         if(chosenCard != null)
         {
             if(chosenCard instanceof Spell)
@@ -143,6 +143,9 @@ public class BattleController
                 for(Creature c : creatures)
                 {
                     gameManager.getBattle().getArena().getCreatures().add(c);
+                    gameManager.getBattle().getPlayerCardsQueue().remove(chosenCardNumber + 3);
+                    gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
+                    gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
                 } 
             }
             else

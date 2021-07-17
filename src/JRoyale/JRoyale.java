@@ -15,7 +15,7 @@ public class JRoyale extends Application
     {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene = new Scene(root);
-        scene.setCursor(new ImageCursor(new Image("resources/cursor.png")));
+        scene.setCursor(new ImageCursor(new Image("resources/cursor2.png")));
         primaryStage.setScene(scene);
         primaryStage.setTitle("JRoyale");
         primaryStage.setResizable(false);
