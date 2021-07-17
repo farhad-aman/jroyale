@@ -1,6 +1,10 @@
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  * This class contains a creature on the arena 
  */
@@ -74,6 +78,8 @@ public class Creature
     private int damage;
 
     private int rageTimeRemained;//in milliseconds
+
+    private Point2D targetPosition;
 
     /**
      * creates a new creature
@@ -254,11 +260,110 @@ public class Creature
     }
 
     public void followCreature(Creature creature)
-    {
-        //TODO: applying rage effect if necessary for following speed
+    {//TODO: applying rage effect if necessary for following speed
+        pixelMove();
+
+
 
         hitStepValue += (underRage ? 1.4 : 1) * GameManager.FPS;
         if(hitStepValue > hitSpeed)
             hitStepValue = speedValue;
+    }
+
+    private void pixelMove(){
+        ArrayList<Point2D> probablePositions = new ArrayList<>();
+
+        if(notInRange(position.add(side, 0)))
+            probablePositions.add(position.add(side, 0));
+        if(notInRange(position.add(side, -1)))
+            probablePositions.add(position.add(side, -1));
+        if(notInRange(position.add(side, 1)))
+            probablePositions.add(position.add(side, 1));
+        if(notInRange(position.add(0, 1)))
+            probablePositions.add(position.add(side, 0));
+        if(notInRange(position.add(0, -1)))
+            probablePositions.add(position.add(side, 0));
+
+        Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
+
+        if(probablePositions.size() != 0){
+            position = findNearestPosition(position, probablePositions);
+        }
+        else{
+            ArrayList<Point2D> allPositions = new ArrayList<>();
+
+            allPositions.add(position.add(side, 0));
+            allPositions.add(position.add(side, 1));
+            allPositions.add(position.add(side, -1));
+            allPositions.add(position.add(0, 1));
+            allPositions.add(position.add(0, -1));
+
+            position = findNearestPosition(position, allPositions);
+
+            moveCreaturesBackward(findInRange(position));
+        }
+    }
+
+    private void moveCreaturesBackward(ArrayList<Creature> inRanges) {
+        ArrayList<Point2D> probablePositions = new ArrayList<>();
+        ArrayList<Point2D> allPositions = new ArrayList<>();
+
+        side *= -1;
+
+        if(notInRange(position.add(side, 0)))
+            probablePositions.add(position.add(side, 0));
+        if(notInRange(position.add(side, -1)))
+            probablePositions.add(position.add(side, -1));
+        if(notInRange(position.add(side, 1)))
+            probablePositions.add(position.add(side, 1));
+        if(notInRange(position.add(0, 1)))
+            probablePositions.add(position.add(side, 0));
+        if(notInRange(position.add(0, -1)))
+            probablePositions.add(position.add(side, 0));
+
+        side *= -1;
+
+        Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
+
+        if(probablePositions.size() != 0){
+            position = findNearestPosition(position, probablePositions);
+        }
+    }
+
+    private ArrayList<Creature> findInRange(Point2D position) {
+        ArrayList<Creature> inRange = new ArrayList<>();
+        Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
+
+        while (it.hasNext()){
+            Creature temp = it.next();
+
+            if(position.distance(temp.position) < 10)
+                inRange.add(temp);
+        }
+        return inRange;
+    }
+
+    private Point2D findNearestPosition(Point2D source, ArrayList<Point2D> positions){
+        Iterator<Point2D> it = positions.iterator();
+        Point2D newPosition = positions.get(0);
+
+        while (it.hasNext()){
+            Point2D tempPosition = it.next();
+
+            if(source.distance(newPosition) > source.distance(tempPosition))
+                newPosition = tempPosition;
+        }
+        return newPosition;
+    }
+
+    private boolean notInRange(Point2D newPosition){
+        Iterator<Creature>it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
+
+        while (it.hasNext()){
+            if(newPosition.distance(position) < 10){
+                return false;
+            }
+        }
+        return true;
     }
 }
