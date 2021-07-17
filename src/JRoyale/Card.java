@@ -39,7 +39,8 @@ public abstract class Card
         return cost;
     }
 
-    public double getRange() {
+    public double getRange() 
+    {
         return range;
     }
 
@@ -78,9 +79,13 @@ public abstract class Card
 
     public abstract int getDamage(int level);
 
-    public String getTarget() {return target;}
+    public String getTarget() 
+    {
+        return target;
+    }
 
-    public String getType() {
+    public String getType() 
+    {
         return type;
     }
 
@@ -120,18 +125,21 @@ public abstract class Card
         return creatures;
     }
 
-    public Creature findNearestValidCreature(Creature creature) {
+    public Creature findNearestValidCreature(Creature creature) 
+    {
         Creature target = null;
         double distance = 100000.00;
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 
-        while (it.hasNext()){
+        while (it.hasNext())
+        {
             Creature tempCreature = it.next();
             double tempDistance = creature.getDistance(tempCreature);
 
-                if(tempDistance < distance && creature.getCard().getTarget().equals(tempCreature.getCard().getType()) && creature.getSide() != tempCreature.getSide()) {
-                        target = tempCreature;
-                        distance = tempDistance;
+                if(tempDistance < distance && creature.getCard().getTarget().equals(tempCreature.getCard().getType()) && creature.getSide() != tempCreature.getSide()) 
+                {
+                    target = tempCreature;
+                    distance = tempDistance;
                 }
         }
         return target;
