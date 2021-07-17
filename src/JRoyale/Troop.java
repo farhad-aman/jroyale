@@ -80,6 +80,11 @@ public abstract class Troop extends Card
             {
                 creature.setKillTarget(creature.getFollowTarget());
                 creature.hit(creature.getKillTarget());
+
+                if(creature.getPosition().getX() < creature.getKillTarget().getPosition().getX())
+                    creature.setStatus(3);
+                else
+                    creature.setStatus(4);
             }
             else
             {
@@ -91,6 +96,11 @@ public abstract class Troop extends Card
             if(creature.isCreatureInRange(creature.getKillTarget()))
             {
                 creature.hit(creature.getKillTarget());
+
+                if(creature.getPosition().getX() < creature.getKillTarget().getPosition().getX())
+                    creature.setStatus(3);
+                else
+                    creature.setStatus(4);
             }
             else
             {
@@ -100,6 +110,8 @@ public abstract class Troop extends Card
         if(creature.getKillTarget().isEliminated())
         {
             creature.setKillTarget(null);
+
+
         }
     }
 }

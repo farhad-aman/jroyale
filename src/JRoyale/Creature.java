@@ -288,20 +288,18 @@ public class Creature
 
     public boolean isCreatureInRange(Creature creature)
     {
-        if(creature.getPosition().distance(position) <= card.getRange())
+        double distance = creature.getPosition().distance(position);
+
+        if(distance <= card.getRange() * 40 || (creature.getCard() instanceof King && distance <= (card.getRange() + 2 ) * 40) || (creature.getCard() instanceof Princess && distance <= (card.getRange() + 1.5 ) * 40) || ((creature.getCard() instanceof Inferno || creature.getCard() instanceof Cannon) && distance <= (card.getRange() + 1 ) * 40))
             return true;
 
         return false;
     }
-
+    //1 -> move to right , 2 -> move to left  5 -> dying to right , 6 -> dying to left
     public void followCreature(Creature creature)
     {
-        for(int i = 0;i < speed * 40 * (underRage ? 1.4 : 1);i++)
+        for(int i = 0;i < speed * (underRage ? 1.4 : 1);i++)
             pixelMove();
-
-        hitStepValue += (underRage ? 1.4 : 1) * GameManager.FPS;
-        if(hitStepValue > hitSpeed)
-            hitStepValue = hitSpeed;
     }
 
     private void pixelMove(){
@@ -316,6 +314,12 @@ public class Creature
         if(notInViewRange(position.add(0, 1)))
             probablePositions.add(position.add(side, 0));
         if(notInViewRange(position.add(0, -1)))
+            probablePositions.add(position.add(side, 0));
+        if(notInViewRange(position.add(side * -1, -1)))
+            probablePositions.add(position.add(side, 0));
+        if(notInViewRange(position.add(side * -1, 0)))
+            probablePositions.add(position.add(side, 0));
+        if(notInViewRange(position.add(side * -1, 1)))
             probablePositions.add(position.add(side, 0));
 
         Point2D tempTargetPosition = findTempTargetPosition();
@@ -379,6 +383,13 @@ public class Creature
                 probablePositions.add(c.getPosition().add(side, 0));
 
             side *= -1;
+
+            if (notInViewRange(c.getPosition().add(side, -1)))
+                probablePositions.add(c.getPosition().add(side, 0));
+            if (notInViewRange(c.getPosition().add(0, 0)))
+                probablePositions.add(c.getPosition().add(side, 0));
+            if (notInViewRange(c.getPosition().add(0, 1)))
+                probablePositions.add(c.getPosition().add(side, 0));
 
             Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
             probablePositions = inRangePoints(probablePositions);
