@@ -8,7 +8,8 @@ public class Archer extends Troop
 
     public Archer() 
     {
-        super("Archer", 
+        super("ground",
+                "Archer",
               3, 
               1200, 
               2, 

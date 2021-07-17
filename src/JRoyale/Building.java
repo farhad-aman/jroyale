@@ -10,7 +10,8 @@ public abstract class Building extends Card
 
     private final int[] initHP;
 
-    public Building(String id, 
+    public Building(String type,
+                    String id,
                     int cost, 
                     int hitSpeed, 
                     String target, 
@@ -18,7 +19,7 @@ public abstract class Building extends Card
                     int initLifeTime, 
                     int[] initHP) 
     {
-        super(id, cost, range, target);
+        super(type, id, cost, range, target);
         this.hitSpeed = hitSpeed;
         this.initLifeTime = initLifeTime;
         this.initHP = initHP;

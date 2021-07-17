@@ -5,7 +5,8 @@ public class Dragon extends Troop
 
     public Dragon() 
     {
-        super("Dragon", 
+        super("both"
+                , "Dragon",
               4, 
               1800, 
               3, 

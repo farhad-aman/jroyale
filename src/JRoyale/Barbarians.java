@@ -8,7 +8,8 @@ public class Barbarians extends Troop
 
     public Barbarians() 
     {
-        super("Barbarians", 
+        super("ground",
+                "Barbarians",
               5, 
               1500, 
               2, 

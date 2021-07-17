@@ -5,7 +5,8 @@ public class Giant extends Troop
 
     public Giant() 
     {
-        super("Giant", 
+        super("ground",
+                "Giant",
               5, 
               1500, 
               1, 

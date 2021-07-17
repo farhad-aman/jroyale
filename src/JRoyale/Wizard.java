@@ -5,7 +5,8 @@ public class Wizard extends Troop
 
     public Wizard() 
     {
-        super("Wizard",
+        super("ground",
+                "Wizard",
               5, 
               1700, 
               2, 

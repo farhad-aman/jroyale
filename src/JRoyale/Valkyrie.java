@@ -5,7 +5,8 @@ public class Valkyrie extends Troop
 
     public Valkyrie() 
     {
-        super("Valkyrie", 
+        super("ground",
+                "Valkyrie",
               4, 
               1500, 
               2, 

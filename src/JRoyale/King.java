@@ -4,7 +4,7 @@ public class King extends Building
 
     public King() 
     {
-        super("King", 0, 10000, "both", 7, 1000000, new int[] {0, 2400, 2568, 2736, 2904, 3096});
+        super("building", "King", 0, 10000, "both", 7, 1000000, new int[] {0, 2400, 2568, 2736, 2904, 3096});
     }
 
     @Override

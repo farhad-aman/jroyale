@@ -4,7 +4,7 @@ public class Princess extends Building
 
     public Princess() 
     {
-        super("Princess", 0, 800, "both", 7.5, 1000000, new int[] {0, 1400, 1512, 1624, 1750, 1890});
+        super("building", "Princess", 0, 800, "both", 7.5, 1000000, new int[] {0, 1400, 1512, 1624, 1750, 1890});
     }
 
     @Override

@@ -8,7 +8,7 @@ public class Arrows extends Spell
 
     public Arrows() 
     {
-        super("Arrows", 3, 4);
+        super("spell", "Arrows", 3, 4);
     }
 
     /**

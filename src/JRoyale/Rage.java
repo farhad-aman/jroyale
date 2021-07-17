@@ -8,7 +8,7 @@ public class Rage extends Spell
 
     public Rage() 
     {
-        super("Rage", 3, 5);
+        super("spell", "Rage", 3, 5);
     }
 
     /**

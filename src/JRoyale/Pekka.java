@@ -5,7 +5,8 @@ public class Pekka extends Troop
 
     public Pekka()
     {
-        super("Pekka", 
+        super("ground",
+                "Pekka",
               4, 
               1800, 
               3, 

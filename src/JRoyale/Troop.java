@@ -17,7 +17,8 @@ public abstract class Troop extends Card
 
     private final int[] damage;
 
-    public Troop(String id, 
+    public Troop(String type,
+                 String id,
                  int cost, 
                  int hitSpeed, 
                  int speed, 
@@ -28,7 +29,7 @@ public abstract class Troop extends Card
                  int[] initHP,
                  int[] damage)
     {
-        super(id, cost, range, target);
+        super(type, id, cost, range, target);
         this.hitSpeed = hitSpeed;
         this.speed = speed;
         this.areaSplash = areaSplash;

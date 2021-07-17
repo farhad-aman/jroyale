@@ -153,6 +153,8 @@ public class Creature
         this.status = status;
     }
 
+    public void setPosition(Point2D position) {this.position = position;}
+
     public Creature getKillTarget()
     {
         return killTarget;
@@ -287,9 +289,10 @@ public class Creature
             probablePositions.add(position.add(side, 0));
 
         Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
+        probablePositions = inRangePoints(probablePositions);
 
         if(probablePositions.size() != 0){
-            position = findNearestPosition(position, probablePositions);
+            position = findNearestPosition(tempTargetPosition, probablePositions);
         }
         else{
             ArrayList<Point2D> allPositions = new ArrayList<>();
@@ -300,39 +303,42 @@ public class Creature
             allPositions.add(position.add(0, 1));
             allPositions.add(position.add(0, -1));
 
-            position = findNearestPosition(position, allPositions);
+            position = findNearestPosition(tempTargetPosition, allPositions);
 
-            moveCreaturesBackward(findInRange(position));
+            moveCreaturesBackward(findInViewRangeCreatures(position));
         }
     }
 
     private void moveCreaturesBackward(ArrayList<Creature> inRanges) {
-        ArrayList<Point2D> probablePositions = new ArrayList<>();
-        ArrayList<Point2D> allPositions = new ArrayList<>();
+        for(Creature c : inRanges)
+        if(!(c.getCard() instanceof King) && !(c.getCard() instanceof Princess)){
+            ArrayList<Point2D> probablePositions = new ArrayList<>();
 
-        side *= -1;
+            side *= -1;
 
-        if(notInViewRange(position.add(side, 0)))
-            probablePositions.add(position.add(side, 0));
-        if(notInViewRange(position.add(side, -1)))
-            probablePositions.add(position.add(side, -1));
-        if(notInViewRange(position.add(side, 1)))
-            probablePositions.add(position.add(side, 1));
-        if(notInViewRange(position.add(0, 1)))
-            probablePositions.add(position.add(side, 0));
-        if(notInViewRange(position.add(0, -1)))
-            probablePositions.add(position.add(side, 0));
+            if (notInViewRange(c.getPosition().add(side, 0)))
+                probablePositions.add(c.getPosition().add(side, 0));
+            if (notInViewRange(c.getPosition().add(side, -1)))
+                probablePositions.add(c.getPosition().add(side, -1));
+            if (notInViewRange(c.getPosition().add(side, 1)))
+                probablePositions.add(c.getPosition().add(side, 1));
+            if (notInViewRange(c.getPosition().add(0, 1)))
+                probablePositions.add(c.getPosition().add(side, 0));
+            if (notInViewRange(c.getPosition().add(0, -1)))
+                probablePositions.add(c.getPosition().add(side, 0));
 
-        side *= -1;
+            side *= -1;
 
-        Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
+            Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
+            probablePositions = inRangePoints(probablePositions);
 
-        if(probablePositions.size() != 0){
-            position = findNearestPosition(position, probablePositions);
+            if (probablePositions.size() != 0) {
+                c.setPosition(findNearestPosition(tempTargetPosition, probablePositions));
+            }
         }
     }
 
-    private ArrayList<Creature> findInRange(Point2D position) {
+    private ArrayList<Creature> findInViewRangeCreatures(Point2D position) {
         ArrayList<Creature> inRange = new ArrayList<>();
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 
@@ -367,5 +373,24 @@ public class Creature
             }
         }
         return true;
+    }
+
+    public ArrayList<Point2D> inRangePoints(ArrayList<Point2D> points){
+        ArrayList<Point2D> validates = new ArrayList<>();
+        Iterator<Point2D> it = points.iterator();
+
+        while (it.hasNext()){
+            Point2D temp = it.next();
+            double x = temp.getX();
+            double y = temp.getY();
+
+            if(y < 710 && x < 1270 && x > 10 && y > 10){
+                if(x < 680 && x > 600){
+                    if((y >= 90 && y <= 190) || (y >= 530 && y <= 610))
+                        validates.add(temp);
+                }
+            }
+        }
+        return validates;
     }
 }

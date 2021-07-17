@@ -7,6 +7,8 @@ import java.util.Iterator;
 
 public abstract class Card
 {
+    private final String type;
+
     private final String id;
 
     protected HashMap<Integer, Image> pics;
@@ -17,8 +19,9 @@ public abstract class Card
 
     private final String target;
 
-    public Card(String id, int cost, double range, String target)
+    public Card(String type, String id, int cost, double range, String target)
     {
+        this.type = type;
         this.pics = new HashMap<>();
         this.id = id;
         this.cost = cost;
@@ -122,9 +125,9 @@ public abstract class Card
             Creature tempCreature = it.next();
             double tempDistance = creature.getDistance(tempCreature);
 
-                if(creature.getCard().getTarget().equals(getTarget()) && tempDistance < distance && tempDistance <= getRange()) {
-                    target = tempCreature;
-                    distance = tempDistance;
+                if(tempDistance < distance && creature.getCard().getTarget().equals(getTarget())) {
+                        target = tempCreature;
+                        distance = tempDistance;
                 }
         }
         return target;

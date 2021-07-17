@@ -4,9 +4,9 @@ import javafx.geometry.Point2D;
 
 public abstract class Spell extends Card
 {
-    public Spell(String id, int cost, double range)
+    public Spell(String type, String id, int cost, double range)
     {
-        super(id, cost, range, "junk");
+        super(type, id, cost, range, "junk");
     }
 
     @Override
