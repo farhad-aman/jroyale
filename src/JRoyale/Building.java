@@ -47,25 +47,32 @@ public abstract class Building extends Card
             {
                 creature.setKillTarget(target);
                 creature.hit(creature.getKillTarget());
+
+                if(creature.getPosition().getX() < creature.getKillTarget().getPosition().getX())
+                    creature.setStatus(3);
+                else
+                    creature.setStatus(4);
             }
         }
         else
         {
-            if(creature.getKillTarget().isEliminated())
+            if(creature.isCreatureInRange(creature.getKillTarget()))
             {
-                creature.setKillTarget(null);
+                creature.hit(creature.getKillTarget());
+
+                if(creature.getPosition().getX() < creature.getKillTarget().getPosition().getX())
+                    creature.setStatus(3);
+                else
+                    creature.setStatus(4);
             }
             else
             {
-                if(creature.isCreatureInRange(creature.getKillTarget()))
-                {
-                    creature.hit(creature.getKillTarget());
-                }
-                else
-                {
-                    creature.setKillTarget(null);
-                }
+                creature.setKillTarget(null);
             }
+        }
+        if(creature.getKillTarget().isEliminated())
+        {
+            creature.setKillTarget(null);
         }
     }
 
