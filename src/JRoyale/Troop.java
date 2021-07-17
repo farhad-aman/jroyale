@@ -1,8 +1,3 @@
-import javafx.geometry.Point2D;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-
 public abstract class Troop extends Card
 {
     private final int hitSpeed;
