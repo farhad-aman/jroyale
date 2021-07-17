@@ -32,7 +32,7 @@ public class Fireball extends Spell
 
             if(tempTarget.getPosition().distance(creature.getPosition()) <= super.getRange() && creature.getSide() != tempTarget.getSide())
             {
-                tempTarget.getHit(damage[creature.getLevel()]);
+                tempTarget.getHit(damage[creature.getLevel()], tempTarget.getSide() == 1 ? 5 : 6);
             }
         }
     }
