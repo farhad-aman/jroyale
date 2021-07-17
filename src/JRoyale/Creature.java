@@ -302,7 +302,7 @@ public class Creature
 
         return false;
     }
-    //1 -> move to right , 2 -> move to left  5 -> dying to right , 6 -> dying to left
+
     public void followCreature(Creature creature)
     {
         for(int i = 0;i < speed * (underRage ? 1.4 : 1);i++)
@@ -333,9 +333,9 @@ public class Creature
         Point2D tempTargetPosition = findTempTargetPosition();
         probablePositions = inRangePoints(probablePositions);
 
-        if(probablePositions.size() != 0)
-        {
-            position = findNearestPosition(tempTargetPosition, probablePositions);
+        if(probablePositions.size() != 0) {
+            Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
+            setPositionAndStatus(newPosition);
         }
         else
         {
@@ -346,11 +346,25 @@ public class Creature
             allPositions.add(position.add(side, -1));
             allPositions.add(position.add(0, 1));
             allPositions.add(position.add(0, -1));
+            allPositions.add(position.add(side * -1, -1));
+            allPositions.add(position.add(side * -1, -1));
+            allPositions.add(position.add(side * -1, -1));
 
-            position = findNearestPosition(tempTargetPosition, allPositions);
+            Point2D newPosition = findNearestPosition(tempTargetPosition, allPositions);
+            setPositionAndStatus(newPosition);
 
             moveCreaturesBackward(findInViewRangeCreatures(position));
         }
+    }
+    /**
+     * sets the new position and update the status
+     * @param newPosition to set
+     * */
+    private void setPositionAndStatus(Point2D newPosition) {
+            if (newPosition.getX() < position.getX())
+                status = 2;
+            else
+                status = 1;
     }
 
     private Point2D findTempTargetPosition() 
@@ -358,12 +372,10 @@ public class Creature
         Creature target = killTarget == null ? followTarget : killTarget;
         int enemyBridgeStatus = target.updateBridgeStatus();
 
-        if(enemyBridgeStatus == bridgeStatus || enemyBridgeStatus == 0 ||(enemyBridgeStatus == 3 && bridgeStatus == 4) || (enemyBridgeStatus == 4 && bridgeStatus == 3) || (enemyBridgeStatus == 3 && bridgeStatus == 6) || (enemyBridgeStatus == 6 && bridgeStatus == 3))
-        {
+        if(enemyBridgeStatus == bridgeStatus || (enemyBridgeStatus == 1 && bridgeStatus == 4) || (enemyBridgeStatus == 4 && bridgeStatus == 1) || (enemyBridgeStatus == 3 && bridgeStatus == 6) || (enemyBridgeStatus == 6 && bridgeStatus == 3)){
             return target.position;
         }
-        else if(bridgeStatus == 1 || bridgeStatus == 4 || bridgeStatus == 6 || bridgeStatus == 3)
-        {
+        else if(bridgeStatus == 1 || bridgeStatus == 4 && side == 1){
             if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100))
                 return target.getPosition().distance(600, 140) < target.getPosition().distance(600, 580) ? new Point2D(600, position.getY()) : new Point2D(600, position.getY());
 
@@ -374,7 +386,24 @@ public class Creature
             else
                 return new Point2D(bridge.getX(), bridge.getY() + 20);
         }
-        return null;
+        else if((bridgeStatus == 3 || bridgeStatus == 6) && side == -1){
+            if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100))
+                return target.getPosition().distance(680, 140) < target.getPosition().distance(680, 580) ? new Point2D(680, position.getY()) : new Point2D(680, position.getY());
+
+            Point2D bridge = target.getPosition().distance(680, 140) < target.getPosition().distance(680, 580) ? new Point2D(680, 140) : new Point2D(680, 580);
+
+            if(position.getY() < bridge.getY())
+                return new Point2D(bridge.getX(), bridge.getY() - 20);
+            else
+                return new Point2D(bridge.getX(), bridge.getY() + 20);
+        }
+        else if(bridgeStatus == 2 || bridgeStatus == 5){
+            if(side == 1)
+                return position.distance(target.position) < position.distance(new Point2D(680, target.position.getY())) ? target.position : new Point2D(680, target.position.getY());
+            else
+                return position.distance(target.position) < position.distance(new Point2D(600, target.position.getY())) ? target.position : new Point2D(600, target.position.getY());
+        }
+        return target.position;
     }
 
     private void moveCreaturesBackward(ArrayList<Creature> inRanges) 
@@ -409,9 +438,9 @@ public class Creature
             Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
             probablePositions = inRangePoints(probablePositions);
 
-            if (probablePositions.size() != 0) 
-            {
-                c.setPosition(findNearestPosition(tempTargetPosition, probablePositions));
+            if (probablePositions.size() != 0) {
+                Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
+                setPositionAndStatus(newPosition);
             }
         }
     }
