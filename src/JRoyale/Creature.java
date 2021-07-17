@@ -262,7 +262,21 @@ public class Creature
     {
         if(hitStepValue >= hitSpeed) 
         {
-            creature.getHit((int) (damage * (underRage ? 1.4 : 1)));
+            if(card instanceof Troop && ((Troop) card).isAreaSplash()) {
+                if(card instanceof Valkyrie){
+                    for(Creature c : GameManager.getInstance().getBattle().getArena().getCreatures())
+                        if(c.getPosition().distance(creature.position) < 40 && c.getSide() != side && c.getCard().getType().equals("ground") || c.getCard().getType().equals("building"))
+                            c.getHit((int) (damage * (underRage ? 1.4 : 1)));
+                }
+                else{
+                    for(Creature c : GameManager.getInstance().getBattle().getArena().getCreatures())
+                        if(c.getPosition().distance(creature.position) < 40 && c.getSide() != side)
+                            c.getHit((int) (damage * (underRage ? 1.4 : 1)));
+                }
+            }
+            else
+                creature.getHit((int) (damage * (underRage ? 1.4 : 1)));
+
             hitStepValue = 0;
         }
         else
@@ -375,7 +389,7 @@ public class Creature
         if(enemyBridgeStatus == bridgeStatus || (enemyBridgeStatus == 1 && bridgeStatus == 4) || (enemyBridgeStatus == 4 && bridgeStatus == 1) || (enemyBridgeStatus == 3 && bridgeStatus == 6) || (enemyBridgeStatus == 6 && bridgeStatus == 3)){
             return target.position;
         }
-        else if(bridgeStatus == 1 || bridgeStatus == 4 && side == 1){
+        else if((bridgeStatus == 1 || bridgeStatus == 4) && side == 1){
             if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100))
                 return target.getPosition().distance(600, 140) < target.getPosition().distance(600, 580) ? new Point2D(600, position.getY()) : new Point2D(600, position.getY());
 
