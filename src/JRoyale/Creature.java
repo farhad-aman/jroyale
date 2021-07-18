@@ -326,22 +326,24 @@ public class Creature
 
     public void followCreature(Creature creature)
     {
-        for(int i = 0;i < speed * calculateRageEffect();i++)
-            if(!(card instanceof Building))
+        for(int i = 0;i < speed + calculateRageEffect();i++)
+            if(!(card instanceof Building)) {
+//                System.out.println(card.getId() + " is moving");
                 pixelMove();
+            }
     }
 
     private int calculateRageEffect() {
         if(underRage && (rageTimeRemained % 200 == 0))
         {
-            return 3;
+            return 2;
         }
         else
-            return 1;
+            return 0;
     }
 
     private void pixelMove()
-    {
+    { System.out.println("346");
         ArrayList<Point2D> probablePositions = new ArrayList<>();
 
         if(notInViewRange(position.add(side, 0)))
@@ -364,7 +366,7 @@ public class Creature
         Point2D tempTargetPosition = findTempTargetPosition();
         probablePositions = inRangePoints(probablePositions);
 
-        if(probablePositions.size() != 0) {
+        if(probablePositions.size() != 0) {System.out.println("369");
             Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
             setPositionAndStatus(newPosition);
         }
@@ -385,7 +387,7 @@ public class Creature
 
             Point2D newPosition = findNearestPosition(tempTargetPosition, allPositions);
             setPositionAndStatus(newPosition);
-
+            System.out.println("390");
             moveCreaturesBackward(findInViewRangeCreatures(position));
         }
     }
@@ -403,7 +405,16 @@ public class Creature
 
     private Point2D findTempTargetPosition() 
     {
-        Creature target = killTarget == null ? followTarget : killTarget;
+        Creature target;
+        if(killTarget == null){
+            if(followTarget == null)
+                target = followTarget = findNearestValidCreature();
+            else
+                target = findNearestValidCreature();
+        }
+        else
+            target = killTarget;
+        System.out.println("417");
         int enemyBridgeStatus = target.updateBridgeStatus();
 
         if(enemyBridgeStatus == bridgeStatus || (enemyBridgeStatus == 1 && bridgeStatus == 4) || (enemyBridgeStatus == 4 && bridgeStatus == 1) || (enemyBridgeStatus == 3 && bridgeStatus == 6) || (enemyBridgeStatus == 6 && bridgeStatus == 3) || card instanceof Dragon){
@@ -436,7 +447,7 @@ public class Creature
                 return position.distance(target.position) < position.distance(new Point2D(680, target.position.getY())) ? target.position : new Point2D(680, target.position.getY());
             else
                 return position.distance(target.position) < position.distance(new Point2D(600, target.position.getY())) ? target.position : new Point2D(600, target.position.getY());
-        }
+        }System.out.println("450");
         return target.position;
     }
 
@@ -444,7 +455,7 @@ public class Creature
     {
         for(Creature c : inRanges)
         if(!(c.getCard() instanceof Building))
-        {
+        {System.out.println("458");
             ArrayList<Point2D> probablePositions = new ArrayList<>();
 
             if (notInViewRange(c.getPosition().add(side, 0)))
@@ -467,7 +478,7 @@ public class Creature
             Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
             probablePositions = inRangePoints(probablePositions);
 
-            if (probablePositions.size() != 0) {
+            if (probablePositions.size() != 0) {System.out.println("481");
                 Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
                 setPositionAndStatus(newPosition);
             }
@@ -478,7 +489,7 @@ public class Creature
     {
         ArrayList<Creature> inRange = new ArrayList<>();
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
-
+        System.out.println("492");
         while (it.hasNext())
         {
             Creature temp = it.next();
@@ -493,7 +504,7 @@ public class Creature
     {
         Iterator<Point2D> it = positions.iterator();
         Point2D newPosition = positions.get(0);
-
+        System.out.println("507");
         while (it.hasNext())
         {
             Point2D tempPosition = it.next();
@@ -507,7 +518,7 @@ public class Creature
     private boolean notInViewRange(Point2D newPosition)
     {
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
-
+        System.out.println("521");
         while (it.hasNext()){
             Creature c = it.next();
 
@@ -522,7 +533,7 @@ public class Creature
     {
         ArrayList<Point2D> validates = new ArrayList<>();
         Iterator<Point2D> it = points.iterator();
-
+        System.out.println("536");
         while (it.hasNext())
         {
             Point2D temp = it.next();

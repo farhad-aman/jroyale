@@ -17,7 +17,7 @@ public class ArenaView extends Group
                     iv.setY(c.getPosition().getY());
                     iv.setFitHeight(50);
                     iv.setFitWidth(50);
-                    System.out.println("\nkill: " + (c.getKillTarget() == null ? "null" : c.getKillTarget().getCard().getId()) + "\nfollow: " + (c.getFollowTarget() == null ? "null" : c.getFollowTarget().getCard().getId()));
+                    System.out.println("\n" + c.getCard().getId() + "\nx, y :" + c.getPosition().getX() + ", " + c.getPosition().getY() + "\nkill: " + (c.getKillTarget() == null ? "null" : c.getKillTarget().getCard().getId()) + "\nfollow: " + (c.getFollowTarget() == null ? "null" : c.getFollowTarget().getCard().getId()));
                     iv.setPreserveRatio(true);
                     iv.setPickOnBounds(true);
                     iv.setVisible(true);
