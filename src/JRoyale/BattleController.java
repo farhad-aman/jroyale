@@ -135,7 +135,7 @@ public class BattleController
 
     @FXML
     void arenaPanePressed(MouseEvent event) 
-    {System.out.println("*******************line 134    ");
+    {//System.out.println("*******************line 134    ");
         double x = event.getX();
         double y = event.getY();
         if(chosenCard != null)
@@ -150,15 +150,15 @@ public class BattleController
                 gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
                 gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
                 chosenCard = null;
-                chosenCardNumber = 0;System.out.println("************spell created");
+                chosenCardNumber = 0;//System.out.println("************spell created");
             }
             else
             {
-                System.out.println("line 153");
+//                System.out.println("line 153");
                 if(isAppropriate(new Point2D(x, y)) && checkTowerStatus(x, y)){
                     ArrayList<Creature> creatures = chosenCard.makeCreature(new Point2D(x, y), 1);
                     int count = 0;
-                    System.out.println("line 157");
+//                    System.out.println("line 157");
                     while (count < creatures.size()){
                         ArrayList<Point2D> positions = findPositions(x, y, creatures.size() - count);System.out.println("line 159");
                         for (int i = 0; i < creatures.size(); i++) {System.out.println("line 160");
@@ -175,25 +175,27 @@ public class BattleController
                     gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
                     gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
                     chosenCard = null;
-                    chosenCardNumber = 0;System.out.println("line 174");
+                    chosenCardNumber = 0;//System.out.println("line 174");
                 }
             }
         }
                 
     }
 
-    private boolean checkTowerStatus(double x, double y) {System.out.println("line 181");
+    private boolean checkTowerStatus(double x, double y) {//System.out.println("line 181");
         if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
-            System.out.println("line 183");    return x <= 880;
+//            System.out.println("line 183");
+            return x <= 880;
         }
         else if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()) {
-            System.out.println("line 186");
+//            System.out.println("line 186");
             return x <= 600;
         }
         else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
-            System.out.println("line 190");return x <= 600 || (x <= 880 && y <= 360);
+//            System.out.println("line 190");
+            return x <= 600 || (x <= 880 && y <= 360);
         }
-        else {System.out.println("line 192");
+        else {//System.out.println("line 192");
             return x <= 600 || (x <= 880 && y >= 360);
         }
     }
@@ -202,13 +204,13 @@ public class BattleController
         ArrayList<Point2D> points = new ArrayList<>();
         double newX;
         double newY;
-        System.out.println("line 201");
+//        System.out.println("line 201");
         for(int i = 0;i < number;i++){
             newX = x + 40 * ((x <= 300 || (x <= 980 && x >= 680)) ? i : -1 * i);
             newY = (y < 360 ? i : i * -1) * 40 + y;
 
             if(isAppropriate(new Point2D(newX, newY))){
-                points.add(new Point2D(newX, newY));System.out.println("line 207");
+                points.add(new Point2D(newX, newY));//System.out.println("line 207");
             }
         }
         Random rand = new Random();
@@ -217,7 +219,7 @@ public class BattleController
             int i = rand.nextInt(3);
             newY = (y < 360 ? i : i * -1) * rand.nextInt(40) + y;
             newX = ((x <= 300 || (x <= 980 && x >= 680)) ? i : -1 * i) * rand.nextInt(40) + x;
-            System.out.println("line 216");
+//            System.out.println("line 216");
             if(isAppropriate(new Point2D(newX, newY)))
                 points.add(new Point2D(newX, newY));
         }
@@ -231,7 +233,7 @@ public class BattleController
         double y = point.getY();
 
             if(y < (720 - borderDistance) && x < (1280 - borderDistance) && x > borderDistance && y > borderDistance)
-            {System.out.println("line 230");
+            {//System.out.println("line 230");
                 if(notInCreatures(point)){
                     if (chosenCard instanceof Building && (x < 720 && x > 560))
                         return false;
@@ -249,22 +251,22 @@ public class BattleController
     private boolean notInCreatures(Point2D point) {
         Iterator<Creature> it = gameManager.getBattle().getArena().getCreatures().iterator();
 
-        while (it.hasNext()){System.out.println("249");
+        while (it.hasNext()){//System.out.println("249");
             Creature c = it.next();
-            System.out.println("line 248");
-            if(c.getPosition().distance(point) < 10) { System.out.println("250");
+            //System.out.println("line 248");
+            if(c.getPosition().distance(point) < 10) {// System.out.println("250");
                 return false;
             }
-            else if(c.getCard() instanceof Building && c.getPosition().distance(point) < 40){ System.out.println("252");
+            else if(c.getCard() instanceof Building && c.getPosition().distance(point) < 40){ //System.out.println("252");
                 return false;
             }
-            else if(c.getCard() instanceof King && c.getPosition().distance(point) < 80) { System.out.println("255");
+            else if(c.getCard() instanceof King && c.getPosition().distance(point) < 80) { //System.out.println("255");
                 return false;
             }
-            else if(c.getCard() instanceof Princess && c.getPosition().distance(point) < 60) { System.out.println("258");
+            else if(c.getCard() instanceof Princess && c.getPosition().distance(point) < 60) {// System.out.println("258");
                 return false;
             }
-        } System.out.println("261");
+        }// System.out.println("261");
         return true;
     }
 

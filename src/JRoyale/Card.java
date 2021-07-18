@@ -127,7 +127,7 @@ public abstract class Card
     public Creature findNearestValidCreature(Creature creature) 
     {
         Creature target = null;
-        double distance = 100000.00;
+        double distance = 10000.00;
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 
         while (it.hasNext())
@@ -135,12 +135,14 @@ public abstract class Card
             Creature tempCreature = it.next();
             double tempDistance = creature.getDistance(tempCreature);
 
-                if(tempCreature.getCard() instanceof Spell && tempDistance < distance && canHit(creature.getCard().getTarget(), tempCreature.getCard().getType()) && creature.getSide() != tempCreature.getSide())
+                if(creature.getSide() != tempCreature.getSide() && !(tempCreature.getCard() instanceof Spell) && tempDistance < distance && canHit(creature.getCard().getTarget(), tempCreature.getCard().getType()))
                 {
                     target = tempCreature;
                     distance = tempDistance;
                 }
         }
+        if(creature.getCard() instanceof Giant)
+            System.out.println("giant nearest target :" + id);
         return target;
     }
 
