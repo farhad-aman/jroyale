@@ -33,6 +33,7 @@ public class ArenaView extends Group
                 if(!oldStatus.get(c).equals(c.getStatus()))
                 {
                     iv.setImage(c.getCard().getImage(c.getStatus()));
+                    oldStatus.put(c, c.getStatus());
                 }
             }
             else
