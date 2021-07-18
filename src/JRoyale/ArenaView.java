@@ -28,6 +28,10 @@ public class ArenaView extends Group
             if(arenaViewCreatures.contains(c))
             {
                 ImageView iv = arenaViewImageViews.get(arenaViewCreatures.indexOf(c));
+                if(c.isEliminated())
+                {
+                    iv.setVisible(false);
+                }
                 iv.setX(c.getPosition().getX() - 25);
                 iv.setY(c.getPosition().getY() - 25);
                 if(!oldStatus.get(c).equals(c.getStatus()))
