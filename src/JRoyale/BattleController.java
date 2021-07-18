@@ -41,7 +41,6 @@ public class BattleController
     @FXML
     private AnchorPane arenaPane;
 
-    
     @FXML
     private ImageView nextCardImageView;
     
@@ -132,7 +131,7 @@ public class BattleController
     
     @FXML
     void arenaPanePressed(MouseEvent event) 
-    {//System.out.println("*******************line 134    ");
+    {
         double x = event.getX();
         double y = event.getY();
         if(chosenCard != null)
@@ -147,19 +146,20 @@ public class BattleController
                 gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
                 gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
                 chosenCard = null;
-                chosenCardNumber = 0;//System.out.println("************spell created");
+                chosenCardNumber = 0;
             }
             else
             {
-//                System.out.println("line 153");
-                if(isAppropriate(new Point2D(x, y)) && checkTowerStatus(x, y)){
+                if(isAppropriate(new Point2D(x, y)) && checkTowerStatus(x, y))
+                {
                     ArrayList<Creature> creatures = chosenCard.makeCreature(new Point2D(x, y), 1);
                     int count = 0;
-//                    System.out.println("line 157");
-                    while (count < creatures.size()){
+                    while (count < creatures.size())
+                    {
                         ArrayList<Point2D> positions = findPositions(x, y, creatures.size() - count);System.out.println("line 159");
                         for (int i = 0; i < creatures.size(); i++) {System.out.println("line 160");
-                            if (checkTowerStatus(x, y)) {
+                            if (checkTowerStatus(x, y)) 
+                            {
                                 Creature c = creatures.get(count);
                                 c.setPosition(positions.get(i));
                                 gameManager.getBattle().getArena().getCreatures().add(c);
@@ -178,7 +178,7 @@ public class BattleController
                     gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
                     gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
                     chosenCard = null;
-                    chosenCardNumber = 0;//System.out.println("line 174");
+                    chosenCardNumber = 0;
                 }
             }   
         }
@@ -303,7 +303,6 @@ public class BattleController
                         
                         if(status != 0)
                         {
-                            //gameManager.finishBattle();
                             finishBattle(status);
                         }
                     }
