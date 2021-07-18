@@ -315,11 +315,12 @@ public class Creature
 
     public boolean isCreatureInRange(Creature creature)
     {
-        double distance = creature.getPosition().distance(position);
+        if(creature != null){
+            double distance = creature.getPosition().distance(position);
 
-        if(distance <= card.getRange() * 40 || (creature.getCard() instanceof King && distance <= (card.getRange() + 2 ) * 40) || (creature.getCard() instanceof Princess && distance <= (card.getRange() + 1.5 ) * 40) || ((creature.getCard() instanceof Inferno || creature.getCard() instanceof Cannon) && distance <= (card.getRange() + 1 ) * 40))
-            return true;
-
+            if (distance <= card.getRange() * 40 || (creature.getCard() instanceof King && distance <= (card.getRange() + 2) * 40) || (creature.getCard() instanceof Princess && distance <= (card.getRange() + 1.5) * 40) || ((creature.getCard() instanceof Inferno || creature.getCard() instanceof Cannon) && distance <= (card.getRange() + 1) * 40))
+                return true;
+        }
         return false;
     }
 

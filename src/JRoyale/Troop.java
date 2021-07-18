@@ -71,7 +71,7 @@ public abstract class Troop extends Card
         if(creature.getKillTarget() == null)
         {
             creature.setFollowTarget(creature.findNearestValidCreature());
-            if(creature.isCreatureInRange(creature.getFollowTarget()))
+            if(creature.getFollowTarget() != null && creature.isCreatureInRange(creature.getFollowTarget()))
             {
                 creature.setKillTarget(creature.getFollowTarget());
                 creature.hit(creature.getKillTarget());

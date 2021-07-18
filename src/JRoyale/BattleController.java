@@ -3,6 +3,7 @@ import com.sun.org.apache.bcel.internal.generic.ARETURN;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -41,6 +42,10 @@ public class BattleController
 
     @FXML
     private AnchorPane arenaPane;
+
+    public AnchorPane getArenaPane() {
+        return arenaPane;
+    }
 
     @FXML
     private ImageView nextCardImageView;
@@ -89,7 +94,6 @@ public class BattleController
 
     @FXML
     private Rectangle card4Border;
-    private int show = 0;
 
     @FXML
     void card1Pressed(MouseEvent event) 
@@ -148,7 +152,7 @@ public class BattleController
                 gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
                 gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
                 chosenCard = null;
-                chosenCardNumber = 0;
+                chosenCardNumber = 0;System.out.println("************spell created");
             }
             else
             {
@@ -164,7 +168,7 @@ public class BattleController
                                 Creature c = creatures.get(count);
                                 c.setPosition(positions.get(i));
                                 gameManager.getBattle().getArena().getCreatures().add(c);
-                                System.out.println("line 165");
+                                System.out.println("****************creature  "+ (count + 1) + "  created");
                                 count++;
                             }
                         }
@@ -299,23 +303,11 @@ public class BattleController
      */
     private void updateView()
     {
-        if(show >= 5000) {System.out.println("*****302*****");
-            for (Creature c : gameManager.getBattle().getArena().getCreatures()) {
-                ImageView iv = new ImageView(c.getCard().getImage(c.getStatus()));
-                iv.setX(c.getPosition().getX());
-                iv.setY(c.getPosition().getY());
-                iv.setFitHeight(150);
-                iv.setFitWidth(150);
-            }
-            show = 0;
-        }
-        else
-            show += GameManager.FPS;
-
         updateScoreBoardView();
         updateElixirBarView();
         updateCardsQueueView();
         updateBattleTimerView();
+        arenaView.updateView(gameManager.getBattle().getArena(), this);
     }
     
     /**

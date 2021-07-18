@@ -43,7 +43,7 @@ public abstract class Building extends Card
         if(creature.getKillTarget() == null)
         {
             Creature target = creature.findNearestValidCreature();
-            if(creature.isCreatureInRange(target))
+            if(target != null && creature.isCreatureInRange(target))
             {
                 creature.setKillTarget(target);
                 creature.hit(creature.getKillTarget());
