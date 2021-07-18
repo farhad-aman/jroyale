@@ -156,14 +156,13 @@ public class BattleController
                     int count = 0;
                     while (count < creatures.size())
                     {
-                        ArrayList<Point2D> positions = findPositions(x, y, creatures.size() - count);System.out.println("line 159");
-
-                        for (int i = 0; i < creatures.size() - count; i++) {System.out.println("line 160");
-                            if (checkTowerStatus(positions.get(i).getX(), positions.get(i).getY())) {
-                                Creature c = creatures.get(creatures.size() - count);
+                        ArrayList<Point2D> positions = findPositions(x, y, creatures.size());System.out.println("line 159");
+                        for (int i = 0; i < creatures.size(); i++) {System.out.println("line 160");
+                            if (checkTowerStatus(positions.get(i).getX(), positions.get(i).getY()) && count < creatures.size()) {
+                                Creature c = creatures.get(count);
                                 c.setPosition(positions.get(i));
                                 gameManager.getBattle().getArena().getCreatures().add(c);
-                                System.out.println("****************creature  "+ (count + 1) + "  created");
+                                System.out.println("******creature  "+ (count + 1) + "  created");
                                 count++;
                             }
                         }
@@ -174,7 +173,7 @@ public class BattleController
                     chosenCard = null;
                     chosenCardNumber = 0;
                 }
-            }   
+            }
         }
     }
 
