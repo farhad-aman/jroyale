@@ -181,7 +181,7 @@ public class BattleController
                     chosenCardNumber = 0;//System.out.println("line 174");
                 }
             }   
-        });
+        }
     }
 
     private boolean checkTowerStatus(double x, double y) {//System.out.println("line 181");
@@ -238,8 +238,10 @@ public class BattleController
         double y = point.getY();
 
             if(y < (720 - borderDistance) && x < (1280 - borderDistance) && x > borderDistance && y > borderDistance)
-            {//System.out.println("line 230");
-                if(notInCreatures(point)){
+            {
+                //System.out.println("line 230");
+                if(notInCreatures(point))
+                {
                     if (chosenCard instanceof Building && (x < 720 && x > 560))
                         return false;
                     if (x < 680 && x > 600) {
@@ -248,14 +250,12 @@ public class BattleController
                     }
                     else
                         return true;
-                    }
                 }
                 else
                 {
                     return true;
                 }
             }
-        }
         return false;
     }
     
