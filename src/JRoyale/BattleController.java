@@ -237,7 +237,9 @@ public class BattleController
                     if (chosenCard instanceof Building && (x < 720 && x > 560))
                         return false;
                     if (x < 680 && x > 600) {
-                        if ((y >= 95 && y <= 185) || (y >= 535 && y <= 615))
+                        if ((y >= 100 && y <= 180) || (y >= 540 && y <= 620))
+                            return true;
+                        else if(chosenCard instanceof Dragon)
                             return true;
                     }
                     else
@@ -258,16 +260,16 @@ public class BattleController
         while (it.hasNext()){//System.out.println("249");
             Creature c = it.next();
             //System.out.println("line 248");
-            if(c.getPosition().distance(point) < 10) {// System.out.println("250");
+            if(c.getPosition().distance(point) < 10 && ((!(chosenCard instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((chosenCard instanceof Dragon) && (c.getCard() instanceof Dragon)))) {
                 return false;
             }
-            else if(c.getCard() instanceof Building && c.getPosition().distance(point) < 40){ //System.out.println("252");
+            else if(c.getCard() instanceof Building && c.getPosition().distance(point) < 40 && !(chosenCard instanceof Dragon)){ //System.out.println("252");
                 return false;
             }
-            else if(c.getCard() instanceof King && c.getPosition().distance(point) < 80) { //System.out.println("255");
+            else if(c.getCard() instanceof King && c.getPosition().distance(point) < 80 && !(chosenCard instanceof Dragon)) { //System.out.println("255");
                 return false;
             }
-            else if(c.getCard() instanceof Princess && c.getPosition().distance(point) < 60) {// System.out.println("258");
+            else if(c.getCard() instanceof Princess && c.getPosition().distance(point) < 60 && !(chosenCard instanceof Dragon)) {// System.out.println("258");
                 return false;
             }
         }// System.out.println("261");
@@ -514,7 +516,7 @@ public class BattleController
                         startTimer();
                     }
                 });
-                battleBackgroundMusic.setVolume(0.3);//volume percentage 0 to 1
+                battleBackgroundMusic.setVolume(0.2);//volume percentage 0 to 1
                 battleBackgroundMusic.play();
             }
         });
