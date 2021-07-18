@@ -204,7 +204,11 @@ public class Creature
         return followTarget;
     }
 
-    public void setUnderRage(boolean newUnderRage) 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setUnderRage(boolean newUnderRage)
     {
         this.underRage = newUnderRage;
     }
@@ -321,8 +325,18 @@ public class Creature
 
     public void followCreature(Creature creature)
     {
-        for(int i = 0;i < speed * (underRage ? 1.4 : 1);i++)
-            pixelMove();
+        for(int i = 0;i < speed * calculateRageEffect();i++)
+            if(!(card instanceof Building))
+                pixelMove();
+    }
+
+    private int calculateRageEffect() {
+        if(underRage && (rageTimeRemained % 200 == 0))
+        {
+            return 3;
+        }
+        else
+            return 1;
     }
 
     private void pixelMove()
@@ -336,15 +350,15 @@ public class Creature
         if(notInViewRange(position.add(side, 1)))
             probablePositions.add(position.add(side, 1));
         if(notInViewRange(position.add(0, 1)))
-            probablePositions.add(position.add(side, 0));
+            probablePositions.add(position.add(0, 1));
         if(notInViewRange(position.add(0, -1)))
-            probablePositions.add(position.add(side, 0));
+            probablePositions.add(position.add(0, -1));
         if(notInViewRange(position.add(side * -1, -1)))
-            probablePositions.add(position.add(side, 0));
+            probablePositions.add(position.add(side * -1, -1));
         if(notInViewRange(position.add(side * -1, 0)))
-            probablePositions.add(position.add(side, 0));
+            probablePositions.add(position.add(side * -1, 0));
         if(notInViewRange(position.add(side * -1, 1)))
-            probablePositions.add(position.add(side, 0));
+            probablePositions.add(position.add(side * -1, 1));
 
         Point2D tempTargetPosition = findTempTargetPosition();
         probablePositions = inRangePoints(probablePositions);
@@ -363,8 +377,10 @@ public class Creature
             allPositions.add(position.add(0, 1));
             allPositions.add(position.add(0, -1));
             allPositions.add(position.add(side * -1, -1));
-            allPositions.add(position.add(side * -1, -1));
-            allPositions.add(position.add(side * -1, -1));
+            allPositions.add(position.add(side * -1, 0));
+            allPositions.add(position.add(side * -1, 1));
+
+            allPositions = inRangePoints(allPositions);
 
             Point2D newPosition = findNearestPosition(tempTargetPosition, allPositions);
             setPositionAndStatus(newPosition);
@@ -389,7 +405,7 @@ public class Creature
         Creature target = killTarget == null ? followTarget : killTarget;
         int enemyBridgeStatus = target.updateBridgeStatus();
 
-        if(enemyBridgeStatus == bridgeStatus || (enemyBridgeStatus == 1 && bridgeStatus == 4) || (enemyBridgeStatus == 4 && bridgeStatus == 1) || (enemyBridgeStatus == 3 && bridgeStatus == 6) || (enemyBridgeStatus == 6 && bridgeStatus == 3)){
+        if(enemyBridgeStatus == bridgeStatus || (enemyBridgeStatus == 1 && bridgeStatus == 4) || (enemyBridgeStatus == 4 && bridgeStatus == 1) || (enemyBridgeStatus == 3 && bridgeStatus == 6) || (enemyBridgeStatus == 6 && bridgeStatus == 3) || card instanceof Dragon){
             return target.position;
         }
         else if((bridgeStatus == 1 || bridgeStatus == 4) && side == 1){
@@ -426,11 +442,9 @@ public class Creature
     private void moveCreaturesBackward(ArrayList<Creature> inRanges) 
     {
         for(Creature c : inRanges)
-        if(!(c.getCard() instanceof King) && !(c.getCard() instanceof Princess))
+        if(!(c.getCard() instanceof Building))
         {
             ArrayList<Point2D> probablePositions = new ArrayList<>();
-
-            side *= -1;
 
             if (notInViewRange(c.getPosition().add(side, 0)))
                 probablePositions.add(c.getPosition().add(side, 0));
@@ -439,18 +453,15 @@ public class Creature
             if (notInViewRange(c.getPosition().add(side, 1)))
                 probablePositions.add(c.getPosition().add(side, 1));
             if (notInViewRange(c.getPosition().add(0, 1)))
-                probablePositions.add(c.getPosition().add(side, 0));
+                probablePositions.add(c.getPosition().add(0, 1));
             if (notInViewRange(c.getPosition().add(0, -1)))
-                probablePositions.add(c.getPosition().add(side, 0));
-
-            side *= -1;
-
-            if (notInViewRange(c.getPosition().add(side, -1)))
-                probablePositions.add(c.getPosition().add(side, 0));
-            if (notInViewRange(c.getPosition().add(0, 0)))
-                probablePositions.add(c.getPosition().add(side, 0));
-            if (notInViewRange(c.getPosition().add(0, 1)))
-                probablePositions.add(c.getPosition().add(side, 0));
+                probablePositions.add(c.getPosition().add(0, -1));
+            if (notInViewRange(c.getPosition().add(side * -1, -1)))
+                probablePositions.add(c.getPosition().add(side * -1, -1));
+            if (notInViewRange(c.getPosition().add(side * -1, 0)))
+                probablePositions.add(c.getPosition().add(side * -1, 0));
+            if (notInViewRange(c.getPosition().add(side * -1, 1)))
+                probablePositions.add(c.getPosition().add(side * -1, 1));
 
             Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
             probablePositions = inRangePoints(probablePositions);
@@ -494,10 +505,12 @@ public class Creature
 
     private boolean notInViewRange(Point2D newPosition)
     {
-        Iterator<Creature>it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
+        Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 
         while (it.hasNext()){
-            if(newPosition.distance(position) < 10){
+            Creature c = it.next();
+
+            if(!(c.card instanceof Spell) && newPosition.distance(c.position) < 10){
                 return false;
             }
         }
@@ -521,6 +534,8 @@ public class Creature
                     if((y >= 90 && y <= 190) || (y >= 530 && y <= 610))
                         validates.add(temp);
                 }
+                else
+                    validates.add(temp);
             }
         }
         return validates;

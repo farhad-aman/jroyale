@@ -63,6 +63,7 @@ public class Arena
             }
         }
         it = creatures.iterator();
+
         while (it.hasNext())
         {
             Creature c = it.next();

@@ -104,23 +104,22 @@ public abstract class Card
         ArrayList<Creature> creatures = new ArrayList<>();
         if(side == -1)
         {
-            if(GameManager.getInstance().getCurrentBot() instanceof Bot1)
-            {
-                creatures.add(new Creature(this, 1, center, -1));
-            }
-            else if(GameManager.getInstance().getCurrentBot() instanceof Bot2)
-            {
-                creatures.add(new Creature(this, 3, center, -1));
-            }
-            else
-            {
-                creatures.add(new Creature(this, 5, center, -1));
+            for(int i = 0;i < (this instanceof Troop ? ((Troop) this).getCount() : 1);i++){
+                if (GameManager.getInstance().getCurrentBot() instanceof Bot1) {
+                    creatures.add(new Creature(this, 1, center, -1));
+                } else if (GameManager.getInstance().getCurrentBot() instanceof Bot2) {
+                    creatures.add(new Creature(this, 3, center, -1));
+                } else {
+                    creatures.add(new Creature(this, 5, center, -1));
+                }
             }
             
         }
         else
         {
-            creatures.add(new Creature(this, GameManager.getInstance().getCurrentPlayer().getLevel(), center, 1));
+            for(int i = 0;i < (this instanceof Troop ? ((Troop) this).getCount() : 1);i++){
+                creatures.add(new Creature(this, GameManager.getInstance().getCurrentPlayer().getLevel(), center, 1));
+            }
         }
         return creatures;
     }

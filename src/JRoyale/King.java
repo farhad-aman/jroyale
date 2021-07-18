@@ -10,8 +10,7 @@ public class King extends Building
     @Override
     public void loadImages() 
     {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
