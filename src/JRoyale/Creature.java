@@ -286,7 +286,7 @@ public class Creature
             hitStepValue = 0;
         }
         else
-            hitStepValue += hitSpeed / GameManager.FPS;
+            hitStepValue += 1000 / GameManager.FPS;
 
         return creature.isEliminated();
     }
