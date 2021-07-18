@@ -22,7 +22,7 @@ public class Inferno extends Building
     {
         pics.put(0, new Image("resources/cards/inferno/inferno150.png"));
         pics.put(-1, new Image("resources/cards/inferno/inferno150wb.jpg"));
-        pics.put(10, new Image("resources/cards/inferno/inferno.gif"));
+        pics.put(1, new Image("resources/cards/inferno/inferno.gif"));
     }
 
     public int getMinDamage(int level)

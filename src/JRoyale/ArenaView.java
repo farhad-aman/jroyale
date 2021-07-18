@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
@@ -30,7 +31,7 @@ public class ArenaView extends Group
                 ImageView iv = arenaViewImageViews.get(arenaViewCreatures.indexOf(c));
                 if(c.isEliminated())
                 {
-                    iv.setVisible(false);
+                    deathTime(c, iv);
                 }
                 iv.setX(c.getPosition().getX() - 25);
                 iv.setY(c.getPosition().getY() - 25);
@@ -57,5 +58,48 @@ public class ArenaView extends Group
                 arenaViewCreatures.add(c);
             }
         }
+    }
+
+    public void deathTime(Creature creature, ImageView imageView)
+    {
+        Thread thread = new Thread(new Runnable()
+        {
+            @Override
+            public void run() 
+            {
+                Platform.runLater(new Runnable()
+                {
+                    @Override
+                    public void run() 
+                    {
+                        if(creature.getStatus() % 2 == 1)
+                        {
+                            imageView.setImage(creature.getCard().getImage(5));
+                        }
+                        else
+                        {
+                            imageView.setImage(creature.getCard().getImage(6));
+                        }
+                    }
+                });                
+                try 
+                {
+                    Thread.sleep(1000);    
+                } 
+                catch (Exception e) 
+                {
+                    
+                }
+                Platform.runLater(new Runnable()
+                {
+                    @Override
+                    public void run() 
+                    {
+                        imageView.setVisible(false);
+                    }
+                });       
+            }
+        });
+        thread.start();
     }
 }

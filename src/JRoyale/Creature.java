@@ -93,6 +93,7 @@ public class Creature
         this.level = level;
         this.position = position;
         this.side = side;
+        this.status = 1;
 
         underRage = false;
         rageTimeRemained = 0;
