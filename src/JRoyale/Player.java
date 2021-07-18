@@ -106,6 +106,7 @@ public class Player
             st.execute(insertion);
 
             st.close();
+            con.close();
         }
         catch (Exception e)
         {

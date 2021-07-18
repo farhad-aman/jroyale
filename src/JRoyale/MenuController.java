@@ -477,8 +477,8 @@ public class MenuController
             Scene scene = new Scene(root);
             scene.setCursor(new ImageCursor(new Image("resources/cursor2.png")));
             stage.setScene(scene);
-            stage.setX(600);
-            stage.setY(100);
+            stage.setX(520);
+            stage.setY(50);
             mediaPlayer.setVolume(0);
             gameManager.logout();
         } 

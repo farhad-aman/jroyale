@@ -18,6 +18,8 @@ import java.io.IOException;
 
 public class LoginController 
 {
+    private MediaPlayer loginStarted = new MediaPlayer(new Media(new File("resources\\login\\loginStarted.mp3").toURI().toString()));
+
     @FXML
     private TextField loginUsernameTextField;
 
@@ -282,7 +284,8 @@ public class LoginController
     @FXML
     void initialize()
     {
-
+        loginStarted.setVolume(0.5);//volume percentage 0 to 1
+        loginStarted.play();
     }
 
 }

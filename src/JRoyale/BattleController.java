@@ -1,5 +1,3 @@
-import com.sun.deploy.security.SelectableSecurityManager;
-import com.sun.org.apache.bcel.internal.generic.ARETURN;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -511,7 +509,7 @@ public class BattleController
                         startTimer();
                     }
                 });
-                battleBackgroundMusic.setVolume(0.2);//volume percentage 0 to 1
+                battleBackgroundMusic.setVolume(0.3);//volume percentage 0 to 1
                 battleBackgroundMusic.play();
             }
         });
