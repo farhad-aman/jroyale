@@ -93,6 +93,7 @@ public class Creature
         this.level = level;
         this.position = position;
         this.side = side;
+        this.status = 1;
 
         underRage = false;
         rageTimeRemained = 0;
@@ -286,7 +287,7 @@ public class Creature
             hitStepValue = 0;
         }
         else
-            hitStepValue += hitSpeed / GameManager.FPS;
+            hitStepValue += 1000 / GameManager.FPS;
 
         return creature.isEliminated();
     }

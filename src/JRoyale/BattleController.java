@@ -162,7 +162,7 @@ public class BattleController
                                 Creature c = creatures.get(count);
                                 c.setPosition(positions.get(i));
                                 gameManager.getBattle().getArena().getCreatures().add(c);
-                                System.out.println("****************creature  "+ (count + 1) + "  created");
+                                System.out.println("******creature  "+ (count + 1) + "  created");
                                 count++;
                             }
                         }
@@ -173,7 +173,7 @@ public class BattleController
                     chosenCard = null;
                     chosenCardNumber = 0;
                 }
-            }   
+            }
         }
     }
 

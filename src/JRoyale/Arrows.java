@@ -18,7 +18,7 @@ public class Arrows extends Spell
     {
         pics.put(0, new Image("resources/cards/arrows/arrows150.png"));
         pics.put(-1, new Image("resources/cards/arrows/arrows150wb.jpg"));
-       //pics.put(11, new Image("resources/cards/arrows/arrows.gif"));
+        pics.put(1, new Image("resources/blank150.jpg"));
     }
 
     @Override

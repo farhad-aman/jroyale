@@ -18,7 +18,7 @@ public class Rage extends Spell
     {
         pics.put(0, new Image("resources/cards/rage/rage150.png"));
         pics.put(-1, new Image("resources/cards/rage/rage150wb.jpg"));
-       // pics.put(11, new Image("resources/rage/archer/rage.gif"));
+        pics.put(1, new Image("resources/blank150.jpg"));
     }
 
 
