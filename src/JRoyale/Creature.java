@@ -164,7 +164,7 @@ public class Creature
         {
             if(position.getX() < 600)
                 bridgeStatus = 1;
-            else if(position.getX() >= 600 && position.getX() < 680)
+            else if(position.getX() >= 600 && position.getX() <= 680)
                 bridgeStatus = 2;
             else
                 bridgeStatus = 3;
@@ -173,7 +173,7 @@ public class Creature
         {
             if(position.getX() < 600)
                 bridgeStatus = 4;
-            else if(position.getX() >= 600 && position.getX() < 680)
+            else if(position.getX() >= 600 && position.getX() <= 680)
                 bridgeStatus = 5;
             else
                 bridgeStatus = 6;
@@ -419,6 +419,7 @@ public class Creature
             target = killTarget;
 //        System.out.println("finding temp target position417");
         int enemyBridgeStatus = target.updateBridgeStatus();
+        bridgeStatus= updateBridgeStatus();
 
         if(enemyBridgeStatus == bridgeStatus || (enemyBridgeStatus == 1 && bridgeStatus == 4) || (enemyBridgeStatus == 4 && bridgeStatus == 1) || (enemyBridgeStatus == 3 && bridgeStatus == 6) || (enemyBridgeStatus == 6 && bridgeStatus == 3) || card instanceof Dragon){
             return target.position;
@@ -446,7 +447,7 @@ public class Creature
                 return new Point2D(bridge.getX(), bridge.getY() + 20);
         }
         else if(bridgeStatus == 2 || bridgeStatus == 5){
-            if(side == 1) {System.out.println("side 1 and bridge status = 5 || 2");
+            if((side == 1 || side == -1) && target.getPosition().getX() > position.getX()) {System.out.println("side 1 and bridge status = 5 || 2");
                 return position.distance(target.position) < position.distance(new Point2D(680, target.position.getY())) ? target.position : new Point2D(680, target.position.getY());
             }
             else {System.out.println("side -1 and bridge status = 5 || 2");
