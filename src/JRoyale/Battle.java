@@ -53,6 +53,7 @@ public class Battle
 
     public int step() 
     {
+        bot.step();
         arena.step();
         playerElixirBar.step();
         botElixirBar.step();

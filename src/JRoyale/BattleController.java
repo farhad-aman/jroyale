@@ -41,58 +41,55 @@ public class BattleController
     @FXML
     private AnchorPane arenaPane;
 
-    public AnchorPane getArenaPane() {
-        return arenaPane;
-    }
-
+    
     @FXML
     private ImageView nextCardImageView;
-
+    
     @FXML
     private ImageView card1ImageView;
-
+    
     @FXML
     private ImageView card2ImageView;
-
+    
     @FXML
     private ImageView card3ImageView;
 
     @FXML
     private ImageView card4ImageView;
-
+    
     @FXML
     private Label battleTimerLabel;
-
+    
     @FXML
     private ProgressBar elixirBarProgressBar;
-
+    
     @FXML
     private Label elixirBarLabel;
-
+    
     @FXML
     private ImageView playerScoreImageView;
-
+    
     @FXML
     private ImageView botScoreImageView;
-
+    
     @FXML
     private Label playerUsernameLabel;
-
+    
     @FXML
     private Label botUsernameLabel;
-
+    
     @FXML
     private Rectangle card1Border;
-
+    
     @FXML
     private Rectangle card2Border;
-
+    
     @FXML
     private Rectangle card3Border;
-
+    
     @FXML
     private Rectangle card4Border;
-
+    
     @FXML
     void card1Pressed(MouseEvent event) 
     {
@@ -102,7 +99,7 @@ public class BattleController
             chosenCardNumber = 1;
         }
     }
-
+    
     @FXML
     void card2Pressed(MouseEvent event) 
     {
@@ -112,7 +109,7 @@ public class BattleController
             chosenCardNumber = 2;
         }
     }
-
+    
     @FXML
     void card3Pressed(MouseEvent event) 
     {
@@ -132,142 +129,190 @@ public class BattleController
             chosenCardNumber = 4;
         }
     }
-
+    
     @FXML
     void arenaPanePressed(MouseEvent event) 
-    {System.out.println("*******************line 134    ");
-        double x = event.getX();
-        double y = event.getY();
-        if(chosenCard != null)
+    {
+        Platform.runLater(new Runnable()
         {
-            if(chosenCard instanceof Spell)
+            @Override
+            public void run() 
             {
-                ArrayList<Creature> creatures = chosenCard.makeCreature(new Point2D(x, y), 1);
-                Creature c = creatures.get(0);
-
-                gameManager.getBattle().getArena().getCreatures().add(c);
-                gameManager.getBattle().getPlayerCardsQueue().remove(chosenCardNumber + 3);
-                gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
-                gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
-                chosenCard = null;
-                chosenCardNumber = 0;System.out.println("************spell created");
-            }
-            else
-            {
-                System.out.println("line 153");
-                if(isAppropriate(new Point2D(x, y)) && checkTowerStatus(x, y)){
-                    ArrayList<Creature> creatures = chosenCard.makeCreature(new Point2D(x, y), 1);
-                    int count = 0;
-                    System.out.println("line 157");
-                    while (count < creatures.size()){
-                        ArrayList<Point2D> positions = findPositions(x, y, creatures.size() - count);System.out.println("line 159");
-                        for (int i = 0; i < creatures.size(); i++) {System.out.println("line 160");
-                            if (checkTowerStatus(x, y)) {
-                                Creature c = creatures.get(count);
-                                c.setPosition(positions.get(i));
-                                gameManager.getBattle().getArena().getCreatures().add(c);
-                                System.out.println("****************creature  "+ (count + 1) + "  created");
-                                count++;
+                System.out.println("*******************line 134    ");
+                double x = event.getX();
+                double y = event.getY();
+                if(chosenCard != null)
+                {
+                    if(chosenCard instanceof Spell)
+                    {
+                        ArrayList<Creature> creatures = chosenCard.makeCreature(new Point2D(x, y), 1);
+                        Creature c = creatures.get(0);
+                        
+                        gameManager.getBattle().getArena().getCreatures().add(c);
+                        gameManager.getBattle().getPlayerCardsQueue().remove(chosenCardNumber + 3);
+                        gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
+                        gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
+                        chosenCard = null;
+                        chosenCardNumber = 0;System.out.println("************spell created");
+                    }
+                    else
+                    {
+                        System.out.println("line 153");
+                        if(isAppropriate(new Point2D(x, y)) && checkTowerStatus(x, y))
+                        {
+                            ArrayList<Creature> creatures = chosenCard.makeCreature(new Point2D(x, y), 1);
+                            int count = 0;
+                            System.out.println("line 157");
+                            while (count < creatures.size())
+                            {
+                                ArrayList<Point2D> positions = findPositions(x, y, creatures.size() - count);
+                                System.out.println("line 159");
+                                for (int i = 0; i < creatures.size(); i++) 
+                                {
+                                    System.out.println("line 160");
+                                    if (checkTowerStatus(x, y)) 
+                                    {
+                                        Creature c = creatures.get(count);
+                                        c.setPosition(positions.get(i));
+                                        gameManager.getBattle().getArena().getCreatures().add(c);
+                                        System.out.println("****************creature  "+ (count + 1) + "  created");
+                                        count++;
+                                    }
+                                }
                             }
+                            gameManager.getBattle().getPlayerCardsQueue().remove(chosenCardNumber + 3);
+                            gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
+                            gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
+                            chosenCard = null;
+                            chosenCardNumber = 0;
+                            System.out.println("line 174");
                         }
                     }
-                    gameManager.getBattle().getPlayerCardsQueue().remove(chosenCardNumber + 3);
-                    gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
-                    gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
-                    chosenCard = null;
-                    chosenCardNumber = 0;System.out.println("line 174");
                 }
-            }
-        }
-                
+            }   
+        });
     }
-
-    private boolean checkTowerStatus(double x, double y) {System.out.println("line 181");
-        if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
-            System.out.println("line 183");    return x <= 880;
+    
+    private boolean checkTowerStatus(double x, double y) 
+    {
+        System.out.println("line 181");
+        if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated())
+        {
+            System.out.println("line 183");    
+            return x <= 880;
         }
-        else if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()) {
+        else if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()) 
+        {
             System.out.println("line 186");
             return x <= 600;
         }
-        else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
-            System.out.println("line 190");return x <= 600 || (x <= 880 && y <= 360);
+        else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated())
+        {
+            System.out.println("line 190");
+            return x <= 600 || (x <= 880 && y <= 360);
         }
-        else {System.out.println("line 192");
+        else 
+        {
+            System.out.println("line 192");
             return x <= 600 || (x <= 880 && y >= 360);
         }
     }
-
-    private ArrayList<Point2D> findPositions(double x, double y, int number) {
+    
+    private ArrayList<Point2D> findPositions(double x, double y, int number) 
+    {
         ArrayList<Point2D> points = new ArrayList<>();
         double newX;
         double newY;
         System.out.println("line 201");
-        for(int i = 0;i < number;i++){
+        for(int i = 0;i < number;i++)
+        {
             newX = x + 40 * ((x <= 300 || (x <= 980 && x >= 680)) ? i : -1 * i);
             newY = (y < 360 ? i : i * -1) * 40 + y;
-
-            if(isAppropriate(new Point2D(newX, newY))){
+            
+            if(isAppropriate(new Point2D(newX, newY)))
+            {
                 points.add(new Point2D(newX, newY));System.out.println("line 207");
             }
         }
         Random rand = new Random();
-
-        while (points.size() <= number){
+        while (points.size() <= number)
+        {
             int i = rand.nextInt(3);
             newY = (y < 360 ? i : i * -1) * rand.nextInt(40) + y;
             newX = ((x <= 300 || (x <= 980 && x >= 680)) ? i : -1 * i) * rand.nextInt(40) + x;
             System.out.println("line 216");
             if(isAppropriate(new Point2D(newX, newY)))
+            {
                 points.add(new Point2D(newX, newY));
+            }
         }
         return points;
     }
-
+    
     public boolean isAppropriate(Point2D point)
     {
         int borderDistance = chosenCard instanceof Building ? 40 : 10;
         double x = point.getX();
         double y = point.getY();
-
-            if(y < (720 - borderDistance) && x < (1280 - borderDistance) && x > borderDistance && y > borderDistance)
-            {System.out.println("line 230");
-                if(notInCreatures(point)){
-                    if (chosenCard instanceof Building && (x < 720 && x > 560))
-                        return false;
-                    if (x < 680 && x > 600) {
-                        if ((y >= 95 && y <= 185) || (y >= 535 && y <= 615))
-                            return true;
-                    }
-                    else
+        
+        if(y < (720 - borderDistance) && x < (1280 - borderDistance) && x > borderDistance && y > borderDistance)
+        {
+            System.out.println("line 230");
+            if(notInCreatures(point))
+            {
+                if (chosenCard instanceof Building && (x < 720 && x > 560))
+                {
+                    return false;
+                }
+                if (x < 680 && x > 600) 
+                {
+                    if ((y >= 95 && y <= 185) || (y >= 535 && y <= 615))
+                    {
                         return true;
+                    }
+                }
+                else
+                {
+                    return true;
                 }
             }
+        }
         return false;
     }
-
-    private boolean notInCreatures(Point2D point) {
+    
+    private boolean notInCreatures(Point2D point) 
+    {
         Iterator<Creature> it = gameManager.getBattle().getArena().getCreatures().iterator();
-
-        while (it.hasNext()){System.out.println("249");
+        while (it.hasNext())
+        {
+            System.out.println("249");
             Creature c = it.next();
             System.out.println("line 248");
-            if(c.getPosition().distance(point) < 10) { System.out.println("250");
+            if(c.getPosition().distance(point) < 10) 
+            { 
+                System.out.println("250");
                 return false;
             }
-            else if(c.getCard() instanceof Building && c.getPosition().distance(point) < 40){ System.out.println("252");
+            else if(c.getCard() instanceof Building && c.getPosition().distance(point) < 40)
+            { 
+                System.out.println("252");
                 return false;
             }
-            else if(c.getCard() instanceof King && c.getPosition().distance(point) < 80) { System.out.println("255");
+            else if(c.getCard() instanceof King && c.getPosition().distance(point) < 80) 
+            { 
+                System.out.println("255");
                 return false;
             }
-            else if(c.getCard() instanceof Princess && c.getPosition().distance(point) < 60) { System.out.println("258");
+            else if(c.getCard() instanceof Princess && c.getPosition().distance(point) < 60) 
+            { 
+                System.out.println("258");
                 return false;
             }
-        } System.out.println("261");
+        } 
+        System.out.println("261");
         return true;
     }
-
+    
     /**
      * starts main process of a battle in the game
      */
@@ -286,16 +331,19 @@ public class BattleController
                     {
                         int status = gameManager.battleStep();
                         updateView();
-
+                        
                         if(status != 0)
+                        {
+                            //gameManager.finishBattle();
                             finishBattle(status);
+                        }
                     }
                 });
             }
         };
         this.timer.schedule(timerTask, 0, 1000 / GameManager.FPS);
     }
-
+    
     /**
      * updates all battle view based on new situation of model
      */
@@ -317,7 +365,7 @@ public class BattleController
         elixirBarProgressBar.setProgress(elixir / 10);
         elixirBarLabel.setText(Integer.toString((int)Math.floor(elixir)));
     }
-
+    
     /**
      * shows available cards and next card in view based on model 
      */
@@ -325,7 +373,7 @@ public class BattleController
     {
         ArrayList<Card> cards = gameManager.getBattle().getPlayerCardsQueue();
         nextCardImageView.setImage(cards.get(3).getImage(0));
-
+        
         if(gameManager.getBattle().getPlayerElixirBar().getElixir() >= cards.get(4).getCost())
         {
             card1ImageView.setImage(cards.get(4).getImage(0));
@@ -334,7 +382,7 @@ public class BattleController
         {
             card1ImageView.setImage(cards.get(4).getImage(-1));
         }
-
+        
         if(gameManager.getBattle().getPlayerElixirBar().getElixir() >= cards.get(5).getCost())
         {
             card2ImageView.setImage(cards.get(5).getImage(0));
@@ -352,7 +400,7 @@ public class BattleController
         {
             card3ImageView.setImage(cards.get(6).getImage(-1));
         }
-
+        
         if(gameManager.getBattle().getPlayerElixirBar().getElixir() >= cards.get(7).getCost())
         {
             card4ImageView.setImage(cards.get(7).getImage(0));
@@ -361,7 +409,7 @@ public class BattleController
         {
             card4ImageView.setImage(cards.get(7).getImage(-1));
         }
-
+        
         if(chosenCardNumber == 1)
         {
             card1Border.setVisible(true);
@@ -398,7 +446,7 @@ public class BattleController
             card4Border.setVisible(false);
         }
     }
-
+    
     /**
      * updates battle timer in view based on battle timer model
      */
@@ -420,7 +468,7 @@ public class BattleController
             battleTimerLabel.setText(minutes + ":" + seconds); 
         }
     }
-
+    
     /**
      * updates view of score board based on model
      */
@@ -442,7 +490,7 @@ public class BattleController
         {
             playerScoreImageView.setImage(new Image("resources/battle/3star.png"));
         }
-
+        
         if(gameManager.getBattle().getScoreBoard().getBotStars() == 0)
         {   
             botScoreImageView.setImage(new Image("resources/battle/0star.png"));
@@ -460,7 +508,7 @@ public class BattleController
             botScoreImageView.setImage(new Image("resources/battle/3star.png"));
         }
     }
-
+    
     /**
      * check the status from model to decide finish the game
      * @param status
@@ -470,7 +518,12 @@ public class BattleController
         timer.cancel();
         //the end -->show the winner and get back to the menu
     }
-
+    
+    public AnchorPane getArenaPane() 
+    {
+        return arenaPane;
+    }
+    
     @FXML
     public void initialize()
     {
