@@ -84,7 +84,7 @@ public class ArenaView extends Group
                 });                
                 try 
                 {
-                    Thread.sleep(1200);    
+                    Thread.sleep(1100);    
                 } 
                 catch (Exception e) 
                 {
