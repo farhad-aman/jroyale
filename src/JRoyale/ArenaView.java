@@ -42,8 +42,8 @@ public class ArenaView extends Group
                 ImageView iv = new ImageView(c.getCard().getImage(c.getStatus()));
                 iv.setX(c.getPosition().getX() - 25);
                 iv.setY(c.getPosition().getY() - 25);
-                iv.setFitHeight(50);
-                iv.setFitWidth(50);
+                iv.setFitHeight(c.getCard() instanceof Dragon ? 75 : 50);
+                iv.setFitWidth(c.getCard() instanceof Dragon ? 75 : 50);
                 System.out.println("\n" + c.getCard().getId() + "\nx, y :" + c.getPosition().getX() + ", " + c.getPosition().getY() + "\nkill: " + (c.getKillTarget() == null ? "null" : c.getKillTarget().getCard().getId()) + "\nfollow: " + (c.getFollowTarget() == null ? "null" : c.getFollowTarget().getCard().getId()));
                 iv.setPreserveRatio(true);
                 iv.setPickOnBounds(true);

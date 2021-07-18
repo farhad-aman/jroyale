@@ -135,7 +135,7 @@ public abstract class Card
             Creature tempCreature = it.next();
             double tempDistance = creature.getDistance(tempCreature);
 
-                if(creature.getSide() != tempCreature.getSide() && !(tempCreature.getCard() instanceof Spell) && tempDistance < distance && canHit(creature.getCard().getTarget(), tempCreature.getCard().getType()))
+                if(creature.getSide() != tempCreature.getSide() && !(tempCreature.getCard() instanceof Spell) && tempDistance < distance && canHit(this.target, tempCreature.getCard().getType()))
                 {
                     target = tempCreature;
                     distance = tempDistance;

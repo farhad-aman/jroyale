@@ -210,7 +210,7 @@ public class MenuController
                     confirmPasswordLabel.setText("");
                     changePasswordButton.setImage(new Image("resources/menu/changePasswordButtonPressed.png"));
                     MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/menu/click1.mp3").toURI().toString()));
-                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
+                    mediaPlayer.setVolume(0.2);//volume percentage 0 to 1
                     mediaPlayer.play();
                     int status = gameManager.getCurrentPlayer().setPassword(oldPasswordField.getText(), newPasswordField.getText(), confirmPasswordField.getText());
                     

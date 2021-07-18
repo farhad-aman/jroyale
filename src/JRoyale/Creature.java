@@ -337,10 +337,10 @@ public class Creature
     private int calculateRageEffect(int speed) {
         if(underRage && (rageTimeRemained % 200 == 0))
         {
-            return 3 * speed;
+            return 3 * speed * (40 / GameManager.FPS);
         }
         else
-            return speed;
+            return speed * (40 / GameManager.FPS);
     }
 
     private void pixelMove()
@@ -500,7 +500,7 @@ public class Creature
         {
             Creature temp = it.next();
 
-            if(temp != this && position.distance(temp.position) < 10)
+            if(temp != this && position.distance(temp.position) < 10 && ((!(card instanceof Dragon) && !(temp.getCard() instanceof Dragon)) || ((card instanceof Dragon) && (temp.getCard() instanceof Dragon))))
                 inRange.add(temp);
         }
         return inRange;
@@ -528,7 +528,7 @@ public class Creature
         while (it.hasNext()){
             Creature c = it.next();
 
-            if(c != this && !(c.card instanceof Spell) && newPosition.distance(c.position) < 10){
+            if(c != this && !(c.card instanceof Spell) && newPosition.distance(c.position) < 10 && ((!(card instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((card instanceof Dragon) && (c.getCard() instanceof Dragon)))){
                 return false;
             }
         }
@@ -549,7 +549,9 @@ public class Creature
             if(y < 710 && x < 1270 && x > 10 && y > 10)
             {
                 if(x < 680 && x > 600){
-                    if((y >= 90 && y <= 190) || (y >= 530 && y <= 610))
+                    if((y >= 100 && y <= 180) || (y >= 540 && y <= 620))
+                        validates.add(temp);
+                    else if(card instanceof Dragon)
                         validates.add(temp);
                 }
                 else
