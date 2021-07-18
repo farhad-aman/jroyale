@@ -158,20 +158,14 @@ public class BattleController
 //                    System.out.println("line 157");
                     while (count < creatures.size()){
                         ArrayList<Point2D> positions = findPositions(x, y, creatures.size() - count);System.out.println("line 159");
-                        for (int i = 0; i < creatures.size(); i++) {System.out.println("line 160");
-                            if (checkTowerStatus(x, y)) {
-                                Creature c = creatures.get(count);
+                        for (int i = 0; i < creatures.size() - count; i++) {System.out.println("line 160");
+                            if (checkTowerStatus(positions.get(i).getX(), positions.get(i).getY())) {
+                                Creature c = creatures.get(creatures.size() - count);
                                 c.setPosition(positions.get(i));
                                 gameManager.getBattle().getArena().getCreatures().add(c);
                                 System.out.println("****************creature  "+ (count + 1) + "  created");
                                 count++;
                             }
-                            gameManager.getBattle().getPlayerCardsQueue().remove(chosenCardNumber + 3);
-                            gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
-                            gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
-                            chosenCard = null;
-                            chosenCardNumber = 0;
-                            System.out.println("line 174");
                         }
                     }
                     gameManager.getBattle().getPlayerCardsQueue().remove(chosenCardNumber + 3);
@@ -181,7 +175,7 @@ public class BattleController
                     chosenCardNumber = 0;//System.out.println("line 174");
                 }
             }   
-        });
+        }
     }
 
     private boolean checkTowerStatus(double x, double y) {//System.out.println("line 181");
@@ -217,11 +211,10 @@ public class BattleController
             }
         }
         Random rand = new Random();
-        while (points.size() <= number)
+        while (points.size() < number)
         {
-            int i = rand.nextInt(3);
-            newY = (y < 360 ? i : i * -1) * rand.nextInt(40) + y;
-            newX = ((x <= 300 || (x <= 980 && x >= 680)) ? i : -1 * i) * rand.nextInt(40) + x;
+            newY = rand.nextInt(80) + y;
+            newX = rand.nextInt(80) + x;
 //            System.out.println("line 216");
             if(isAppropriate(new Point2D(newX, newY)))
             {
@@ -248,14 +241,12 @@ public class BattleController
                     }
                     else
                         return true;
-                    }
                 }
                 else
                 {
                     return true;
                 }
             }
-        }
         return false;
     }
     

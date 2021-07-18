@@ -12,7 +12,7 @@ public class GameManager
 
     public static final String dbPassword = "@#$mg200";
 
-    public static final int FPS = 40;
+    public static final int FPS = 20;
     
     private Player currentPlayer;
 

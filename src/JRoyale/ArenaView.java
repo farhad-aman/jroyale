@@ -1,8 +1,7 @@
 import javafx.scene.Group;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class ArenaView extends Group 
+public class ArenaView extends Group
 {
     private GameManager gameManager = GameManager.getInstance();
     private int show = 0;
