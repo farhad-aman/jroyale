@@ -17,6 +17,8 @@ public class JRoyale extends Application
         Scene scene = new Scene(root);
         scene.setCursor(new ImageCursor(new Image("resources/cursor2.png")));
         primaryStage.setScene(scene);
+        primaryStage.setX(520);
+        primaryStage.setY(50);
         primaryStage.setTitle("JRoyale");
         primaryStage.setResizable(false);
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>()

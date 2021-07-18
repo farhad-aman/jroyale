@@ -43,7 +43,8 @@ public class BattleResult
         return enemyScore;
     }
 
-    public String getWinner(){
+    public String getWinner()
+    {
         return winner;
     }
 }
