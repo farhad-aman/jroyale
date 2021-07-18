@@ -51,4 +51,6 @@ public abstract class Bot
     {
         return level;
     }
+
+    public abstract void step();
 }

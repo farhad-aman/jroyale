@@ -41,58 +41,55 @@ public class BattleController
     @FXML
     private AnchorPane arenaPane;
 
-    public AnchorPane getArenaPane() {
-        return arenaPane;
-    }
-
+    
     @FXML
     private ImageView nextCardImageView;
-
+    
     @FXML
     private ImageView card1ImageView;
-
+    
     @FXML
     private ImageView card2ImageView;
-
+    
     @FXML
     private ImageView card3ImageView;
 
     @FXML
     private ImageView card4ImageView;
-
+    
     @FXML
     private Label battleTimerLabel;
-
+    
     @FXML
     private ProgressBar elixirBarProgressBar;
-
+    
     @FXML
     private Label elixirBarLabel;
-
+    
     @FXML
     private ImageView playerScoreImageView;
-
+    
     @FXML
     private ImageView botScoreImageView;
-
+    
     @FXML
     private Label playerUsernameLabel;
-
+    
     @FXML
     private Label botUsernameLabel;
-
+    
     @FXML
     private Rectangle card1Border;
-
+    
     @FXML
     private Rectangle card2Border;
-
+    
     @FXML
     private Rectangle card3Border;
-
+    
     @FXML
     private Rectangle card4Border;
-
+    
     @FXML
     void card1Pressed(MouseEvent event) 
     {
@@ -102,7 +99,7 @@ public class BattleController
             chosenCardNumber = 1;
         }
     }
-
+    
     @FXML
     void card2Pressed(MouseEvent event) 
     {
@@ -112,7 +109,7 @@ public class BattleController
             chosenCardNumber = 2;
         }
     }
-
+    
     @FXML
     void card3Pressed(MouseEvent event) 
     {
@@ -132,7 +129,7 @@ public class BattleController
             chosenCardNumber = 4;
         }
     }
-
+    
     @FXML
     void arenaPanePressed(MouseEvent event) 
     {//System.out.println("*******************line 134    ");
@@ -169,6 +166,12 @@ public class BattleController
                                 System.out.println("****************creature  "+ (count + 1) + "  created");
                                 count++;
                             }
+                            gameManager.getBattle().getPlayerCardsQueue().remove(chosenCardNumber + 3);
+                            gameManager.getBattle().getPlayerCardsQueue().add(0, chosenCard);
+                            gameManager.getBattle().getPlayerElixirBar().takeExir(chosenCard.getCost());
+                            chosenCard = null;
+                            chosenCardNumber = 0;
+                            System.out.println("line 174");
                         }
                     }
                     gameManager.getBattle().getPlayerCardsQueue().remove(chosenCardNumber + 3);
@@ -177,9 +180,8 @@ public class BattleController
                     chosenCard = null;
                     chosenCardNumber = 0;//System.out.println("line 174");
                 }
-            }
-        }
-                
+            }   
+        });
     }
 
     private boolean checkTowerStatus(double x, double y) {//System.out.println("line 181");
@@ -199,8 +201,9 @@ public class BattleController
             return x <= 600 || (x <= 880 && y >= 360);
         }
     }
-
-    private ArrayList<Point2D> findPositions(double x, double y, int number) {
+    
+    private ArrayList<Point2D> findPositions(double x, double y, int number) 
+    {
         ArrayList<Point2D> points = new ArrayList<>();
         double newX;
         double newY;
@@ -214,18 +217,20 @@ public class BattleController
             }
         }
         Random rand = new Random();
-
-        while (points.size() <= number){
+        while (points.size() <= number)
+        {
             int i = rand.nextInt(3);
             newY = (y < 360 ? i : i * -1) * rand.nextInt(40) + y;
             newX = ((x <= 300 || (x <= 980 && x >= 680)) ? i : -1 * i) * rand.nextInt(40) + x;
 //            System.out.println("line 216");
             if(isAppropriate(new Point2D(newX, newY)))
+            {
                 points.add(new Point2D(newX, newY));
+            }
         }
         return points;
     }
-
+    
     public boolean isAppropriate(Point2D point)
     {
         int borderDistance = chosenCard instanceof Building ? 40 : 10;
@@ -243,12 +248,19 @@ public class BattleController
                     }
                     else
                         return true;
+                    }
+                }
+                else
+                {
+                    return true;
                 }
             }
+        }
         return false;
     }
-
-    private boolean notInCreatures(Point2D point) {
+    
+    private boolean notInCreatures(Point2D point) 
+    {
         Iterator<Creature> it = gameManager.getBattle().getArena().getCreatures().iterator();
 
         while (it.hasNext()){//System.out.println("249");
@@ -269,7 +281,7 @@ public class BattleController
         }// System.out.println("261");
         return true;
     }
-
+    
     /**
      * starts main process of a battle in the game
      */
@@ -288,16 +300,19 @@ public class BattleController
                     {
                         int status = gameManager.battleStep();
                         updateView();
-
+                        
                         if(status != 0)
+                        {
+                            //gameManager.finishBattle();
                             finishBattle(status);
+                        }
                     }
                 });
             }
         };
         this.timer.schedule(timerTask, 0, 1000 / GameManager.FPS);
     }
-
+    
     /**
      * updates all battle view based on new situation of model
      */
@@ -319,7 +334,7 @@ public class BattleController
         elixirBarProgressBar.setProgress(elixir / 10);
         elixirBarLabel.setText(Integer.toString((int)Math.floor(elixir)));
     }
-
+    
     /**
      * shows available cards and next card in view based on model 
      */
@@ -327,7 +342,7 @@ public class BattleController
     {
         ArrayList<Card> cards = gameManager.getBattle().getPlayerCardsQueue();
         nextCardImageView.setImage(cards.get(3).getImage(0));
-
+        
         if(gameManager.getBattle().getPlayerElixirBar().getElixir() >= cards.get(4).getCost())
         {
             card1ImageView.setImage(cards.get(4).getImage(0));
@@ -336,7 +351,7 @@ public class BattleController
         {
             card1ImageView.setImage(cards.get(4).getImage(-1));
         }
-
+        
         if(gameManager.getBattle().getPlayerElixirBar().getElixir() >= cards.get(5).getCost())
         {
             card2ImageView.setImage(cards.get(5).getImage(0));
@@ -354,7 +369,7 @@ public class BattleController
         {
             card3ImageView.setImage(cards.get(6).getImage(-1));
         }
-
+        
         if(gameManager.getBattle().getPlayerElixirBar().getElixir() >= cards.get(7).getCost())
         {
             card4ImageView.setImage(cards.get(7).getImage(0));
@@ -363,7 +378,7 @@ public class BattleController
         {
             card4ImageView.setImage(cards.get(7).getImage(-1));
         }
-
+        
         if(chosenCardNumber == 1)
         {
             card1Border.setVisible(true);
@@ -400,7 +415,7 @@ public class BattleController
             card4Border.setVisible(false);
         }
     }
-
+    
     /**
      * updates battle timer in view based on battle timer model
      */
@@ -422,7 +437,7 @@ public class BattleController
             battleTimerLabel.setText(minutes + ":" + seconds); 
         }
     }
-
+    
     /**
      * updates view of score board based on model
      */
@@ -444,7 +459,7 @@ public class BattleController
         {
             playerScoreImageView.setImage(new Image("resources/battle/3star.png"));
         }
-
+        
         if(gameManager.getBattle().getScoreBoard().getBotStars() == 0)
         {   
             botScoreImageView.setImage(new Image("resources/battle/0star.png"));
@@ -462,7 +477,7 @@ public class BattleController
             botScoreImageView.setImage(new Image("resources/battle/3star.png"));
         }
     }
-
+    
     /**
      * check the status from model to decide finish the game
      * @param status
@@ -472,7 +487,12 @@ public class BattleController
         timer.cancel();
         //the end -->show the winner and get back to the menu
     }
-
+    
+    public AnchorPane getArenaPane() 
+    {
+        return arenaPane;
+    }
+    
     @FXML
     public void initialize()
     {

@@ -6,4 +6,10 @@ public class Bot2 extends Bot
         super("CPU Normal", GameManager.getRandomDeck(), 2);
     }
 
+    @Override
+    public void step() 
+    {
+        
+    }
+
 }

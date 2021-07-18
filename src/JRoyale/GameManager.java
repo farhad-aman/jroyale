@@ -281,6 +281,12 @@ public class GameManager
         return currentPlayer;
     }
 
+    public void finishBattle()
+    {
+        currentBot = null;
+        battle = null;
+    }
+
     public boolean createBattle(int botDifficulty)
     {
         if(botDifficulty == 1)
