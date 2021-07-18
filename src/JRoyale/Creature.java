@@ -326,24 +326,25 @@ public class Creature
 
     public void followCreature(Creature creature)
     {
-        for(int i = 0;i < speed + calculateRageEffect();i++)
-            if(!(card instanceof Building)) {
-//                System.out.println(card.getId() + " is moving");
+        for(int i = 0;i < calculateRageEffect(speed);i++) {
+            System.out.println("position :" + position.getX() + ", " + position.getY());
+            //System.out.println(card.getId() + " is moving");
+            if (card instanceof Troop)
                 pixelMove();
-            }
+        }
     }
 
-    private int calculateRageEffect() {
+    private int calculateRageEffect(int speed) {
         if(underRage && (rageTimeRemained % 200 == 0))
         {
-            return 2;
+            return 3 * speed;
         }
         else
-            return 0;
+            return speed;
     }
 
     private void pixelMove()
-    { System.out.println("346");
+    { System.out.println("pixel move working346");
         ArrayList<Point2D> probablePositions = new ArrayList<>();
 
         if(notInViewRange(position.add(side, 0)))
@@ -366,9 +367,9 @@ public class Creature
         Point2D tempTargetPosition = findTempTargetPosition();
         probablePositions = inRangePoints(probablePositions);
 
-        if(probablePositions.size() != 0) {System.out.println("369");
+        if(probablePositions.size() != 0) {System.out.println("moving successfully369");
             Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
-            setPositionAndStatus(newPosition);
+            setPositionAndStatus(newPosition);System.out.println("moving successfully finished?!?!?!?!?!?371");
         }
         else
         {
@@ -387,7 +388,7 @@ public class Creature
 
             Point2D newPosition = findNearestPosition(tempTargetPosition, allPositions);
             setPositionAndStatus(newPosition);
-            System.out.println("390");
+            System.out.println("moving struggle390");
             moveCreaturesBackward(findInViewRangeCreatures(position));
         }
     }
@@ -399,8 +400,10 @@ public class Creature
     {
             if (newPosition.getX() < position.getX())
                 status = 2;
-            else
+            else {
                 status = 1;
+            }
+            position = newPosition;
     }
 
     private Point2D findTempTargetPosition() 
@@ -414,7 +417,7 @@ public class Creature
         }
         else
             target = killTarget;
-        System.out.println("417");
+        System.out.println("finding temp target position417");
         int enemyBridgeStatus = target.updateBridgeStatus();
 
         if(enemyBridgeStatus == bridgeStatus || (enemyBridgeStatus == 1 && bridgeStatus == 4) || (enemyBridgeStatus == 4 && bridgeStatus == 1) || (enemyBridgeStatus == 3 && bridgeStatus == 6) || (enemyBridgeStatus == 6 && bridgeStatus == 3) || card instanceof Dragon){
@@ -447,7 +450,7 @@ public class Creature
                 return position.distance(target.position) < position.distance(new Point2D(680, target.position.getY())) ? target.position : new Point2D(680, target.position.getY());
             else
                 return position.distance(target.position) < position.distance(new Point2D(600, target.position.getY())) ? target.position : new Point2D(600, target.position.getY());
-        }System.out.println("450");
+        }System.out.println("finding temp target position has a problem probably450");
         return target.position;
     }
 
@@ -455,7 +458,7 @@ public class Creature
     {
         for(Creature c : inRanges)
         if(!(c.getCard() instanceof Building))
-        {System.out.println("458");
+        {System.out.println("moving other creatures backward458");
             ArrayList<Point2D> probablePositions = new ArrayList<>();
 
             if (notInViewRange(c.getPosition().add(side, 0)))
@@ -478,7 +481,7 @@ public class Creature
             Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
             probablePositions = inRangePoints(probablePositions);
 
-            if (probablePositions.size() != 0) {System.out.println("481");
+            if (probablePositions.size() != 0) {System.out.println("moving creature backward successfully481");
                 Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
                 setPositionAndStatus(newPosition);
             }
@@ -489,12 +492,12 @@ public class Creature
     {
         ArrayList<Creature> inRange = new ArrayList<>();
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
-        System.out.println("492");
+        System.out.println("finding creatures in view overlap492");
         while (it.hasNext())
         {
             Creature temp = it.next();
 
-            if(position.distance(temp.position) < 10)
+            if(temp != this && position.distance(temp.position) < 10)
                 inRange.add(temp);
         }
         return inRange;
@@ -504,12 +507,12 @@ public class Creature
     {
         Iterator<Point2D> it = positions.iterator();
         Point2D newPosition = positions.get(0);
-        System.out.println("507");
+        System.out.println("finding the nearest position to a source507");
         while (it.hasNext())
         {
             Point2D tempPosition = it.next();
 
-            if(source.distance(newPosition) > source.distance(tempPosition))
+            if(!(source.getY() == tempPosition.getY() && source.getX() == tempPosition.getX()) && source.distance(newPosition) > source.distance(tempPosition))
                 newPosition = tempPosition;
         }
         return newPosition;
@@ -518,11 +521,11 @@ public class Creature
     private boolean notInViewRange(Point2D newPosition)
     {
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
-        System.out.println("521");
+        System.out.println("checking the creature position accuracy521");
         while (it.hasNext()){
             Creature c = it.next();
 
-            if(!(c.card instanceof Spell) && newPosition.distance(c.position) < 10){
+            if(c != this && !(c.card instanceof Spell) && newPosition.distance(c.position) < 10){
                 return false;
             }
         }
@@ -533,7 +536,7 @@ public class Creature
     {
         ArrayList<Point2D> validates = new ArrayList<>();
         Iterator<Point2D> it = points.iterator();
-        System.out.println("536");
+        System.out.println("finding in range positions536");
         while (it.hasNext())
         {
             Point2D temp = it.next();
