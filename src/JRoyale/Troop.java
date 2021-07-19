@@ -1,3 +1,5 @@
+import javafx.scene.media.MediaPlayer;
+
 public abstract class Troop extends Card
 {
     private final int hitSpeed;
@@ -23,9 +25,11 @@ public abstract class Troop extends Card
                  boolean areaSplash,
                  int count,
                  int[] initHP,
-                 int[] damage)
+                 int[] damage,
+                 MediaPlayer attackSound,
+                 MediaPlayer deathSound)
     {
-        super(type, id, cost, range, target, imageSize);
+        super(type, id, cost, range, target, imageSize, attackSound, deathSound);
         this.hitSpeed = hitSpeed;
         this.speed = speed;
         this.areaSplash = areaSplash;

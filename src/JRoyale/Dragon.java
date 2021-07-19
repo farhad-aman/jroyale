@@ -1,4 +1,8 @@
+import java.io.File;
+
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Dragon extends Troop
 {
@@ -16,7 +20,9 @@ public class Dragon extends Troop
               true, 
               1, 
               new int[] {0, 800, 880, 968, 1064, 1168}, 
-              new int[] {0, 100, 110, 121, 133, 146});
+              new int[] {0, 100, 110, 121, 133, 146},
+              new MediaPlayer(new Media(new File("resources/cards/dragon/dragonAttack.mp3").toURI().toString())),
+              new MediaPlayer(new Media(new File("resources/cards/dragon/dragonDeath.mp3").toURI().toString())));
     }
     
     /**

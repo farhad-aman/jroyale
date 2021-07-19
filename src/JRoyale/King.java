@@ -1,4 +1,8 @@
+import java.io.File;
+
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class King extends Building
 {
@@ -6,7 +10,17 @@ public class King extends Building
 
     public King() 
     {
-        super("building", "King", 0, 10000, "both", 160, 7, 1000000, new int[] {0, 2400, 2568, 2736, 2904, 3096});
+        super("building", 
+              "King", 
+              0, 
+              10000, 
+              "both", 
+              160, 
+              7, 
+              1000000, 
+              new int[] {0, 2400, 2568, 2736, 2904, 3096},
+              new MediaPlayer(new Media(new File("resources/cards/king/kingAttack.mp3").toURI().toString())),
+              new MediaPlayer(new Media(new File("resources/cards/king/kingDeath.mp3").toURI().toString())));
     }
 
     @Override

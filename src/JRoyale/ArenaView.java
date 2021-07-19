@@ -97,6 +97,7 @@ public class ArenaView extends Group
                     @Override
                     public void run() 
                     {
+                        creature.getCard().playDeathSound();
                         if(creature.getStatus() % 2 == 1)
                         {
                             imageView.setImage(creature.getCard().getImage(5));

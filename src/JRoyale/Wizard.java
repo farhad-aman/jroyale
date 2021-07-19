@@ -1,4 +1,8 @@
+import java.io.File;
+
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Wizard extends Troop
 {
@@ -16,7 +20,9 @@ public class Wizard extends Troop
               true, 
               1, 
               new int[] {0, 340, 374, 411, 452, 496}, 
-              new int[] {0, 130, 143, 157, 172, 189});
+              new int[] {0, 130, 143, 157, 172, 189},
+              new MediaPlayer(new Media(new File("resources/cards/wizard/wizardAttack.mp3").toURI().toString())),
+              new MediaPlayer(new Media(new File("resources/cards/wizard/wizardDeath.mp3").toURI().toString())));
     }
     
     /**

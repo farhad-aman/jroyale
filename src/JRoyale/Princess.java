@@ -1,4 +1,8 @@
+import java.io.File;
+
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Princess extends Building
 {
@@ -6,7 +10,17 @@ public class Princess extends Building
 
     public Princess() 
     {
-        super("building", "Princess", 0, 800, "both", 120, 7.5, 1000000, new int[] {0, 1400, 1512, 1624, 1750, 1890});
+        super("building", 
+              "Princess", 
+              0, 
+              800, 
+              "both", 
+              120, 
+              7.5, 
+              1000000, 
+              new int[] {0, 1400, 1512, 1624, 1750, 1890},
+              new MediaPlayer(new Media(new File("resources/cards/princess/princessAttack.mp3").toURI().toString())),
+              new MediaPlayer(new Media(new File("resources/cards/princess/princessDeath.mp3").toURI().toString())));
     }
 
     @Override

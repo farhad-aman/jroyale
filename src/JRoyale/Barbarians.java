@@ -1,7 +1,10 @@
+import java.io.File;
 import java.util.ArrayList;
 
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Barbarians extends Troop
 {
@@ -19,7 +22,9 @@ public class Barbarians extends Troop
               false, 
               4, 
               new int[] {0, 300, 330, 363, 438, 480}, 
-              new int[] {0, 75, 82, 90, 99, 109});
+              new int[] {0, 75, 82, 90, 99, 109},
+              new MediaPlayer(new Media(new File("resources/cards/barbarians/barbariansAttack.mp3").toURI().toString())),
+              new MediaPlayer(new Media(new File("resources/cards/barbarians/barbariansDeath.mp3").toURI().toString())));
     }
     
     /**

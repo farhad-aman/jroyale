@@ -1,7 +1,10 @@
+import java.io.File;
 import java.util.ArrayList;
 
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Archer extends Troop
 {
@@ -19,7 +22,9 @@ public class Archer extends Troop
               false, 
               2, 
               new int[] {0, 125, 127, 151, 166, 182}, 
-              new int[] {0, 33, 44, 48, 53, 58});
+              new int[] {0, 33, 44, 48, 53, 58},
+              new MediaPlayer(new Media(new File("resources/cards/archer/archerAttack.mp3").toURI().toString())),
+              new MediaPlayer(new Media(new File("resources/cards/archer/archerDeath.mp3").toURI().toString())));
     }
     
     /**
