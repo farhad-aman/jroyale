@@ -19,7 +19,9 @@ public abstract class Card
 
     private final String target;
 
-    public Card(String type, String id, int cost, double range, String target)
+    private final int imageSize;
+
+    public Card(String type, String id, int cost, double range, String target, int imageSize)
     {
         this.type = type;
         this.pics = new HashMap<>();
@@ -27,6 +29,7 @@ public abstract class Card
         this.cost = cost;
         this.range = range;
         this.target = target;
+        this.imageSize = imageSize;
     }
 
     public String getId()
@@ -42,6 +45,11 @@ public abstract class Card
     public double getRange() 
     {
         return range;
+    }
+
+    public int getImageSize()
+    {
+        return imageSize;
     }
 
     @Override

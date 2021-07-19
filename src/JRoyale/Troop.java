@@ -18,13 +18,14 @@ public abstract class Troop extends Card
                  int hitSpeed,
                  int speed,
                  String target,
+                 int imageSize,
                  double range,
                  boolean areaSplash,
                  int count,
                  int[] initHP,
                  int[] damage)
     {
-        super(type, id, cost, range, target);
+        super(type, id, cost, range, target, imageSize);
         this.hitSpeed = hitSpeed;
         this.speed = speed;
         this.areaSplash = areaSplash;
