@@ -164,7 +164,7 @@ public class Creature
     {
         if(position.getY() >= 360)
         {
-            if(position.getX() < 600)
+            if(position.getX() <= 600 && (position.getY() > 620 || position.getY() < 540))
                 bridgeStatus = 1;
             else if(position.getX() >= 600 && position.getX() <= 680 && position.getY() <= 620 && position.getY() >= 540)
                 bridgeStatus = 2;
@@ -173,7 +173,7 @@ public class Creature
         }
         else
         {
-            if(position.getX() < 600)
+            if(position.getX() <= 600 && (position.getY() < 100 || position.getY() > 180))
                 bridgeStatus = 4;
             else if(position.getX() >= 600 && position.getX() <= 680 && position.getY() <= 180 && position.getY() >= 100)
                 bridgeStatus = 5;
@@ -339,10 +339,10 @@ public class Creature
     private int calculateRageEffect(int speed) {
         if(underRage && (rageTimeRemained % 200 == 0))
         {
-            return 3 * speed * (40 / GameManager.FPS);
+            return 3 * speed * (20 / GameManager.FPS);
         }
         else
-            return speed * (40 / GameManager.FPS);
+            return speed * (20 / GameManager.FPS);
     }
 
     private void pixelMove()
@@ -420,10 +420,13 @@ public class Creature
         else
             target = killTarget;
 //        System.out.println("finding temp target position417");
-        int enemyBridgeStatus = target.updateBridgeStatus();
+        int ebs = target.updateBridgeStatus();
         bridgeStatus= updateBridgeStatus();
 
-        if(enemyBridgeStatus == bridgeStatus || (enemyBridgeStatus == 1 && bridgeStatus == 4) || (enemyBridgeStatus == 4 && bridgeStatus == 1) || (enemyBridgeStatus == 3 && bridgeStatus == 6) || (enemyBridgeStatus == 6 && bridgeStatus == 3) || card instanceof Dragon){
+        if(position.getX() == 600 || position.getX() == 680)
+            System.out.println(card.getId() + " : " + position.getX() + ", " + position.getY() + "\tbridge status: " + bridgeStatus);
+
+        if(ebs == bridgeStatus || (ebs == 1 && bridgeStatus == 4) || (ebs == 4 && bridgeStatus == 1) || (ebs == 3 && bridgeStatus == 6) || (ebs == 6 && bridgeStatus == 3) || card instanceof Dragon){
             return target.position;
         }
         else if((bridgeStatus == 1 || bridgeStatus == 4) && side == 1){
@@ -459,6 +462,26 @@ public class Creature
                 Random rand = new Random();
                 return rand.nextInt() % 2 == 0 ? new Point2D(600, position.getY()) : new Point2D(680, position.getY());
             }
+        }
+        else if((bridgeStatus == 1 || bridgeStatus == 4) && side == -1){
+            Point2D newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
+
+            if(position.distance(newTarget) > position.distance(target.position))
+                newTarget = target.position;
+            if(position.distance(newTarget) > position.distance(new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 580)))
+                newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 580);
+
+            return newTarget;
+        }
+        else if((bridgeStatus == 3 || bridgeStatus == 6) && side == 1){
+            Point2D newTarget = new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
+
+            if(position.distance(newTarget) > position.distance(target.position))
+                newTarget = target.position;
+            if(position.distance(newTarget) > position.distance(new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 580)))
+                newTarget = new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 580);
+
+            return newTarget;
         }
         return target.position;
     }

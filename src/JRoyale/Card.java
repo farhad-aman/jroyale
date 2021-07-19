@@ -135,10 +135,6 @@ public abstract class Card
             Creature tempCreature = it.next();
             double tempDistance = creature.getDistance(tempCreature);
 
-            if(creature.getCard() instanceof Giant)
-                System.out.println("giant is recognized");
-//            if(tempCreature.getCard() instanceof Giant)
-//                System.out.println("giant is recognized as a target :");
                 if(creature.getSide() != tempCreature.getSide() && !(tempCreature.getCard() instanceof Spell) && tempDistance < distance && canHit(this.target, tempCreature.getCard().getType()))
                 {
                     target = tempCreature;
