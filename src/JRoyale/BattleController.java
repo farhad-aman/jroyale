@@ -665,7 +665,6 @@ public class BattleController
             botName.setVisible(true);
             arenaPane.getChildren().add(botName);
             
-
             Thread thread = new Thread(new Runnable()
             {
                 @Override
@@ -698,7 +697,6 @@ public class BattleController
                     });
                 } 
             });
-             
             thread.start();
         }
         isBattleFinished = true;
