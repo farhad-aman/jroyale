@@ -42,6 +42,8 @@ public class Creature
      */
     private int status;
 
+    private int statusTime = 0;
+
     /**
      * the creature this creature should follow
      */
@@ -81,6 +83,8 @@ public class Creature
      * demonstrate the creature status toward the bridges in the map from the player vision//0->king or princess//down bridge is the nearer bridge//1->before bridge//2->on the bridge//3->after the bridge//top bridge is the nearer bridge//4->before bridge//5->on the bridge//6->after the bridge
      * */
     private int bridgeStatus;
+
+    private int moveAvoided = 0;
 
     /**
      * creates a new creature
@@ -382,51 +386,57 @@ public class Creature
 
     private void pixelMove()
     {// System.out.println("pixel move working346");
-        ArrayList<Point2D> probablePositions = new ArrayList<>();
+        if(moveAvoided == 0){
+            ArrayList<Point2D> probablePositions = new ArrayList<>();
 
-        if(notInViewRange(position.add(side, 0)))
-            probablePositions.add(position.add(side, 0));
-        if(notInViewRange(position.add(side, -1)))
-            probablePositions.add(position.add(side, -1));
-        if(notInViewRange(position.add(side, 1)))
-            probablePositions.add(position.add(side, 1));
-        if(notInViewRange(position.add(0, 1)))
-            probablePositions.add(position.add(0, 1));
-        if(notInViewRange(position.add(0, -1)))
-            probablePositions.add(position.add(0, -1));
-        if(notInViewRange(position.add(side * -1, -1)))
-            probablePositions.add(position.add(side * -1, -1));
-        if(notInViewRange(position.add(side * -1, 0)))
-            probablePositions.add(position.add(side * -1, 0));
-        if(notInViewRange(position.add(side * -1, 1)))
-            probablePositions.add(position.add(side * -1, 1));
+            if (notInViewRange(position.add(side * (moveAvoided + 1), 0)))
+                probablePositions.add(position.add(side * (moveAvoided + 1), 0));
+            if (notInViewRange(position.add(side * (moveAvoided + 1), -1 * (moveAvoided + 1))))
+                probablePositions.add(position.add(side * (moveAvoided + 1), -1 * (moveAvoided + 1)));
+            if (notInViewRange(position.add(side * (moveAvoided + 1), (moveAvoided + 1))))
+                probablePositions.add(position.add(side * (moveAvoided + 1), (moveAvoided + 1)));
+            if (notInViewRange(position.add(0,  (moveAvoided + 1))))
+                probablePositions.add(position.add(0, (moveAvoided + 1)));
+            if (notInViewRange(position.add(0, -1 * (moveAvoided + 1))))
+                probablePositions.add(position.add(0, -1 * (moveAvoided + 1)));
+            if (notInViewRange(position.add(side * -1 * (moveAvoided + 1), -1 * (moveAvoided + 1))))
+                probablePositions.add(position.add(side * -1 * (moveAvoided + 1), -1 * (moveAvoided + 1)));
+            if (notInViewRange(position.add(side * -1 * (moveAvoided + 1), 0)))
+                probablePositions.add(position.add(side * -1 * (moveAvoided + 1), 0));
+            if (notInViewRange(position.add(side * -1 * (moveAvoided + 1),  (moveAvoided + 1))))
+                probablePositions.add(position.add(side * -1 * (moveAvoided + 1), (moveAvoided + 1)));
 
-        Point2D tempTargetPosition = findTempTargetPosition();
-        probablePositions = inRangePoints(probablePositions);
+            Point2D tempTargetPosition = findTempTargetPosition();
+            probablePositions = inRangePoints(probablePositions);
 
-        if(probablePositions.size() != 0 && tempTargetPosition != null) {//System.out.println("moving successfully369");
-            Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
-            setPositionAndStatus(newPosition);//System.out.println("moving successfully finished?!?!?!?!?!?371");
+            if (probablePositions.size() != 0 && tempTargetPosition != null) {//System.out.println("moving successfully369");
+                Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
+                setPositionAndStatus(newPosition);//System.out.println("moving successfully finished?!?!?!?!?!?371");
+                moveAvoided = 0;
+            }
+//            else if(tempTargetPosition != null)
+//            {
+//            ArrayList<Point2D> allPositions = new ArrayList<>();
+//
+//            allPositions.add(position.add(side, 0));
+//            allPositions.add(position.add(side, 1));
+//            allPositions.add(position.add(side, -1));
+//            allPositions.add(position.add(0, 1));
+//            allPositions.add(position.add(0, -1));
+//            allPositions.add(position.add(side * -1, -1));
+//            allPositions.add(position.add(side * -1, 0));
+//            allPositions.add(position.add(side * -1, 1));
+//
+//            allPositions = inRangePoints(allPositions);
+//
+//            Point2D newPosition = findNearestPosition(tempTargetPosition, allPositions);
+//            setPositionAndStatus(newPosition);
+////            System.out.println("moving struggle390");
+//            moveCreaturesBackward(findInViewRangeCreatures(position));
+//            }
         }
-        else if(tempTargetPosition != null)
-        {
-            ArrayList<Point2D> allPositions = new ArrayList<>();
+        else{
 
-            allPositions.add(position.add(side, 0));
-            allPositions.add(position.add(side, 1));
-            allPositions.add(position.add(side, -1));
-            allPositions.add(position.add(0, 1));
-            allPositions.add(position.add(0, -1));
-            allPositions.add(position.add(side * -1, -1));
-            allPositions.add(position.add(side * -1, 0));
-            allPositions.add(position.add(side * -1, 1));
-
-            allPositions = inRangePoints(allPositions);
-
-            Point2D newPosition = findNearestPosition(tempTargetPosition, allPositions);
-            setPositionAndStatus(newPosition);
-//            System.out.println("moving struggle390");
-            moveCreaturesBackward(findInViewRangeCreatures(position));
         }
     }
     /**
@@ -532,6 +542,7 @@ public class Creature
 
     private void moveCreaturesBackward(ArrayList<Creature> inRanges) 
     {
+        System.out.println("move backward used");
         for(Creature c : inRanges)
         if(!(c.getCard() instanceof Building))
         {//System.out.println("moving other creatures backward458");
