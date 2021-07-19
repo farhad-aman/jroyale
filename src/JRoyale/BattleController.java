@@ -207,7 +207,7 @@ public class BattleController
         }
         //((x <= 300 || (x <= 980 && x >= 680))? i : -1 * i)
         //(y < 360 ? i : i * -1)
-        int r = 20;
+        int r = 40;
         while (r <= 60){
             if(isAppropriate(new Point2D(x - r, y - r)))
                 points.add(new Point2D(x - r, y - r));

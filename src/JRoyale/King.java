@@ -1,3 +1,5 @@
+import javafx.scene.image.Image;
+
 public class King extends Building
 {
     private final int[]  damage = {0, 50, 53, 57, 60, 64};
@@ -10,7 +12,7 @@ public class King extends Building
     @Override
     public void loadImages() 
     {
-
+        pics.put(1, new Image("resources/cards/princess/princessStandPlayer.png"));
     }
 
     @Override
