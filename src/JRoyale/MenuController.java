@@ -403,7 +403,7 @@ public class MenuController
                     }
                     if(newCards.size() != 8)
                     {
-                        showMessage("Choose Exacly 8 Cards", saveDeckLabel);
+                        showMessage("Choose Exactly 8 Cards", saveDeckLabel);
                     }   
                     else
                     {
@@ -415,7 +415,7 @@ public class MenuController
         } 
         catch (Exception e) 
         {
-            //TODO: handle exception
+            e.printStackTrace();
         }
     }
 
@@ -435,7 +435,7 @@ public class MenuController
         } 
         catch (Exception e) 
         {
-            //TODO: handle exception
+            e.printStackTrace();
         }
     }
 

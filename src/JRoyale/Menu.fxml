@@ -319,10 +319,10 @@
                   </ImageView>
                   <TableView fx:id="historyTable" layoutX="300.0" layoutY="35.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-border-color: #0e3c57; -fx-border-width: 6; -fx-font-size: 14px;">
                     <columns>
-                      <TableColumn fx:id="botDifficultyColumn" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #3d4f8d;" text="Bot Difficulty" />
-                      <TableColumn fx:id="playerStarsColumn" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #0c75b2;" text="Player Stars" />
-                        <TableColumn fx:id="botStarsColumn" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #0c75b2;" text="Bot Stars" />
-                        <TableColumn fx:id="winnerColumn" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #d79b11;" text="Winner" />
+                      <TableColumn fx:id="botDifficultyColumn" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #3d4f8d; -fx-font-size: 20;" text="Bot Difficulty" />
+                      <TableColumn fx:id="playerStarsColumn" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #0c75b2; -fx-font-size: 20;" text="Player Stars" />
+                        <TableColumn fx:id="botStarsColumn" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #0c75b2; -fx-font-size: 20;" text="Bot Stars" />
+                        <TableColumn fx:id="winnerColumn" editable="false" prefWidth="75.0" sortable="false" style="-fx-background-color: #d79b11; -fx-font-size: 20;" text="Winner" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -707,6 +707,8 @@ public class BattleController
     
     private void openMenu()
     {
+        battleBackgroundMusic.stop();
+
         Stage stage = (Stage)arenaPane.getScene().getWindow();
         Parent root;
         try 

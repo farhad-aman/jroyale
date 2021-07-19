@@ -42,6 +42,8 @@ public class Creature
      */
     private int status;
 
+    private int oldStatus;
+
     private int statusTime = 0;
 
     /**
@@ -113,7 +115,8 @@ public class Creature
         {
             this.status = 1;
         }
-        
+        oldStatus = status;
+
         underRage = false;
         rageTimeRemained = 0;
 
@@ -273,6 +276,16 @@ public class Creature
             if(rageTimeRemained == 0)
                 underRage = false;
         }
+
+        if(oldStatus != status)
+            statusTime += 1000 / GameManager.FPS;
+
+        if(statusTime >= 500 && status != oldStatus) {
+            statusTime = 0;
+            oldStatus = status;
+        }
+        else
+            status = oldStatus;
     }
 
     /**
@@ -386,7 +399,7 @@ public class Creature
 
     private void pixelMove()
     {// System.out.println("pixel move working346");
-        if(moveAvoided == 0){
+//        if(moveAvoided == 0){
             ArrayList<Point2D> probablePositions = new ArrayList<>();
 
             if (notInViewRange(position.add(side * (moveAvoided + 1), 0)))
@@ -434,9 +447,10 @@ public class Creature
 ////            System.out.println("moving struggle390");
 //            moveCreaturesBackward(findInViewRangeCreatures(position));
 //            }
-        }
+//        }
         else{
-
+            System.out.println("move avoided :" + moveAvoided);
+            moveAvoided++;
         }
     }
     /**
@@ -510,6 +524,8 @@ public class Creature
                     return new Point2D(680, position.getY());
                 else if(position.getX() != 600 && side == -1 && target.getPosition().getX() < position.getX())
                     return new Point2D(600, position.getY());
+                else
+                    return target.position;
             }
         }
         else if((bridgeStatus == 1 || bridgeStatus == 4) && side == -1){
@@ -536,7 +552,7 @@ public class Creature
                 return newTarget;
             }
         }
-        System.out.println("?!?!?!?!?!?!");
+        System.out.println(card.getId() + "\t?!?!?!?!?!?!");
         return target.position;
     }
 
