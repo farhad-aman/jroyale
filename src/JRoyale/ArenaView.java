@@ -72,7 +72,16 @@ public class ArenaView extends Group
                 ProgressBar pb = new ProgressBar(1);
                 pb.setLayoutX(c.getPosition().getX() - (c.getCard().getImageSize() / 2));
                 pb.setLayoutY(c.getPosition().getY() - (c.getCard().getImageSize() / 2) - 15);
+                pb.setPrefHeight(10);
                 pb.setPrefWidth(c.getCard().getImageSize());
+                if(c.getSide() == 1)
+                {
+                    pb.setStyle("-fx-accent: green");
+                }
+                else
+                {
+                    pb.setStyle("-fx-accent: red");
+                }
                 pb.setPickOnBounds(true);
                 if(!(c.getCard() instanceof Spell))
                 {
