@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 import javafx.geometry.Point2D;
@@ -39,11 +40,15 @@ public class Bot1 extends Bot
                 int y = random.nextInt(700);
                 x += 700;
                 y += 10;
-                Creature creature = chosenCard.makeCreature(new Point2D(x, y), -1).get(0);
-                battle.getArena().getCreatures().add(creature);
+                ArrayList<Creature> cretures = chosenCard.makeCreature(new Point2D(x, y), -1);
+                for(Creature c : cretures)
+                {
+                    battle.getArena().getCreatures().add(c);
+                }
                 battle.getBotCardsQueue().remove(cardNumber);
                 battle.getBotCardsQueue().add(0, chosenCard);
                 battle.getBotElixirBar().takeExir(chosenCard.getCost());
+
             }
         }
     }
