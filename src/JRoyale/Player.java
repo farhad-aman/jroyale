@@ -96,14 +96,16 @@ public class Player
 
         try
         {
+            System.out.println("salam" + '\"' + xp + '\"');
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
 
             Connection con = DriverManager.getConnection(url, "root", GameManager.dbPassword);
             Statement st = con.createStatement();
 
-            String insertion = "insert into gameHistory values(userName = " + '\"' + username + '\"' + ", botDifficulty = " + '\"' + battleResult.getBotDifficulty() + '\"' + ", yourScore = " + '\"' + battleResult.getYourScore() + '\"' + ", enemyScore = " + '\"' + battleResult.getEnemyScore() + '\"' + ")";
+            String insertion = "insert into gameHistory values(" + '\"' + username + '\"' + ", " + '\"' + battleResult.getBotDifficulty() + '\"' + ", " + '\"' + battleResult.getYourScore() + '\"' + ", " + '\"' + battleResult.getEnemyScore() + '\"' + ")";
             st.execute(insertion);
+            System.out.println("salam" + '\"' + xp + '\"');
 
             st.close();
             con.close();

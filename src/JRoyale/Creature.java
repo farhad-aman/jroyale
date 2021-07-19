@@ -253,8 +253,6 @@ public class Creature
                 lifeTime -= 1000 / GameManager.FPS;
                 hp -= (((Building) card).getInitHP(level) / (((Building)card).getInitLifeTime() / 1000.0)) / GameManager.FPS;
                 hp = Math.max(hp, 0);
-                if(card instanceof Cannon)
-                    System.out.println("cannon hp decreased : amount: " + (((Building) card).getInitHP(level) / (((Building)card).getInitLifeTime() / 1000.0)) / GameManager.FPS + "inithp : " + (((Building) card).getInitHP(level)) + " : lifeTime: " + (((Building)card).getInitLifeTime() / 1000.0));
             } else {
                 hp = 0;
             }
