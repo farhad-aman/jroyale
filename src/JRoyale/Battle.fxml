@@ -24,8 +24,8 @@
             </ImageView>
             <Line fx:id="leftUpLine" endX="-207.0" endY="186.0" layoutX="807.0" layoutY="172.0" startX="-207.0" startY="-172.0" stroke="#e40e0e" strokeWidth="8.0" visible="false" />
             <Line fx:id="upMiddleLine" endX="-46.0" endY="220.60000610351562" layoutX="886.0" layoutY="135.0" startX="-46.0" startY="-135.0" stroke="#e40e0e" strokeWidth="8.0" visible="false" />
-            <Line fx:id="downMiddleLine" endX="-141.199951171875" endY="315.0" layoutX="982.0" layoutY="405.0" startX="-141.199951171875" startY="-49.399993896484375" stroke="#e40e0e" strokeWidth="8.0" visible="false" />
-            <Line fx:id="middleLine" endX="-378.0" endY="67.60000610351562" layoutX="978.0" layoutY="292.0" startX="-137.199951171875" startY="67.60000610351562" stroke="#e40e0e" strokeWidth="8.0" visible="false" />
+            <Line fx:id="downMiddleLine" endX="-141.199951171875" endY="315.0" layoutX="982.0" layoutY="405.0" startX="-141.199951171875" startY="-41.399993896484375" stroke="#e40e0e" strokeWidth="8.0" visible="false" />
+            <Line fx:id="middleLine" endX="-374.800048828125" endY="67.60000610351562" layoutX="978.0" layoutY="292.0" startX="-141.199951171875" startY="67.60000610351562" stroke="#e40e0e" strokeWidth="8.0" visible="false" />
             <Line fx:id="downRightLine" endX="345.0" endY="213.0" layoutX="495.0" layoutY="507.0" startX="785.0" startY="213.0" stroke="#e40e0e" strokeWidth="8.0" visible="false" />
             <Line fx:id="upRightLine" endX="258.0" endY="-292.0" layoutX="1022.0" layoutY="292.0" startX="-182.0" startY="-292.0" stroke="#e40e0e" strokeWidth="8.0" visible="false" />
             <Line fx:id="rightLine" endX="229.0" endY="584.0" layoutX="1051.0" layoutY="130.0" startX="229.0" startY="-130.0" stroke="#e40e0e" strokeWidth="8.0" visible="false" />

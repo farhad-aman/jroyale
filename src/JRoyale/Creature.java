@@ -487,7 +487,7 @@ public class Creature
                 return new Point2D(bridge.getX(), bridge.getY() + 20);
         }
         else if(bridgeStatus == 2 || bridgeStatus == 5){ //System.out.println(card.getId() + "\tbridge status :" + bridgeStatus);
-            if(ebs == 2 || ebs == 5){
+            if(ebs == 2 || (ebs == 5)){
                 if ((target.position.getX() + position.getX()) / 2 < 640) {
                     return new Point2D(600, position.getY());
                 } else if ((target.position.getX() + position.getX()) / 2 > 640) {
@@ -498,12 +498,10 @@ public class Creature
                 }
             }
             else {
-//                if(position.getX() != 600 && position.getX() != 680)
-                    return target.getPosition();
-//                else {
-////                    System.out.println(card.getId() + " : " + position.getX() + ", " + position.getY() + "\tbridge status: " + bridgeStatus + "\ttarget position : " + target.getPosition().getX() + ", " + target.position.getY());
-//                    return target.getPosition();
-//                }
+                if(position.getX() != 680 && side == 1 && target.getPosition().getX() > position.getX())
+                    return new Point2D(680, position.getY());
+                else if(position.getX() != 600 && side == -1 && target.getPosition().getX() < position.getX())
+                    return new Point2D(600, position.getY());
             }
         }
         else if((bridgeStatus == 1 || bridgeStatus == 4) && side == -1){

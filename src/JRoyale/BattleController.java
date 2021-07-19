@@ -358,17 +358,16 @@ public class BattleController
         while (it.hasNext()){//System.out.println("249");
             Creature c = it.next();
             //System.out.println("line 248");
-            if(c.getPosition().distance(point) < 10 && ((!(chosenCard instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((chosenCard instanceof Dragon) && (c.getCard() instanceof Dragon)))) {
-                return false;
-            }
-            else if(c.getCard() instanceof Building && c.getPosition().distance(point) < 40 && !(chosenCard instanceof Dragon)){ //System.out.println("252");
-                return false;
-            }
-            else if(c.getCard() instanceof King && c.getPosition().distance(point) < 80 && !(chosenCard instanceof Dragon)) { //System.out.println("255");
-                return false;
-            }
-            else if(c.getCard() instanceof Princess && c.getPosition().distance(point) < 60 && !(chosenCard instanceof Dragon)) {// System.out.println("258");
-                return false;
+            if(!(chosenCard instanceof Spell)){
+                if (c.getPosition().distance(point) < 10 && ((!(chosenCard instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((chosenCard instanceof Dragon) && (c.getCard() instanceof Dragon)))) {
+                    return false;
+                } else if (c.getCard() instanceof Building && c.getPosition().distance(point) < 40 && !(chosenCard instanceof Dragon)) { //System.out.println("252");
+                    return false;
+                } else if (c.getCard() instanceof King && c.getPosition().distance(point) < 80 && !(chosenCard instanceof Dragon)) { //System.out.println("255");
+                    return false;
+                } else if (c.getCard() instanceof Princess && c.getPosition().distance(point) < 60 && !(chosenCard instanceof Dragon)) {// System.out.println("258");
+                    return false;
+                }
             }
         }// System.out.println("261");
         return true;
