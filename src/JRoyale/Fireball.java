@@ -26,7 +26,7 @@ public class Fireball extends Spell
 
     @Override
     public void step(Creature creature)
-    {System.out.println("********************firBall is true");
+    {
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 
         while (it.hasNext()) 

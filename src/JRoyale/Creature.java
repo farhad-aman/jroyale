@@ -298,15 +298,17 @@ public class Creature
         if(hitStepValue >= hitSpeed) 
         {
             if(card instanceof Inferno){
-                creature.getHit(((Inferno) card).calculateInfernoDamage(level), position.getX() < creature.position.getX() ? 6 : 5);
+                creature.getHit(((Inferno) card).calculateInfernoDamage(level, underRage), position.getX() < creature.position.getX() ? 6 : 5);
                 ((Inferno) card).addTempTargetTime(creature);
             }
             else{
                 if (card instanceof Troop && ((Troop) card).isAreaSplash()) {
                     if (card instanceof Valkyrie) {
-                        for (Creature c : GameManager.getInstance().getBattle().getArena().getCreatures())
-                            if (c.getPosition().distance(position) < 40 && c.getSide() != side && (c.getCard().getType().equals("ground") || c.getCard().getType().equals("building")))
+                        for (Creature c : GameManager.getInstance().getBattle().getArena().getCreatures()) {
+                            System.out.println("valkyrie is working");
+                            if (c.getPosition().distance(position) < 100 && c.getSide() != side && (c.getCard().getType().equals("ground") || c.getCard().getType().equals("building")))
                                 c.getHit((damage * (underRage ? 1.4 : 1)), position.getX() < c.position.getX() ? 6 : 5);
+                        }
                     } else {
                         for (Creature c : GameManager.getInstance().getBattle().getArena().getCreatures())
                             if (c.getPosition().distance(creature.position) < 40 && c.getSide() != side)
@@ -504,22 +506,26 @@ public class Creature
         else if((bridgeStatus == 1 || bridgeStatus == 4) && side == -1){
             Point2D newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
 
-            if(position.distance(newTarget) > position.distance(target.position))
-                newTarget = target.position;
-            if(position.distance(newTarget) > position.distance(new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 580)))
-                newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 580);
+            if(target.getPosition().getX() > position.getX()){
+                if (position.distance(newTarget) > position.distance(target.position))
+                    newTarget = target.position;
+                if (position.distance(newTarget) > position.distance(new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 580)))
+                    newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 580);
 
-            return newTarget;
+                return newTarget;
+            }
         }
         else if((bridgeStatus == 3 || bridgeStatus == 6) && side == 1){
             Point2D newTarget = new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
 
-            if(position.distance(newTarget) > position.distance(target.position))
-                newTarget = target.position;
-            if(position.distance(newTarget) > position.distance(new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 580)))
-                newTarget = new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 580);
+            if(target.getPosition().getX() < position.getX()){
+                if (position.distance(newTarget) > position.distance(target.position))
+                    newTarget = target.position;
+                if (position.distance(newTarget) > position.distance(new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 580)))
+                    newTarget = new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 580);
 
-            return newTarget;
+                return newTarget;
+            }
         }
         System.out.println("?!?!?!?!?!?!");
         return target.position;

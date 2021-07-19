@@ -28,7 +28,6 @@ public class Rage extends Spell
     @Override
     public void step(Creature creature)
     {
-        System.out.println("***************************rage is true");
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 
         while (it.hasNext()) 

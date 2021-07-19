@@ -41,10 +41,10 @@ public class Inferno extends Building
         pics.put(1, new Image("resources/cards/inferno/inferno.gif"));
     }
 
-    public double calculateInfernoDamage(int level){
+    public double calculateInfernoDamage(int level, boolean underRage){
         if(tempTarget == null)
             return 0;
-        double damage =  ((maxDamage[level] - minDamage[level]) / 10) *  ((Math.min(tempTargetTime, 10000)) / 1000) + minDamage[level];
+        double damage =  (((maxDamage[level] - minDamage[level]) / 10) *  ((Math.min(tempTargetTime, 10000)) / 1000) + minDamage[level]) * (underRage ? 1.4 : 1);
         return damage;
     }
 

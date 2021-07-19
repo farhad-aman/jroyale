@@ -256,7 +256,6 @@ public class BattleController
                 });
             }
         };
-
         Thread showThread = new Thread(task);
         showThread.start();
     }
