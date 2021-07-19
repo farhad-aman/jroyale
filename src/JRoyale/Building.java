@@ -1,3 +1,5 @@
+import javafx.scene.media.MediaPlayer;
+
 public abstract class Building extends Card
 {
     private final int hitSpeed;
@@ -14,9 +16,11 @@ public abstract class Building extends Card
                     int imageSize, 
                     double range, 
                     int initLifeTime, 
-                    int[] initHP) 
+                    int[] initHP,
+                    MediaPlayer attackSound,
+                    MediaPlayer deathSound) 
     {
-        super(type, id, cost, range, target, imageSize);
+        super(type, id, cost, range, target, imageSize, attackSound, deathSound);
         this.hitSpeed = hitSpeed;
         this.initLifeTime = initLifeTime;
         this.initHP = initHP;

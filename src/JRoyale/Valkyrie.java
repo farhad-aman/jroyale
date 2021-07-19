@@ -1,4 +1,8 @@
+import java.io.File;
+
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Valkyrie extends Troop
 {
@@ -16,7 +20,9 @@ public class Valkyrie extends Troop
               true, 
               1, 
               new int[] {0, 880, 968, 1064, 1170, 1284}, 
-              new int[] {0, 120, 132, 145, 159, 175});
+              new int[] {0, 120, 132, 145, 159, 175},
+              new MediaPlayer(new Media(new File("resources/cards/valkyrie/valkyrieAttack.mp3").toURI().toString())),
+              new MediaPlayer(new Media(new File("resources/cards/valkyrie/valkyrieDeath.mp3").toURI().toString())));
     }
     
     /**

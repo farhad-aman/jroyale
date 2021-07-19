@@ -1,5 +1,8 @@
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.util.Iterator;
 
 public class Arrows extends Spell
@@ -8,7 +11,7 @@ public class Arrows extends Spell
 
     public Arrows() 
     {
-        super("spell", "Arrows", 3, 4, 100);
+        super("spell", "Arrows", 3, 4, 100, new MediaPlayer(new Media(new File("resources/cards/arrows/arrowsAttack.mp3").toURI().toString())));
     }
 
     /**

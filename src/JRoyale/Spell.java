@@ -1,12 +1,10 @@
-import java.util.ArrayList;
-
-import javafx.geometry.Point2D;
+import javafx.scene.media.MediaPlayer;
 
 public abstract class Spell extends Card
 {
-    public Spell(String type, String id, int cost, double range, int imageSize)
+    public Spell(String type, String id, int cost, double range, int imageSize, MediaPlayer attackSound)
     {
-        super(type, id, cost, range, "junk", imageSize);
+        super(type, id, cost, range, "junk", imageSize, attackSound, null);
     }
 
     @Override

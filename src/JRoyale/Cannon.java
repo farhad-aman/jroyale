@@ -1,4 +1,8 @@
+import java.io.File;
+
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Cannon extends Building
 { 
@@ -6,7 +10,17 @@ public class Cannon extends Building
 
     public Cannon() 
     {
-        super("building", "Cannon", 3, 800, "ground", 100, 5.5, 30000, new int[] {0, 380, 418, 459, 505, 554});
+        super("building",
+              "Cannon",
+              3,
+              800,
+              "ground",
+              100, 
+              5.5, 
+              30000, 
+              new int[] {0, 380, 418, 459, 505, 554},
+              new MediaPlayer(new Media(new File("resources/cards/cannon/cannonAttack.mp3").toURI().toString())),
+              new MediaPlayer(new Media(new File("resources/cards/cannon/cannonDeath.mp3").toURI().toString())));
     }
 
     /**

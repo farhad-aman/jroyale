@@ -1,4 +1,8 @@
+import java.io.File;
+
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Pekka extends Troop
 {
@@ -16,7 +20,9 @@ public class Pekka extends Troop
               false, 
               1, 
               new int[] {0, 600, 660, 726, 798, 876}, 
-              new int[] {0, 325, 357, 393, 432, 474});
+              new int[] {0, 325, 357, 393, 432, 474},
+              new MediaPlayer(new Media(new File("resources/cards/pekka/pekkaAttack.mp3").toURI().toString())),
+              new MediaPlayer(new Media(new File("resources/cards/pekka/pekkaDeath.mp3").toURI().toString())));
     }
 
     /**

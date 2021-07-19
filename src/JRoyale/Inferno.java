@@ -1,7 +1,8 @@
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.io.File;
 
 public class Inferno extends Building
 {
@@ -12,7 +13,17 @@ public class Inferno extends Building
 
     public Inferno() 
     {
-        super("building", "Inferno", 5, 400, "both", 100, 6, 40000, new int[] {0, 800, 880, 968, 1064, 1168});
+        super("building", 
+              "Inferno", 
+              5, 
+              400, 
+              "both", 
+              100, 
+              6, 
+              40000, 
+              new int[] {0, 800, 880, 968, 1064, 1168},
+              new MediaPlayer(new Media(new File("resources/cards/inferno/infernoAttack.mp3").toURI().toString())),
+              new MediaPlayer(new Media(new File("resources/cards/inferno/infernoDeath.mp3").toURI().toString())));
     }
 
     /**

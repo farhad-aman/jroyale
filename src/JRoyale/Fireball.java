@@ -1,5 +1,8 @@
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.util.Iterator;
 
 public class Fireball extends Spell
@@ -8,7 +11,7 @@ public class Fireball extends Spell
 
     public Fireball() 
     {
-        super("spell", "Fireball", 4, 2.5, 100);
+        super("spell", "Fireball", 4, 2.5, 100, new MediaPlayer(new Media(new File("resources/cards/fireball/fireballAttack.mp3").toURI().toString())));
     }
 
     /**

@@ -1,5 +1,7 @@
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +23,11 @@ public abstract class Card
 
     private final int imageSize;
 
-    public Card(String type, String id, int cost, double range, String target, int imageSize)
+    private final MediaPlayer attackSound;
+
+    private final MediaPlayer deathSound;
+    
+    public Card(String type, String id, int cost, double range, String target, int imageSize, MediaPlayer attackSound, MediaPlayer deathSound)
     {
         this.type = type;
         this.pics = new HashMap<>();
@@ -30,6 +36,8 @@ public abstract class Card
         this.range = range;
         this.target = target;
         this.imageSize = imageSize;
+        this.attackSound = attackSound;
+        this.deathSound = deathSound;
     }
 
     public String getId()
@@ -159,5 +167,19 @@ public abstract class Card
                 return true;
         }
         return false;
+    }
+
+    public void playAttackSound()
+    {
+        attackSound.seek(Duration.ZERO);
+        attackSound.setVolume(0.5);
+        attackSound.play();
+    }
+
+    public void playDeathSound()
+    {
+        deathSound.seek(Duration.ZERO);
+        deathSound.setVolume(0.5);
+        deathSound.play();
     }
 }
