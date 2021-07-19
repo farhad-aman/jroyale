@@ -33,8 +33,8 @@ public class ArenaView extends Group
                 {
                     deathTime(c, iv);
                 }
-                iv.setX(c.getPosition().getX() - 25);
-                iv.setY(c.getPosition().getY() - 25);
+                iv.setX(c.getPosition().getX() - (c.getCard().getImageSize() / 2));
+                iv.setY(c.getPosition().getY() - (c.getCard().getImageSize() / 2));
                 if(!oldStatus.get(c).equals(c.getStatus()))
                 {
                     iv.setImage(c.getCard().getImage(c.getStatus()));
@@ -44,12 +44,11 @@ public class ArenaView extends Group
             else
             {
                 oldStatus.put(c, c.getStatus());
-                ImageView iv = new ImageView(c.getCard().getImage(c.getCard() instanceof King || c.getCard() instanceof Princess ? 1 : c.getStatus()));
-                iv.setX(c.getPosition().getX() - (c.getCard() instanceof Giant ? 0 : (c.getCard() instanceof Barbarians ? 15 : 25)));
-                iv.setY(c.getPosition().getY() - (c.getCard() instanceof Giant ? 0 : (c.getCard() instanceof Barbarians ? 15 : 25)));
-                iv.setFitHeight(c.getCard() instanceof Dragon || c.getCard() instanceof Inferno ? 100 : (c.getCard() instanceof Giant ? 120 : (c.getCard() instanceof Archer ? 65 : 75)));
-                iv.setFitWidth(c.getCard() instanceof Dragon || c.getCard() instanceof Inferno ? 100 : (c.getCard() instanceof Giant ? 120 : (c.getCard() instanceof Archer ? 65 : 75)));
-//                System.out.println("\n" + c.getCard().getId() + "\tkill: " + (c.getKillTarget() == null ? "null" : c.getKillTarget().getCard().getId()) + "\tfollow: " + (c.getFollowTarget() == null ? "null" : c.getFollowTarget().getCard().getId()));
+                ImageView iv = new ImageView(c.getCard().getImage(c.getStatus()));
+                iv.setX(c.getPosition().getX() - (c.getCard().getImageSize() / 2));
+                iv.setY(c.getPosition().getY() - (c.getCard().getImageSize() / 2));
+                iv.setFitHeight(c.getCard().getImageSize());
+                iv.setFitWidth(c.getCard().getImageSize());
                 iv.setPreserveRatio(true);
                 iv.setPickOnBounds(true);
                 iv.setVisible(true);

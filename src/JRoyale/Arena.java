@@ -26,7 +26,9 @@ public class Arena
     {
         creatures = new ArrayList<>();
         King king = new King();
+        king.loadImages();
         Princess princess = new Princess();
+        princess.loadImages();
         playerKing = king.makeCreature(new Point2D(80, 360), 1).get(0);
         botKing = king.makeCreature(new Point2D(1200, 360), -1).get(0);
         playerUpPrincess = princess.makeCreature(new Point2D(220, 140), 1).get(0);

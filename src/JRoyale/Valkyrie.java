@@ -11,6 +11,7 @@ public class Valkyrie extends Troop
               1500, 
               2, 
               "ground", 
+              50,
               1, 
               true, 
               1, 

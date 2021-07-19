@@ -11,6 +11,7 @@ public class Giant extends Troop
               1500, 
               1, 
               "building", 
+              100,
               1, 
               false, 
               1, 

@@ -94,8 +94,22 @@ public class Creature
         this.level = level;
         this.position = position;
         this.side = side;
-        this.status = 1;
-
+        if(this.card instanceof King || this.card instanceof Princess)
+        {
+            if(this.side == 1)
+            {
+                this.status = 1;
+            }
+            else
+            {
+                this.status = 2;
+            }
+        }
+        else
+        {
+            this.status = 1;
+        }
+        
         underRage = false;
         rageTimeRemained = 0;
 

@@ -14,6 +14,7 @@ public class Barbarians extends Troop
               1500, 
               2, 
               "ground", 
+              50,
               1, 
               false, 
               4, 

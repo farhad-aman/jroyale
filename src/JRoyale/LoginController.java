@@ -284,7 +284,7 @@ public class LoginController
     @FXML
     void initialize()
     {
-        loginStarted.setVolume(0.05);//volume percentage 0 to 1
+        loginStarted.setVolume(0.2);//volume percentage 0 to 1
         loginStarted.play();
     }
 

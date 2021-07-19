@@ -8,7 +8,7 @@ public class Fireball extends Spell
 
     public Fireball() 
     {
-        super("spell", "Fireball", 4, 2.5);
+        super("spell", "Fireball", 4, 2.5, 100);
     }
 
     /**

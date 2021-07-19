@@ -11,6 +11,7 @@ public class Wizard extends Troop
               1700, 
               2, 
               "both", 
+              50,
               5, 
               true, 
               1, 
