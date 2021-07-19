@@ -69,118 +69,28 @@ public class Battle
     {
         if(scoreBoard.getPlayerStars() == 3)
         {
-            String botDifficulty = "";
-            if(bot.getDifficulty() == 1)
-            {
-                botDifficulty = "easy";
-            }
-            else if(bot.getDifficulty() == 2)
-            {
-                botDifficulty = "normal";
-            }
-            else
-            {
-                botDifficulty = "hard";
-            }
-            player.addBattleResult(new BattleResult(player.getUsername(), botDifficulty, scoreBoard.getPlayerStars(), scoreBoard.getBotStars()));
-            player.setXp(player.getXp() + 200);
             return 1;
         }
         else if(scoreBoard.getBotStars() == 3)
         {
-            String botDifficulty = "";
-            if(bot.getDifficulty() == 1)
-            {
-                botDifficulty = "easy";
-            }
-            else if(bot.getDifficulty() == 2)
-            {
-                botDifficulty = "normal";
-            }
-            else
-            {
-                botDifficulty = "hard";
-            }
-            player.addBattleResult(new BattleResult(player.getUsername(), botDifficulty, scoreBoard.getPlayerStars(), scoreBoard.getBotStars()));
-            player.setXp(player.getXp() + 70);
             return -1;
         }
         else if(battleTimer.getTime() == 0)
         {
             if(scoreBoard.getPlayerStars() > scoreBoard.getBotStars())
             {
-                String botDifficulty = "";
-                if(bot.getDifficulty() == 1)
-                {
-                    botDifficulty = "easy";
-                }   
-                else if(bot.getDifficulty() == 2)
-                {
-                    botDifficulty = "normal";
-                }
-                else
-                {
-                    botDifficulty = "hard";
-                }
-                player.addBattleResult(new BattleResult(player.getUsername(), botDifficulty, scoreBoard.getPlayerStars(), scoreBoard.getBotStars()));
-                player.setXp(player.getXp() + 200);
                 return 1;
             }
             else if(scoreBoard.getBotStars() > scoreBoard.getPlayerStars())
             {
-                String botDifficulty = "";
-                if(bot.getDifficulty() == 1)
-                {
-                    botDifficulty = "easy";
-                }   
-                else if(bot.getDifficulty() == 2)
-                {
-                    botDifficulty = "normal";
-                }
-                else
-                {
-                    botDifficulty = "hard";
-                }
-                player.addBattleResult(new BattleResult(player.getUsername(), botDifficulty, scoreBoard.getPlayerStars(), scoreBoard.getBotStars()));
-                player.setXp(player.getXp() + 70);
                 return -1;
             }
             else if(scoreBoard.getTotalPlayerTowersHP() >= scoreBoard.getTotalBotTowersHP())
             {
-                String botDifficulty = "";
-                if(bot.getDifficulty() == 1)
-                {
-                    botDifficulty = "easy";
-                }   
-                else if(bot.getDifficulty() == 2)
-                {
-                    botDifficulty = "normal";
-                }
-                else
-                {
-                    botDifficulty = "hard";
-                }
-                player.addBattleResult(new BattleResult(player.getUsername(), botDifficulty, scoreBoard.getPlayerStars(), scoreBoard.getBotStars()));
-                player.setXp(player.getXp() + 200);
                 return 1;
             }
             else
             {
-                String botDifficulty = "";
-                if(bot.getDifficulty() == 1)
-                {
-                    botDifficulty = "easy";
-                }   
-                else if(bot.getDifficulty() == 2)
-                {
-                    botDifficulty = "normal";
-                }
-                else
-                {
-                    botDifficulty = "hard";
-                }
-                player.addBattleResult(new BattleResult(player.getUsername(), botDifficulty, scoreBoard.getPlayerStars(), scoreBoard.getBotStars()));
-                player.setXp(player.getXp() + 70);
                 return -1;
             }
         }

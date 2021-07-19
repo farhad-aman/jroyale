@@ -37,6 +37,9 @@ public class BattleController
     private int chosenCardNumber;
 
     private MediaPlayer battleBackgroundMusic = new MediaPlayer(new Media(new File("resources/battle/battleBackgroundMusic.mp3").toURI().toString()));
+    
+    private boolean isBattleFinished;
+    
     @FXML
     private AnchorPane arenaPane;
 
@@ -573,6 +576,37 @@ public class BattleController
     private void finishBattle(int status)
     {
         timer.cancel();
+        timer.purge();
+        if(!isBattleFinished)
+        {
+            Player player = GameManager.getInstance().getCurrentPlayer();
+            Bot bot = GameManager.getInstance().getCurrentBot();
+            ScoreBoard scoreBoard = GameManager.getInstance().getBattle().getScoreBoard();
+            String s = "";
+            if(bot.getDifficulty() == 1)
+            {
+                s = "easy";
+            }
+            else if(bot.getDifficulty() == 2)
+            {
+                s = "normal";
+            }
+            else
+            {
+                s = "hard";
+            }
+            player.addBattleResult(new BattleResult(player.getUsername(), s, scoreBoard.getPlayerStars(), scoreBoard.getBotStars()));
+            if(status == 1)
+            {
+                player.setXp(player.getXp() + 200);
+            }
+            else
+            {
+                player.setXp(player.getXp() + 70);
+            }
+        }
+        isBattleFinished = true;
+        System.out.println("save done");
         //the end -->show the winner and get back to the menu
     }
     
