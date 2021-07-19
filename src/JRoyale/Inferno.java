@@ -12,7 +12,7 @@ public class Inferno extends Building
 
     public Inferno() 
     {
-        super("building", "Inferno", 5, 400, "both", 6, 40000, new int[] {0, 800, 880, 968, 1064, 1168});
+        super("building", "Inferno", 5, 400, "both", 100, 6, 40000, new int[] {0, 800, 880, 968, 1064, 1168});
     }
 
     /**

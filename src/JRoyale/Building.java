@@ -10,12 +10,13 @@ public abstract class Building extends Card
                     String id,
                     int cost, 
                     int hitSpeed, 
-                    String target, 
+                    String target,
+                    int imageSize, 
                     double range, 
                     int initLifeTime, 
                     int[] initHP) 
     {
-        super(type, id, cost, range, target);
+        super(type, id, cost, range, target, imageSize);
         this.hitSpeed = hitSpeed;
         this.initLifeTime = initLifeTime;
         this.initHP = initHP;

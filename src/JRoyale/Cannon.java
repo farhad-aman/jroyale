@@ -6,7 +6,7 @@ public class Cannon extends Building
 
     public Cannon() 
     {
-        super("building", "Cannon", 3, 800, "ground", 5.5, 30000, new int[] {0, 380, 418, 459, 505, 554});
+        super("building", "Cannon", 3, 800, "ground", 100, 5.5, 30000, new int[] {0, 380, 418, 459, 505, 554});
     }
 
     /**

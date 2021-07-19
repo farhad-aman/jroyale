@@ -14,6 +14,7 @@ public class Archer extends Troop
               1200, 
               2, 
               "both", 
+              50,
               5, 
               false, 
               2, 

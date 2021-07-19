@@ -11,6 +11,7 @@ public class Pekka extends Troop
               1800, 
               3, 
               "ground", 
+              60,
               1, 
               false, 
               1, 

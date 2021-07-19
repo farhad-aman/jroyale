@@ -11,6 +11,7 @@ public class Dragon extends Troop
               1800, 
               3, 
               "both", 
+              100,
               3.5, 
               true, 
               1, 
