@@ -3,6 +3,7 @@ import java.util.HashMap;
 
 import javafx.application.Platform;
 import javafx.scene.Group;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 
 public class ArenaView extends Group
@@ -15,11 +16,14 @@ public class ArenaView extends Group
 
     private ArrayList<ImageView> arenaViewImageViews;
 
+    private ArrayList<ProgressBar> arenaViewHPBars;
+
     public ArenaView()
     {
         arenaViewCreatures = new ArrayList<>();
         oldStatus = new HashMap<>();
         arenaViewImageViews = new ArrayList<>();
+        arenaViewHPBars = new ArrayList<>();
     }
 
     public void updateView(Arena arena, BattleController bt)
@@ -29,12 +33,23 @@ public class ArenaView extends Group
             if(arenaViewCreatures.contains(c))
             {
                 ImageView iv = arenaViewImageViews.get(arenaViewCreatures.indexOf(c));
+                ProgressBar pb = arenaViewHPBars.get(arenaViewCreatures.indexOf(c));
                 if(c.isEliminated())
                 {
-                    deathTime(c, iv);
+                    deathTime(c, iv, pb);
                 }
                 iv.setX(c.getPosition().getX() - (c.getCard().getImageSize() / 2));
                 iv.setY(c.getPosition().getY() - (c.getCard().getImageSize() / 2));
+                pb.setLayoutX(c.getPosition().getX() - (c.getCard().getImageSize() / 2));
+                pb.setLayoutY(c.getPosition().getY() - (c.getCard().getImageSize() / 2) - 15);
+                if(c.getCard() instanceof Building)
+                {
+                    pb.setProgress(((double)c.getHP()) / ((Building)c.getCard()).getInitHP(c.getLevel()));
+                }
+                else if(c.getCard() instanceof Troop)
+                {
+                    pb.setProgress(((double)c.getHP()) / ((Troop)c.getCard()).getInitHP(c.getLevel()));
+                }
                 if(!oldStatus.get(c).equals(c.getStatus()))
                 {
                     iv.setImage(c.getCard().getImage(c.getStatus()));
@@ -54,12 +69,23 @@ public class ArenaView extends Group
                 iv.setVisible(true);
                 bt.getArenaPane().getChildren().add(iv);
                 arenaViewImageViews.add(iv);
+                ProgressBar pb = new ProgressBar(1);
+                pb.setLayoutX(c.getPosition().getX() - (c.getCard().getImageSize() / 2));
+                pb.setLayoutY(c.getPosition().getY() - (c.getCard().getImageSize() / 2) - 15);
+                pb.setPrefWidth(c.getCard().getImageSize());
+                pb.setPickOnBounds(true);
+                if(!(c.getCard() instanceof Spell))
+                {
+                    pb.setVisible(true);
+                }
+                bt.getArenaPane().getChildren().add(pb);
+                arenaViewHPBars.add(pb);
                 arenaViewCreatures.add(c);
             }
         }
     }
 
-    public void deathTime(Creature creature, ImageView imageView)
+    public void deathTime(Creature creature, ImageView imageView, ProgressBar progressBar)
     {
         Thread thread = new Thread(new Runnable()
         {
@@ -95,6 +121,7 @@ public class ArenaView extends Group
                     public void run() 
                     {
                         imageView.setVisible(false);
+                        progressBar.setVisible(false);
                     }
                 });       
             }
