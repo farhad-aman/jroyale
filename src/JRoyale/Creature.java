@@ -3,6 +3,7 @@ import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 /**
  * This class contains a creature on the arena 
@@ -161,7 +162,7 @@ public class Creature
 
     public int updateBridgeStatus() 
     {
-        if(position.getY() > 360)
+        if(position.getY() >= 360)
         {
             if(position.getX() < 600)
                 bridgeStatus = 1;
@@ -179,7 +180,7 @@ public class Creature
             else
                 bridgeStatus = 6;
         }
-        if(card instanceof King || card instanceof Princess)
+        if(card instanceof Building)
             bridgeStatus = 0;
 
         return bridgeStatus;
@@ -447,12 +448,16 @@ public class Creature
             else
                 return new Point2D(bridge.getX(), bridge.getY() + 20);
         }
-        else if(bridgeStatus == 2 || bridgeStatus == 5){
-            if((side == 1 || side == -1) && target.getPosition().getX() > position.getX()) {System.out.println("side 1 and bridge status = 5 || 2");
-                return position.distance(target.position) < position.distance(new Point2D(680, target.position.getY())) ? target.position : new Point2D(680, target.position.getY());
+        else if(bridgeStatus == 2 || bridgeStatus == 5){ //System.out.println(card.getId() + "\tbridge status :" + bridgeStatus);
+            if((target.position.getX()  + position.getX()) / 2 < 640){
+                return new Point2D(600, position.getY());
             }
-            else {System.out.println("side -1 and bridge status = 5 || 2");
-                return position.distance(target.position) < position.distance(new Point2D(600, target.position.getY())) ? target.position : new Point2D(600, target.position.getY());
+            else if((target.position.getX()  + position.getX()) / 2 > 640){
+                return new Point2D(680, position.getY());
+            }
+            else{
+                Random rand = new Random();
+                return rand.nextInt() % 2 == 0 ? new Point2D(600, position.getY()) : new Point2D(680, position.getY());
             }
         }
         return target.position;

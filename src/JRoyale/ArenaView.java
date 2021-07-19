@@ -47,9 +47,9 @@ public class ArenaView extends Group
                 ImageView iv = new ImageView(c.getCard().getImage(c.getStatus()));
                 iv.setX(c.getPosition().getX() - 25);
                 iv.setY(c.getPosition().getY() - 25);
-                iv.setFitHeight(c.getCard() instanceof Dragon ? 75 : 50);
-                iv.setFitWidth(c.getCard() instanceof Dragon ? 75 : 50);
-                System.out.println("\n" + c.getCard().getId() + "\nx, y :" + c.getPosition().getX() + ", " + c.getPosition().getY() + "\nkill: " + (c.getKillTarget() == null ? "null" : c.getKillTarget().getCard().getId()) + "\nfollow: " + (c.getFollowTarget() == null ? "null" : c.getFollowTarget().getCard().getId()));
+                iv.setFitHeight(c.getCard() instanceof Dragon || c.getCard() instanceof Inferno ? 100 : (c.getCard() instanceof Giant ? 120 : (c.getCard() instanceof Archer ? 65 : 75)));
+                iv.setFitWidth(c.getCard() instanceof Dragon || c.getCard() instanceof Inferno ? 100 : (c.getCard() instanceof Giant ? 120 : (c.getCard() instanceof Archer ? 65 : 75)));
+                System.out.println("\n" + c.getCard().getId() + "\tkill: " + (c.getKillTarget() == null ? "null" : c.getKillTarget().getCard().getId()) + "\tfollow: " + (c.getFollowTarget() == null ? "null" : c.getFollowTarget().getCard().getId()));
                 iv.setPreserveRatio(true);
                 iv.setPickOnBounds(true);
                 iv.setVisible(true);

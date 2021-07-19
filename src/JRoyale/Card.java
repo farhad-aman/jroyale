@@ -135,21 +135,23 @@ public abstract class Card
             Creature tempCreature = it.next();
             double tempDistance = creature.getDistance(tempCreature);
 
+            if(creature.getCard() instanceof Giant)
+                System.out.println("giant is recognized");
+//            if(tempCreature.getCard() instanceof Giant)
+//                System.out.println("giant is recognized as a target :");
                 if(creature.getSide() != tempCreature.getSide() && !(tempCreature.getCard() instanceof Spell) && tempDistance < distance && canHit(this.target, tempCreature.getCard().getType()))
                 {
                     target = tempCreature;
                     distance = tempDistance;
                 }
         }
-        if(creature.getCard() instanceof Giant)
-            System.out.println("giant nearest target :" + id);
         return target;
     }
 
     private boolean canHit(String ability, String targetType){
         if(ability.equals("both") || ability.equals(targetType))
             return true;
-        else if(ability.equals("ground") && targetType.equals("building")){
+        if(ability.equals("ground") && targetType.equals("building")){
                 return true;
         }
         return false;
