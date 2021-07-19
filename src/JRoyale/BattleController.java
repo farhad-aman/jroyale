@@ -180,7 +180,7 @@ public class BattleController
     private boolean checkTowerStatus(double x, double y) {//System.out.println("line 181");
         if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
 //            System.out.println("line 183");
-            return x <= 880;
+            return x <= 840;
         }
         else if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()) {
 //            System.out.println("line 186");
@@ -188,10 +188,10 @@ public class BattleController
         }
         else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
 //            System.out.println("line 190");
-            return x <= 600 || (x <= 880 && y <= 360);
+            return x <= 600 || (x <= 840 && y >= 360);
         }
         else {//System.out.println("line 192");
-            return x <= 600 || (x <= 880 && y >= 360);
+            return x <= 600 || (x <= 840 && y <= 360);
         }
     }
     

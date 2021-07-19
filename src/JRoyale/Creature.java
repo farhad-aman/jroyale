@@ -194,7 +194,7 @@ public class Creature
             else
                 bridgeStatus = 6;
         }
-        if(card instanceof Building)
+        if(card instanceof King || card instanceof Princess)
             bridgeStatus = 0;
 
         return bridgeStatus;
@@ -280,7 +280,7 @@ public class Creature
         hp -= damage;
         if(hp <= 0)
         {
-            status = tempStatus;
+//            status = tempStatus;
 
             hp = 0;
             return true;
@@ -364,6 +364,8 @@ public class Creature
             if (card instanceof Troop)
                 pixelMove();
         }
+        if(card instanceof Wizard)
+            hitStepValue = 0;
     }
 
     private int calculateRageEffect(int speed) {
@@ -454,7 +456,7 @@ public class Creature
         int ebs = target.updateBridgeStatus();
         bridgeStatus= updateBridgeStatus();
 
-        if(ebs == bridgeStatus || (ebs == 1 && bridgeStatus == 4) || (ebs == 4 && bridgeStatus == 1) || (ebs == 3 && bridgeStatus == 6) || (ebs == 6 && bridgeStatus == 3) || card instanceof Dragon){
+        if(ebs == 0 || ebs == bridgeStatus || (ebs == 1 && bridgeStatus == 4) || (ebs == 4 && bridgeStatus == 1) || (ebs == 3 && bridgeStatus == 6) || (ebs == 6 && bridgeStatus == 3) || card instanceof Dragon){
             return target.position;
         }
         else if((bridgeStatus == 1 || bridgeStatus == 4) && side == 1){
@@ -491,12 +493,12 @@ public class Creature
                 }
             }
             else {
-                if(position.getX() != 600 && position.getX() != 680)
-                    return target.getPosition().distance(680, position.getY()) < target.getPosition().distance(600, position.getY()) ? new Point2D(680, position.getY()) : new Point2D(600, position.getY());
-                else {
-//                    System.out.println(card.getId() + " : " + position.getX() + ", " + position.getY() + "\tbridge status: " + bridgeStatus + "\ttarget position : " + target.getPosition().getX() + ", " + target.position.getY());
+//                if(position.getX() != 600 && position.getX() != 680)
                     return target.getPosition();
-                }
+//                else {
+////                    System.out.println(card.getId() + " : " + position.getX() + ", " + position.getY() + "\tbridge status: " + bridgeStatus + "\ttarget position : " + target.getPosition().getX() + ", " + target.position.getY());
+//                    return target.getPosition();
+//                }
             }
         }
         else if((bridgeStatus == 1 || bridgeStatus == 4) && side == -1){
