@@ -1,7 +1,6 @@
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
-import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -10,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 import java.io.File;
@@ -37,9 +37,38 @@ public class BattleController
     private int chosenCardNumber;
 
     private MediaPlayer battleBackgroundMusic = new MediaPlayer(new Media(new File("resources/battle/battleBackgroundMusic.mp3").toURI().toString()));
-
     @FXML
     private AnchorPane arenaPane;
+
+    @FXML
+    private Line leftUpLine;
+
+    @FXML
+    private Line upMiddleLine;
+
+    @FXML
+    private Line downMiddleLine;
+
+    @FXML
+    private Line middleLine;
+
+    @FXML
+    private Line downRightLine;
+
+    @FXML
+    private Line upRightLine;
+
+    @FXML
+    private Line rightLine;
+
+    @FXML
+    private Line leftDownLine;
+
+    @FXML
+    private Line upLeftLine;
+
+    @FXML
+    private Line downLeftLine;
 
     @FXML
     private ImageView nextCardImageView;
@@ -173,9 +202,65 @@ public class BattleController
                     chosenCard = null;
                     chosenCardNumber = 0;
                 }
+                else if(!checkTowerStatus(x, y))
+                    showBorders(x, y);
             }
         }
     }
+
+    private void showBorders(double x, double y) {
+        if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
+            setVisibility(rightLine, downRightLine, downLeftLine, upLeftLine, upRightLine, leftDownLine, leftUpLine);
+        }else if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
+            setVisibility(upRightLine, upMiddleLine, middleLine, leftDownLine, downRightLine, downLeftLine, rightLine);
+        }else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
+            setVisibility(rightLine, upRightLine, downRightLine, downMiddleLine, upMiddleLine);
+        }else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
+            setVisibility(rightLine, upRightLine, upLeftLine, leftUpLine, middleLine, downMiddleLine,  downRightLine);
+        }
+    }
+
+    private void setVisibility(Line... lines) {
+        Runnable task = new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Platform.runLater(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        for(Line l : lines)
+                            l.setVisible(true);
+                    }
+                });
+
+                try
+                {
+                    Thread.sleep(3000);
+                }
+                catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+
+                Platform.runLater(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        for(Line l : lines)
+                            l.setVisible(false);
+                    }
+                });
+            }
+        };
+
+        Thread showThread = new Thread(task);
+        showThread.start();
+    }
+
 
     private boolean checkTowerStatus(double x, double y) {//System.out.println("line 181");
         if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
