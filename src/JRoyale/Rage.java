@@ -28,13 +28,14 @@ public class Rage extends Spell
     @Override
     public void step(Creature creature)
     {
+        System.out.println("***************************rage is true");
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 
         while (it.hasNext()) 
         {
             Creature tempTarget = it.next();
 
-            if(tempTarget.getPosition().distance(creature.getPosition()) <= super.getRange() && creature.getSide() == tempTarget.getSide())
+            if(tempTarget.getPosition().distance(creature.getPosition()) <= (40 * super.getRange()) && creature.getSide() == tempTarget.getSide())
             {
                 tempTarget.setUnderRage(true);
                 tempTarget.setRageTimeRemained(duration[creature.getLevel()]);

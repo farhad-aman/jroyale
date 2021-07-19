@@ -6,10 +6,13 @@ import java.io.File;
 
 public class Inferno extends Building
 {
+    private Creature tempTarget;
 
-    private int[] minDamage = {0, 20, 22, 24, 26, 29};
+    private int tempTargetTime;
 
-    private int[] maxDamage = {0, 400, 440, 484, 532, 584};
+    private final int[] minDamage = {0, 20, 22, 24, 26, 29};
+
+    private final int[] maxDamage = {0, 400, 440, 484, 532, 584};
 
     public Inferno() 
     {
@@ -24,6 +27,8 @@ public class Inferno extends Building
               new int[] {0, 800, 880, 968, 1064, 1168},
               new MediaPlayer(new Media(new File("resources/cards/inferno/infernoAttack.mp3").toURI().toString())),
               new MediaPlayer(new Media(new File("resources/cards/inferno/infernoDeath.mp3").toURI().toString())));
+        tempTarget = null;
+        tempTargetTime = 0;
     }
 
     /**
@@ -36,26 +41,24 @@ public class Inferno extends Building
         pics.put(1, new Image("resources/cards/inferno/inferno.gif"));
     }
 
-    public int getMinDamage(int level)
-    {
-        return minDamage[level];
+    public double calculateInfernoDamage(int level){
+        if(tempTarget == null)
+            return 0;
+        double damage =  ((maxDamage[level] - minDamage[level]) / 10) *  ((Math.min(tempTargetTime, 10000)) / 1000) + minDamage[level];
+        return damage;
     }
 
-    public int getMaxDamage(int level)
-    {
-        return maxDamage[level];
-    }
-
-    
-    @Override
-    public void step(Creature creature) 
-    {
-        // TODO Auto-generated method stub
-        
+    public void addTempTargetTime(Creature tempTarget) {
+        if(tempTarget == this.tempTarget)
+            this.tempTargetTime += 1000 / GameManager.FPS;
+        else {
+            this.tempTarget = tempTarget;
+            tempTargetTime = 0;
+        }
     }
 
     @Override
     public int getDamage(int level) {
-        return 0;//TODO: handle the damage amount
+        return 0;//junk
     }
 }
