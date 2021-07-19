@@ -424,7 +424,7 @@ public class Creature
         bridgeStatus= updateBridgeStatus();
 
         if(position.getX() == 600 || position.getX() == 680)
-            System.out.println(card.getId() + " : " + position.getX() + ", " + position.getY() + "\tbridge status: " + bridgeStatus);
+            System.out.println(card.getId() + " : " + position.getX() + ", " + position.getY() + "\tbridge status: " + bridgeStatus + "\ttarget position : " + target.getPosition().getX() + ", " + target.position.getY());
 
         if(ebs == bridgeStatus || (ebs == 1 && bridgeStatus == 4) || (ebs == 4 && bridgeStatus == 1) || (ebs == 3 && bridgeStatus == 6) || (ebs == 6 && bridgeStatus == 3) || card instanceof Dragon){
             return target.position;
@@ -452,16 +452,18 @@ public class Creature
                 return new Point2D(bridge.getX(), bridge.getY() + 20);
         }
         else if(bridgeStatus == 2 || bridgeStatus == 5){ //System.out.println(card.getId() + "\tbridge status :" + bridgeStatus);
-            if((target.position.getX()  + position.getX()) / 2 < 640){
-                return new Point2D(600, position.getY());
+            if(ebs == 2 || ebs == 5){
+                if ((target.position.getX() + position.getX()) / 2 < 640) {
+                    return new Point2D(600, position.getY());
+                } else if ((target.position.getX() + position.getX()) / 2 > 640) {
+                    return new Point2D(680, position.getY());
+                } else {
+                    Random rand = new Random();
+                    return rand.nextInt() % 2 == 0 ? new Point2D(600, position.getY()) : new Point2D(680, position.getY());
+                }
             }
-            else if((target.position.getX()  + position.getX()) / 2 > 640){
-                return new Point2D(680, position.getY());
-            }
-            else{
-                Random rand = new Random();
-                return rand.nextInt() % 2 == 0 ? new Point2D(600, position.getY()) : new Point2D(680, position.getY());
-            }
+            else
+                return target.getPosition().distance(681, position.getY()) < target.getPosition().distance(599, position.getY()) ? new Point2D(681, position.getY()) : new Point2D(599, position.getY());
         }
         else if((bridgeStatus == 1 || bridgeStatus == 4) && side == -1){
             Point2D newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
