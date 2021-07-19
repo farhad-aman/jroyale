@@ -1,6 +1,11 @@
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
+import javafx.scene.ImageCursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -9,10 +14,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class BattleController 
@@ -36,7 +46,11 @@ public class BattleController
 
     private int chosenCardNumber;
 
+    private MediaPlayer mediaPlayerGo = new MediaPlayer(new Media(new File("resources/battle/go.mp3").toURI().toString()));
+
     private MediaPlayer battleBackgroundMusic = new MediaPlayer(new Media(new File("resources/battle/battleBackgroundMusic.mp3").toURI().toString()));
+    
+    private MediaPlayer battleFinished = new MediaPlayer(new Media(new File("resources/battle/battleFinished.mp3").toURI().toString()));
     
     private boolean isBattleFinished;
     
@@ -603,12 +617,116 @@ public class BattleController
             {
                 player.setXp(player.getXp() + 70);
             }
+            gameManager.finishBattle();
+            battleBackgroundMusic.pause();
+            battleBackgroundMusic.seek(Duration.ZERO);
+            ImageView yourStars = new ImageView();
+            ImageView botStars = new ImageView();
+            Label yourName = new Label();
+            Label botName = new Label();
+            yourStars.setLayoutX(40);
+            yourStars.setLayoutY(60);
+            yourStars.setFitWidth(600);
+            yourStars.setFitHeight(300);
+            yourStars.setImage(new Image("resources/battle/" + scoreBoard.getPlayerStars() + "star.png"));
+            yourStars.setPreserveRatio(true);
+            yourStars.setPickOnBounds(true);
+            yourStars.setVisible(true);
+            arenaPane.getChildren().add(yourStars);
+            botStars.setLayoutX(640);
+            botStars.setLayoutY(60);
+            botStars.setFitWidth(600);
+            botStars.setFitHeight(300);
+            botStars.setImage(new Image("resources/battle/" + scoreBoard.getBotStars() + "star.png"));
+            botStars.setPreserveRatio(true);
+            botStars.setPickOnBounds(true);
+            botStars.setVisible(true);
+            arenaPane.getChildren().add(botStars);
+            yourName.setText(player.getUsername());
+            yourName.setLayoutX(40);
+            yourName.setLayoutY(360);
+            yourName.setPrefWidth(600);
+            yourName.setPrefHeight(300);
+            yourName.setPickOnBounds(true);
+            yourName.setAlignment(Pos.TOP_CENTER);
+            yourName.setFont(new Font("Arial Rounded MT Bold", 100));
+            yourName.setTextFill(Color.BLUE);
+            yourName.setVisible(true);
+            arenaPane.getChildren().add(yourName);
+            botName.setText(bot.getUsername());
+            botName.setLayoutX(640);
+            botName.setLayoutY(360);
+            botName.setPrefWidth(600);
+            botName.setPrefHeight(300);
+            botName.setPickOnBounds(true);
+            botName.setAlignment(Pos.TOP_CENTER);
+            botName.setFont(new Font("Arial Rounded MT Bold", 100));
+            botName.setTextFill(Color.RED);
+            botName.setVisible(true);
+            arenaPane.getChildren().add(botName);
+            
+            Thread thread = new Thread(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    try 
+                    {
+                        Thread.sleep(1000);   
+                    } 
+                    catch (Exception e) 
+                    {
+                    }
+                    battleFinished.setVolume(0.5);
+                    battleFinished.play();
+                    try 
+                    {
+                        Thread.sleep(10000);    
+                    } 
+                    catch (Exception e) 
+                    {
+                    }
+                    Platform.runLater(new Runnable()
+                    {
+                        @Override
+                        public void run() 
+                        {
+                            openMenu();                     
+                        }
+                        
+                    });
+                } 
+            });
+            thread.start();
         }
         isBattleFinished = true;
         System.out.println("save done");
+
         //the end -->show the winner and get back to the menu
     }
     
+    private void openMenu()
+    {
+        Stage stage = (Stage)arenaPane.getScene().getWindow();
+        Parent root;
+        try 
+        {
+            
+            root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+            Scene scene = new Scene(root);
+            scene.setCursor(new ImageCursor(new Image("resources/cursor2.png")));
+            stage.setScene(scene);
+            stage.setX(-10);
+            stage.setY(0);
+        } 
+        catch (IOException e) 
+        {
+            System.out.println("cant read fxml");
+            e.printStackTrace();
+        }
+        System.out.println("Menu opened");
+    }
+
     public AnchorPane getArenaPane() 
     {
         return arenaPane;
@@ -619,8 +737,6 @@ public class BattleController
     {
         playerUsernameLabel.setText(gameManager.getCurrentPlayer().getUsername() + " : ");
         botUsernameLabel.setText(" : " + gameManager.getBattle().getBot().getUsername());
-        
-        MediaPlayer mediaPlayerGo = new MediaPlayer(new Media(new File("resources/battle/go.mp3").toURI().toString()));
         mediaPlayerGo.setVolume(0.2);//volume percentage 0 to 1
         Thread thread = new Thread(new Runnable()
         {
