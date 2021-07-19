@@ -66,7 +66,7 @@ public class LoginController
                @Override
                public void run()
                {
-                    logIn();
+                   logIn();
                    System.out.println("login ok");
                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources\\login\\click1.mp3").toURI().toString()));
                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1

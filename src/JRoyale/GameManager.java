@@ -10,7 +10,7 @@ public class GameManager
 {
     private static GameManager gameManager = new GameManager();
 
-    public static final String dbPassword = "@#$mg200";
+    public static final String dbPassword = "";
 
     public static final int FPS = 20;
     
@@ -43,7 +43,7 @@ public class GameManager
      * */
     public int login(String username, String userPassword)
     {
-        System.out.println("game manager line 41 started");
+        System.out.println(username + " : " + userPassword);
         try 
         {
             System.out.println("game manager line 43 started");
@@ -89,6 +89,7 @@ public class GameManager
         }
         catch (Exception e) 
         {
+            e.printStackTrace();
             return -1;
         }
     }
