@@ -44,11 +44,11 @@ public class ArenaView extends Group
                 pb.setLayoutY(c.getPosition().getY() - (c.getCard().getImageSize() / 2) - 15);
                 if(c.getCard() instanceof Building)
                 {
-                    pb.setProgress(((double)c.getHP()) / ((Building)c.getCard()).getInitHP(c.getLevel()));
+                    pb.setProgress((c.getHP()) / ((Building)c.getCard()).getInitHP(c.getLevel()));
                 }
                 else if(c.getCard() instanceof Troop)
                 {
-                    pb.setProgress(((double)c.getHP()) / ((Troop)c.getCard()).getInitHP(c.getLevel()));
+                    pb.setProgress((c.getHP()) / ((Troop)c.getCard()).getInitHP(c.getLevel()));
                 }
                 if(!oldStatus.get(c).equals(c.getStatus()))
                 {

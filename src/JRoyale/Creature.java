@@ -55,7 +55,7 @@ public class Creature
     /**
      * the current hp of creature
      */
-    private int hp;
+    private double hp;
 
     /**
      * the current life time of the creature
@@ -239,7 +239,7 @@ public class Creature
         this.followTarget = creature;
     }
 
-    public int getHP()
+    public double getHP()
     {
         return hp;
     }
@@ -251,8 +251,10 @@ public class Creature
         if(card instanceof Cannon || card instanceof Inferno){
             if (lifeTime > 0) {
                 lifeTime -= 1000 / GameManager.FPS;
-                hp -= (((Building) card).getInitHP(level) / (((Building)card).getInitLifeTime() / 1000)) / GameManager.FPS;
+                hp -= (((Building) card).getInitHP(level) / (((Building)card).getInitLifeTime() / 1000.0)) / GameManager.FPS;
                 hp = Math.max(hp, 0);
+                if(card instanceof Cannon)
+                    System.out.println("cannon hp decreased : amount: " + (((Building) card).getInitHP(level) / (((Building)card).getInitLifeTime() / 1000.0)) / GameManager.FPS + "inithp : " + (((Building) card).getInitHP(level)) + " : lifeTime: " + (((Building)card).getInitLifeTime() / 1000.0));
             } else {
                 hp = 0;
             }
@@ -295,6 +297,7 @@ public class Creature
      */
     public boolean hit(Creature creature)
     {
+        card.playAttackSound();
         if(hitStepValue >= hitSpeed) 
         {
             if(card instanceof Inferno){
@@ -305,7 +308,6 @@ public class Creature
                 if (card instanceof Troop && ((Troop) card).isAreaSplash()) {
                     if (card instanceof Valkyrie) {
                         for (Creature c : GameManager.getInstance().getBattle().getArena().getCreatures()) {
-                            System.out.println("valkyrie is working");
                             if (c.getPosition().distance(position) < 100 && c.getSide() != side && (c.getCard().getType().equals("ground") || c.getCard().getType().equals("building")))
                                 c.getHit((damage * (underRage ? 1.4 : 1)), position.getX() < c.position.getX() ? 6 : 5);
                         }
@@ -403,11 +405,11 @@ public class Creature
         Point2D tempTargetPosition = findTempTargetPosition();
         probablePositions = inRangePoints(probablePositions);
 
-        if(probablePositions.size() != 0) {//System.out.println("moving successfully369");
+        if(probablePositions.size() != 0 && tempTargetPosition != null) {//System.out.println("moving successfully369");
             Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
             setPositionAndStatus(newPosition);//System.out.println("moving successfully finished?!?!?!?!?!?371");
         }
-        else
+        else if(tempTargetPosition != null)
         {
             ArrayList<Point2D> allPositions = new ArrayList<>();
 
@@ -558,7 +560,7 @@ public class Creature
             Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
             probablePositions = inRangePoints(probablePositions);
 
-            if (probablePositions.size() != 0) {//System.out.println("moving creature backward successfully481");
+            if (probablePositions.size() != 0 && tempTargetPosition != null) {//System.out.println("moving creature backward successfully481");
                 Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
                 setPositionAndStatus(newPosition);
             }

@@ -44,8 +44,7 @@ public class Inferno extends Building
     public double calculateInfernoDamage(int level, boolean underRage){
         if(tempTarget == null)
             return 0;
-        double damage =  (((maxDamage[level] - minDamage[level]) / 10) *  ((Math.min(tempTargetTime, 10000)) / 1000) + minDamage[level]) * (underRage ? 1.4 : 1);
-        return damage;
+        return (((maxDamage[level] - minDamage[level]) / 10.0) *  ((Math.min(tempTargetTime, 10000.0)) / 1000.0) + minDamage[level]) * (underRage ? 1.4 : 1);
     }
 
     public void addTempTargetTime(Creature tempTarget) {
