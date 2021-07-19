@@ -220,7 +220,8 @@ public class Creature
         return followTarget;
     }
 
-    public int getStatus() {
+    public int getStatus() 
+    {
         return status;
     }
 
@@ -295,9 +296,9 @@ public class Creature
      */
     public boolean hit(Creature creature)
     {
-        card.playAttackSound();
         if(hitStepValue >= hitSpeed) 
         {
+            card.playAttackSound();
             if(card instanceof Inferno){
                 creature.getHit(((Inferno) card).calculateInfernoDamage(level, underRage), position.getX() < creature.position.getX() ? 6 : 5);
                 ((Inferno) card).addTempTargetTime(creature);
