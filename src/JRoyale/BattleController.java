@@ -198,16 +198,27 @@ public class BattleController
     private ArrayList<Point2D> findPositions(double x, double y, int number) 
     {
         ArrayList<Point2D> points = new ArrayList<>();
-        double newX;
-        double newY;
-//        System.out.println("line 201");
-        for(int i = 0;i < number;i++){
-            newX = x + 40 * ((x <= 300 || (x <= 980 && x >= 680)) ? i : -1 * i);
-            newY = (y < 360 ? i : i * -1) * 40 + y;
+        double newX = x;
+        double newY = y;
 
-            if(isAppropriate(new Point2D(newX, newY))){
-                points.add(new Point2D(newX, newY));//System.out.println("line 207");
-            }
+        if(number == 1 && isAppropriate(new Point2D(x, y))) {
+            points.add(new Point2D(x, y));
+            return points;
+        }
+        //((x <= 300 || (x <= 980 && x >= 680))? i : -1 * i)
+        //(y < 360 ? i : i * -1)
+        int r = 20;
+        while (r <= 60){
+            if(isAppropriate(new Point2D(x - r, y - r)))
+                points.add(new Point2D(x - r, y - r));
+            if(isAppropriate(new Point2D(x + r, y + r)))
+                points.add(new Point2D(x + r, y + r));
+            if(isAppropriate(new Point2D(x + r, y - r)))
+                points.add(new Point2D(x + r, y - r));
+            if(isAppropriate(new Point2D(x - r, y + r)))
+                points.add(new Point2D(x - r, y + r));
+
+            r += 7;
         }
         Random rand = new Random();
         while (points.size() < number)

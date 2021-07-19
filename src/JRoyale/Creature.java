@@ -165,7 +165,7 @@ public class Creature
         {
             if(position.getX() < 600)
                 bridgeStatus = 1;
-            else if(position.getX() >= 600 && position.getX() <= 680)
+            else if(position.getX() >= 600 && position.getX() <= 680 && position.getY() <= 620 && position.getY() >= 540)
                 bridgeStatus = 2;
             else
                 bridgeStatus = 3;
@@ -174,7 +174,7 @@ public class Creature
         {
             if(position.getX() < 600)
                 bridgeStatus = 4;
-            else if(position.getX() >= 600 && position.getX() <= 680)
+            else if(position.getX() >= 600 && position.getX() <= 680 && position.getY() <= 180 && position.getY() >= 100)
                 bridgeStatus = 5;
             else
                 bridgeStatus = 6;
