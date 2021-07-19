@@ -125,7 +125,7 @@ public class Creature
         if(card instanceof Building)
         {
             this.hp = ((Building)card).getInitHP(level);
-            this.lifeTime = ((Building)card).getInitHP(level);
+            this.lifeTime = ((Building)card).getInitLifeTime();
         }
         else if(card instanceof Troop)
         {
@@ -248,6 +248,19 @@ public class Creature
     {
         card.step(this);
 
+        if(card instanceof Cannon || card instanceof Inferno){
+            if (lifeTime > 0) {
+                lifeTime -= 1000 / GameManager.FPS;
+                hp -= (((Building) card).getInitHP(level) / (((Building)card).getInitLifeTime() / 1000)) / GameManager.FPS;
+                hp = Math.max(hp, 0);
+            } else {
+                hp = 0;
+            }
+            if(card instanceof Inferno){
+                status = 1;
+            }
+        }
+
         if(underRage)
         {
             rageTimeRemained -= 1000 / GameManager.FPS;
@@ -262,7 +275,7 @@ public class Creature
      * @param damage
      * @return true if target eliminated else false
      */
-    public boolean getHit(int damage, int tempStatus)
+    public boolean getHit(double damage, int tempStatus)
     {
         hp -= damage;
         if(hp <= 0)
@@ -284,21 +297,24 @@ public class Creature
     {
         if(hitStepValue >= hitSpeed) 
         {
-            if(card instanceof Troop && ((Troop) card).isAreaSplash()) {
-                if(card instanceof Valkyrie){
-                    for(Creature c : GameManager.getInstance().getBattle().getArena().getCreatures())
-                        if(c.getPosition().distance(position) < 40 && c.getSide() != side && (c.getCard().getType().equals("ground") || c.getCard().getType().equals("building")))
-                            c.getHit((int) (damage * (underRage ? 1.4 : 1)), position.getX() < c.position.getX() ? 6 : 5);
-                }
-                else{
-                    for(Creature c : GameManager.getInstance().getBattle().getArena().getCreatures())
-                        if(c.getPosition().distance(creature.position) < 40 && c.getSide() != side)
-                            c.getHit((int) (damage * (underRage ? 1.4 : 1)), position.getX() < c.position.getX() ? 6 : 5);
-                }
+            if(card instanceof Inferno){
+                creature.getHit(((Inferno) card).calculateInfernoDamage(level), position.getX() < creature.position.getX() ? 6 : 5);
+                ((Inferno) card).addTempTargetTime(creature);
             }
-            else
-                creature.getHit((int) (damage * (underRage ? 1.4 : 1)), position.getX() < creature.position.getX() ? 6 : 5);
-
+            else{
+                if (card instanceof Troop && ((Troop) card).isAreaSplash()) {
+                    if (card instanceof Valkyrie) {
+                        for (Creature c : GameManager.getInstance().getBattle().getArena().getCreatures())
+                            if (c.getPosition().distance(position) < 40 && c.getSide() != side && (c.getCard().getType().equals("ground") || c.getCard().getType().equals("building")))
+                                c.getHit((damage * (underRage ? 1.4 : 1)), position.getX() < c.position.getX() ? 6 : 5);
+                    } else {
+                        for (Creature c : GameManager.getInstance().getBattle().getArena().getCreatures())
+                            if (c.getPosition().distance(creature.position) < 40 && c.getSide() != side)
+                                c.getHit((damage * (underRage ? 1.4 : 1)), position.getX() < c.position.getX() ? 6 : 5);
+                    }
+                } else
+                    creature.getHit((damage * (underRage ? 1.4 : 1)), position.getX() < creature.position.getX() ? 6 : 5);
+            }
             hitStepValue = 0;
         }
         else
@@ -334,7 +350,7 @@ public class Creature
         if(creature != null){
             double distance = creature.getPosition().distance(position);
 
-            if (distance <= card.getRange() * 40 || (creature.getCard() instanceof King && distance <= (card.getRange() + 2) * 40) || (creature.getCard() instanceof Princess && distance <= (card.getRange() + 1.5) * 40) || ((creature.getCard() instanceof Inferno || creature.getCard() instanceof Cannon) && distance <= (card.getRange() + 1) * 40))
+            if (distance <= card.getRange() * 40 || (creature.getCard() instanceof King && distance <= (card.getRange() + 1) * 40) || (creature.getCard() instanceof Princess && distance <= (card.getRange() + 0.5) * 40) || ((creature.getCard() instanceof Inferno || creature.getCard() instanceof Cannon) && distance <= (card.getRange() + 0.5) * 40))
                 return true;
         }
         return false;
@@ -433,12 +449,10 @@ public class Creature
         }
         else
             target = killTarget;
+
 //        System.out.println("finding temp target position417");
         int ebs = target.updateBridgeStatus();
         bridgeStatus= updateBridgeStatus();
-
-        if(position.getX() == 600 || position.getX() == 680)
-            System.out.println(card.getId() + " : " + position.getX() + ", " + position.getY() + "\tbridge status: " + bridgeStatus + "\ttarget position : " + target.getPosition().getX() + ", " + target.position.getY());
 
         if(ebs == bridgeStatus || (ebs == 1 && bridgeStatus == 4) || (ebs == 4 && bridgeStatus == 1) || (ebs == 3 && bridgeStatus == 6) || (ebs == 6 && bridgeStatus == 3) || card instanceof Dragon){
             return target.position;
@@ -476,8 +490,14 @@ public class Creature
                     return rand.nextInt() % 2 == 0 ? new Point2D(600, position.getY()) : new Point2D(680, position.getY());
                 }
             }
-            else
-                return target.getPosition().distance(681, position.getY()) < target.getPosition().distance(599, position.getY()) ? new Point2D(681, position.getY()) : new Point2D(599, position.getY());
+            else {
+                if(position.getX() != 600 && position.getX() != 680)
+                    return target.getPosition().distance(680, position.getY()) < target.getPosition().distance(600, position.getY()) ? new Point2D(680, position.getY()) : new Point2D(600, position.getY());
+                else {
+//                    System.out.println(card.getId() + " : " + position.getX() + ", " + position.getY() + "\tbridge status: " + bridgeStatus + "\ttarget position : " + target.getPosition().getX() + ", " + target.position.getY());
+                    return target.getPosition();
+                }
+            }
         }
         else if((bridgeStatus == 1 || bridgeStatus == 4) && side == -1){
             Point2D newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
@@ -499,6 +519,7 @@ public class Creature
 
             return newTarget;
         }
+        System.out.println("?!?!?!?!?!?!");
         return target.position;
     }
 

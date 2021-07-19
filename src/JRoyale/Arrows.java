@@ -23,16 +23,16 @@ public class Arrows extends Spell
 
     @Override
     public void step(Creature creature)
-    {
+    {System.out.println("*************************arrows is true");
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 
         while (it.hasNext()) 
         {
             Creature tempTarget = it.next();
 
-            if(tempTarget.getPosition().distance(creature.getPosition()) <= super.getRange() && creature.getSide() != tempTarget.getSide())
+            if(tempTarget.getPosition().distance(creature.getPosition()) <= (40 * super.getRange()) && creature.getSide() != tempTarget.getSide())
             {
-                tempTarget.getHit(damage[creature.getLevel()], tempTarget.getSide() == 1 ? 5 : 6);
+                tempTarget.getHit(damage[creature.getLevel()], creature.getPosition().getX() < tempTarget.getPosition().getX() ? 6 : 5);
             }
         }
     }

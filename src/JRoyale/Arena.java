@@ -71,8 +71,8 @@ public class Arena
             Creature c = it.next();
             c.step();
 
-            if(c.getCard() instanceof Spell)
-                it.remove();
+//            if(c.getCard() instanceof Spell)
+//                it.remove();
         }
     }
 
