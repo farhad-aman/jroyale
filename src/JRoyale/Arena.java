@@ -59,7 +59,7 @@ public class Arena
         while(it.hasNext())
         {
             Creature c = it.next();
-            if(c.isEliminated())
+            if(c.isEliminated() && !(c.getCard() instanceof Spell))
             {
                 it.remove();
             }
@@ -71,8 +71,8 @@ public class Arena
             Creature c = it.next();
             c.step();
 
-//            if(c.getCard() instanceof Spell)
-//                it.remove();
+            if(c.getCard() instanceof Spell)
+                it.remove();
         }
     }
 
