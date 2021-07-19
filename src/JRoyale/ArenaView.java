@@ -76,7 +76,7 @@ public class ArenaView extends Group
                 pb.setPrefWidth(c.getCard().getImageSize());
                 if(c.getSide() == 1)
                 {
-                    pb.setStyle("-fx-accent: green");
+                    pb.setStyle("-fx-accent: blue");
                 }
                 else
                 {
