@@ -118,8 +118,10 @@ public class Arena
             c.step();
 
             if(c.getCard() instanceof Spell)
-                it.remove();
+            {
                 c.getCard().playAttackSound();
+                it.remove();
+            }
         }
     }
 

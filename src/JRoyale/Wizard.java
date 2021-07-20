@@ -4,9 +4,15 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * this clss contains wizard card in the game
+ * @version 1.0
+ */
 public class Wizard extends Troop
 {
-
+    /**
+     * creates a new wizard card
+     */
     public Wizard() 
     {
         super("ground",

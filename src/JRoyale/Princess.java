@@ -4,10 +4,21 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * this class contains princess card in the game 
+ * player cant make new creatures from it
+ * @version 1.0
+ */
 public class Princess extends Building
 {
+    /**
+     * the damage of princess 
+     */
     private final int[] damage = {0, 50, 54, 58, 62, 69};
 
+    /**
+     * creates a new princess card
+     */
     public Princess() 
     {
         super("building", 

@@ -1,26 +1,61 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * this class contains the whole concept of battle in the game 
+ * @version 1.0
+ */
 public class Battle 
 {
+    /**
+     * the player of the battle
+     */
     private Player player;
 
+    /**
+     * the bot of the battle
+     */
     private Bot bot;
     
+    /**
+     * the arena of the battle
+     */
     private Arena arena;
     
+    /**
+     * the cards queue of player deck
+     */
     private ArrayList<Card> playerCardsQueue;
     
+    /**
+     * the cards queue of bot deck
+     */
     private ArrayList<Card> botCardsQueue;
     
+    /**
+     * the scoreboard of the battle
+     */
     private ScoreBoard scoreBoard;
     
+    /**
+     * the timer of the battle shown remaining time
+     */
     private BattleTimer battleTimer;
     
+    /**
+     * the elixir bar of the player
+     */
     private ElixirBar playerElixirBar;
     
+    /**
+     * the elixir bar of the bot
+     */
     private ElixirBar botElixirBar;
     
+    /**
+     * creates a new battle
+     * @param bot
+     */
     public Battle(Bot bot)
     {
         this.player = GameManager.getInstance().getCurrentPlayer();
@@ -51,6 +86,10 @@ public class Battle
         botElixirBar = new ElixirBar();
     }
 
+    /**
+     * the main step of the battle every element done its step in it
+     * @return the status of the battle after this step
+     */
     public int step() 
     {
         bot.step();
@@ -97,46 +136,73 @@ public class Battle
         return 0;
     }
 
+    /**
+     * @return player of the battle
+     */
     public Player getPlayer()
     {
         return player;
     }
 
+    /**
+     * @return bot of the battle
+     */
     public Bot getBot()
     {
         return bot;
     }
 
+    /**
+     * @return arena of the battle
+     */
     public Arena getArena() 
     {
         return arena;
     }
 
+    /**
+     * @return cards queue of player
+     */
     public ArrayList<Card> getPlayerCardsQueue()
     {
         return playerCardsQueue;
     }
 
+    /**
+     * @return cards queue of bot
+     */
     public ArrayList<Card> getBotCardsQueue()
     {
         return botCardsQueue;
     }
 
+    /**
+     * @return score board of the battle
+     */
     public ScoreBoard getScoreBoard()
     {
         return scoreBoard;
     }
 
+    /**
+     * @return timer of the battle
+     */
     public BattleTimer getBattleTimer()
     {
         return battleTimer;
     }
 
+    /**
+     * @return elixir bar of player
+     */
     public ElixirBar getPlayerElixirBar()
     {
         return playerElixirBar;
     }
 
+    /**
+     * @return elixir bar of bot
+     */
     public ElixirBar getBotElixirBar()
     {
         return botElixirBar;

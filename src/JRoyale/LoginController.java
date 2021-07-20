@@ -16,8 +16,15 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * this class contains the controller for the main view
+ * @version 1.0
+ */
 public class LoginController 
 {
+    /**
+     * the sound that plays when login started
+     */
     private MediaPlayer loginStarted = new MediaPlayer(new Media(new File("resources\\login\\loginStarted.mp3").toURI().toString()));
 
     @FXML
@@ -239,6 +246,11 @@ public class LoginController
         System.out.println("Menu opened!?!?!?!?!");
     }
     
+    /**
+     * shows a message in a list of labels
+     * @param message
+     * @param labels
+     */
     public void showMessage(String message, Label... labels)
     {
         Runnable task = new Runnable() 

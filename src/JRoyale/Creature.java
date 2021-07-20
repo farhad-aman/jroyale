@@ -71,14 +71,29 @@ public class Creature
      */
     private int hitStepValue;
 
+    /**
+     * the hit speed of the creature
+     */
     private int hitSpeed;
 
+    /**
+     * the moving speed of the creature
+     */
     private int speed;
 
+    /**
+     * is the creature under rage
+     */
     private boolean underRage;
 
+    /**
+     * the damage of the creature
+     */
     private int damage;
 
+    /**
+     * the remaining time of rage effect
+     */
     private int rageTimeRemained;//in milliseconds
 
     /**
@@ -86,6 +101,9 @@ public class Creature
      * */
     private int bridgeStatus;
 
+    /**
+     * the number of times creature doesnt moved
+     */
     private int moveAvoided = 0;
 
     /**
@@ -141,41 +159,66 @@ public class Creature
         }
     }
 
+    /**
+     * @return the side of creature
+     */
     public int getSide() 
     {
         return side;
     }
 
+    /**
+     * @return the level of creature
+     */
     public int getLevel() 
     {
         return level;
     }
 
+    /**
+     * @return is creature under rage
+     */
     public boolean isUnderRage() 
     {
         return underRage;
     }
 
+    /**
+     * @return the card of the creature
+     */
     public Card getCard() 
     {
         return card;
     }
 
+    /**
+     * @return remaining time of rage effect
+     */
     public int getRageTimeRemained() 
     {
         return rageTimeRemained;
     }
 
+    /**
+     * @return the position of creature
+     */
     public Point2D getPosition() 
     {
         return position;
     }
 
+    /**
+     * @return current image of the creature
+     */
     public ImageView getImage() 
     {
         return image;
     }
 
+    /**
+     * sets the status of the creature
+     * @param status
+     */
     public void setStatus(int status)
     {
         this.status = status;
@@ -207,51 +250,86 @@ public class Creature
         return bridgeStatus;
     }
 
+    /**
+     * sets the position of the creature
+     * @param position
+     */
     public void setPosition(Point2D position) 
     {
         this.position = position;
     }
 
+    /**
+     * @return the kill target of the creature
+     */
     public Creature getKillTarget()
     {
         return killTarget;
     }
 
+    /**
+     * sets the kill target of the creature
+     * @param creature
+     */
     public void setKillTarget(Creature creature)
     {
         this.killTarget = creature;
     }
 
+    /**
+     * @return the follow target of the creature
+     */
     public Creature getFollowTarget()
     {
         return followTarget;
     }
 
+    /**
+     * @return the status of the creature
+     */
     public int getStatus() 
     {
         return status;
     }
 
+    /**
+     * sets under rage field of the creature
+     * @param newUnderRage
+     */
     public void setUnderRage(boolean newUnderRage)
     {
         this.underRage = newUnderRage;
     }
 
+    /**
+     * sets remaining time of rage effect
+     * @param rageTimeRemained
+     */
     public void setRageTimeRemained(int rageTimeRemained) 
     {
         this.rageTimeRemained = rageTimeRemained;
     }
 
+    /**
+     * sets follow target of the creature
+     * @param creature
+     */
     public void setFollowTarget(Creature creature)
     {
         this.followTarget = creature;
     }
 
+    /**
+     * @return the hp of the creature
+     */
     public double getHP()
     {
         return hp;
     }
 
+    /**
+     * the main step that done every frame and uses card step
+     */
     public void step()
     {
         card.step(this);
@@ -355,19 +433,31 @@ public class Creature
         return false;
     }
 
+    /**
+     * @param creature
+     * @return the distance between this creature and given creature
+     */
     public int getDistance(Creature creature)
     {
         return (int)position.distance(creature.position);
     }
 
+    /**
+     * @return finds nearest creature that is in creature targets
+     */
     public Creature findNearestValidCreature()
     {
         return card.findNearestValidCreature(this);
     }
 
+    /**
+     * @param creature
+     * @return is given creature in range of this creature
+     */
     public boolean isCreatureInRange(Creature creature)
     {
-        if(creature != null){
+        if(creature != null)
+        {
             double distance = creature.getPosition().distance(position);
 
             if (distance <= card.getRange() * 40 || (creature.getCard() instanceof King && distance <= (card.getRange() + 1) * 40) || (creature.getCard() instanceof Princess && distance <= (card.getRange() + 0.5) * 40) || ((creature.getCard() instanceof Inferno || creature.getCard() instanceof Cannon) && distance <= (card.getRange() + 0.5) * 40))
@@ -376,19 +466,31 @@ public class Creature
         return false;
     }
 
+    /**
+     * this method is the main method of moving creatures
+     * @param creature
+     */
     public void followCreature(Creature creature)
     {
-        for(int i = 0;i < calculateRageEffect(speed);i++) {
+        for(int i = 0;i < calculateRageEffect(speed);i++) 
+        {
 //            System.out.println("position :" + position.getX() + ", " + position.getY());
             //System.out.println(card.getId() + " is moving");
             if (card instanceof Troop)
                 pixelMove();
         }
         if(card instanceof Wizard)
+        {
             hitStepValue = 0;
+        }
     }
 
-    private int calculateRageEffect(int speed) {
+    /**
+     * @param speed
+     * @return new speed after rage effect
+     */
+    private int calculateRageEffect(int speed) 
+    {
         if(underRage && (rageTimeRemained % 200 == 0))
         {
             return 3 * speed * (20 / GameManager.FPS);
@@ -397,6 +499,9 @@ public class Creature
             return speed * (20 / GameManager.FPS);
     }
 
+    /**
+     * 
+     */
     private void pixelMove()
     {// System.out.println("pixel move working346");
 //        if(moveAvoided == 0){
@@ -448,11 +553,13 @@ public class Creature
 //            moveCreaturesBackward(findInViewRangeCreatures(position));
 //            }
 //        }
-        else{
+        else
+        {
             System.out.println("move avoided :" + moveAvoided);
             moveAvoided++;
         }
     }
+
     /**
      * sets the new position and update the status
      * @param newPosition to set
@@ -467,10 +574,15 @@ public class Creature
             position = newPosition;
     }
 
+    /**
+     * 
+     * @return
+     */
     private Point2D findTempTargetPosition() 
     {
         Creature target;
-        if(killTarget == null){
+        if(killTarget == null)
+        {
             if(followTarget == null)
                 target = followTarget = findNearestValidCreature();
             else
@@ -483,10 +595,12 @@ public class Creature
         int ebs = target.updateBridgeStatus();
         bridgeStatus= updateBridgeStatus();
 
-        if(ebs == 0 || ebs == bridgeStatus || (ebs == 1 && bridgeStatus == 4) || (ebs == 4 && bridgeStatus == 1) || (ebs == 3 && bridgeStatus == 6) || (ebs == 6 && bridgeStatus == 3) || card instanceof Dragon){
+        if(ebs == 0 || ebs == bridgeStatus || (ebs == 1 && bridgeStatus == 4) || (ebs == 4 && bridgeStatus == 1) || (ebs == 3 && bridgeStatus == 6) || (ebs == 6 && bridgeStatus == 3) || card instanceof Dragon)
+        {
             return target.position;
         }
-        else if((bridgeStatus == 1 || bridgeStatus == 4) && side == 1){
+        else if((bridgeStatus == 1 || bridgeStatus == 4) && side == 1)
+        {
             if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100))
                 return target.getPosition().distance(600, 140) < target.getPosition().distance(600, 580) ? new Point2D(600, position.getY()) : new Point2D(600, position.getY());
 
@@ -497,7 +611,8 @@ public class Creature
             else
                 return new Point2D(bridge.getX(), bridge.getY() + 20);
         }
-        else if((bridgeStatus == 3 || bridgeStatus == 6) && side == -1){
+        else if((bridgeStatus == 3 || bridgeStatus == 6) && side == -1)
+        {
             if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100))
                 return target.getPosition().distance(680, 140) < target.getPosition().distance(680, 580) ? new Point2D(680, position.getY()) : new Point2D(680, position.getY());
 
@@ -508,18 +623,27 @@ public class Creature
             else
                 return new Point2D(bridge.getX(), bridge.getY() + 20);
         }
-        else if(bridgeStatus == 2 || bridgeStatus == 5){ //System.out.println(card.getId() + "\tbridge status :" + bridgeStatus);
-            if(ebs == 2 || (ebs == 5)){
-                if ((target.position.getX() + position.getX()) / 2 < 640) {
+        else if(bridgeStatus == 2 || bridgeStatus == 5)
+        { 
+            //System.out.println(card.getId() + "\tbridge status :" + bridgeStatus);
+            if(ebs == 2 || (ebs == 5))
+            {
+                if ((target.position.getX() + position.getX()) / 2 < 640) 
+                {
                     return new Point2D(600, position.getY());
-                } else if ((target.position.getX() + position.getX()) / 2 > 640) {
+                } 
+                else if ((target.position.getX() + position.getX()) / 2 > 640) 
+                {
                     return new Point2D(680, position.getY());
-                } else {
+                } 
+                else 
+                {
                     Random rand = new Random();
                     return rand.nextInt() % 2 == 0 ? new Point2D(600, position.getY()) : new Point2D(680, position.getY());
                 }
             }
-            else {
+            else 
+            {
                 if(position.getX() != 680 && side == 1 && target.getPosition().getX() > position.getX())
                     return new Point2D(680, position.getY());
                 else if(position.getX() != 600 && side == -1 && target.getPosition().getX() < position.getX())
@@ -528,10 +652,12 @@ public class Creature
                     return target.position;
             }
         }
-        else if((bridgeStatus == 1 || bridgeStatus == 4) && side == -1){
+        else if((bridgeStatus == 1 || bridgeStatus == 4) && side == -1)
+        {
             Point2D newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
 
-            if(target.getPosition().getX() > position.getX()){
+            if(target.getPosition().getX() > position.getX())
+            {
                 if (position.distance(newTarget) > position.distance(target.position))
                     newTarget = target.position;
                 if (position.distance(newTarget) > position.distance(new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 580)))
@@ -540,10 +666,12 @@ public class Creature
                 return newTarget;
             }
         }
-        else if((bridgeStatus == 3 || bridgeStatus == 6) && side == 1){
+        else if((bridgeStatus == 3 || bridgeStatus == 6) && side == 1)
+        {
             Point2D newTarget = new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
 
-            if(target.getPosition().getX() < position.getX()){
+            if(target.getPosition().getX() < position.getX())
+            {
                 if (position.distance(newTarget) > position.distance(target.position))
                     newTarget = target.position;
                 if (position.distance(newTarget) > position.distance(new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 580)))
@@ -591,6 +719,11 @@ public class Creature
 //        }
 //    }
 
+    /**
+     * 
+     * @param position
+     * @return
+     */
     private ArrayList<Creature> findInViewRangeCreatures(Point2D position) 
     {
         ArrayList<Creature> inRange = new ArrayList<>();
@@ -606,6 +739,12 @@ public class Creature
         return inRange;
     }
 
+    /**
+     * 
+     * @param source
+     * @param positions
+     * @return
+     */
     private Point2D findNearestPosition(Point2D source, ArrayList<Point2D> positions)
     {
         Iterator<Point2D> it = positions.iterator();
@@ -621,11 +760,17 @@ public class Creature
         return newPosition;
     }
 
+    /**
+     * 
+     * @param newPosition
+     * @return
+     */
     private boolean notInViewRange(Point2D newPosition)
     {
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 //        System.out.println("checking the creature position accuracy521");
-        while (it.hasNext()){
+        while (it.hasNext())
+        {
             Creature c = it.next();
 
             if(c != this && !(c.card instanceof Spell) && newPosition.distance(c.position) < 10 && ((!(card instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((card instanceof Dragon) && (c.getCard() instanceof Dragon)))){
@@ -635,6 +780,11 @@ public class Creature
         return true;
     }
 
+    /**
+     * 
+     * @param points
+     * @return
+     */
     public ArrayList<Point2D> inRangePoints(ArrayList<Point2D> points)
     {
         ArrayList<Point2D> validates = new ArrayList<>();

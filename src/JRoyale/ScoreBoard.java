@@ -1,13 +1,32 @@
+/**
+ * this class contains score board of the battle
+ * @version 1.0
+ */
 public class ScoreBoard 
 {
+    /**
+     * the number of player stars
+     */
     private int playerStars;
 
+    /**
+     * the number of bot stars
+     */
     private int botStars;
 
+    /**
+     * the total hp of player towers
+     */
     private int totalPlayerTowersHP;
 
+    /**
+     * the total hp of bot towers
+     */
     private int totalBotTowersHP;
 
+    /**
+     * the step of score board that done every frame and updates score board
+     */
     public void step()
     {
         playerStars = 0;
@@ -50,21 +69,33 @@ public class ScoreBoard
         totalBotTowersHP += Math.max(0, arena.getBotDownPrincess().getHP());
     }
 
+    /**
+     * @return number of player stars
+     */
     public int getPlayerStars()
     {
         return playerStars;
     }
 
+    /**
+     * @return number of bot stars
+     */
     public int getBotStars()
     {
         return botStars;
     }
 
+    /**
+     * @return total hp of player towers
+     */
     public int getTotalPlayerTowersHP()
     {
         return totalPlayerTowersHP;
     }
 
+    /**
+     * @return total hp of bot towers
+     */
     public int getTotalBotTowersHP()
     {
         return totalBotTowersHP;

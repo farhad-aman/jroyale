@@ -25,12 +25,25 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * this class contains the controller for menu view
+ * @version 1.0
+ */
 public class MenuController 
 {
+    /**
+     * the instance of game manager class
+     */
     private GameManager gameManager = GameManager.getInstance();
 
+    /**
+     * the sound that plays in menu background
+     */
     private MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources\\menu\\menuSoundTrack.mp3").toURI().toString()));
 
+    /**
+     * is the menu sound muted
+     */
     private boolean isMuted = false;
 
     @FXML
@@ -445,6 +458,9 @@ public class MenuController
         openLogin();
     }
 
+    /**
+     * opens the battle scene and starts the battle
+     */
     private void openBattle()
     {
         Stage stage = (Stage)saveDeckButton.getScene().getWindow();
@@ -467,6 +483,9 @@ public class MenuController
         System.out.println("battle opened opened!?!?!?!?!");
     }
 
+    /**
+     * opens login page scene and starts login
+     */
     private void openLogin()
     {
         Stage stage = (Stage)saveDeckButton.getScene().getWindow();
@@ -490,6 +509,9 @@ public class MenuController
         System.out.println("login opened!?!?!?!?!");
     }
 
+    /**
+     * sets player deck in menu
+     */
     private void setCurrentDeckPics()
     {
         ArrayList<Card> deck = new ArrayList<>();
@@ -627,6 +649,10 @@ public class MenuController
         addHistory(data);
     }
 
+    /**
+     * adds history to the table 
+     * @param data
+     */
     private void addHistory(ObservableList<BattleResult> data)
     {
         ArrayList<BattleResult> battles = GameManager.getInstance().getCurrentPlayer().getHistory().getBattleResults();
@@ -636,6 +662,11 @@ public class MenuController
         data.add(br);
     }
     
+    /**
+     * show a message to a list of label
+     * @param message
+     * @param labels
+     */
     public void showMessage(String message, Label... labels)
     {
         Runnable task = new Runnable() 

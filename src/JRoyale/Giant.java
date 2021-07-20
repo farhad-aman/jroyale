@@ -4,9 +4,15 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * this class contains giant card in the game
+ * @version 1.0
+ */
 public class Giant extends Troop
 {
-
+    /**
+     * creates a new giant card
+     */
     public Giant() 
     {
         super("ground",
@@ -24,6 +30,7 @@ public class Giant extends Troop
               new MediaPlayer(new Media(new File("resources/cards/giant/giantAttack.mp3").toURI().toString())),
               new MediaPlayer(new Media(new File("resources/cards/giant/giantDeath.mp3").toURI().toString())));
     }
+    
     /**
      * loads the proper pics for status//0->for deck(150.jpg)//troops://1->moving to right//2->moving to left//3->fighting to right//4->fighting to left//5->dying to right//6->dying to left//buildings://7->cannon ball//8->cannon turning right//9->cannon turning left//10->inferno.gif//11->spells gif
      * */

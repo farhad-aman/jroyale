@@ -58,6 +58,10 @@ public class ArenaView extends Group
             }
             else
             {
+                if(c.getCard() instanceof Spell)
+                {
+                    System.out.println("spellllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
+                }
                 oldStatus.put(c, c.getStatus());
                 ImageView iv = new ImageView(c.getCard().getImage(c.getStatus()));
                 iv.setX(c.getPosition().getX() - (c.getCard().getImageSize() / 2));

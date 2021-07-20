@@ -5,10 +5,20 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 import java.util.Iterator;
 
+/**
+ * this class contains rage spell card in the game
+ * @version 1.0
+ */
 public class Rage extends Spell
 {
+    /**
+     * the duration of the rage spell
+     */
     private final int duration[] = {0, 6000, 6500, 7000, 7500, 8000};
 
+    /**
+     * creates a new rage card
+     */
     public Rage() 
     {
         super("spell", "Rage", 3, 5, 100, new MediaPlayer(new Media(new File("resources/cards/rage/rageAttack.mp3").toURI().toString())));
@@ -42,6 +52,10 @@ public class Rage extends Spell
         }
     }
 
+    /**
+     * @param level
+     * @return the duration of the rage spell
+     */
     public int getDuration(int level)
     {
         return duration[level];

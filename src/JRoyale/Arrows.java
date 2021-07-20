@@ -5,10 +5,20 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 import java.util.Iterator;
 
+/**
+ * this class contains arrows card and its details
+ * @version 1.0
+ */
 public class Arrows extends Spell
 {
+    /**
+     * the damge of arrows
+     */
     private final int[] damage = {0, 144, 156, 174, 189, 210};
 
+    /**
+     * creates a new arrows card
+     */
     public Arrows() 
     {
         super("spell", "Arrows", 3, 4, 100, new MediaPlayer(new Media(new File("resources/cards/arrows/arrowsAttack.mp3").toURI().toString())));

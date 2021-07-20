@@ -1,3 +1,7 @@
+/**
+ * this class contains the elixir bar in the battle
+ * @version 1.0
+ */
 public class ElixirBar 
 {
     /**
