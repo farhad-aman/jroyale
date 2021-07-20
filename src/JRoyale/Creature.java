@@ -342,8 +342,6 @@ public class Creature
      */
     public void step()
     {
-//        if(underRage)
-//            System.out.println("under rage is true");
         if(card instanceof Rage && ((Rage)card).getInBattleTime() <= 0)
             ((Rage)card).setInBattleTime(level);
 
@@ -373,6 +371,17 @@ public class Creature
             }
         }
 
+        if(card instanceof Princess || card instanceof King){
+            if(killTarget == null)
+                status = side == 1 ? 1 : 2;
+            else
+                status = side == 1 ? 3 : 4;
+        }
+        else if(card instanceof Cannon){
+            if(killTarget == null)
+                status = status == 4 ? 2 : 1;
+        }
+
         if(oldStatus != status)
             statusTime += 1000 / GameManager.FPS;
 
@@ -398,8 +407,6 @@ public class Creature
         hp -= damage;
         if(hp <= 0)
         {
-//            status = tempStatus;
-
             hp = 0;
             return true;
         }
@@ -525,8 +532,7 @@ public class Creature
      * 
      */
     private void pixelMove()
-    {// System.out.println("pixel move working346");
-//        if(moveAvoided == 0){
+    {
             ArrayList<Point2D> probablePositions = new ArrayList<>();
 
             if (notInViewRange(position.add(side * (moveAvoided + 1), 0)))
@@ -554,27 +560,6 @@ public class Creature
                 setPositionAndStatus(newPosition);//System.out.println("moving successfully finished?!?!?!?!?!?371");
                 moveAvoided = 0;
             }
-//            else if(tempTargetPosition != null)
-//            {
-//            ArrayList<Point2D> allPositions = new ArrayList<>();
-//
-//            allPositions.add(position.add(side, 0));
-//            allPositions.add(position.add(side, 1));
-//            allPositions.add(position.add(side, -1));
-//            allPositions.add(position.add(0, 1));
-//            allPositions.add(position.add(0, -1));
-//            allPositions.add(position.add(side * -1, -1));
-//            allPositions.add(position.add(side * -1, 0));
-//            allPositions.add(position.add(side * -1, 1));
-//
-//            allPositions = inRangePoints(allPositions);
-//
-//            Point2D newPosition = findNearestPosition(tempTargetPosition, allPositions);
-//            setPositionAndStatus(newPosition);
-////            System.out.println("moving struggle390");
-//            moveCreaturesBackward(findInViewRangeCreatures(position));
-//            }
-//        }
         else
         {
             System.out.println("move avoided :" + moveAvoided);
