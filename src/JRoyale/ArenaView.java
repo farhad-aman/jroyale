@@ -89,7 +89,7 @@ public class ArenaView
                 }
                 if(c.getCard() instanceof Inferno)
                 {
-                    Creature target = ((Inferno)c.getCard()).getTempTarget();
+                    Creature target = c.getTempTarget();
                     if(!c.isEliminated() && target != null)
                     {
                         Line line = new Line(c.getPosition().getX(),

@@ -10,15 +10,15 @@ import java.io.File;
  */
 public class Inferno extends Building
 {
-    /**
-     * the temp target that inferno use it
-     */
-    private Creature tempTarget;
-
-    /**
-     * 
-     */
-    private int tempTargetTime;
+//    /**
+//     * the temp target that inferno use it
+//     */
+//    private Creature tempTarget;
+//
+//    /**
+//     *
+//     */
+//    private int tempTargetTime;
 
     /**
      * the minimum damage of the inferno
@@ -46,8 +46,6 @@ public class Inferno extends Building
               new int[] {0, 800, 880, 968, 1064, 1168},
               new MediaPlayer(new Media(new File("resources/cards/inferno/infernoAttack.mp3").toURI().toString())),
               new MediaPlayer(new Media(new File("resources/cards/inferno/infernoDeath.mp3").toURI().toString())));
-        tempTarget = null;
-        tempTargetTime = 0;
     }
 
     /**
@@ -60,37 +58,44 @@ public class Inferno extends Building
         pics.put(1, new Image("resources/cards/inferno/inferno.gif"));
     }
 
-    /**
-     * calculates new damage of the inferno
-     * @param level
-     * @param underRage
-     * @return
-     */
-    public double calculateInfernoDamage(int level, boolean underRage)
-    {
-        if(tempTarget == null)
-            return 0;
-        return (((maxDamage[level] - minDamage[level]) / 10.0) *  ((Math.min(tempTargetTime, 10000.0)) / 1000.0) + minDamage[level]) * (underRage ? 1.4 : 1);
+    public int getMaxDamage(int level) {
+        return maxDamage[level];
     }
 
-    /**
-     * calculates time that inferno attacks to increase damage
-     * @param tempTarget
-     */
-    public void addTempTargetTime(Creature tempTarget)
-    {
-        if(tempTarget == null){
-            System.out.println("inferno   null");
-        }
-        else
-            System.out.println("inferno " + tempTarget.getCard());
-        if(tempTarget == this.tempTarget)
-            this.tempTargetTime += 1000 / GameManager.FPS;
-        else {
-            this.tempTarget = tempTarget;
-            tempTargetTime = 0;
-        }
+    public int getMinDamage(int level) {
+        return minDamage[level];
     }
+//    /**
+//     * calculates new damage of the inferno
+//     * @param level
+//     * @param underRage
+//     * @return
+//     */
+//    public double calculateInfernoDamage(int level, boolean underRage)
+//    {
+//        if(tempTarget == null)
+//            return 0;
+//        return (((maxDamage[level] - minDamage[level]) / 10.0) *  ((Math.min(tempTargetTime, 10000.0)) / 1000.0) + minDamage[level]) * (underRage ? 1.4 : 1);
+//    }
+//
+//    /**
+//     * calculates time that inferno attacks to increase damage
+//     * @param tempTarget
+//     */
+//    public void addTempTargetTime(Creature tempTarget)
+//    {
+//        if(tempTarget == null){
+//            System.out.println("inferno   null");
+//        }
+//        else
+//            System.out.println("inferno " + tempTarget.getCard());
+//        if(tempTarget == this.tempTarget)
+//            this.tempTargetTime += 1000 / GameManager.FPS;
+//        else {
+//            this.tempTarget = tempTarget;
+//            tempTargetTime = 0;
+//        }
+//    }
 
     @Override
     public int getDamage(int level) 
@@ -98,8 +103,4 @@ public class Inferno extends Building
         return 0;//junk
     }
 
-    public Creature getTempTarget()
-    {
-        return tempTarget;
-    }
 }

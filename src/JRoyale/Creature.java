@@ -109,11 +109,22 @@ public class Creature
     private int moveAvoided = 0;
 
     /**
+     * the temp target that inferno use it
+     */
+    private Creature tempTarget;
+
+    /**
+     *
+     */
+    private int tempTargetTime;
+
+    /**
      * creates a new creature
      * @param card
      * @param position
      * @param side
      */
+
     public Creature(Card card, int level, Point2D position, int side) 
     {
         this.card = card;
@@ -159,6 +170,44 @@ public class Creature
         {
             this.hp = ((Troop)card).getInitHP(level);
             this.lifeTime = 1000000;
+        }
+    }
+
+    public Creature getTempTarget() {
+        return tempTarget;
+    }
+
+    /**
+     * calculates new damage of the inferno
+     * @param level
+     * @param underRage
+     * @return
+     */
+    public double calculateInfernoDamage(int level, boolean underRage)
+    {
+        Inferno in = ((Inferno) card);
+
+        if(tempTarget == null)
+            return 0;
+        return (((in.getMaxDamage(level) - in.getMinDamage(level)) / 10.0) *  ((Math.min(tempTargetTime, 10000.0)) / 1000.0) + in.getMinDamage(level)) * (underRage ? 1.4 : 1);
+    }
+
+    /**
+     * calculates time that inferno attacks to increase damage
+     * @param tempTarget
+     */
+    public void addTempTargetTime(Creature tempTarget)
+    {
+//        if(tempTarget == null){
+//            System.out.println("inferno   null");
+//        }
+//        else
+//            System.out.println("inferno " + tempTarget.getCard());
+        if(tempTarget == this.tempTarget)
+            this.tempTargetTime += 1000 / GameManager.FPS;
+        else {
+            this.tempTarget = tempTarget;
+            tempTargetTime = 0;
         }
     }
 
@@ -424,8 +473,8 @@ public class Creature
         {
             card.playAttackSound();
             if(card instanceof Inferno){
-                creature.getHit(((Inferno) card).calculateInfernoDamage(level, underRage), position.getX() < creature.position.getX() ? 6 : 5);
-                ((Inferno) card).addTempTargetTime(creature);
+                creature.getHit(calculateInfernoDamage(level, underRage), position.getX() < creature.position.getX() ? 6 : 5);
+                addTempTargetTime(creature);
             }
             else{
                 if (card instanceof Troop && ((Troop) card).isAreaSplash()) {
