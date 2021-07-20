@@ -67,7 +67,21 @@ public class Bot2 extends Bot
                 }
             }
         }
-        most = Math.max(Math.max(Math.max(up, middle), Math.max(down, eUp)), Math.max(Math.max(eDown, downBridge), Math.max(upBridge, eMiddle)));
+        most = upBridge;
+        if(most <= downBridge)
+            most = downBridge;
+        else if(most <= eDown)
+            most = eDown;
+        else if(most <= eUp)
+            most = eUp;
+        else if(most < eMiddle)
+            most = eMiddle;
+        else if(most <= up)
+            most = up;
+        else if(most <= down)
+            most = down;
+        else if(most <= middle)
+            most = middle;
 
         boolean upDestroyed = GameManager.getInstance().getBattle().getArena().getPlayerUpPrincess().isEliminated();
         boolean downDestroyed = GameManager.getInstance().getBattle().getArena().getPlayerDownPrincess().isEliminated();
@@ -96,9 +110,9 @@ public class Bot2 extends Bot
                 return findPoint(5);
         }
         else if(most == downBridge) {
-            if(upDestroyed && !(chosenCard instanceof Building))
+            if(downDestroyed && !(chosenCard instanceof Building))
                 return findPoint(8);
-            else if(upDestroyed)
+            else if(downDestroyed)
                 return findPoint(2);
             else
                 return findPoint(5);
