@@ -342,8 +342,8 @@ public class Creature
      */
     public void step()
     {
-        if(underRage)
-            System.out.println("under rage is true");
+//        if(underRage)
+//            System.out.println("under rage is true");
         if(card instanceof Rage && ((Rage)card).getInBattleTime() <= 0)
             ((Rage)card).setInBattleTime(level);
 

@@ -77,8 +77,13 @@ public class Inferno extends Building
      * calculates time that inferno attacks to increase damage
      * @param tempTarget
      */
-    public void addTempTargetTime(Creature tempTarget) 
+    public void addTempTargetTime(Creature tempTarget)
     {
+        if(tempTarget == null){
+            System.out.println("inferno   null");
+        }
+        else
+            System.out.println("inferno " + tempTarget.getCard());
         if(tempTarget == this.tempTarget)
             this.tempTargetTime += 1000 / GameManager.FPS;
         else {
