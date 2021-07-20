@@ -95,7 +95,7 @@ public class Bot2 extends Bot
      * */
     private Point2D considerBotTowers(Card chosenCard){
         Point2D p = towerStatus(chosenCard);
-        int enemies = 0, ;
+//        int enemies = 0, ;
 
 
         return p;
