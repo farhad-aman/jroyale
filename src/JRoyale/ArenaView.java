@@ -5,6 +5,8 @@ import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 public class ArenaView extends Group
 {
@@ -60,41 +62,122 @@ public class ArenaView extends Group
             {
                 if(c.getCard() instanceof Spell)
                 {
-                    System.out.println("spellllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
-                }
-                oldStatus.put(c, c.getStatus());
-                ImageView iv = new ImageView(c.getCard().getImage(c.getStatus()));
-                iv.setX(c.getPosition().getX() - (c.getCard().getImageSize() / 2));
-                iv.setY(c.getPosition().getY() - (c.getCard().getImageSize() / 2));
-                iv.setFitHeight(c.getCard().getImageSize());
-                iv.setFitWidth(c.getCard().getImageSize());
-                iv.setPreserveRatio(true);
-                iv.setPickOnBounds(true);
-                iv.setVisible(true);
-                bt.getArenaPane().getChildren().add(iv);
-                arenaViewImageViews.add(iv);
-                ProgressBar pb = new ProgressBar(1);
-                pb.setLayoutX(c.getPosition().getX() - (c.getCard().getImageSize() / 2));
-                pb.setLayoutY(c.getPosition().getY() - (c.getCard().getImageSize() / 2) - 15);
-                pb.setPrefHeight(10);
-                pb.setPrefWidth(c.getCard().getImageSize());
-                if(c.getSide() == 1)
-                {
-                    pb.setStyle("-fx-accent: blue");
+                    System.out.println("spell used");
+                    showSpell(c, bt);
                 }
                 else
                 {
-                    pb.setStyle("-fx-accent: red");
+                    oldStatus.put(c, c.getStatus());
+                    ImageView iv = new ImageView(c.getCard().getImage(c.getStatus()));
+                    iv.setX(c.getPosition().getX() - (c.getCard().getImageSize() / 2));
+                    iv.setY(c.getPosition().getY() - (c.getCard().getImageSize() / 2));
+                    iv.setFitHeight(c.getCard().getImageSize());
+                    iv.setFitWidth(c.getCard().getImageSize());
+                    iv.setPreserveRatio(true);
+                    iv.setPickOnBounds(true);
+                    iv.setVisible(true);
+                    bt.getArenaPane().getChildren().add(iv);
+                    arenaViewImageViews.add(iv);
+                    ProgressBar pb = new ProgressBar(1);
+                    pb.setLayoutX(c.getPosition().getX() - (c.getCard().getImageSize() / 2));
+                    pb.setLayoutY(c.getPosition().getY() - (c.getCard().getImageSize() / 2) - 15);
+                    pb.setPrefHeight(10);
+                    pb.setPrefWidth(c.getCard().getImageSize());
+                    if(c.getSide() == 1)
+                    {
+                        pb.setStyle("-fx-accent: blue");
+                    }
+                    else
+                    {
+                        pb.setStyle("-fx-accent: red");
+                    }
+                    pb.setPickOnBounds(true);
+                    if(!(c.getCard() instanceof Spell))
+                    {
+                        pb.setVisible(true);
+                    }
+                    bt.getArenaPane().getChildren().add(pb);
+                    arenaViewHPBars.add(pb);
+                    arenaViewCreatures.add(c);
                 }
-                pb.setPickOnBounds(true);
-                if(!(c.getCard() instanceof Spell))
-                {
-                    pb.setVisible(true);
-                }
-                bt.getArenaPane().getChildren().add(pb);
-                arenaViewHPBars.add(pb);
-                arenaViewCreatures.add(c);
             }
+        }
+    }
+
+    private void showSpell(Creature creature, BattleController bt)
+    {
+        if(creature.getCard() instanceof Rage)
+        {
+            int duration = ((Rage)creature.getCard()).getDuration(creature.getLevel());
+            Circle circle = new Circle(creature.getPosition().getX(), creature.getPosition().getY(), creature.getCard().getRange() * 40, Color.PURPLE);
+            circle.setOpacity(0.4);
+            circle.setVisible(true);
+            bt.getArenaPane().getChildren().add(circle);
+            Thread thread = new Thread(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    try 
+                    {
+                        Thread.sleep(duration);
+                    } 
+                    catch (Exception e) 
+                    {
+                        //TODO: handle exception
+                    }
+                    circle.setVisible(false);
+                }
+            });
+            thread.start();
+        }
+        else if(creature.getCard() instanceof Fireball)
+        {   
+            Circle circle = new Circle(creature.getPosition().getX(), creature.getPosition().getY(), creature.getCard().getRange() * 40, Color.RED);
+            circle.setOpacity(0.4);
+            circle.setVisible(true);
+            bt.getArenaPane().getChildren().add(circle);
+            Thread thread = new Thread(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    try 
+                    {
+                        Thread.sleep(5000);
+                    } 
+                    catch (Exception e) 
+                    {
+                        //TODO: handle exception
+                    }
+                    circle.setVisible(false);
+                }
+            });
+            thread.start();
+        }
+        else
+        {
+            Circle circle = new Circle(creature.getPosition().getX(), creature.getPosition().getY(), creature.getCard().getRange() * 40, Color.BLUE);
+            circle.setOpacity(0.4);
+            circle.setVisible(true);
+            bt.getArenaPane().getChildren().add(circle);
+            Thread thread = new Thread(new Runnable()
+            {
+                @Override
+                public void run() 
+                {
+                    try 
+                    {
+                        Thread.sleep(5000);
+                    } 
+                    catch (Exception e) 
+                    {
+                        //TODO: handle exception
+                    }
+                    circle.setVisible(false);
+                }
+            });
+            thread.start();
         }
     }
 
