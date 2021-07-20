@@ -41,4 +41,9 @@ public class Rage extends Spell
             }
         }
     }
+
+    public int getDuration(int level)
+    {
+        return duration[level];
+    }
 }
