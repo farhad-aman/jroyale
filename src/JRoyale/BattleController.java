@@ -427,6 +427,19 @@ public class BattleController
         updateCardsQueueView();
         updateBattleTimerView();
         arenaView.updateView(gameManager.getBattle().getArena(), this);
+
+        Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
+
+        while (it.hasNext()){
+            Creature temp = it.next();
+
+            if(temp.getCard() instanceof Fireball || temp.getCard() instanceof Arrows){
+                it.remove();
+            }
+            else if(temp.getCard() instanceof Rage && ((Rage) temp.getCard()).getInBattleTime() <= 0){
+                it.remove();
+            }
+        }
     }
     
     /**

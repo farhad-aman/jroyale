@@ -7,6 +7,8 @@ import java.util.Iterator;
 
 public class Rage extends Spell
 {
+    private int inBattleTime = 0;
+
     private final int duration[] = {0, 6000, 6500, 7000, 7500, 8000};
 
     public Rage() 
@@ -28,17 +30,27 @@ public class Rage extends Spell
     @Override
     public void step(Creature creature)
     {
-        Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
+        if(inBattleTime > 0) {
+            Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 
-        while (it.hasNext()) 
-        {
-            Creature tempTarget = it.next();
+            while (it.hasNext()) {
+                Creature tempTarget = it.next();
 
-            if(tempTarget.getPosition().distance(creature.getPosition()) <= (40 * super.getRange()) && creature.getSide() == tempTarget.getSide())
-            {
-                tempTarget.setUnderRage(true);
-                tempTarget.setRageTimeRemained(duration[creature.getLevel()]);
+                if (!tempTarget.isUnderRage() && tempTarget.getPosition().distance(creature.getPosition()) <= (40 * super.getRange()) && creature.getSide() == tempTarget.getSide()) {
+                    tempTarget.setUnderRage(true);
+                    tempTarget.setRagePosition(creature.getPosition());
+                    tempTarget.setRageTimeRemained(duration[creature.getLevel()]);
+                }
             }
+            inBattleTime -= 1000 / GameManager.FPS;
         }
+    }
+
+    public int getInBattleTime() {
+        return inBattleTime;
+    }
+
+    public void setInBattleTime(int level) {
+        inBattleTime = duration[level];
     }
 }
