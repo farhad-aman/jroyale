@@ -552,44 +552,44 @@ public class Creature
                 return newTarget;
             }
         }
-        System.out.println(card.getId() + "\t?!?!?!?!?!?!");
+//        System.out.println(card.getId() + "\t?!?!?!?!?!?!");
         return target.position;
     }
-
-    private void moveCreaturesBackward(ArrayList<Creature> inRanges) 
-    {
-        System.out.println("move backward used");
-        for(Creature c : inRanges)
-        if(!(c.getCard() instanceof Building))
-        {//System.out.println("moving other creatures backward458");
-            ArrayList<Point2D> probablePositions = new ArrayList<>();
-
-            if (notInViewRange(c.getPosition().add(side, 0)))
-                probablePositions.add(c.getPosition().add(side, 0));
-            if (notInViewRange(c.getPosition().add(side, -1)))
-                probablePositions.add(c.getPosition().add(side, -1));
-            if (notInViewRange(c.getPosition().add(side, 1)))
-                probablePositions.add(c.getPosition().add(side, 1));
-            if (notInViewRange(c.getPosition().add(0, 1)))
-                probablePositions.add(c.getPosition().add(0, 1));
-            if (notInViewRange(c.getPosition().add(0, -1)))
-                probablePositions.add(c.getPosition().add(0, -1));
-            if (notInViewRange(c.getPosition().add(side * -1, -1)))
-                probablePositions.add(c.getPosition().add(side * -1, -1));
-            if (notInViewRange(c.getPosition().add(side * -1, 0)))
-                probablePositions.add(c.getPosition().add(side * -1, 0));
-            if (notInViewRange(c.getPosition().add(side * -1, 1)))
-                probablePositions.add(c.getPosition().add(side * -1, 1));
-
-            Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
-            probablePositions = inRangePoints(probablePositions);
-
-            if (probablePositions.size() != 0 && tempTargetPosition != null) {//System.out.println("moving creature backward successfully481");
-                Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
-                setPositionAndStatus(newPosition);
-            }
-        }
-    }
+//
+//    private void moveCreaturesBackward(ArrayList<Creature> inRanges)
+//    {
+//        System.out.println("move backward used");
+//        for(Creature c : inRanges)
+//        if(!(c.getCard() instanceof Building))
+//        {//System.out.println("moving other creatures backward458");
+//            ArrayList<Point2D> probablePositions = new ArrayList<>();
+//
+//            if (notInViewRange(c.getPosition().add(side, 0)))
+//                probablePositions.add(c.getPosition().add(side, 0));
+//            if (notInViewRange(c.getPosition().add(side, -1)))
+//                probablePositions.add(c.getPosition().add(side, -1));
+//            if (notInViewRange(c.getPosition().add(side, 1)))
+//                probablePositions.add(c.getPosition().add(side, 1));
+//            if (notInViewRange(c.getPosition().add(0, 1)))
+//                probablePositions.add(c.getPosition().add(0, 1));
+//            if (notInViewRange(c.getPosition().add(0, -1)))
+//                probablePositions.add(c.getPosition().add(0, -1));
+//            if (notInViewRange(c.getPosition().add(side * -1, -1)))
+//                probablePositions.add(c.getPosition().add(side * -1, -1));
+//            if (notInViewRange(c.getPosition().add(side * -1, 0)))
+//                probablePositions.add(c.getPosition().add(side * -1, 0));
+//            if (notInViewRange(c.getPosition().add(side * -1, 1)))
+//                probablePositions.add(c.getPosition().add(side * -1, 1));
+//
+//            Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
+//            probablePositions = inRangePoints(probablePositions);
+//
+//            if (probablePositions.size() != 0 && tempTargetPosition != null) {//System.out.println("moving creature backward successfully481");
+//                Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
+//                setPositionAndStatus(newPosition);
+//            }
+//        }
+//    }
 
     private ArrayList<Creature> findInViewRangeCreatures(Point2D position) 
     {
