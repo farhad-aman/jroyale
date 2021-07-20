@@ -224,13 +224,12 @@ public class BattleController
                     int count = 0;
                     while (count < creatures.size())
                     {
-                        ArrayList<Point2D> positions = findPositions(x, y, creatures.size());//System.out.println("line 159");
-                        for (int i = 0; i < creatures.size(); i++) {//System.out.println("line 160");
+                        ArrayList<Point2D> positions = findPositions(x, y, creatures.size());
+                        for (int i = 0; i < creatures.size(); i++) {
                             if (checkTowerStatus(positions.get(i).getX(), positions.get(i).getY()) && count < creatures.size()) {
                                 Creature c = creatures.get(count);
                                 c.setPosition(positions.get(i));
                                 gameManager.getBattle().getArena().getCreatures().add(c);
-         //                       System.out.println("******creature  "+ (count + 1) + "  created");
                                 count++;
                             }
                         }
@@ -426,7 +425,7 @@ public class BattleController
         while (it.hasNext()){//System.out.println("249");
             Creature c = it.next();
             //System.out.println("line 248");
-            if(!(chosenCard instanceof Spell) && !(chosenCard instanceof Giant)){
+            if(!(chosenCard instanceof Spell) && !(chosenCard instanceof Giant) && !(c.getCard() instanceof Giant)){
                 if (c.getPosition().distance(point) < 10 && ((!(chosenCard instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((chosenCard instanceof Dragon) && (c.getCard() instanceof Dragon)))) {
                     return false;
                 }

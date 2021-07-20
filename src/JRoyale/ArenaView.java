@@ -88,7 +88,6 @@ public class ArenaView
             {
                 if(c.getCard() instanceof Spell)
                 {
-                    System.out.println("spell used");
                     showSpell(c, bt);
                 }
                 else
@@ -155,7 +154,7 @@ public class ArenaView
                     } 
                     catch (Exception e) 
                     {
-                        //TODO: handle exception
+                        e.printStackTrace();
                     }
                     circle.setVisible(false);
                 }

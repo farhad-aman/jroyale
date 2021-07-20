@@ -435,7 +435,7 @@ public class GameManager
 
             for(Card c : cards)
             {
-                if(c instanceof Spell && spellCount < 2)
+                if(c instanceof Spell && spellCount < 1)
                 {
                     deck.addCard(c);
                     spellCount++;
@@ -445,7 +445,7 @@ public class GameManager
                     deck.addCard(c);
                     buildingCount++;
                 }
-                else if(c instanceof Troop && troopCount < 5)
+                else if(c instanceof Troop && troopCount < 6)
                 {
                     deck.addCard(c);
                     troopCount++;
