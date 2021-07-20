@@ -43,7 +43,7 @@ public class Fireball extends Spell
         {
             Creature tempTarget = it.next();
 
-            if(tempTarget.getPosition().distance(creature.getPosition()) <= (40 * super.getRange()) && creature.getSide() != tempTarget.getSide())
+            if(tempTarget.getPosition().distance(creature.getPosition()) <= ((tempTarget.getCard() instanceof King ? 120 : tempTarget.getCard() instanceof Princess ? 80 : tempTarget.getCard() instanceof Building ? 60 : 40) * super.getRange()) && creature.getSide() != tempTarget.getSide())
             {
                 tempTarget.getHit(damage[creature.getLevel()], creature.getPosition().getX() < tempTarget.getPosition().getX() ? 6 : 5);
             }
