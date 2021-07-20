@@ -609,7 +609,7 @@ public class Creature
         {
             return target.position;
         }
-        else if((bridgeStatus == 1 || bridgeStatus == 4) && side == 1)
+        else if(((bridgeStatus == 1 || bridgeStatus == 4) && side == 1) && target.position.getX() > 680)
         {
             if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100))
                 return target.getPosition().distance(600, 140) < target.getPosition().distance(600, 580) ? new Point2D(600, position.getY()) : new Point2D(600, position.getY());
@@ -621,7 +621,7 @@ public class Creature
             else
                 return new Point2D(bridge.getX(), bridge.getY() + 20);
         }
-        else if((bridgeStatus == 3 || bridgeStatus == 6) && side == -1)
+        else if(((bridgeStatus == 3 || bridgeStatus == 6) && side == -1) && target.position.getX() < 600)
         {
             if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100))
                 return target.getPosition().distance(680, 140) < target.getPosition().distance(680, 580) ? new Point2D(680, position.getY()) : new Point2D(680, position.getY());
@@ -664,10 +664,10 @@ public class Creature
         }
         else if((bridgeStatus == 1 || bridgeStatus == 4) && side == -1)
         {
-            Point2D newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
-
-            if(target.getPosition().getX() > position.getX())
+            if(target.getPosition().getX() > position.getX() && target.position.getX() > 680)
             {
+                Point2D newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
+
                 if (position.distance(newTarget) > position.distance(target.position))
                     newTarget = target.position;
                 if (position.distance(newTarget) > position.distance(new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 580)))
@@ -678,10 +678,10 @@ public class Creature
         }
         else if((bridgeStatus == 3 || bridgeStatus == 6) && side == 1)
         {
-            Point2D newTarget = new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
-
-            if(target.getPosition().getX() < position.getX())
+            if(target.getPosition().getX() < position.getX() && target.position.getX() < 600)
             {
+                Point2D newTarget = new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
+
                 if (position.distance(newTarget) > position.distance(target.position))
                     newTarget = target.position;
                 if (position.distance(newTarget) > position.distance(new Point2D(680, ebs == 2 || ebs == 5 ? target.position.getY() : 580)))
