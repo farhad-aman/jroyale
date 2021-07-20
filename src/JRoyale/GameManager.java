@@ -6,30 +6,61 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+/**
+ * this class is the main model class of the game written in singleton design pattern and all logic and data bases
+ * @version 1.0
+ */
 public class GameManager
 {
+    /**
+     * the single instance of game manager
+     */
     private static GameManager gameManager = new GameManager();
 
+    /**
+     * the password of MySQL database
+     */
     public static final String dbPassword = "@#$mg200";
 
+    /**
+     * the frame rate of the game
+     */
     public static final int FPS = 20;
     
+    /**
+     * the current player that logins to the game
+     */
     private Player currentPlayer;
 
+    /**
+     * the current bot in the battle
+     */
     private Bot currentBot;
     
+    /**
+     * the current battle of the game
+     */
     private Battle battle;
 
+    /**
+     * crates a new game manager
+     */
     private GameManager()
     {
 
     }
 
+    /**
+     * @return single instance of the game manager
+     */
     public static GameManager getInstance()
     {
         return gameManager;
     }
 
+    /**
+     * logouts from game
+     */
     public void logout()
     {
         currentPlayer = null;
@@ -94,6 +125,10 @@ public class GameManager
         }
     }
 
+    /**
+     * @param playerName
+     * @return battle history of the given player
+     */
     private History getHistory(String playerName)
     {
         History history = new History();
@@ -125,6 +160,10 @@ public class GameManager
         return history;
     }
 
+    /**
+     * @param deckString
+     * @return deck from deck string 
+     */
     private Deck getDeck(String deckString)
     {
         Deck deck = new Deck();
@@ -137,11 +176,16 @@ public class GameManager
         return deck;
     }
 
+    /**
+     * @param id
+     * @return card based on its ID
+     */
     private Card getCard(String id)
     {
         Card card;
 
-        switch (id){
+        switch (id)
+        {
             case "Barbarians":
                 card = new Barbarians();
                 break;
@@ -239,6 +283,12 @@ public class GameManager
         }
     }
 
+    /**
+     * create a initial deck for given player
+     * @param username
+     * @param userPassword
+     * @return deck string
+     */
     private String createDeck(String username, String userPassword)
     {
         // System.out.println("gameManager line 209 started");
@@ -276,17 +326,28 @@ public class GameManager
         return deck;
     }
 
+    /**
+     * @return current player
+     */
     public Player getCurrentPlayer()
     {
         return currentPlayer;
     }
 
+    /**
+     * finishes current battle
+     */
     public void finishBattle()
     {
         currentBot = null;
         battle = null;
     }
 
+    /**
+     * creates a new battle for the game
+     * @param botDifficulty
+     * @return is battle created
+     */
     public boolean createBattle(int botDifficulty)
     {
         if(botDifficulty == 1)
@@ -310,21 +371,35 @@ public class GameManager
         return false;
     }
 
+    /**
+     * the main step that battle done every frame
+     * @return the status of the battle after step
+     */
     public int battleStep()
     {
         return battle.step();
     }
 
+    /**
+     * @return current battle
+     */
     public Battle getBattle()
     {
         return battle;
     }
 
+    /**
+     * @return current bot
+     */
     public Bot getCurrentBot()
     {
         return currentBot;
     }
 
+    /**
+     * @param difficulty
+     * @return a random deck for the bot
+     */
     public static Deck getRandomDeck(int difficulty)
     {
         ArrayList<Card> cards = new ArrayList<>();
@@ -343,28 +418,35 @@ public class GameManager
         Collections.shuffle(cards);
         Deck deck = new Deck();
 
-        if(difficulty == 1){
+        if(difficulty == 1)
+        {
             cards.remove(0);
             cards.remove(0);
             cards.remove(0);
             cards.remove(0);
-            for (Card c : cards) {
+            for (Card c : cards) 
+            {
                 deck.addCard(c);
             }
         }
-        else if(difficulty == 2){
+        else if(difficulty == 2)
+        {
             int spellCount = 0, buildingCount = 0, troopCount = 0;
 
-            for(Card c : cards){
-                if(c instanceof Spell && spellCount < 2){
+            for(Card c : cards)
+            {
+                if(c instanceof Spell && spellCount < 2)
+                {
                     deck.addCard(c);
                     spellCount++;
                 }
-                else if(c instanceof Building && buildingCount < 1){
+                else if(c instanceof Building && buildingCount < 1)
+                {
                     deck.addCard(c);
                     buildingCount++;
                 }
-                else if(c instanceof Troop && troopCount < 5){
+                else if(c instanceof Troop && troopCount < 5)
+                {
                     deck.addCard(c);
                     troopCount++;
                 }

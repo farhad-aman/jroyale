@@ -2,24 +2,45 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.application.Platform;
-import javafx.scene.Group;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class ArenaView extends Group
+/**
+ * this class contains the arena view of the battle
+ * @version 1.0
+ */
+public class ArenaView
 {
+    /**
+     * the single instance of game manager
+     */
     private GameManager gameManager = GameManager.getInstance();
     
+    /**
+     * the list of creatures
+     */
     private ArrayList<Creature> arenaViewCreatures;
 
+    /**
+     * the list of old status based on creatures
+     */
     private HashMap<Creature, Integer> oldStatus;
 
+    /**
+     * the list of image view based on creatures
+     */
     private ArrayList<ImageView> arenaViewImageViews;
 
+    /**
+     * the list of hp bars based on creatures
+     */
     private ArrayList<ProgressBar> arenaViewHPBars;
 
+    /**
+     * creates a new arena view
+     */
     public ArenaView()
     {
         arenaViewCreatures = new ArrayList<>();
@@ -28,6 +49,11 @@ public class ArenaView extends Group
         arenaViewHPBars = new ArrayList<>();
     }
 
+    /**
+     * updated the whole arena view after each step
+     * @param arena
+     * @param bt
+     */
     public void updateView(Arena arena, BattleController bt)
     {
         for (Creature c : gameManager.getBattle().getArena().getCreatures()) 
@@ -104,6 +130,11 @@ public class ArenaView extends Group
         }
     }
 
+    /**
+     * when a spell uses this method shows that speel
+     * @param creature
+     * @param bt
+     */
     private void showSpell(Creature creature, BattleController bt)
     {
         if(creature.getCard() instanceof Rage)
@@ -181,6 +212,12 @@ public class ArenaView extends Group
         }
     }
 
+    /**
+     * when a troop or building eliminated this method show that creature death
+     * @param creature
+     * @param imageView
+     * @param progressBar
+     */
     public void deathTime(Creature creature, ImageView imageView, ProgressBar progressBar)
     {
         Thread thread = new Thread(new Runnable()
