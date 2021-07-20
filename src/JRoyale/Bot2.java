@@ -91,4 +91,13 @@ public class Bot2 extends Bot
         }
         return new Point2D(x, y);
     }
+    /**
+     * @return the position of the bot tower with the least hp
+     * */
+//    private Point2D botTowers(){
+//        Point2D p = new Point2D();
+//
+//
+//        return p;
+//    }
 }

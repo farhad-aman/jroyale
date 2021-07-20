@@ -91,6 +91,8 @@ public class Creature
      */
     private int damage;
 
+    private Point2D ragePosition;
+
     /**
      * the remaining time of rage effect
      */
@@ -136,6 +138,7 @@ public class Creature
         oldStatus = status;
 
         underRage = false;
+        ragePosition = null;
         rageTimeRemained = 0;
 
         speed = card.getSpeed();
@@ -351,8 +354,11 @@ public class Creature
         {
             rageTimeRemained -= 1000 / GameManager.FPS;
 
-            if(rageTimeRemained == 0)
+            if((ragePosition != null) && (rageTimeRemained <= 0 || position.distance(ragePosition) > 5 * 40)) {
                 underRage = false;
+                ragePosition = null;
+                rageTimeRemained = 0;
+            }
         }
 
         if(oldStatus != status)
@@ -364,6 +370,10 @@ public class Creature
         }
         else
             status = oldStatus;
+    }
+
+    public void setRagePosition(Point2D ragePosition) {
+        this.ragePosition = ragePosition;
     }
 
     /**

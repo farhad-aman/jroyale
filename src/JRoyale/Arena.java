@@ -120,7 +120,6 @@ public class Arena
             if(c.getCard() instanceof Spell)
             {
                 c.getCard().playAttackSound();
-                it.remove();
             }
         }
     }
