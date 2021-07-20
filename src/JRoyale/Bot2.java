@@ -40,7 +40,7 @@ public class Bot2 extends Bot
             }
             else
             {
-                ArrayList<Creature> creatures = chosenCard.makeCreature(towerStatus(chosenCard), -1);
+                ArrayList<Creature> creatures = chosenCard.makeCreature(towerStatus(chosenCard, ArmiesAndTowers(chosenCard)), -1);
                 for(Creature c : creatures)
                 {
                     battle.getArena().getCreatures().add(c);
@@ -51,17 +51,23 @@ public class Bot2 extends Bot
             battle.getBotElixirBar().takeExir(chosenCard.getCost());
         }
     }
-
-    private Point2D towerStatus(Card card){
+    /**
+     * @param card the chosen card to create
+     * @param where place to create //0->arbitrary//1->enemy up princess//2->enemy down princess//3->enemy king//4->up right//5->down right//6-> near to bot king
+     * */
+    private Point2D towerStatus(Card card, int where){
         boolean up = GameManager.getInstance().getBattle().getArena().getPlayerUpPrincess().isEliminated();
         boolean down = GameManager.getInstance().getBattle().getArena().getPlayerDownPrincess().isEliminated();
         Random random = new Random();
         int x = 0, y = 0;
 
         if(up && down){
-            x = random.nextInt(160) + 440;
+            if(where == 0){
+                x = random.nextInt(160) + 440;
 
-            y = random.nextInt(700) + 10;
+                y = random.nextInt(700) + 10;
+            }
+            else if()
         }
         else if(!up && down){
             x = random.nextInt(240) + 440;
@@ -85,19 +91,15 @@ public class Bot2 extends Bot
             x = random.nextInt(280) + 680;
             y = random.nextInt(2) == 0 ? random.nextInt(260) + 40 : random.nextInt(260) + 440;
         }
-        if(card instanceof Building && !((y < 10 || y > 1110) || ((x <= 700 || x >= 580) && ((y <= 180 && y >= 100) || (y <= 620 && y >= 540))))){
-            return towerStatus(card);
+        if(card instanceof Building && (y < 10 || y > 1110) || ((x <= 700 || x >= 580) && ((y <= 180 && y >= 100) || (y <= 620 && y >= 540)))){
+            return towerStatus(card, where);
         }
         return new Point2D(x, y);
     }
     /**
-     * @return the position of the bot tower with the least hp
+     * @return the best place to create army considering towers and number of enemy armies
      * */
-    private Point2D considerBotTowers(Card chosenCard){
-        Point2D p = towerStatus(chosenCard);
-//        int enemies = 0, ;
-
-
-        return p;
+    private int ArmiesAndTowers(Card chosenCard){
+        return 0;
     }
 }

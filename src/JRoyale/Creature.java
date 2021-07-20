@@ -276,6 +276,13 @@ public class Creature
      */
     public void setKillTarget(Creature creature)
     {
+        if(card instanceof Building){
+            if (creature == null)
+                status = side == 1 ? 1 : 2;
+            else
+                status = side == 1 ? 3 : 4;
+        }
+
         this.killTarget = creature;
     }
 

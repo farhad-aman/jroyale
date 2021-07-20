@@ -44,7 +44,7 @@ public class Rage extends Spell
             while (it.hasNext()) {
                 Creature tempTarget = it.next();
 
-                if (!tempTarget.isUnderRage() && tempTarget.getPosition().distance(creature.getPosition()) <= (40 * super.getRange()) && creature.getSide() == tempTarget.getSide()) {
+                if (!tempTarget.isUnderRage() && tempTarget.getPosition().distance(creature.getPosition()) <= ((tempTarget.getCard() instanceof King ? 120 : tempTarget.getCard() instanceof Princess ? 80 : tempTarget.getCard() instanceof Building ? 60 : 40) * super.getRange()) && creature.getSide() == tempTarget.getSide()) {
                     tempTarget.setUnderRage(true);
                     tempTarget.setRagePosition(creature.getPosition());
                     tempTarget.setRageTimeRemained(duration[creature.getLevel()]);
@@ -55,7 +55,7 @@ public class Rage extends Spell
     }
 
     /**
-     * @param level
+     *
      * @return the duration of the rage spell
      */
     public int getInBattleTime() 
