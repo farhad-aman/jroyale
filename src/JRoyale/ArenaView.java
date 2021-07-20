@@ -6,6 +6,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 
 /**
  * this class contains the arena view of the battle
@@ -38,6 +39,8 @@ public class ArenaView
      */
     private ArrayList<ProgressBar> arenaViewHPBars;
 
+    private ArrayList<Creature> spells;
+
     /**
      * creates a new arena view
      */
@@ -47,6 +50,7 @@ public class ArenaView
         oldStatus = new HashMap<>();
         arenaViewImageViews = new ArrayList<>();
         arenaViewHPBars = new ArrayList<>();
+        spells = new ArrayList<>();
     }
 
     /**
@@ -83,12 +87,56 @@ public class ArenaView
                     iv.setImage(c.getCard().getImage(c.getStatus()));
                     oldStatus.put(c, c.getStatus());
                 }
+                if(c.getCard() instanceof Inferno)
+                {
+                    Creature target = ((Inferno)c.getCard()).getTempTarget();
+                    if(!c.isEliminated() && target != null)
+                    {
+                        Line line = new Line(c.getPosition().getX(),
+                                             c.getPosition().getY() - 43, 
+                                             target.getPosition().getX(),
+                                             target.getPosition().getY());
+                        line.setFill(Color.RED);
+                        line.setStroke(Color.RED);
+                        line.setStrokeWidth(5);
+                        line.setVisible(true);
+                        bt.getArenaPane().getChildren().add(line);
+                        Thread thread = new Thread(new Runnable()
+                        {
+                            @Override
+                            public void run() 
+                            {
+                                try 
+                                {
+                                    Thread.sleep(400);    
+                                } catch (Exception e) {
+                                    //TODO: handle exception
+                                }
+                                Platform.runLater(new Runnable()
+                                {
+                                    @Override
+                                    public void run() 
+                                    {
+                                        line.setVisible(false);
+                                        bt.getArenaPane().getChildren().remove(line);
+                                    }
+                                });
+                            }
+                        });
+                        thread.start();
+                    }
+                }
             }
             else
             {
                 if(c.getCard() instanceof Spell)
                 {
-                    showSpell(c, bt);
+                    if(!spells.contains(c))
+                    {
+                        c.getCard().playAttackSound();
+                        showSpell(c, bt);
+                        spells.add(c);
+                    }
                 }
                 else
                 {
