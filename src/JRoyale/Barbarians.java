@@ -6,9 +6,15 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * this class contains barbarians card in the game
+ * @version 1.0
+ */
 public class Barbarians extends Troop
 {
-
+    /**
+     * creates a new barbarians card
+     */
     public Barbarians() 
     {
         super("ground",

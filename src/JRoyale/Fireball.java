@@ -5,10 +5,20 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 import java.util.Iterator;
 
+/**
+ * this class contains fireball card in the game
+ * @version 1.0
+ */
 public class Fireball extends Spell
 {
+    /**
+     * the damage of the fireball
+     */
     private final int[] damage = {0, 325, 357, 393, 432, 474};
 
+    /**
+     * creates a new fireball card
+     */
     public Fireball() 
     {
         super("spell", "Fireball", 4, 2.5, 100, new MediaPlayer(new Media(new File("resources/cards/fireball/fireballAttack.mp3").toURI().toString())));

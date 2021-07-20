@@ -2,18 +2,45 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
+/**
+ * the player that logins in the game and all its details
+ * @version 1.0
+ */
 public class Player
 {
+    /**
+     * the username of the player
+     */
     private final String username;
 
+    /**
+     * the password of the player
+     */
     private String password;
 
+    /**
+     * the xp of the player
+     */
     private int xp;
 
+    /**
+     * the deck of the player
+     */
     private Deck deck;
 
+    /**
+     * the battles history of the player
+     */
     private History history;
 
+    /**
+     * creates a new player
+     * @param username
+     * @param password
+     * @param xp
+     * @param deck
+     * @param history
+     */
     public Player(String username, String password, int xp, Deck deck, History history)
     {
         this.username = username;
@@ -23,6 +50,9 @@ public class Player
         this.history = history;
     }
     
+    /**
+     * @return username of the player
+     */
     public String getUsername()
     {
         return username;
@@ -63,33 +93,54 @@ public class Player
         }
     }
     
+    /**
+     * @return xp of the player
+     */
     public int getXp()
     {
         return xp;
     }
 
+    /**
+     * sets xp of the player and save it on data base
+     * @param xp
+     */
     public void setXp(int xp)
     {
         this.xp = xp;
         saveOnDB();
     }
 
+    /**
+     * @return deck of the player
+     */
     public Deck getDeck()
     {
         return deck;
     }
 
+    /**
+     * sets deck of the player and save it on data base
+     * @param deck
+     */
     public void setDeck(Deck deck)
     {
         this.deck = deck;
         saveOnDB();
     }
 
+    /**
+     * @return the battles history of the player
+     */
     public History getHistory()
     {
         return history;
     }
 
+    /**
+     * adds a new battle result to the history and save it on data base
+     * @param battleResult
+     */
     public void addBattleResult(BattleResult battleResult)
     {
         history.addBattleResult(battleResult);
@@ -116,6 +167,9 @@ public class Player
         }
     }
 
+    /**
+     * @return the level of the player based on xp
+     */
     public int getLevel()
     {
         if(xp < 300)
@@ -141,6 +195,10 @@ public class Player
         return -1;
     }
 
+    /**
+     * this method is the main method that saves new player information in players table on data base 
+     * this app uses MySQL data base
+     */
     public void saveOnDB()
     {
         try
@@ -165,6 +223,9 @@ public class Player
         }
     }
 
+    /**
+     * @return string that uses for saving deck on data base 
+     */
     private String getDeckString() 
     {
         String deckString = "";

@@ -4,9 +4,15 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * this class contains pekka card in the game
+ * @version 1.0
+ */
 public class Pekka extends Troop
 {
-
+    /**
+     * creates a new pekka
+     */
     public Pekka()
     {
         super("ground",

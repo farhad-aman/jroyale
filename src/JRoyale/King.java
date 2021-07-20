@@ -4,10 +4,20 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * this class contains king card in the game
+ * @version 1.0
+ */
 public class King extends Building
 {
+    /**
+     * the damage of the king card
+     */
     private final int[]  damage = {0, 50, 53, 57, 60, 64};
 
+    /**
+     * creates a new king card
+     */
     public King() 
     {
         super("building", 

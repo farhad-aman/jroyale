@@ -4,9 +4,15 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * this class contains dragon card in the game
+ * @version 1.0
+ */
 public class Dragon extends Troop
 {
-
+    /**
+     * creates a new dragon card
+     */
     public Dragon() 
     {
         super("both"
@@ -39,5 +45,4 @@ public class Dragon extends Troop
         pics.put(5, new Image("resources/cards/dragon/dragonDeathForward.gif"));
         pics.put(6, new Image("resources/cards/dragon/dragonDeathBackward.gif"));
     }
-
 }

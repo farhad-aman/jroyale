@@ -4,9 +4,15 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * this class contains valkyrie card in the game
+ * @version 1.0
+ */
 public class Valkyrie extends Troop
 {
-
+    /**
+     * creates a new valkyrie card
+     */
     public Valkyrie() 
     {
         super("ground",

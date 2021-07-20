@@ -8,6 +8,11 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/**
+ * the main class of the whole game contains the application
+ * @author Mehran Ghaffarian & Farhad Aman
+ * @version 1.0
+ */
 public class JRoyale extends Application
 {
     @Override
@@ -32,6 +37,10 @@ public class JRoyale extends Application
         primaryStage.show();
     }
 
+    /**
+     * this method starts the whole app
+     * @param args
+     */
     public static void main(String[] args) 
     {
         launch(args);    

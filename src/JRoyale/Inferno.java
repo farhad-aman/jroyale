@@ -4,16 +4,35 @@ import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 
+/**
+ * this class contains the inferno card in the game
+ * @version 1.0
+ */
 public class Inferno extends Building
 {
+    /**
+     * the temp target that inferno use it
+     */
     private Creature tempTarget;
 
+    /**
+     * 
+     */
     private int tempTargetTime;
 
+    /**
+     * the minimum damage of the inferno
+     */
     private final int[] minDamage = {0, 20, 22, 24, 26, 29};
 
+    /**
+     * the maximum damage of the inferno
+     */
     private final int[] maxDamage = {0, 400, 440, 484, 532, 584};
 
+    /**
+     * creates a new inferno
+     */
     public Inferno() 
     {
         super("building", 
@@ -41,13 +60,25 @@ public class Inferno extends Building
         pics.put(1, new Image("resources/cards/inferno/inferno.gif"));
     }
 
-    public double calculateInfernoDamage(int level, boolean underRage){
+    /**
+     * calculates new damage of the inferno
+     * @param level
+     * @param underRage
+     * @return
+     */
+    public double calculateInfernoDamage(int level, boolean underRage)
+    {
         if(tempTarget == null)
             return 0;
         return (((maxDamage[level] - minDamage[level]) / 10.0) *  ((Math.min(tempTargetTime, 10000.0)) / 1000.0) + minDamage[level]) * (underRage ? 1.4 : 1);
     }
 
-    public void addTempTargetTime(Creature tempTarget) {
+    /**
+     * calculates time that inferno attacks to increase damage
+     * @param tempTarget
+     */
+    public void addTempTargetTime(Creature tempTarget) 
+    {
         if(tempTarget == this.tempTarget)
             this.tempTargetTime += 1000 / GameManager.FPS;
         else {
@@ -57,7 +88,8 @@ public class Inferno extends Building
     }
 
     @Override
-    public int getDamage(int level) {
+    public int getDamage(int level) 
+    {
         return 0;//junk
     }
 }

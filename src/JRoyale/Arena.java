@@ -116,6 +116,11 @@ public class Arena
         {
             Creature c = it.next();
             c.step();
+
+            if(c.getCard() instanceof Spell)
+            {
+                c.getCard().playAttackSound();
+            }
         }
     }
 
