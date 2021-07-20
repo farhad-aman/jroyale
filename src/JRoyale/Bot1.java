@@ -3,9 +3,15 @@ import java.util.Random;
 
 import javafx.geometry.Point2D;
 
+/**
+ * this class contains the bot number 1 that is a very simple a complete randon bot 
+ * @version 1.0
+ */
 public class Bot1 extends Bot
 {
-    
+    /**
+     * create a new bot1
+     */
     public Bot1() 
     {
         super("CPU Easy", GameManager.getRandomDeck(1), 1);
@@ -52,6 +58,4 @@ public class Bot1 extends Bot
             }
         }
     }
-
-
 }

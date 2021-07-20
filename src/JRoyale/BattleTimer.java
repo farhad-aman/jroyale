@@ -1,3 +1,7 @@
+/**
+ * this class contains the time of the battle
+ * @version 1.0
+ */
 public class BattleTimer
 {
     /**

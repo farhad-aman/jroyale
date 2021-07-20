@@ -25,6 +25,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * this class is the controller for the battle controller
+ * @version 1.0
+ */
 public class BattleController 
 {
     /**
@@ -42,16 +46,34 @@ public class BattleController
      */
     private ArenaView arenaView = new ArenaView();
 
+    /**
+     * the chosen card of the player
+     */
     private Card chosenCard;
 
+    /**
+     * the number of chosen card
+     */
     private int chosenCardNumber;
 
+    /**
+     * the battle intro sound that plays first of battle
+     */
     private MediaPlayer mediaPlayerGo = new MediaPlayer(new Media(new File("resources/battle/go.mp3").toURI().toString()));
 
+    /**
+     * the background music that plays in battle
+     */
     private MediaPlayer battleBackgroundMusic = new MediaPlayer(new Media(new File("resources/battle/battleBackgroundMusic.mp3").toURI().toString()));
     
+    /**
+     * this sound plays when battle finishes
+     */
     private MediaPlayer battleFinished = new MediaPlayer(new Media(new File("resources/battle/battleFinished.mp3").toURI().toString()));
     
+    /**
+     * is the battle finished
+     */
     private boolean isBattleFinished;
     
     @FXML
@@ -225,7 +247,13 @@ public class BattleController
         }
     }
 
-    private void showBorders(double x, double y) {
+    /**
+     * 
+     * @param x
+     * @param y
+     */
+    private void showBorders(double x, double y) 
+    {
         if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
             setVisibility(rightLine, downRightLine, downLeftLine, upLeftLine, upRightLine, leftDownLine, leftUpLine);
         }else if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
@@ -237,6 +265,10 @@ public class BattleController
         }
     }
 
+    /**
+     * 
+     * @param lines
+     */
     private void setVisibility(Line... lines) {
         Runnable task = new Runnable()
         {
@@ -277,7 +309,12 @@ public class BattleController
         showThread.start();
     }
 
-
+    /**
+     * 
+     * @param x
+     * @param y
+     * @return
+     */
     private boolean checkTowerStatus(double x, double y) {//System.out.println("line 181");
         if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
 //            System.out.println("line 183");
@@ -296,6 +333,13 @@ public class BattleController
         }
     }
     
+    /**
+     * 
+     * @param x
+     * @param y
+     * @param number
+     * @return
+     */
     private ArrayList<Point2D> findPositions(double x, double y, int number) 
     {
         ArrayList<Point2D> points = new ArrayList<>();
@@ -335,6 +379,11 @@ public class BattleController
         return points;
     }
     
+    /**
+     * 
+     * @param point
+     * @return
+     */
     public boolean isAppropriate(Point2D point)
     {
         int borderDistance = chosenCard instanceof Building ? 40 : 10;
@@ -365,6 +414,11 @@ public class BattleController
         return false;
     }
     
+    /**
+     * 
+     * @param point
+     * @return
+     */
     private boolean notInCreatures(Point2D point) 
     {
         Iterator<Creature> it = gameManager.getBattle().getArena().getCreatures().iterator();
@@ -721,6 +775,9 @@ public class BattleController
         //the end -->show the winner and get back to the menu
     }
     
+    /**
+     * opens menu scene and stops battle scene
+     */
     private void openMenu()
     {
         battleBackgroundMusic.stop();
@@ -744,6 +801,9 @@ public class BattleController
         System.out.println("Menu opened");
     }
 
+    /**
+     * @return the arena pane of the battle
+     */
     public AnchorPane getArenaPane() 
     {
         return arenaPane;

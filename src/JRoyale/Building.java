@@ -1,13 +1,40 @@
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * this abstract class contains the concept of building in the game
+ * @version 1.0
+ */
 public abstract class Building extends Card
 {
+    /**
+     * the hit speed of the building
+     */
     private final int hitSpeed;
 
+    /**
+     * the initial life time of the building
+     */
     private final int initLifeTime;
 
+    /**
+     * the initial hp of the building
+     */
     private final int[] initHP;
 
+    /**
+     * creates a new building
+     * @param type
+     * @param id
+     * @param cost
+     * @param hitSpeed
+     * @param target
+     * @param imageSize
+     * @param range
+     * @param initLifeTime
+     * @param initHP
+     * @param attackSound
+     * @param deathSound
+     */
     public Building(String type,
                     String id,
                     int cost, 
@@ -32,11 +59,18 @@ public abstract class Building extends Card
         return hitSpeed;
     }
 
+    /**
+     * @return initial life time
+     */
     public int getInitLifeTime()
     {
         return initLifeTime;
     }
 
+    /**
+     * @param level
+     * @return initial hp
+     */
     public int getInitHP(int level)
     {
         return initHP[level];
@@ -81,5 +115,8 @@ public abstract class Building extends Card
         }
     }
 
+    /**
+     * @return damage of the building
+     */
     public abstract int getDamage(int level);
 }

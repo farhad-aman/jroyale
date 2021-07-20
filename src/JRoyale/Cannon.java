@@ -4,10 +4,20 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * this class contains cannon card in the game 
+ * @version 1.0
+ */
 public class Cannon extends Building
 { 
+    /**
+     * the damage of the cannon
+     */
     public final int damage[] = {0, 60, 66, 72, 79, 87};
 
+    /**
+     * creates a new cannon
+     */
     public Cannon() 
     {
         super("building",
