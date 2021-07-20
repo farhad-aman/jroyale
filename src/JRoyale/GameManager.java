@@ -56,10 +56,10 @@ public class GameManager
             st.execute(insertion);
 
             ResultSet rs = st.getResultSet();
-            System.out.println("game manager line 53 started");
-            if(!rs.next()) 
+            // System.out.println("game manager line 53 started");
+            if(!rs.next())
             {
-                System.out.println("game manager line 56 started");
+            //    System.out.println("game manager line 56 started");
                 st.close();
                 rs.close();
 
@@ -67,10 +67,10 @@ public class GameManager
             }
             else if(rs.getString(2).equals(userPassword))
             {
-                System.out.println("game manager line 64 started");
+          //      System.out.println("game manager line 64 started");
                 currentPlayer = new Player(rs.getString(1), rs.getString(2), rs.getInt(3), getDeck(rs.getString(4)), getHistory(rs.getString(1)));
 
-                System.out.println("game manager line 67 started");
+        //        System.out.println("game manager line 67 started");
                 System.out.println(currentPlayer.getDeck());
 
                 st.close();
@@ -78,27 +78,27 @@ public class GameManager
 
                 return 1;
             }
-            else 
+            else
             {
-                System.out.println("game manager line 77 started");
+      //          System.out.println("game manager line 77 started");
                 st.close();
                 rs.close();
 
                 return 0;
             }
         }
-        catch (Exception e) 
+        catch (Exception e)
         {
             e.printStackTrace();
             return -1;
         }
     }
 
-    private History getHistory(String playerName) 
+    private History getHistory(String playerName)
     {
         History history = new History();
 
-        try 
+        try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
@@ -128,7 +128,7 @@ public class GameManager
     private Deck getDeck(String deckString)
     {
         Deck deck = new Deck();
-        
+
         for(String id : deckString.split(":"))
         {
             deck.addCard(getCard(id));
@@ -137,7 +137,7 @@ public class GameManager
         return deck;
     }
 
-    private Card getCard(String id) 
+    private Card getCard(String id)
     {
         Card card;
 
@@ -187,21 +187,21 @@ public class GameManager
      * */
     public int signUp(String username, String userPassword, String confirmPassword)
     {
-        System.out.println("gameManager line 160 started");
-        if(!userPassword.equals(confirmPassword)) 
+    //    System.out.println("gameManager line 160 started");
+        if(!userPassword.equals(confirmPassword))
         {
-            System.out.println("gameManager line 162 started");
+  //          System.out.println("gameManager line 162 started");
             return -2;
         }
-        else if(!(username.length() <= 30) || !(username.length() >= 3) || !(userPassword.length() >= 6) || !(userPassword.length() <= 32)) 
+        else if(!(username.length() <= 30) || !(username.length() >= 3) || !(userPassword.length() >= 6) || !(userPassword.length() <= 32))
         {
-            System.out.println("gameManager line 166 started");
+            // System.out.println("gameManager line 166 started");
             return -1;
         }
 
-        try 
+        try
         {
-            System.out.println("gameManager line 171 started");
+//            System.out.println("gameManager line 171 started");
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
 
@@ -215,10 +215,9 @@ public class GameManager
 
             if(!rs.next())
             {
-                System.out.println("gameManager line 186 started\t\tuserName:" + username);
+                // System.out.println("gameManager line 186 started\t\tuserName:" + username);
                 String deck = createDeck(username, userPassword);
 
-                System.out.println("gameManager line 189 started\t\t" + "UserName:" + username);
                 insertion = "insert into players values(" + '\"' +  username + '\"' + "," +  '\"' +  userPassword + '\"' + ", " + 0 + ", " +  '\"' +  deck + '\"' + ")";
                 st.execute(insertion);
 
@@ -227,7 +226,7 @@ public class GameManager
 
                 return 1;
             }
-            System.out.println("gameManager line 198 started\t\t" + username);
+            // System.out.println("gameManager line 198 started\t\t" + username);
             rs.close();
             st.close();
 
@@ -240,9 +239,9 @@ public class GameManager
         }
     }
 
-    private String createDeck(String username, String userPassword) 
+    private String createDeck(String username, String userPassword)
     {
-        System.out.println("gameManager line 209 started");
+        // System.out.println("gameManager line 209 started");
         String deck = "";
         ArrayList<String> cards = new ArrayList<>();
         cards.add("Fireball");
@@ -271,13 +270,13 @@ public class GameManager
 
             cards.remove(index);
         }
-        System.out.println("gameManager line 237 started");
+        // System.out.println("gameManager line 237 started");
         currentPlayer = player;
 
         return deck;
     }
 
-    public Player getCurrentPlayer() 
+    public Player getCurrentPlayer()
     {
         return currentPlayer;
     }
@@ -294,7 +293,7 @@ public class GameManager
         {
             currentBot = new Bot1();
             this.battle = new Battle(currentBot);
-            return true; 
+            return true;
         }
         else if(botDifficulty == 2)
         {
@@ -316,7 +315,7 @@ public class GameManager
         return battle.step();
     }
 
-    public Battle getBattle() 
+    public Battle getBattle()
     {
         return battle;
     }
@@ -326,7 +325,7 @@ public class GameManager
         return currentBot;
     }
 
-    public static Deck getRandomDeck()
+    public static Deck getRandomDeck(int difficulty)
     {
         ArrayList<Card> cards = new ArrayList<>();
         cards.add(new Archer());
@@ -342,14 +341,34 @@ public class GameManager
         cards.add(new Valkyrie());
         cards.add(new Wizard());
         Collections.shuffle(cards);
-        cards.remove(0);
-        cards.remove(0);
-        cards.remove(0);
-        cards.remove(0);
         Deck deck = new Deck();
-        for(Card c : cards)
-        {
-            deck.addCard(c);
+
+        if(difficulty == 1){
+            cards.remove(0);
+            cards.remove(0);
+            cards.remove(0);
+            cards.remove(0);
+            for (Card c : cards) {
+                deck.addCard(c);
+            }
+        }
+        else if(difficulty == 2){
+            int spellCount = 0, buildingCount = 0, troopCount = 0;
+
+            for(Card c : cards){
+                if(c instanceof Spell && spellCount < 2){
+                    deck.addCard(c);
+                    spellCount++;
+                }
+                else if(c instanceof Building && buildingCount < 1){
+                    deck.addCard(c);
+                    buildingCount++;
+                }
+                else if(c instanceof Troop && troopCount < 5){
+                    deck.addCard(c);
+                    troopCount++;
+                }
+            }
         }
         return deck;
     }
