@@ -86,7 +86,6 @@ public class Bot2 extends Bot
             y = random.nextInt(2) == 0 ? random.nextInt(260) + 40 : random.nextInt(260) + 440;
         }
         if(card instanceof Building && !((y < 10 || y > 1110) || ((x <= 700 || x >= 580) && ((y <= 180 && y >= 100) || (y <= 620 && y >= 540))))){
-            System.out.println("building handled");
             return towerStatus(card);
         }
         return new Point2D(x, y);
@@ -94,10 +93,11 @@ public class Bot2 extends Bot
     /**
      * @return the position of the bot tower with the least hp
      * */
-//    private Point2D botTowers(){
-//        Point2D p = new Point2D();
-//
-//
-//        return p;
-//    }
+    private Point2D considerBotTowers(Card chosenCard){
+        Point2D p = towerStatus(chosenCard);
+
+        
+
+        return p;
+    }
 }
