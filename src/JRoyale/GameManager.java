@@ -20,7 +20,7 @@ public class GameManager
     /**
      * the password of MySQL database
      */
-    public static final String dbPassword = "@#$mg200";
+    public static final String dbPassword = "";
 
     /**
      * the frame rate of the game
