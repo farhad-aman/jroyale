@@ -5,22 +5,19 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 import java.util.Iterator;
 
-public class Rage extends Spell
-{
+public class Rage extends Spell {
     private int inBattleTime = 0;
 
     private final int duration[] = {0, 6000, 6500, 7000, 7500, 8000};
 
-    public Rage() 
-    {
+    public Rage() {
         super("spell", "Rage", 3, 5, 100, new MediaPlayer(new Media(new File("resources/cards/rage/rageAttack.mp3").toURI().toString())));
     }
 
     /**
      * loads the proper pics for status//0->for deck(150.jpg)//troops://1->moving to right//2->moving to left//3->fighting to right//4->fighting to left//5->dying to right//6->dying to left//buildings://7->cannon ball//8->cannon turning right//9->cannon turning left//10->inferno.gif//11->spells gif
-     * */
-    public void loadImages()
-    {
+     */
+    public void loadImages() {
         pics.put(0, new Image("resources/cards/rage/rage150.png"));
         pics.put(-1, new Image("resources/cards/rage/rage150wb.jpg"));
         pics.put(1, new Image("resources/blank150.jpg"));
@@ -28,9 +25,8 @@ public class Rage extends Spell
 
 
     @Override
-    public void step(Creature creature)
-    {
-        if(inBattleTime > 0) {
+    public void step(Creature creature) {
+        if (inBattleTime > 0) {
             Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 
             while (it.hasNext()) {
@@ -52,5 +48,11 @@ public class Rage extends Spell
 
     public void setInBattleTime(int level) {
         inBattleTime = duration[level];
+
+    }
+
+    public int getDuration(int level)
+    {
+        return duration[level];
     }
 }

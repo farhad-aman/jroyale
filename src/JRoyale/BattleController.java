@@ -726,7 +726,6 @@ public class BattleController
         Parent root;
         try 
         {
-            
             root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
             Scene scene = new Scene(root);
             scene.setCursor(new ImageCursor(new Image("resources/cursor2.png")));

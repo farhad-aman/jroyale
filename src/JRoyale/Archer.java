@@ -6,9 +6,16 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * this class contains details for archer card in game
+ * @version 1.0
+ */
 public class Archer extends Troop
 {
 
+    /**
+     * creates a new archer card
+     */
     public Archer() 
     {
         super("ground",
