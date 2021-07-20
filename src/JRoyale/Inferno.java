@@ -92,4 +92,9 @@ public class Inferno extends Building
     {
         return 0;//junk
     }
+
+    public Creature getTempTarget()
+    {
+        return tempTarget;
+    }
 }
