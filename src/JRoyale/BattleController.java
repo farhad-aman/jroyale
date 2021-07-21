@@ -748,7 +748,7 @@ public class BattleController
             }
             else
             {
-                winnerName.setText(bot.getUsername() + " IS WINNER");
+                winnerName.setText(bot.getUsername() + " WINS");
             }
             winnerName.setLayoutX(40);
             winnerName.setLayoutY(500);
