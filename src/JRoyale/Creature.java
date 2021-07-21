@@ -825,15 +825,15 @@ public class Creature
     private boolean notInViewRange(Point2D newPosition)
     {
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
-//        System.out.println("checking the creature position accuracy521");
-//        while (it.hasNext())
-//        {
-//            Creature c = it.next();
-//
-//            if(!(card instanceof Giant) && !(c.getCard() instanceof Giant) && c != this && !(c.card instanceof Spell) && newPosition.distance(c.position) < 10 && ((!(card instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((card instanceof Dragon) && (c.getCard() instanceof Dragon)))){
-//                return false;
-//            }
-//        }
+        System.out.println("checking the creature position accuracy521");
+        while (it.hasNext())
+        {
+            Creature c = it.next();
+
+            if(!(card instanceof Giant) && !(c.getCard() instanceof Giant) && c != this && !(c.card instanceof Spell) && newPosition.distance(c.position) < 10 && ((!(card instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((card instanceof Dragon) && (c.getCard() instanceof Dragon)))){
+                return false;
+            }
+        }
         return true;
     }
 
@@ -846,7 +846,6 @@ public class Creature
     {
         ArrayList<Point2D> validates = new ArrayList<>();
         Iterator<Point2D> it = points.iterator();
-//        System.out.println("finding in range positions536");
         while (it.hasNext())
         {
             Point2D temp = it.next();
