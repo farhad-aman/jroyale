@@ -701,8 +701,9 @@ public class BattleController
             ImageView botStars = new ImageView();
             Label yourName = new Label();
             Label botName = new Label();
+            Label winnerName = new Label();
             yourStars.setLayoutX(40);
-            yourStars.setLayoutY(60);
+            yourStars.setLayoutY(40);
             yourStars.setFitWidth(600);
             yourStars.setFitHeight(300);
             yourStars.setImage(new Image("resources/battle/" + scoreBoard.getPlayerStars() + "star.png"));
@@ -711,7 +712,7 @@ public class BattleController
             yourStars.setVisible(true);
             arenaPane.getChildren().add(yourStars);
             botStars.setLayoutX(640);
-            botStars.setLayoutY(60);
+            botStars.setLayoutY(40);
             botStars.setFitWidth(600);
             botStars.setFitHeight(300);
             botStars.setImage(new Image("resources/battle/" + scoreBoard.getBotStars() + "star.png"));
@@ -721,7 +722,7 @@ public class BattleController
             arenaPane.getChildren().add(botStars);
             yourName.setText(player.getUsername());
             yourName.setLayoutX(40);
-            yourName.setLayoutY(360);
+            yourName.setLayoutY(340);
             yourName.setPrefWidth(600);
             yourName.setPrefHeight(300);
             yourName.setPickOnBounds(true);
@@ -732,7 +733,7 @@ public class BattleController
             arenaPane.getChildren().add(yourName);
             botName.setText(bot.getUsername());
             botName.setLayoutX(640);
-            botName.setLayoutY(360);
+            botName.setLayoutY(340);
             botName.setPrefWidth(600);
             botName.setPrefHeight(300);
             botName.setPickOnBounds(true);
@@ -741,6 +742,24 @@ public class BattleController
             botName.setTextFill(Color.RED);
             botName.setVisible(true);
             arenaPane.getChildren().add(botName);
+            if(status == 1)
+            {
+                winnerName.setText(player.getUsername() + " IS WINNER");
+            }
+            else
+            {
+                winnerName.setText(bot.getUsername() + " IS WINNER");
+            }
+            winnerName.setLayoutX(40);
+            winnerName.setLayoutY(500);
+            winnerName.setPrefWidth(1200);
+            winnerName.setPrefHeight(120);
+            winnerName.setPickOnBounds(true);
+            winnerName.setAlignment(Pos.TOP_CENTER);
+            winnerName.setFont(new Font("Arial Rounded MT Bold", 120));
+            winnerName.setTextFill(Color.web("#BF00FF"));
+            winnerName.setVisible(true);
+            arenaPane.getChildren().add(winnerName);
             
             Thread thread = new Thread(new Runnable()
             {
