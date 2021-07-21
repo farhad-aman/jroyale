@@ -287,7 +287,7 @@ public class Creature
         }
         else
         {
-            if(position.getX() <= 600 && (position.getY() < 100 || position.getY() > 180))
+            if(position.getX() >= 680 && (position.getY() < 100 || position.getY() > 180))
                 bridgeStatus = 4;
             else if(position.getX() >= 600 && position.getX() <= 680 && position.getY() <= 180 && position.getY() >= 100)
                 bridgeStatus = 5;
@@ -672,8 +672,10 @@ public class Creature
         }
         else if(((bridgeStatus == 3 || bridgeStatus == 6) && side == -1) && target.position.getX() < 600)
         {
-            if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100))
+            if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100)) {
+//                System.out.println(card.getId() + ", incorrect 670, bridge status :" + bridgeStatus + ", ebs :" + ebs);
                 return target.getPosition().distance(680, 140) < target.getPosition().distance(680, 580) ? new Point2D(680, position.getY()) : new Point2D(680, position.getY());
+            }
 
             Point2D bridge = target.getPosition().distance(680, 140) < target.getPosition().distance(680, 580) ? new Point2D(680, 140) : new Point2D(680, 580);
 
@@ -683,8 +685,7 @@ public class Creature
                 return new Point2D(bridge.getX(), bridge.getY() + 20);
         }
         else if(bridgeStatus == 2 || bridgeStatus == 5)
-        { 
-            //System.out.println(card.getId() + "\tbridge status :" + bridgeStatus);
+        {
             if(ebs == 2 || (ebs == 5))
             {
                 if ((target.position.getX() + position.getX()) / 2 < 640) 
@@ -703,10 +704,12 @@ public class Creature
             }
             else 
             {
+//                if(side == -1)
+//                    System.out.println("incorrect701");
                 if(position.getX() != 680 && side == 1 && target.getPosition().getX() > position.getX())
-                    return new Point2D(680, position.getY());
+                    return new Point2D(681, position.getY());
                 else if(position.getX() != 600 && side == -1 && target.getPosition().getX() < position.getX())
-                    return new Point2D(600, position.getY());
+                    return new Point2D(599, position.getY());
                 else
                     return target.position;
             }
@@ -715,6 +718,7 @@ public class Creature
         {
             if(target.getPosition().getX() > position.getX() && target.position.getX() > 680)
             {
+//                System.out.println("incorrect714");
                 Point2D newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
 
                 if (position.distance(newTarget) > position.distance(target.position))
@@ -827,15 +831,15 @@ public class Creature
     private boolean notInViewRange(Point2D newPosition)
     {
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
-//        System.out.println("checking the creature position accuracy521");
-//        while (it.hasNext())
-//        {
-//            Creature c = it.next();
-//
-//            if(!(card instanceof Giant) && !(c.getCard() instanceof Giant) && c != this && !(c.card instanceof Spell) && newPosition.distance(c.position) < 10 && ((!(card instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((card instanceof Dragon) && (c.getCard() instanceof Dragon)))){
-//                return false;
-//            }
-//        }
+        System.out.println("checking the creature position accuracy521");
+        while (it.hasNext())
+        {
+            Creature c = it.next();
+
+            if(!(card instanceof Giant) && !(c.getCard() instanceof Giant) && c != this && !(c.card instanceof Spell) && newPosition.distance(c.position) < 10 && ((!(card instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((card instanceof Dragon) && (c.getCard() instanceof Dragon)))){
+                return false;
+            }
+        }
         return true;
     }
 
@@ -848,7 +852,6 @@ public class Creature
     {
         ArrayList<Point2D> validates = new ArrayList<>();
         Iterator<Point2D> it = points.iterator();
-//        System.out.println("finding in range positions536");
         while (it.hasNext())
         {
             Point2D temp = it.next();
