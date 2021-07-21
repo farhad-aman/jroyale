@@ -28,7 +28,7 @@ public class Bot3 extends Bot
 
         if(chosenCard.getCost() <= battle.getBotElixirBar().getElixir())
         {
-            ArrayList<Creature> creatures = chosenCard.makeCreature(findPoint(findPopulated(chosenCard)), -1);
+            ArrayList<Creature> creatures = chosenCard.makeCreature(findPoint(chosenCard, findPopulated(chosenCard)), -1);
             for(Creature c : creatures)
             {
                 battle.getArena().getCreatures().add(c);
@@ -54,7 +54,7 @@ public class Bot3 extends Bot
             double Y = c.getPosition().getY(), X = c.getPosition().getX();
             int effect = 1;
 
-            if(c.getSide() == side && !(c.getCard() instanceof Spell) && chosenCard.canHit(chosenCard.getTarget(), c.getCard().getType()))
+            if(c.getSide() == side && (chosenCard.canHit(chosenCard.getTarget(), c.getCard().getType()) || chosenCard instanceof Spell))
             {
                 effect += considerEnemy(chosenCard, c.getCard());
 
@@ -194,10 +194,10 @@ public class Bot3 extends Bot
 
     /**
      * creates a point for the given status
-     * @param status situation to create army//-2->rage//-1->spell//0->arbitrary//1->enemy up princess//2->enemy down princess//3->enemy king//4->up right//5->down right//6-> near to bot king//7->up bridge//8->down bridge
+     * @param status situation to create army//-1->spell//0->arbitrary//1->enemy up princess//2->enemy down princess//3->enemy king//4->up right//5->down right//6-> near to bot king//7->up bridge//8->down bridge
      * @return the appropriate position to create
      * */
-    private Point2D findPoint(int status)
+    private Point2D findPoint(Card  chosenCard, int status)
     {
         int x = 0, y = 0;
         Random rand = new Random();
@@ -214,18 +214,36 @@ public class Bot3 extends Bot
         }
         else if(status == 1)
         {
-            x = 440 + rand.nextInt(160);
-            y = 40 + rand.nextInt(200);
+            if(!(chosenCard instanceof Spell)){
+                x = 440 + rand.nextInt(160);
+                y = 40 + rand.nextInt(200);
+            }
+            else{
+                x = 200 + rand.nextInt(240);
+                y = 80 + rand.nextInt(120);
+            }
         }
         else if(status == 2)
         {
-            x = 440 + rand.nextInt(160);
-            y = 480 + rand.nextInt(200);
+            if(!(chosenCard instanceof Spell)){
+                x = 440 + rand.nextInt(160);
+                y = 480 + rand.nextInt(200);
+            }
+            else{
+                x = 200 + rand.nextInt(240);
+                y = 1080 + rand.nextInt(120);
+            }
         }
         else if(status == 3)
         {
-            x = 440 + rand.nextInt(160);
-            y = 240 + rand.nextInt(240);
+            if(!(chosenCard instanceof Spell)){
+                x = 440 + rand.nextInt(160);
+                y = 240 + rand.nextInt(240);
+            }
+            else{
+                x = 120 + rand.nextInt(280);
+                y = 280 + rand.nextInt(160);
+            }
         }
         else if(status == 4)
         {

@@ -468,7 +468,7 @@ public class Creature
                 status = side == 1 ? 1 : 2;
             else
                 status = side == 1 ? 3 : 4;
-        } 
+        }
 
         if(oldStatus != status)
             statusTime += 1000 / GameManager.FPS;
