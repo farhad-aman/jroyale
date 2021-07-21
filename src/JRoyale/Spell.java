@@ -33,5 +33,8 @@ public abstract class Spell extends Card
     }
 
     @Override
-    public Creature findNearestValidCreature(Creature creature) {return null;}
+    public Creature findNearestValidCreature(Creature creature) 
+    {
+        return null;
+    }
 }

@@ -85,27 +85,26 @@ public class LoginController
        catch (Exception e)
        {
            e.printStackTrace();
-        //    TODO: handle exception
        }
     }
 
     @FXML
     void loginButtonReleased(MouseEvent event) 
     {
-       try
-       {
-           Platform.runLater(new Runnable()
-           {
-               @Override
-               public void run()
-               {
-                   loginButton.setImage(new Image("resources\\login\\loginButton.png"));
-               }
-           });
-       }
-       catch (Exception e)
-       {
-           //TODO: handle exception
+        try
+        {
+            Platform.runLater(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    loginButton.setImage(new Image("resources\\login\\loginButton.png"));
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 
@@ -114,18 +113,18 @@ public class LoginController
      * */
     private void logIn()
     {
-       int status = GameManager.getInstance().login(loginUsernameTextField.getText(), loginPasswordTextField.getText());
+        int status = GameManager.getInstance().login(loginUsernameTextField.getText(), loginPasswordTextField.getText());
 
-       System.out.println(status);
+        System.out.println(status);
 
-       if(status == -1)
+        if(status == -1)
             showMessage("Wrong Username, Try Again", loginUsernameLabel);
-       else if (status == 0)
-           showMessage("Wrong Password, Try Again", loginPasswordLabel);
-       else
-       {
+        else if (status == 0)
+            showMessage("Wrong Password, Try Again", loginPasswordLabel);
+        else
+        {
             openMenu();
-       }
+        }
     }
 
     @FXML
@@ -149,7 +148,7 @@ public class LoginController
         }
         catch (Exception e)
         {
-            //TODO: handle exception
+            e.printStackTrace();
         }
     }
 
@@ -169,7 +168,7 @@ public class LoginController
         }
         catch (Exception e)
         {
-            //TODO: handle exception
+            e.printStackTrace();
         }
     }
 
@@ -193,8 +192,10 @@ public class LoginController
             try 
             {
                 Thread.sleep(3000);    
-            } catch (Exception e) {
-                //TODO: handle exception
+            } 
+            catch (Exception e) 
+            {
+                e.printStackTrace();
             }
             openMenu();
         }
@@ -218,7 +219,7 @@ public class LoginController
         }
         catch (Exception e)
         {
-            //TODO: handle exception
+            e.printStackTrace();
         }
     }
 

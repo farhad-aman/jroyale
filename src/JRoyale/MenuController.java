@@ -240,7 +240,7 @@ public class MenuController
         } 
         catch (Exception e) 
         {
-            //TODO: handle exception
+            e.printStackTrace();
         }
     }
 
@@ -260,7 +260,7 @@ public class MenuController
         } 
         catch (Exception e) 
         {
-            //TODO: handle exception
+            e.printStackTrace();
         }
     }
 
@@ -282,7 +282,7 @@ public class MenuController
         } 
         catch (Exception e) 
         {
-            //TODO: handle exception
+            e.printStackTrace();
         }
     }
 
@@ -304,7 +304,7 @@ public class MenuController
         } 
         catch (Exception e) 
         {
-            //TODO: handle exception
+            e.printStackTrace();
         }
     }
 
@@ -326,7 +326,7 @@ public class MenuController
         } 
         catch (Exception e) 
         {
-            //TODO: handle exception
+            e.printStackTrace();
         }
     }
 
@@ -557,7 +557,7 @@ public class MenuController
         } 
         catch (Exception e) 
         {
-            //TODO: handle exception
+            e.printStackTrace();
         }
     }
 

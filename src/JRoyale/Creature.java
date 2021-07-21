@@ -7,6 +7,7 @@ import java.util.Random;
 
 /**
  * This class contains a creature on the arena 
+ * @version 1.0
  */
 public class Creature 
 {
@@ -14,91 +15,111 @@ public class Creature
      * the card that creature based on that
      */
     private Card card;
+
     /**
      * the level of the creature
      */
     private int level;
+
     /**
      * the center position of the creature 
      */
     private Point2D position;
+
     /**
      * the current image that creature shown based on status
      */
     private ImageView image;
+
     /**
      * the side that creature fights for
      * -1 -> belongs to bot , 1 -> belongs to player 
      */
     private int side;
+
     /**
      * the current status of the creature
      * 0 -> created recently , 1 -> move to right , 2 -> move to left , 3 -> fighting to right , 4 -> fighting to left , 5 -> dying to right , 6 -> dying to left
      */
     private int status;
+
     /**
      * the last status to manage images alteration
      * */
     private int oldStatus;
+
     /**
      *the time that the last old status stand for avoiding images conflict
      * */
     private int statusTime = 0;
+
     /**
      * the creature this creature should follow
      */
     private Creature followTarget;
+
     /**
      * the creature that this creature should kill or be killed
      */
     private Creature killTarget;
+
     /**
      * the current hp of creature
      */
     private double hp;
+
     /**
      * the current life time of the creature
      */
     private int lifeTime;
+
     /**
      * the tick time to hit
      */
     private int hitStepValue;
+
     /**
      * the hit speed of the creature
      */
     private int hitSpeed;
+
     /**
      * the moving speed of the creature
      */
     private int speed;
+
     /**
      * is the creature under rage
      */
     private boolean underRage;
+
     /**
      * the damage of the creature
      */
     private int damage;
+
     /**
      *the origin of the rage place
      * */
     private Point2D ragePosition;
+
     /**
      * the remaining time of rage effect
      */
     private int rageTimeRemained;//in milliseconds
+
     /**
      * demonstrate the creature status toward the bridges in the map from the player vision//0->king or princess//down bridge is the nearer bridge//1->before bridge//2->on the bridge//3->after the bridge//top bridge is the nearer bridge//4->before bridge//5->on the bridge//6->after the bridge
      * */
     private int bridgeStatus;
+
     /**
      * the number of times creature does not moved
      */
     private int moveAvoided = 0;
 
     /**
-     *
+     *  the infernos temp target
      */
     private int tempTargetTime;
 
@@ -108,7 +129,6 @@ public class Creature
      * @param position the temporary position of the creature
      * @param side  = 1 if it is the player army otherwise  = -1
      */
-
     public Creature(Card card, int level, Point2D position, int side) 
     {
         this.card = card;
@@ -156,12 +176,15 @@ public class Creature
             this.lifeTime = 1000000;
         }
     }
+
     /**
      * @return the kill target for the creature
      * */
-    public Creature getTempTarget() {
+    public Creature getTempTarget() 
+    {
         return killTarget;
     }
+
     /**
      * calculates new damage of the inferno
      * @param level to find the basic damage
@@ -380,15 +403,20 @@ public class Creature
 
         card.step(this);
 
-        if(card instanceof Cannon || card instanceof Inferno){
-            if (lifeTime > 0) {
+        if(card instanceof Cannon || card instanceof Inferno)
+        {
+            if (lifeTime > 0) 
+            {
                 lifeTime -= 1000 / GameManager.FPS;
                 hp -= (((Building) card).getInitHP(level) / (((Building)card).getInitLifeTime() / 1000.0)) / GameManager.FPS;
                 hp = Math.max(hp, 0);
-            } else {
+            } 
+            else 
+            {
                 hp = 0;
             }
-            if(card instanceof Inferno){
+            if(card instanceof Inferno)
+            {
                 status = 1;
             }
         }
@@ -397,20 +425,23 @@ public class Creature
         {
             rageTimeRemained -= 1000 / GameManager.FPS;
 
-            if((ragePosition != null) && (rageTimeRemained <= 0 || position.distance(ragePosition) > 5 * 40)) {
+            if((ragePosition != null) && (rageTimeRemained <= 0 || position.distance(ragePosition) > 5 * 40)) 
+            {
                 underRage = false;
                 ragePosition = null;
                 rageTimeRemained = 0;
             }
         }
 
-        if(card instanceof Princess || card instanceof King){
+        if(card instanceof Princess || card instanceof King)
+        {
             if(killTarget == null)
                 status = side == 1 ? 1 : 2;
             else
                 status = side == 1 ? 3 : 4;
         }//://1->moving to right//2->moving to left//3->fighting to right//4->fighting to left//5->dying to right//6->dying to left//buildings://7->cannon ball//8->cannon turning right//9->cannon turning left//
-        else if(card instanceof Cannon){
+        else if(card instanceof Cannon)
+        {
             if(killTarget == null)
                 status = oldStatus == 4 ? 2 : 1;
         }
@@ -418,13 +449,15 @@ public class Creature
         if(oldStatus != status)
             statusTime += 1000 / GameManager.FPS;
 
-        if(statusTime >= 500 && status != oldStatus) {
+        if(statusTime >= 500 && status != oldStatus) 
+        {
             statusTime = 0;
             oldStatus = status;
         }
         else
             status = oldStatus;
     }
+
     /**
      * sets the position of rage spell
      * @param ragePosition
@@ -460,23 +493,31 @@ public class Creature
         if(hitStepValue >= hitSpeed) 
         {
             card.playAttackSound();
-            if(card instanceof Inferno){
+            if(card instanceof Inferno)
+            {
                 creature.getHit(calculateInfernoDamage(level, underRage), position.getX() < creature.position.getX() ? 6 : 5);
                 addTempTargetTime(creature);
             }
-            else{
-                if (card instanceof Troop && ((Troop) card).isAreaSplash()) {
-                    if (card instanceof Valkyrie) {
-                        for (Creature c : GameManager.getInstance().getBattle().getArena().getCreatures()) {
+            else
+            {
+                if (card instanceof Troop && ((Troop) card).isAreaSplash()) 
+                {
+                    if (card instanceof Valkyrie) 
+                    {
+                        for (Creature c : GameManager.getInstance().getBattle().getArena().getCreatures()) 
+                        {
                             if (c.getPosition().distance(position) < 100 && c.getSide() != side && (c.getCard().getType().equals("ground") || c.getCard().getType().equals("building")))
                                 c.getHit((damage * (underRage ? 1.4 : 1)), position.getX() < c.position.getX() ? 6 : 5);
                         }
-                    } else {
+                    } 
+                    else 
+                    {
                         for (Creature c : GameManager.getInstance().getBattle().getArena().getCreatures())
                             if (c.getPosition().distance(creature.position) < 40 && c.getSide() != side)
                                 c.getHit((damage * (underRage ? 1.4 : 1)), position.getX() < c.position.getX() ? 6 : 5);
                     }
-                } else
+                } 
+                else
                     creature.getHit((damage * (underRage ? 1.4 : 1)), position.getX() < creature.position.getX() ? 6 : 5);
             }
             hitStepValue = 0;
@@ -568,33 +609,34 @@ public class Creature
      */
     private void pixelMove()
     {
-            ArrayList<Point2D> probablePositions = new ArrayList<>();
+        ArrayList<Point2D> probablePositions = new ArrayList<>();
 
-            if (notInViewRange(position.add(side * (moveAvoided + 1), 0)))
-                probablePositions.add(position.add(side * (moveAvoided + 1), 0));
-            if (notInViewRange(position.add(side * (moveAvoided + 1), -1 * (moveAvoided + 1))))
-                probablePositions.add(position.add(side * (moveAvoided + 1), -1 * (moveAvoided + 1)));
-            if (notInViewRange(position.add(side * (moveAvoided + 1), (moveAvoided + 1))))
-                probablePositions.add(position.add(side * (moveAvoided + 1), (moveAvoided + 1)));
-            if (notInViewRange(position.add(0,  (moveAvoided + 1))))
-                probablePositions.add(position.add(0, (moveAvoided + 1)));
-            if (notInViewRange(position.add(0, -1 * (moveAvoided + 1))))
-                probablePositions.add(position.add(0, -1 * (moveAvoided + 1)));
-            if (notInViewRange(position.add(side * -1 * (moveAvoided + 1), -1 * (moveAvoided + 1))))
-                probablePositions.add(position.add(side * -1 * (moveAvoided + 1), -1 * (moveAvoided + 1)));
-            if (notInViewRange(position.add(side * -1 * (moveAvoided + 1), 0)))
-                probablePositions.add(position.add(side * -1 * (moveAvoided + 1), 0));
-            if (notInViewRange(position.add(side * -1 * (moveAvoided + 1),  (moveAvoided + 1))))
-                probablePositions.add(position.add(side * -1 * (moveAvoided + 1), (moveAvoided + 1)));
+        if (notInViewRange(position.add(side * (moveAvoided + 1), 0)))
+            probablePositions.add(position.add(side * (moveAvoided + 1), 0));
+        if (notInViewRange(position.add(side * (moveAvoided + 1), -1 * (moveAvoided + 1))))
+            probablePositions.add(position.add(side * (moveAvoided + 1), -1 * (moveAvoided + 1)));
+        if (notInViewRange(position.add(side * (moveAvoided + 1), (moveAvoided + 1))))
+            probablePositions.add(position.add(side * (moveAvoided + 1), (moveAvoided + 1)));
+        if (notInViewRange(position.add(0,  (moveAvoided + 1))))
+            probablePositions.add(position.add(0, (moveAvoided + 1)));
+        if (notInViewRange(position.add(0, -1 * (moveAvoided + 1))))
+            probablePositions.add(position.add(0, -1 * (moveAvoided + 1)));
+        if (notInViewRange(position.add(side * -1 * (moveAvoided + 1), -1 * (moveAvoided + 1))))
+            probablePositions.add(position.add(side * -1 * (moveAvoided + 1), -1 * (moveAvoided + 1)));
+        if (notInViewRange(position.add(side * -1 * (moveAvoided + 1), 0)))
+            probablePositions.add(position.add(side * -1 * (moveAvoided + 1), 0));
+        if (notInViewRange(position.add(side * -1 * (moveAvoided + 1),  (moveAvoided + 1))))
+            probablePositions.add(position.add(side * -1 * (moveAvoided + 1), (moveAvoided + 1)));
 
-            Point2D tempTargetPosition = findTempTargetPosition();
-            probablePositions = inRangePoints(probablePositions);
+        Point2D tempTargetPosition = findTempTargetPosition();
+        probablePositions = inRangePoints(probablePositions);
 
-            if (probablePositions.size() != 0 && tempTargetPosition != null) {
-                Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
-                setPositionAndStatus(newPosition);
-                moveAvoided = 0;
-            }
+        if (probablePositions.size() != 0 && tempTargetPosition != null) 
+        {
+            Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
+            setPositionAndStatus(newPosition);
+            moveAvoided = 0;
+        }
         else
         {
             moveAvoided++;
@@ -607,12 +649,15 @@ public class Creature
      * */
     private void setPositionAndStatus(Point2D newPosition) 
     {
-            if (newPosition.getX() < position.getX())
-                status = 2;
-            else {
-                status = 1;
-            }
-            position = newPosition;
+        if (newPosition.getX() < position.getX())
+        {
+            status = 2;
+        }
+        else 
+        {
+            status = 1;
+        }
+        position = newPosition;
     }
 
     /**
@@ -653,7 +698,8 @@ public class Creature
         }
         else if(((bridgeStatus == 3 || bridgeStatus == 6) && side == -1) && target.position.getX() < 600)
         {
-            if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100)) {
+            if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100)) 
+            {
                 return target.getPosition().distance(680, 140) < target.getPosition().distance(680, 580) ? new Point2D(680, position.getY()) : new Point2D(680, position.getY());
             }
 
@@ -756,7 +802,8 @@ public class Creature
         {
             Creature c = it.next();
 
-            if(!(card instanceof Giant) && !(c.getCard() instanceof Giant) && c != this && !(c.card instanceof Spell) && newPosition.distance(c.position) < 10 && ((!(card instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((card instanceof Dragon) && (c.getCard() instanceof Dragon)))){
+            if(!(card instanceof Giant) && !(c.getCard() instanceof Giant) && c != this && !(c.card instanceof Spell) && newPosition.distance(c.position) < 10 && ((!(card instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((card instanceof Dragon) && (c.getCard() instanceof Dragon))))
+            {
                 return false;
             }
         }
@@ -780,7 +827,8 @@ public class Creature
 
             if(y < 710 && x < 1270 && x > 10 && y > 10)
             {
-                if(x < 680 && x > 600){
+                if(x < 680 && x > 600)
+                {
                     if((y >= 100 && y <= 180) || (y >= 540 && y <= 620))
                         validates.add(temp);
                     else if(card instanceof Dragon)
