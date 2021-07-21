@@ -156,7 +156,6 @@ public class Player
 
             String insertion = "insert into gameHistory values(" + '\"' + username + '\"' + ", " + '\"' + battleResult.getBotDifficulty() + '\"' + ", " + '\"' + battleResult.getYourScore() + '\"' + ", " + '\"' + battleResult.getEnemyScore() + '\"' + ")";
             st.execute(insertion);
-            System.out.println("salam" + '\"' + xp + '\"');
 
             st.close();
             con.close();

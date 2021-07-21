@@ -247,9 +247,9 @@ public class BattleController
     }
 
     /**
-     * 
-     * @param x
-     * @param y
+     * shows the borders if the player has chosen the wrong place
+     * @param x of the chosen point
+     * @param y of the chosen point
      */
     private void showBorders(double x, double y) 
     {
@@ -265,8 +265,8 @@ public class BattleController
     }
 
     /**
-     * 
-     * @param lines
+     * makes the given lines visible for 3 seconds
+     * @param lines to make visible
      */
     private void setVisibility(Line... lines) {
         Runnable task = new Runnable()
@@ -309,35 +309,32 @@ public class BattleController
     }
 
     /**
-     * 
-     * @param x
-     * @param y
-     * @return
+     * checks the borders status
+     * @param x of the chosen point
+     * @param y of the chosen point
+     * @return true if the the chosen position is acceptable otherwise returns false
      */
     private boolean checkTowerStatus(double x, double y) {//System.out.println("line 181");
         if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
-//            System.out.println("line 183");
             return x <= 840;
         }
         else if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()) {
-//            System.out.println("line 186");
             return x <= 600;
         }
         else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
-//            System.out.println("line 190");
             return x <= 600 || (x <= 840 && y >= 360);
         }
-        else {//System.out.println("line 192");
+        else {
             return x <= 600 || (x <= 840 && y <= 360);
         }
     }
     
     /**
-     * 
-     * @param x
-     * @param y
-     * @param number
-     * @return
+     * finds appropriate points for the given center coordinates
+     * @param x of the chosen point
+     * @param y of the chosen point
+     * @param number of the wanted points
+     * @return the ArrayList of the acceptable points
      */
     private ArrayList<Point2D> findPositions(double x, double y, int number) 
     {
@@ -349,8 +346,6 @@ public class BattleController
             points.add(new Point2D(x, y));
             return points;
         }
-        //((x <= 300 || (x <= 980 && x >= 680))? i : -1 * i)
-        //(y < 360 ? i : i * -1)
         int r = 40;
         while (r <= 60){
             if(isAppropriate(new Point2D(x - r, y - r)))
@@ -369,7 +364,6 @@ public class BattleController
         {
             newY = rand.nextInt(80) + y;
             newX = rand.nextInt(80) + x;
-//            System.out.println("line 216");
             if(isAppropriate(new Point2D(newX, newY)))
             {
                 points.add(new Point2D(newX, newY));
@@ -379,9 +373,9 @@ public class BattleController
     }
     
     /**
-     * 
-     * @param point
-     * @return
+     * checks whether the point is in the map coordinates or not
+     * @param point to check
+     * @return true if is in map otherwise false
      */
     public boolean isAppropriate(Point2D point)
     {
@@ -391,7 +385,6 @@ public class BattleController
 
             if(y < (720 - borderDistance) && x < (1280 - borderDistance) && x > borderDistance && y > borderDistance)
             {
-                //System.out.println("line 230");
                 if(notInCreatures(point))
                 {
                     if (chosenCard instanceof Building && (x < 720 && x > 560))
@@ -414,30 +407,23 @@ public class BattleController
     }
     
     /**
-     * 
-     * @param point
-     * @return
+     * checks whether the point is not in other creatures
+     * @param point to check
+     * @return true if the point is not too close to other creatures
      */
     private boolean notInCreatures(Point2D point) 
     {
         Iterator<Creature> it = gameManager.getBattle().getArena().getCreatures().iterator();
 
-        while (it.hasNext()){//System.out.println("249");
+        while (it.hasNext()){
             Creature c = it.next();
-            //System.out.println("line 248");
+
             if(!(chosenCard instanceof Spell) && !(chosenCard instanceof Giant) && !(c.getCard() instanceof Giant)){
                 if (c.getPosition().distance(point) < 10 && ((!(chosenCard instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((chosenCard instanceof Dragon) && (c.getCard() instanceof Dragon)))) {
                     return false;
                 }
-//                else if (c.getCard() instanceof Building && c.getPosition().distance(point) < 40 && !(chosenCard instanceof Dragon)) { //System.out.println("252");
-//                    return false;
-//                } else if (c.getCard() instanceof King && c.getPosition().distance(point) < 80 && !(chosenCard instanceof Dragon)) { //System.out.println("255");
-//                    return false;
-//                } else if (c.getCard() instanceof Princess && c.getPosition().distance(point) < 60 && !(chosenCard instanceof Dragon)) {// System.out.println("258");
-//                    return false;
-//                }
             }
-        }// System.out.println("261");
+        }
         return true;
     }
     
@@ -770,9 +756,6 @@ public class BattleController
             thread.start();
         }
         isBattleFinished = true;
-        System.out.println("save done");
-
-        //the end -->show the winner and get back to the menu
     }
     
     /**
@@ -798,7 +781,6 @@ public class BattleController
             System.out.println("cant read fxml");
             e.printStackTrace();
         }
-        System.out.println("Menu opened");
     }
 
     /**

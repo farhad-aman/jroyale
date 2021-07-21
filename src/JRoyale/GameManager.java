@@ -97,8 +97,6 @@ public class GameManager
             {
                 currentPlayer = new Player(rs.getString(1), rs.getString(2), rs.getInt(3), getDeck(rs.getString(4)), getHistory(rs.getString(1)));
 
-//                System.out.println(currentPlayer.getDeck());
-
                 st.close();
                 rs.close();
 
@@ -225,21 +223,17 @@ public class GameManager
      * */
     public int signUp(String username, String userPassword, String confirmPassword)
     {
-    //    System.out.println("gameManager line 160 started");
         if(!userPassword.equals(confirmPassword))
         {
-  //          System.out.println("gameManager line 162 started");
             return -2;
         }
         else if(!(username.length() <= 30) || !(username.length() >= 3) || !(userPassword.length() >= 6) || !(userPassword.length() <= 32))
         {
-            // System.out.println("gameManager line 166 started");
             return -1;
         }
 
         try
         {
-//            System.out.println("gameManager line 171 started");
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
 
@@ -264,7 +258,6 @@ public class GameManager
 
                 return 1;
             }
-            // System.out.println("gameManager line 198 started\t\t" + username);
             rs.close();
             st.close();
 
@@ -314,7 +307,6 @@ public class GameManager
 
             cards.remove(index);
         }
-        // System.out.println("gameManager line 237 started");
         currentPlayer = player;
 
         return deck;
@@ -391,7 +383,7 @@ public class GameManager
     }
 
     /**
-     * @param difficulty
+     * @param difficulty for the deck
      * @return a random deck for the bot
      */
     public static Deck getRandomDeck(int difficulty)

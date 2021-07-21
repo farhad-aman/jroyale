@@ -14,97 +14,86 @@ public class Creature
      * the card that creature based on that
      */
     private Card card;
-
     /**
      * the level of the creature
      */
     private int level;
-
     /**
      * the center position of the creature 
      */
     private Point2D position;
-
     /**
-     * the current image that creture shown based on status
+     * the current image that creature shown based on status
      */
     private ImageView image;
-
     /**
      * the side that creature fights for
      * -1 -> belongs to bot , 1 -> belongs to player 
      */
-    private int side; 
-
+    private int side;
     /**
      * the current status of the creature
      * 0 -> created recently , 1 -> move to right , 2 -> move to left , 3 -> fighting to right , 4 -> fighting to left , 5 -> dying to right , 6 -> dying to left
      */
     private int status;
-
+    /**
+     * the last status to manage images alteration
+     * */
     private int oldStatus;
-
+    /**
+     *the time that the last old status stand for avoiding images conflict
+     * */
     private int statusTime = 0;
-
     /**
      * the creature this creature should follow
      */
     private Creature followTarget;
-
     /**
      * the creature that this creature should kill or be killed
      */
     private Creature killTarget;
-
     /**
      * the current hp of creature
      */
     private double hp;
-
     /**
      * the current life time of the creature
      */
     private int lifeTime;
-
     /**
      * the tick time to hit
      */
     private int hitStepValue;
-
     /**
      * the hit speed of the creature
      */
     private int hitSpeed;
-
     /**
      * the moving speed of the creature
      */
     private int speed;
-
     /**
      * is the creature under rage
      */
     private boolean underRage;
-
     /**
      * the damage of the creature
      */
     private int damage;
-
+    /**
+     *the origin of the rage place
+     * */
     private Point2D ragePosition;
-
     /**
      * the remaining time of rage effect
      */
     private int rageTimeRemained;//in milliseconds
-
     /**
      * demonstrate the creature status toward the bridges in the map from the player vision//0->king or princess//down bridge is the nearer bridge//1->before bridge//2->on the bridge//3->after the bridge//top bridge is the nearer bridge//4->before bridge//5->on the bridge//6->after the bridge
      * */
     private int bridgeStatus;
-
     /**
-     * the number of times creature doesnt moved
+     * the number of times creature does not moved
      */
     private int moveAvoided = 0;
 
@@ -115,9 +104,9 @@ public class Creature
 
     /**
      * creates a new creature
-     * @param card
-     * @param position
-     * @param side
+     * @param card the card of the creature
+     * @param position the temporary position of the creature
+     * @param side  = 1 if it is the player army otherwise  = -1
      */
 
     public Creature(Card card, int level, Point2D position, int side) 
@@ -167,16 +156,17 @@ public class Creature
             this.lifeTime = 1000000;
         }
     }
-
+    /**
+     * @return the kill target for the creature
+     * */
     public Creature getTempTarget() {
         return killTarget;
     }
-
     /**
      * calculates new damage of the inferno
-     * @param level
-     * @param underRage
-     * @return
+     * @param level to find the basic damage
+     * @param underRage that the inferno has the rage effect
+     * @return the hit damage
      */
     public double calculateInfernoDamage(int level, boolean underRage)
     {
@@ -189,15 +179,10 @@ public class Creature
 
     /**
      * calculates time that inferno attacks to increase damage
-     * @param tempTarget
+     * @param tempTarget for the inferno to kill
      */
     public void addTempTargetTime(Creature tempTarget)
     {
-//        if(tempTarget == null){
-//            System.out.println("inferno   null");
-//        }
-//        else
-//            System.out.println("inferno " + tempTarget.getCard());
         if(tempTarget == this.killTarget)
             this.tempTargetTime += 1000 / GameManager.FPS;
         else {
@@ -264,10 +249,11 @@ public class Creature
 
     /**
      * sets the status of the creature
-     * @param status
+     * @param status the new status
      */
     public void setStatus(int status)
     {
+        oldStatus = status != this.status ? this.status : status;
         this.status = status;
     }
     /**
@@ -301,7 +287,7 @@ public class Creature
 
     /**
      * sets the position of the creature
-     * @param position
+     * @param position the new position
      */
     public void setPosition(Point2D position) 
     {
@@ -318,7 +304,7 @@ public class Creature
 
     /**
      * sets the kill target of the creature
-     * @param creature
+     * @param creature to kill
      */
     public void setKillTarget(Creature creature)
     {
@@ -350,7 +336,7 @@ public class Creature
 
     /**
      * sets under rage field of the creature
-     * @param newUnderRage
+     * @param newUnderRage to set the new effect
      */
     public void setUnderRage(boolean newUnderRage)
     {
@@ -359,7 +345,7 @@ public class Creature
 
     /**
      * sets remaining time of rage effect
-     * @param rageTimeRemained
+     * @param rageTimeRemained to calculate the time of the rage effect
      */
     public void setRageTimeRemained(int rageTimeRemained) 
     {
@@ -368,7 +354,7 @@ public class Creature
 
     /**
      * sets follow target of the creature
-     * @param creature
+     * @param creature the new target to follow
      */
     public void setFollowTarget(Creature creature)
     {
@@ -384,7 +370,7 @@ public class Creature
     }
 
     /**
-     * the main step that done every frame and uses card step
+     * the main step that is done every frame and uses card step and updates everything
      */
     public void step()
     {
@@ -422,10 +408,10 @@ public class Creature
                 status = side == 1 ? 1 : 2;
             else
                 status = side == 1 ? 3 : 4;
-        }
+        }//://1->moving to right//2->moving to left//3->fighting to right//4->fighting to left//5->dying to right//6->dying to left//buildings://7->cannon ball//8->cannon turning right//9->cannon turning left//
         else if(card instanceof Cannon){
             if(killTarget == null)
-                status = status == 4 ? 2 : 1;
+                status = oldStatus == 4 ? 2 : 1;
         }
 
         if(oldStatus != status)
@@ -438,14 +424,16 @@ public class Creature
         else
             status = oldStatus;
     }
-
+    /**
+     * @param ragePosition to set the rage position
+     * */
     public void setRagePosition(Point2D ragePosition) {
         this.ragePosition = ragePosition;
     }
 
     /**
      * this creature get hit
-     * @param damage
+     * @param damage to affect the target
      * @return true if target eliminated else false
      */
     public boolean getHit(double damage, int tempStatus)
@@ -461,7 +449,7 @@ public class Creature
 
     /**
      * hit another creature
-     * @param creature
+     * @param creature to kill
      * @return true if target creature eliminated else false
      */
     public boolean hit(Creature creature)
@@ -509,7 +497,7 @@ public class Creature
     }
 
     /**
-     * @param creature
+     * @param creature  is the destination
      * @return the distance between this creature and given creature
      */
     public int getDistance(Creature creature)
@@ -526,7 +514,7 @@ public class Creature
     }
 
     /**
-     * @param creature
+     * @param creature to consider the destination to
      * @return is given creature in range of this creature
      */
     public boolean isCreatureInRange(Creature creature)
@@ -543,14 +531,12 @@ public class Creature
 
     /**
      * this method is the main method of moving creatures
-     * @param creature
+     * @param creature the creature to follow
      */
     public void followCreature(Creature creature)
     {
         for(int i = 0;i < calculateRageEffect(speed);i++) 
         {
-//            System.out.println("position :" + position.getX() + ", " + position.getY());
-            //System.out.println(card.getId() + " is moving");
             if (card instanceof Troop)
                 pixelMove();
         }
@@ -561,7 +547,7 @@ public class Creature
     }
 
     /**
-     * @param speed
+     * @param speed of the creature
      * @return new speed after rage effect
      */
     private int calculateRageEffect(int speed) 
@@ -575,7 +561,7 @@ public class Creature
     }
 
     /**
-     * 
+     * moves this creature for one pixel
      */
     private void pixelMove()
     {
@@ -629,7 +615,7 @@ public class Creature
 
     /**
      * 
-     * @return
+     * @return the temporary target position
      */
     private Point2D findTempTargetPosition() 
     {
@@ -644,7 +630,6 @@ public class Creature
         else
             target = killTarget;
 
-//        System.out.println("finding temp target position417");
         int ebs = target.updateBridgeStatus();
         bridgeStatus= updateBridgeStatus();
 
@@ -667,7 +652,6 @@ public class Creature
         else if(((bridgeStatus == 3 || bridgeStatus == 6) && side == -1) && target.position.getX() < 600)
         {
             if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100)) {
-//                System.out.println(card.getId() + ", incorrect 670, bridge status :" + bridgeStatus + ", ebs :" + ebs);
                 return target.getPosition().distance(680, 140) < target.getPosition().distance(680, 580) ? new Point2D(680, position.getY()) : new Point2D(680, position.getY());
             }
 
@@ -698,8 +682,6 @@ public class Creature
             }
             else 
             {
-//                if(side == -1)
-//                    System.out.println("incorrect701");
                 if(position.getX() != 680 && side == 1 && target.getPosition().getX() > position.getX())
                     return new Point2D(681, position.getY());
                 else if(position.getX() != 600 && side == -1 && target.getPosition().getX() < position.getX())
@@ -712,7 +694,6 @@ public class Creature
         {
             if(target.getPosition().getX() > position.getX() && target.position.getX() > 680)
             {
-//                System.out.println("incorrect714");
                 Point2D newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
 
                 if (position.distance(newTarget) > position.distance(target.position))
@@ -737,70 +718,14 @@ public class Creature
                 return newTarget;
             }
         }
-//        System.out.println(card.getId() + "\t?!?!?!?!?!?!");
         return target.position;
     }
-//
-//    private void moveCreaturesBackward(ArrayList<Creature> inRanges)
-//    {
-//        System.out.println("move backward used");
-//        for(Creature c : inRanges)
-//        if(!(c.getCard() instanceof Building))
-//        {//System.out.println("moving other creatures backward458");
-//            ArrayList<Point2D> probablePositions = new ArrayList<>();
-//
-//            if (notInViewRange(c.getPosition().add(side, 0)))
-//                probablePositions.add(c.getPosition().add(side, 0));
-//            if (notInViewRange(c.getPosition().add(side, -1)))
-//                probablePositions.add(c.getPosition().add(side, -1));
-//            if (notInViewRange(c.getPosition().add(side, 1)))
-//                probablePositions.add(c.getPosition().add(side, 1));
-//            if (notInViewRange(c.getPosition().add(0, 1)))
-//                probablePositions.add(c.getPosition().add(0, 1));
-//            if (notInViewRange(c.getPosition().add(0, -1)))
-//                probablePositions.add(c.getPosition().add(0, -1));
-//            if (notInViewRange(c.getPosition().add(side * -1, -1)))
-//                probablePositions.add(c.getPosition().add(side * -1, -1));
-//            if (notInViewRange(c.getPosition().add(side * -1, 0)))
-//                probablePositions.add(c.getPosition().add(side * -1, 0));
-//            if (notInViewRange(c.getPosition().add(side * -1, 1)))
-//                probablePositions.add(c.getPosition().add(side * -1, 1));
-//
-//            Point2D tempTargetPosition = (killTarget == null ? followTarget : killTarget).getPosition();
-//            probablePositions = inRangePoints(probablePositions);
-//
-//            if (probablePositions.size() != 0 && tempTargetPosition != null) {//System.out.println("moving creature backward successfully481");
-//                Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
-//                setPositionAndStatus(newPosition);
-//            }
-//        }
-//    }
 
     /**
-     * 
-     * @param position
-     * @return
-     */
-    private ArrayList<Creature> findInViewRangeCreatures(Point2D position) 
-    {
-        ArrayList<Creature> inRange = new ArrayList<>();
-        Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
-//        System.out.println("finding creatures in view overlap492");
-        while (it.hasNext())
-        {
-            Creature temp = it.next();
-
-            if(temp != this && position.distance(temp.position) < 10 && ((!(card instanceof Dragon) && !(temp.getCard() instanceof Dragon)) || ((card instanceof Dragon) && (temp.getCard() instanceof Dragon))))
-                inRange.add(temp);
-        }
-        return inRange;
-    }
-
-    /**
-     * 
-     * @param source
-     * @param positions
-     * @return
+     * finds the nearest point2D from an arrayList to a source
+     * @param source the current position of the creature
+     * @param positions the collection of the points to go
+     * @return the nearest position
      */
     private Point2D findNearestPosition(Point2D source, ArrayList<Point2D> positions)
     {
@@ -818,14 +743,13 @@ public class Creature
     }
 
     /**
-     * 
-     * @param newPosition
-     * @return
+     * returns the status considering other creatures
+     * @param newPosition the probable position to go
+     * @return true if newPosition is not to close to other creatures
      */
     private boolean notInViewRange(Point2D newPosition)
     {
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
-        System.out.println("checking the creature position accuracy521");
         while (it.hasNext())
         {
             Creature c = it.next();
@@ -838,9 +762,9 @@ public class Creature
     }
 
     /**
-     * 
-     * @param points
-     * @return
+     * finds the points in the battle map range
+     * @param points the whole selected points
+     * @return  the collection with the appropriate points
      */
     public ArrayList<Point2D> inRangePoints(ArrayList<Point2D> points)
     {

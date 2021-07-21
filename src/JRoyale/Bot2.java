@@ -11,7 +11,9 @@ public class Bot2 extends Bot
         super("CPU Normal", GameManager.getRandomDeck(2), 2);
     }
 
-
+    /**
+     * manages the bot decisions in each frame
+     * */
     @Override
     public void step()
     {
@@ -34,6 +36,8 @@ public class Bot2 extends Bot
         }
     }
     /**
+     * finds the best place for creating a creature considering enemy status
+     * @param chosenCard of the bot
      * @return the best place to create army considering towers and number of enemy armies
      * */
     private Point2D armiesAndTowers(Card chosenCard){
@@ -143,6 +147,7 @@ public class Bot2 extends Bot
         }
     }
     /**
+     * creates a point for the given status
      * @param status situation to create army//-2->rage//-1->spell//0->arbitrary//1->enemy up princess//2->enemy down princess//3->enemy king//4->up right//5->down right//6-> near to bot king//7->up bridge//8->down bridge
      * @return the appropriate position to create
         * */
