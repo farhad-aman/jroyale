@@ -85,6 +85,8 @@ public abstract class Building extends Card
             if(target != null && creature.isCreatureInRange(target))
             {
                 creature.setKillTarget(target);
+                creature.setFollowTarget(target);
+
                 boolean isKilled = creature.hit(creature.getKillTarget());
 
                 findStatus(isKilled, creature, target);
