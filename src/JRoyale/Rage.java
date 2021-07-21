@@ -29,7 +29,8 @@ public class Rage extends Spell
     /**
      * loads the proper pics for status//0->for deck(150.jpg)//troops://1->moving to right//2->moving to left//3->fighting to right//4->fighting to left//5->dying to right//6->dying to left//buildings://7->cannon ball//8->cannon turning right//9->cannon turning left//10->inferno.gif//11->spells gif
      */
-    public void loadImages() {
+    public void loadImages() 
+    {
         pics.put(0, new Image("resources/cards/rage/rage150.png"));
         pics.put(-1, new Image("resources/cards/rage/rage150wb.jpg"));
         pics.put(1, new Image("resources/blank150.jpg"));
@@ -37,14 +38,18 @@ public class Rage extends Spell
 
 
     @Override
-    public void step(Creature creature) {
-        if (inBattleTime > 0) {
+    public void step(Creature creature) 
+    {
+        if (inBattleTime > 0) 
+        {
             Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 
-            while (it.hasNext()) {
+            while (it.hasNext()) 
+            {
                 Creature tempTarget = it.next();
 
-                if (!tempTarget.isUnderRage() && tempTarget.getPosition().distance(creature.getPosition()) <= ((tempTarget.getCard() instanceof King ? 80 : (tempTarget.getCard() instanceof Princess ? 60 : (tempTarget.getCard() instanceof Building ? 50 : 40))) * super.getRange()) && creature.getSide() == tempTarget.getSide()) {
+                if (!tempTarget.isUnderRage() && tempTarget.getPosition().distance(creature.getPosition()) <= ((tempTarget.getCard() instanceof King ? 80 : (tempTarget.getCard() instanceof Princess ? 60 : (tempTarget.getCard() instanceof Building ? 50 : 40))) * super.getRange()) && creature.getSide() == tempTarget.getSide()) 
+                {
                     tempTarget.setUnderRage(true);
                     tempTarget.setRagePosition(creature.getPosition());
                     tempTarget.setRageTimeRemained(duration[creature.getLevel()]);
@@ -63,12 +68,19 @@ public class Rage extends Spell
         return inBattleTime;
     }
 
+    /**
+     * sets in battle time
+     * @param level
+     */
     public void setInBattleTime(int level) 
     {
         inBattleTime = duration[level];
-
     }
 
+    /**
+     * @param level
+     * @return duration
+     */
     public int getDuration(int level)
     {
         return duration[level];

@@ -203,12 +203,18 @@ public abstract class Card
         ArrayList<Creature> creatures = new ArrayList<>();
         if(side == -1)
         {
-            for(int i = 0;i < (this instanceof Troop ? ((Troop) this).getCount() : 1);i++){
-                if (GameManager.getInstance().getCurrentBot() instanceof Bot1) {
+            for(int i = 0;i < (this instanceof Troop ? ((Troop) this).getCount() : 1);i++)
+            {
+                if (GameManager.getInstance().getCurrentBot() instanceof Bot1) 
+                {
                     creatures.add(new Creature(this, 1, center, -1));
-                } else if (GameManager.getInstance().getCurrentBot() instanceof Bot2) {
+                } 
+                else if (GameManager.getInstance().getCurrentBot() instanceof Bot2) 
+                {
                     creatures.add(new Creature(this, 3, center, -1));
-                } else {
+                } 
+                else 
+                {
                     creatures.add(new Creature(this, 5, center, -1));
                 }
             }
@@ -216,7 +222,8 @@ public abstract class Card
         }
         else
         {
-            for(int i = 0;i < (this instanceof Troop ? ((Troop) this).getCount() : 1);i++){
+            for(int i = 0;i < (this instanceof Troop ? ((Troop) this).getCount() : 1);i++)
+            {
                 creatures.add(new Creature(this, GameManager.getInstance().getCurrentPlayer().getLevel(), center, 1));
             }
         }
@@ -249,10 +256,10 @@ public abstract class Card
     }
 
     /**
-     * 
+     * can card hit some target
      * @param ability
      * @param targetType
-     * @return
+     * @return can hit
      */
     private boolean canHit(String ability, String targetType)
     {

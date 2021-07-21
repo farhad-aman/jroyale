@@ -225,8 +225,10 @@ public class BattleController
                     while (count < creatures.size())
                     {
                         ArrayList<Point2D> positions = findPositions(x, y, creatures.size());
-                        for (int i = 0; i < creatures.size(); i++) {
-                            if (checkTowerStatus(positions.get(i).getX(), positions.get(i).getY()) && count < creatures.size()) {
+                        for (int i = 0; i < creatures.size(); i++) 
+                        {
+                            if (checkTowerStatus(positions.get(i).getX(), positions.get(i).getY()) && count < creatures.size()) 
+                            {
                                 Creature c = creatures.get(count);
                                 c.setPosition(positions.get(i));
                                 gameManager.getBattle().getArena().getCreatures().add(c);
@@ -253,13 +255,20 @@ public class BattleController
      */
     private void showBorders(double x, double y) 
     {
-        if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
+        if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated())
+        {
             setVisibility(rightLine, downRightLine, downLeftLine, upLeftLine, upRightLine, leftDownLine, leftUpLine);
-        }else if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
+        }
+        else if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated())
+        {
             setVisibility(upRightLine, upMiddleLine, middleLine, leftDownLine, downRightLine, downLeftLine, rightLine);
-        }else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
+        }
+        else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated())
+        {
             setVisibility(rightLine, upRightLine, downRightLine, downMiddleLine, upMiddleLine);
-        }else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
+        }
+        else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated())
+        {
             setVisibility(rightLine, upRightLine, upLeftLine, leftUpLine, middleLine, downMiddleLine,  downRightLine);
         }
     }
@@ -268,7 +277,8 @@ public class BattleController
      * makes the given lines visible for 3 seconds
      * @param lines to make visible
      */
-    private void setVisibility(Line... lines) {
+    private void setVisibility(Line... lines) 
+    {
         Runnable task = new Runnable()
         {
             @Override
@@ -314,17 +324,22 @@ public class BattleController
      * @param y of the chosen point
      * @return true if the the chosen position is acceptable otherwise returns false
      */
-    private boolean checkTowerStatus(double x, double y) {//System.out.println("line 181");
-        if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
+    private boolean checkTowerStatus(double x, double y) 
+    {
+        if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && gameManager.getBattle().getArena().getBotUpPrincess().isEliminated())
+        {
             return x <= 840;
         }
-        else if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()) {
+        else if(!gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()) 
+        {
             return x <= 600;
         }
-        else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated()){
+        else if(gameManager.getBattle().getArena().getBotDownPrincess().isEliminated() && !gameManager.getBattle().getArena().getBotUpPrincess().isEliminated())
+        {
             return x <= 600 || (x <= 840 && y >= 360);
         }
-        else {
+        else 
+        {
             return x <= 600 || (x <= 840 && y <= 360);
         }
     }
@@ -342,12 +357,14 @@ public class BattleController
         double newX = x;
         double newY = y;
 
-        if(number == 1 && isAppropriate(new Point2D(x, y))) {
+        if(number == 1 && isAppropriate(new Point2D(x, y))) 
+        {
             points.add(new Point2D(x, y));
             return points;
         }
         int r = 40;
-        while (r <= 60){
+        while (r <= 60)
+        {
             if(isAppropriate(new Point2D(x - r, y - r)))
                 points.add(new Point2D(x - r, y - r));
             if(isAppropriate(new Point2D(x + r, y + r)))
@@ -389,7 +406,8 @@ public class BattleController
                 {
                     if (chosenCard instanceof Building && (x < 720 && x > 560))
                         return false;
-                    if (x < 680 && x > 600) {
+                    if (x < 680 && x > 600) 
+                    {
                         if ((y >= 100 && y <= 180) || (y >= 540 && y <= 620))
                             return true;
                         else if(chosenCard instanceof Dragon)
@@ -415,11 +433,14 @@ public class BattleController
     {
         Iterator<Creature> it = gameManager.getBattle().getArena().getCreatures().iterator();
 
-        while (it.hasNext()){
+        while (it.hasNext())
+        {
             Creature c = it.next();
 
-            if(!(chosenCard instanceof Spell) && !(chosenCard instanceof Giant) && !(c.getCard() instanceof Giant)){
-                if (c.getPosition().distance(point) < 10 && ((!(chosenCard instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((chosenCard instanceof Dragon) && (c.getCard() instanceof Dragon)))) {
+            if(!(chosenCard instanceof Spell) && !(chosenCard instanceof Giant) && !(c.getCard() instanceof Giant))
+            {
+                if (c.getPosition().distance(point) < 10 && ((!(chosenCard instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((chosenCard instanceof Dragon) && (c.getCard() instanceof Dragon)))) 
+                {
                     return false;
                 }
             }
