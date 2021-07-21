@@ -70,18 +70,20 @@ public class Bot2 extends Bot
         most = upBridge;
         if(most <= downBridge)
             most = downBridge;
-        else if(most <= eDown)
+        if(most <= eDown)
             most = eDown;
-        else if(most <= eUp)
+        if(most <= eUp)
             most = eUp;
-        else if(most < eMiddle)
+        if(most <= eMiddle)
             most = eMiddle;
-        else if(most <= up)
+        if(most <= up)
             most = up;
-        else if(most <= down)
+        if(most <= down)
             most = down;
-        else if(most <= middle)
+        if(most <= middle)
             most = middle;
+//most : 1, eUp: 4,upBridge : 0, downBridge: 0, eDown: 1, eMiddle: 1, up: 0, down: 0, middle:0
+//        System.out.println("most : " + most + ", eUp: " + eUp + ",upBridge : " + upBridge + ", downBridge: " + downBridge + ", eDown: " + eDown +  ", eMiddle: " + eMiddle + ", up: " + up + ", down: " + down + ", middle:" + middle);
 
         boolean upDestroyed = GameManager.getInstance().getBattle().getArena().getPlayerUpPrincess().isEliminated();
         boolean downDestroyed = GameManager.getInstance().getBattle().getArena().getPlayerDownPrincess().isEliminated();
@@ -155,6 +157,7 @@ public class Bot2 extends Bot
         else if(status == 2){
             x = 440 + rand.nextInt(160);
             y = 480 + rand.nextInt(200);
+            System.out.println("eDown created :" + x + ", " + y);
         }
         else if(status == 3){
             x = 440 + rand.nextInt(160);

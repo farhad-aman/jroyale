@@ -109,11 +109,6 @@ public class Creature
     private int moveAvoided = 0;
 
     /**
-     * the temp target that inferno use it
-     */
-    private Creature tempTarget;
-
-    /**
      *
      */
     private int tempTargetTime;
@@ -174,7 +169,7 @@ public class Creature
     }
 
     public Creature getTempTarget() {
-        return tempTarget;
+        return killTarget;
     }
 
     /**
@@ -187,7 +182,7 @@ public class Creature
     {
         Inferno in = ((Inferno) card);
 
-        if(tempTarget == null)
+        if(killTarget == null)
             return 0;
         return (((in.getMaxDamage(level) - in.getMinDamage(level)) / 10.0) *  ((Math.min(tempTargetTime, 10000.0)) / 1000.0) + in.getMinDamage(level)) * (underRage ? 1.4 : 1);
     }
@@ -203,10 +198,10 @@ public class Creature
 //        }
 //        else
 //            System.out.println("inferno " + tempTarget.getCard());
-        if(tempTarget == this.tempTarget)
+        if(tempTarget == this.killTarget)
             this.tempTargetTime += 1000 / GameManager.FPS;
         else {
-            this.tempTarget = tempTarget;
+            this.killTarget = tempTarget;
             tempTargetTime = 0;
         }
     }
@@ -275,7 +270,9 @@ public class Creature
     {
         this.status = status;
     }
-
+    /**
+     * @return the number that represents the position of the creature on the map
+     * */
     public int updateBridgeStatus() 
     {
         if(position.getY() >= 360)
@@ -825,14 +822,14 @@ public class Creature
     {
         Iterator<Creature> it = GameManager.getInstance().getBattle().getArena().getCreatures().iterator();
 //        System.out.println("checking the creature position accuracy521");
-        while (it.hasNext())
-        {
-            Creature c = it.next();
-
-            if(!(card instanceof Giant) && !(c.getCard() instanceof Giant) && c != this && !(c.card instanceof Spell) && newPosition.distance(c.position) < 10 && ((!(card instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((card instanceof Dragon) && (c.getCard() instanceof Dragon)))){
-                return false;
-            }
-        }
+//        while (it.hasNext())
+//        {
+//            Creature c = it.next();
+//
+//            if(!(card instanceof Giant) && !(c.getCard() instanceof Giant) && c != this && !(c.card instanceof Spell) && newPosition.distance(c.position) < 10 && ((!(card instanceof Dragon) && !(c.getCard() instanceof Dragon)) || ((card instanceof Dragon) && (c.getCard() instanceof Dragon)))){
+//                return false;
+//            }
+//        }
         return true;
     }
 
