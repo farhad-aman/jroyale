@@ -256,6 +256,7 @@ public class Creature
         oldStatus = status != this.status ? this.status : status;
         this.status = status;
     }
+
     /**
      * @return the number that represents the position of the creature on the map
      * */
@@ -425,9 +426,11 @@ public class Creature
             status = oldStatus;
     }
     /**
-     * @param ragePosition to set the rage position
-     * */
-    public void setRagePosition(Point2D ragePosition) {
+     * sets the position of rage spell
+     * @param ragePosition
+     */
+    public void setRagePosition(Point2D ragePosition) 
+    {
         this.ragePosition = ragePosition;
     }
 
@@ -587,14 +590,13 @@ public class Creature
             Point2D tempTargetPosition = findTempTargetPosition();
             probablePositions = inRangePoints(probablePositions);
 
-            if (probablePositions.size() != 0 && tempTargetPosition != null) {//System.out.println("moving successfully369");
+            if (probablePositions.size() != 0 && tempTargetPosition != null) {
                 Point2D newPosition = findNearestPosition(tempTargetPosition, probablePositions);
-                setPositionAndStatus(newPosition);//System.out.println("moving successfully finished?!?!?!?!?!?371");
+                setPositionAndStatus(newPosition);
                 moveAvoided = 0;
             }
         else
         {
-            System.out.println("move avoided :" + moveAvoided);
             moveAvoided++;
         }
     }
@@ -731,7 +733,7 @@ public class Creature
     {
         Iterator<Point2D> it = positions.iterator();
         Point2D newPosition = positions.get(0);
-//        System.out.println("finding the nearest position to a source507");
+
         while (it.hasNext())
         {
             Point2D tempPosition = it.next();
