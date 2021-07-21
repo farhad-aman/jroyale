@@ -51,33 +51,36 @@ public class Bot3 extends Bot
         for(Creature c : GameManager.getInstance().getBattle().getArena().getCreatures())
         {
             double Y = c.getPosition().getY(), X = c.getPosition().getX();
+            int effect = 1;
 
             if(c.getSide() == side && !(c.getCard() instanceof Spell) && chosenCard.canHit(chosenCard.getTarget(), c.getCard().getType()))
             {
+                effect += considerEnemy(chosenCard, c.getCard());
+
                 if (Y <= 240)
                 {
                     if(X < 600)
-                        eUp++;
+                        eUp += effect;
                     else if(X >= 600 && X <= 680)
-                        upBridge++;
+                        upBridge += effect;
                     else
-                        up++;
+                        up += effect;
                 }
                 else if (Y > 240 && Y < 480)
                 {
                     if(X < 600)
-                        eMiddle++;
+                        eMiddle += effect;
                     else
-                        middle++;
+                        middle += effect;
                 }
                 else
                 {
                     if(X < 600)
-                        eDown++;
+                        eDown += effect;
                     else if(X >= 600 && X <= 680)
-                        downBridge++;
+                        downBridge += effect;
                     else
-                        down++;
+                        down += effect;
                 }
             }
         }
@@ -113,8 +116,6 @@ public class Bot3 extends Bot
         {
             return -1;
         }
-        else if(most == 0)
-            return 0;
         else if(most == up)
             return 4;
         else if (most == middle)
@@ -153,13 +154,38 @@ public class Bot3 extends Bot
             else
                 return 4;
         }
-        else
+        else if(most == eMiddle)
         {
             if(upDestroyed && downDestroyed)
                 return 3;
             else
                 return 6;
         }
+        return 0;
+    }
+    /**
+     * checks the enemy type and effect
+     * @param chosenCard to create
+     * @param enemy to consider its type
+     * */
+    private int considerEnemy(Card chosenCard, Card enemy) {
+        int effect = 0;
+
+        if(enemy.canHit(enemy.getTarget(), chosenCard.getType()))
+            return -1;
+        if(chosenCard instanceof Valkyrie && enemy instanceof Barbarians)
+            return 2;
+        if((chosenCard instanceof Fireball || chosenCard instanceof Arrows) && (enemy instanceof Barbarians || enemy instanceof Archer))
+            return 2;
+        /*
+        *
+        * TODO: considering other type of the creatures
+        *
+         */
+
+
+
+        return 1;
     }
 
     /**
