@@ -744,7 +744,7 @@ public class BattleController
             arenaPane.getChildren().add(botName);
             if(status == 1)
             {
-                winnerName.setText(player.getUsername() + " IS WINNER");
+                winnerName.setText(player.getUsername() + " WINS");
             }
             else
             {
