@@ -286,24 +286,43 @@ public class Creature
      * */
     public int updateBridgeStatus() 
     {
+//        if(position.getY() >= 360)
+//        {
+//            if(position.getX() <= 600 && (position.getY() > 620 || position.getY() < 540))
+//                bridgeStatus = 1;
+//            else if(position.getX() >= 600 && position.getX() <= 680 && position.getY() <= 620 && position.getY() >= 540)
+//                bridgeStatus = 2;
+//            else
+//                bridgeStatus = 3;
+//        }
+//        else
+//        {
+//            if(position.getX() <= 600 && (position.getY() < 100 || position.getY() > 180))
+//                bridgeStatus = 4;
+//            else if(position.getX() >= 600 && position.getX() <= 680 && position.getY() <= 180 && position.getY() >= 100)
+//                bridgeStatus = 5;
+//            else
+//                bridgeStatus = 6;
+//        }
         if(position.getY() >= 360)
         {
-            if(position.getX() <= 600 && (position.getY() > 620 || position.getY() < 540))
+            if(position.getX() <= 600)
                 bridgeStatus = 1;
-            else if(position.getX() >= 600 && position.getX() <= 680 && position.getY() <= 620 && position.getY() >= 540)
+            else if(position.getX() > 600 && position.getX() < 680 && position.getY() <= 620 && position.getY() >= 540)
                 bridgeStatus = 2;
             else
                 bridgeStatus = 3;
         }
         else
         {
-            if(position.getX() <= 600 && (position.getY() < 100 || position.getY() > 180))
+            if(position.getX() <= 600)
                 bridgeStatus = 4;
-            else if(position.getX() >= 600 && position.getX() <= 680 && position.getY() <= 180 && position.getY() >= 100)
+            else if(position.getX() > 600 && position.getX() < 680 && position.getY() <= 180 && position.getY() >= 100)
                 bridgeStatus = 5;
             else
                 bridgeStatus = 6;
         }
+
         if(card instanceof King || card instanceof Princess)
             bridgeStatus = 0;
 

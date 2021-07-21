@@ -113,11 +113,7 @@ public class Bot3 extends Bot
         if(most <= middle)
             most = middle;
 
-        if(!(chosenCard instanceof Rage) && chosenCard instanceof Spell)
-        {
-            return -1;
-        }
-        else if(most == up)
+        if(most == up)
             return 4;
         else if (most == middle)
             return 6;
@@ -186,6 +182,8 @@ public class Bot3 extends Bot
             effect += 1;
         if(chosenCard instanceof Pekka && (enemy instanceof Giant || enemy instanceof Pekka))
             effect += 1;
+        if(chosenCard instanceof Rage && enemy instanceof Giant)
+            effect += 1;
         /*
         *
         * TODO: considering other type of the creatures
@@ -204,11 +202,6 @@ public class Bot3 extends Bot
         int x = 0, y = 0;
         Random rand = new Random();
 
-        if(status == -2)
-        {
-            x = 920 + rand.nextInt(200);
-            y = 120 + rand.nextInt(480);
-        }
         if(status == -1)
         {
             x = rand.nextInt(280);
