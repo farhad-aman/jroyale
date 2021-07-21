@@ -1,4 +1,5 @@
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Arc;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -171,21 +172,26 @@ public class Bot3 extends Bot
     private int considerEnemy(Card chosenCard, Card enemy) {
         int effect = 0;
 
-        if(enemy.canHit(enemy.getTarget(), chosenCard.getType()))
-            return -1;
-        if(chosenCard instanceof Valkyrie && enemy instanceof Barbarians)
-            return 2;
+        if(chosenCard instanceof Valkyrie && (enemy instanceof Barbarians || enemy instanceof Archer || enemy instanceof Giant))
+            effect += 2;
         if((chosenCard instanceof Fireball || chosenCard instanceof Arrows) && (enemy instanceof Barbarians || enemy instanceof Archer))
-            return 2;
+            effect += 2;
+        if(chosenCard instanceof Dragon && (enemy instanceof Barbarians || enemy instanceof Valkyrie || enemy instanceof Pekka || enemy instanceof Giant || enemy instanceof Cannon))
+            effect += 3;
+        if(chosenCard instanceof Giant && enemy instanceof Wizard)
+            effect -= 1;
+        if(chosenCard instanceof Archer && enemy instanceof Giant)
+            effect += 2;
+        if(chosenCard instanceof Barbarians && (enemy instanceof Giant || enemy instanceof Archer))
+            effect += 1;
+        if(chosenCard instanceof Pekka && (enemy instanceof Giant || enemy instanceof Pekka))
+            effect += 1;
         /*
         *
         * TODO: considering other type of the creatures
         *
          */
-
-
-
-        return 1;
+        return effect;
     }
 
     /**

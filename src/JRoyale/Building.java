@@ -85,27 +85,24 @@ public abstract class Building extends Card
             if(target != null && creature.isCreatureInRange(target))
             {
                 creature.setKillTarget(target);
-                creature.hit(creature.getKillTarget());
+                boolean isKilled = creature.hit(creature.getKillTarget());
 
-                if(creature.getPosition().getX() < creature.getKillTarget().getPosition().getX())
-                    creature.setStatus(3);
-                else
-                    creature.setStatus(4);
+                findStatus(isKilled, creature, target);
             }
         }
         else
         {
             if(creature.isCreatureInRange(creature.getKillTarget()))
             {
-                creature.hit(creature.getKillTarget());
+                boolean isKilled = creature.hit(creature.getKillTarget());
 
-                if(creature.getPosition().getX() < creature.getKillTarget().getPosition().getX())
-                    creature.setStatus(3);
-                else
-                    creature.setStatus(4);
+                findStatus(isKilled, creature, creature.getKillTarget());
             }
             else
             {
+                if(creature.getCard() instanceof Cannon)
+                    findStatus(true, creature, creature.getKillTarget());
+
                 creature.setKillTarget(null);
             }
         }

@@ -748,6 +748,7 @@ public class Creature
         {
             if(target.getPosition().getX() > position.getX() && target.position.getX() > 680)
             {
+                System.out.println("incorrect751");
                 Point2D newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
 
                 if (position.distance(newTarget) > position.distance(target.position))
