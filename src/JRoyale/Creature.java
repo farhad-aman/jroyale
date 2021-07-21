@@ -270,6 +270,7 @@ public class Creature
     {
         this.status = status;
     }
+
     /**
      * @return the number that represents the position of the creature on the map
      * */
@@ -439,7 +440,12 @@ public class Creature
             status = oldStatus;
     }
 
-    public void setRagePosition(Point2D ragePosition) {
+    /**
+     * sets the position of rage spell
+     * @param ragePosition
+     */
+    public void setRagePosition(Point2D ragePosition) 
+    {
         this.ragePosition = ragePosition;
     }
 
