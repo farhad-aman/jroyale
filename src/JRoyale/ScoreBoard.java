@@ -61,9 +61,11 @@ public class ScoreBoard
                 playerStars++;
             }
         }
+        totalBotTowersHP = 0;
         totalPlayerTowersHP += Math.max(0, arena.getPlayerKing().getHP());
         totalPlayerTowersHP += Math.max(0, arena.getPlayerUpPrincess().getHP());
         totalPlayerTowersHP += Math.max(0, arena.getPlayerDownPrincess().getHP());
+        totalBotTowersHP = 0;
         totalBotTowersHP += Math.max(0, arena.getBotKing().getHP());
         totalBotTowersHP += Math.max(0, arena.getBotUpPrincess().getHP());
         totalBotTowersHP += Math.max(0, arena.getBotDownPrincess().getHP());
