@@ -359,8 +359,14 @@ public class Creature
             }
             else {
                 oldStatus = status;
-                status = side == 1 ? 3 : 4;//************************************************************************************************************************
+                status = side == 1 ? 3 : 4;
             }
+        }
+        if(creature == null && card instanceof Cannon && followTarget != null){
+            if(followTarget.position.getX() < position.getX())
+                status = 2;
+            else
+                status = 1;
         }
         this.killTarget = creature;
     }
@@ -462,12 +468,7 @@ public class Creature
                 status = side == 1 ? 1 : 2;
             else
                 status = side == 1 ? 3 : 4;
-        }//://1->moving to right//2->moving to left//3->fighting to right//4->fighting to left//5->dying to right//6->dying to left//buildings://7->cannon ball//8->cannon turning right//9->cannon turning left//
-        else if(card instanceof Cannon)
-        {
-            if(killTarget == null)
-                status = oldStatus == 4 ? 2 : 1;
-        }
+        } 
 
         if(oldStatus != status)
             statusTime += 1000 / GameManager.FPS;
