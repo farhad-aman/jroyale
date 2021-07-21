@@ -438,6 +438,28 @@ public class GameManager
                 }
             }
         }
+        else{
+            int spellCount = 0, buildingCount = 0, troopCount = 0;
+
+            for(Card c : cards)
+            {
+                if(c instanceof Spell && spellCount < 1)
+                {
+                    deck.addCard(c);
+                    spellCount++;
+                }
+                else if(c instanceof Inferno)
+                {
+                    deck.addCard(c);
+                    buildingCount++;
+                }
+                else if(c instanceof Troop && troopCount < 6)
+                {
+                    deck.addCard(c);
+                    troopCount++;
+                }
+            }
+        }
         return deck;
     }
 }

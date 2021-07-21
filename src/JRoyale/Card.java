@@ -261,7 +261,7 @@ public abstract class Card
      * @param targetType
      * @return can hit
      */
-    private boolean canHit(String ability, String targetType)
+    public boolean canHit(String ability, String targetType)
     {
         if(ability.equals("both") || ability.equals(targetType))
             return true;

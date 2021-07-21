@@ -114,6 +114,28 @@ public abstract class Building extends Card
             creature.setKillTarget(null);
         }
     }
+    /**
+     * sets the appropriate status for the given cannon
+     * @param isKilled represents whether the target is killed or not
+     * @param c the creature to set status for
+     * @param target to kill
+     * */
+    private void findStatus(boolean isKilled, Creature c, Creature target){
+        if(c != null && target != null){
+            if (isKilled && c.getCard() instanceof Cannon) {
+                if(target.getPosition().getX() < c.getPosition().getX())
+                    c.setStatus(2);
+                else
+                    c.setStatus(1);
+            }
+            else{
+                if(target.getPosition().getX() < c.getPosition().getX())
+                    c.setStatus(4);
+                else
+                    c.setStatus(3);
+            }
+        }
+    }
 
     /**
      * @return damage of the building
