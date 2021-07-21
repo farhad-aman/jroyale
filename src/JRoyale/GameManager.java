@@ -77,7 +77,6 @@ public class GameManager
         System.out.println(username + " : " + userPassword);
         try 
         {
-            System.out.println("game manager line 43 started");
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
 
@@ -87,10 +86,8 @@ public class GameManager
             st.execute(insertion);
 
             ResultSet rs = st.getResultSet();
-            // System.out.println("game manager line 53 started");
             if(!rs.next())
             {
-            //    System.out.println("game manager line 56 started");
                 st.close();
                 rs.close();
 
@@ -98,11 +95,9 @@ public class GameManager
             }
             else if(rs.getString(2).equals(userPassword))
             {
-          //      System.out.println("game manager line 64 started");
                 currentPlayer = new Player(rs.getString(1), rs.getString(2), rs.getInt(3), getDeck(rs.getString(4)), getHistory(rs.getString(1)));
 
-        //        System.out.println("game manager line 67 started");
-                System.out.println(currentPlayer.getDeck());
+//                System.out.println(currentPlayer.getDeck());
 
                 st.close();
                 rs.close();
@@ -111,7 +106,6 @@ public class GameManager
             }
             else
             {
-      //          System.out.println("game manager line 77 started");
                 st.close();
                 rs.close();
 

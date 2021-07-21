@@ -67,6 +67,16 @@ public class Bot2 extends Bot
                 }
             }
         }
+        boolean upDestroyed = GameManager.getInstance().getBattle().getArena().getPlayerUpPrincess().isEliminated();
+        boolean downDestroyed = GameManager.getInstance().getBattle().getArena().getPlayerDownPrincess().isEliminated();
+
+        if(upDestroyed && !downDestroyed)
+            eUp++;
+        if(downDestroyed && !upDestroyed)
+            eDown++;
+        if(upDestroyed && downDestroyed)
+            eMiddle += 2;
+
         most = upBridge;
         if(most <= downBridge)
             most = downBridge;
@@ -82,13 +92,11 @@ public class Bot2 extends Bot
             most = down;
         if(most <= middle)
             most = middle;
-//most : 1, eUp: 4,upBridge : 0, downBridge: 0, eDown: 1, eMiddle: 1, up: 0, down: 0, middle:0
-//        System.out.println("most : " + most + ", eUp: " + eUp + ",upBridge : " + upBridge + ", downBridge: " + downBridge + ", eDown: " + eDown +  ", eMiddle: " + eMiddle + ", up: " + up + ", down: " + down + ", middle:" + middle);
 
-        boolean upDestroyed = GameManager.getInstance().getBattle().getArena().getPlayerUpPrincess().isEliminated();
-        boolean downDestroyed = GameManager.getInstance().getBattle().getArena().getPlayerDownPrincess().isEliminated();
-
-        if(chosenCard instanceof Spell){
+        if(chosenCard instanceof Rage){
+            return findPoint(-2);
+        }
+        else if(chosenCard instanceof Spell){
             return findPoint(-1);
         }
         else if(most == 0)
@@ -135,13 +143,17 @@ public class Bot2 extends Bot
         }
     }
     /**
-     * @param status situation to create army//-1->spell//0->arbitrary//1->enemy up princess//2->enemy down princess//3->enemy king//4->up right//5->down right//6-> near to bot king//7->up bridge//8->down bridge
+     * @param status situation to create army//-2->rage//-1->spell//0->arbitrary//1->enemy up princess//2->enemy down princess//3->enemy king//4->up right//5->down right//6-> near to bot king//7->up bridge//8->down bridge
      * @return the appropriate position to create
         * */
     private Point2D findPoint(int status){
         int x = 0, y = 0;
         Random rand = new Random();
 
+        if(status == -2){
+            x = 920 + rand.nextInt(200);
+            y = 120 + rand.nextInt(480);
+        }
         if(status == -1){
             x = rand.nextInt(280);
             y = 80 + rand.nextInt(1120);
