@@ -274,7 +274,7 @@ public class Creature
         }
         else
         {
-            if(position.getX() >= 680 && (position.getY() < 100 || position.getY() > 180))
+            if(position.getX() <= 600 && (position.getY() < 100 || position.getY() > 180))
                 bridgeStatus = 4;
             else if(position.getX() >= 600 && position.getX() <= 680 && position.getY() <= 180 && position.getY() >= 100)
                 bridgeStatus = 5;
@@ -311,14 +311,15 @@ public class Creature
     public void setKillTarget(Creature creature)
     {
         if(card instanceof Building && !(card instanceof Inferno)){
-            if (creature == null)
+            if (creature == null) {
+                oldStatus = status;
                 status = side == 1 ? 1 : 2;
+            }
             else {
                 oldStatus = status;
-                status = side == 1 ? 3 : 4;
+                status = side == 1 ? 3 : 4;//************************************************************************************************************************
             }
         }
-
         this.killTarget = creature;
     }
 
@@ -415,7 +416,7 @@ public class Creature
         }//://1->moving to right//2->moving to left//3->fighting to right//4->fighting to left//5->dying to right//6->dying to left//buildings://7->cannon ball//8->cannon turning right//9->cannon turning left//
         else if(card instanceof Cannon){
             if(killTarget == null)
-                status = oldStatus == 3 ? 1 : 2;
+                status = oldStatus == 4 ? 2 : 1;
         }
 
         if(oldStatus != status)
@@ -640,9 +641,6 @@ public class Creature
         int ebs = target.updateBridgeStatus();
         bridgeStatus= updateBridgeStatus();
 
-//        if(card.getId().equals("Barbarians") && moveAvoided >= 2)
-//            System.out.println("bridgeStatus :" + bridgeStatus + ", x, y :" + position.getX() + ", " + position.getY() + ", ebs :" + ebs + ", moveAvoided :" + moveAvoided);
-
         if(ebs == 0 || ebs == bridgeStatus || (ebs == 1 && bridgeStatus == 4) || (ebs == 4 && bridgeStatus == 1) || (ebs == 3 && bridgeStatus == 6) || (ebs == 6 && bridgeStatus == 3) || card instanceof Dragon)
         {
             return target.position;
@@ -659,7 +657,7 @@ public class Creature
             else
                 return new Point2D(bridge.getX(), bridge.getY() + 20);
         }
-        else if(((bridgeStatus == 3 || bridgeStatus == 6) && side == -1) && target.position.getX() < 600)
+        if(((bridgeStatus == 3 || bridgeStatus == 6) && side == -1) && target.position.getX() < 600)
         {
             if((position.getY() <= 620 && position.getY() >= 540) || (position.getY() <= 180 && position.getY() >= 100)) {
                 return target.getPosition().distance(680, 140) < target.getPosition().distance(680, 580) ? new Point2D(680, position.getY()) : new Point2D(680, position.getY());
@@ -672,7 +670,7 @@ public class Creature
             else
                 return new Point2D(bridge.getX(), bridge.getY() + 20);
         }
-        else if(bridgeStatus == 2 || bridgeStatus == 5)
+        if(bridgeStatus == 2 || bridgeStatus == 5)
         {
             if(ebs == 2 || (ebs == 5))
             {
@@ -700,7 +698,7 @@ public class Creature
                     return target.position;
             }
         }
-        else if((bridgeStatus == 1 || bridgeStatus == 4) && side == -1)
+        if((bridgeStatus == 1 || bridgeStatus == 4) && side == -1)
         {
             if(target.getPosition().getX() > position.getX() && target.position.getX() > 680)
             {
@@ -714,7 +712,7 @@ public class Creature
                 return newTarget;
             }
         }
-        else if((bridgeStatus == 3 || bridgeStatus == 6) && side == 1)
+        if((bridgeStatus == 3 || bridgeStatus == 6) && side == 1)
         {
             if(target.getPosition().getX() < position.getX() && target.position.getX() < 600)
             {
