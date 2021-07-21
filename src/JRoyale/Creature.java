@@ -150,7 +150,6 @@ public class Creature
         {
             this.status = 1;
         }
-        oldStatus = status;
 
         underRage = false;
         ragePosition = null;
@@ -175,6 +174,8 @@ public class Creature
             this.hp = ((Troop)card).getInitHP(level);
             this.lifeTime = 1000000;
         }
+
+        oldStatus = status;
     }
 
     /**
@@ -276,7 +277,7 @@ public class Creature
      */
     public void setStatus(int status)
     {
-        oldStatus = status != this.status ? this.status : status;
+        oldStatus = this.status;
         this.status = status;
     }
 
@@ -332,11 +333,13 @@ public class Creature
      */
     public void setKillTarget(Creature creature)
     {
-        if(card instanceof Building){
+        if(card instanceof Building && !(card instanceof Inferno)){
             if (creature == null)
                 status = side == 1 ? 1 : 2;
-            else
+            else {
+                oldStatus = status;
                 status = side == 1 ? 3 : 4;
+            }
         }
 
         this.killTarget = creature;
@@ -443,7 +446,7 @@ public class Creature
         else if(card instanceof Cannon)
         {
             if(killTarget == null)
-                status = oldStatus == 4 ? 2 : 1;
+                status = oldStatus == 3 ? 1 : 2;
         }
 
         if(oldStatus != status)
@@ -640,6 +643,8 @@ public class Creature
         else
         {
             moveAvoided++;
+            if(moveAvoided > 5)
+                moveAvoided += 10;
         }
     }
 
@@ -679,6 +684,9 @@ public class Creature
 
         int ebs = target.updateBridgeStatus();
         bridgeStatus= updateBridgeStatus();
+
+//        if(card.getId().equals("Barbarians") && moveAvoided >= 2)
+//            System.out.println("bridgeStatus :" + bridgeStatus + ", x, y :" + position.getX() + ", " + position.getY() + ", ebs :" + ebs + ", moveAvoided :" + moveAvoided);
 
         if(ebs == 0 || ebs == bridgeStatus || (ebs == 1 && bridgeStatus == 4) || (ebs == 4 && bridgeStatus == 1) || (ebs == 3 && bridgeStatus == 6) || (ebs == 6 && bridgeStatus == 3) || card instanceof Dragon)
         {
