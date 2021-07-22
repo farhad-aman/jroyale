@@ -1,6 +1,4 @@
 import javafx.geometry.Point2D;
-import javafx.scene.shape.Arc;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -28,18 +26,53 @@ public class Bot3 extends Bot
 
         if(chosenCard.getCost() <= battle.getBotElixirBar().getElixir())
         {
-            ArrayList<Creature> creatures = chosenCard.makeCreature(findPoint(chosenCard, findPopulated(chosenCard)), -1);
-            for(Creature c : creatures)
-            {
-                battle.getArena().getCreatures().add(c);
+            Point2D position = findBestPoint(chosenCard);
+
+            if(position != null) {
+                ArrayList<Creature> creatures = chosenCard.makeCreature(position, -1);
+                for (Creature c : creatures) {
+                    battle.getArena().getCreatures().add(c);
+                }
+                battle.getBotCardsQueue().remove(cardNumber);
+                battle.getBotCardsQueue().add(0, chosenCard);
+                battle.getBotElixirBar().takeExir(chosenCard.getCost());
             }
-            battle.getBotCardsQueue().remove(cardNumber);
-            battle.getBotCardsQueue().add(0, chosenCard);
-            battle.getBotElixirBar().takeExir(chosenCard.getCost());
         }
     }
+
     /**
-     * finds the most populated [place for the armies
+     * finds the best point for the given card
+     * @param chosenCard to find point for
+     * @return the best point for the chosen ard
+     * */
+    private Point2D findBestPoint(Card chosenCard){
+        int populatedRegion = findPopulated(chosenCard);
+        Point2D tempPosition = null;
+        int count = 0;
+
+        if(populatedRegion != -1)
+            tempPosition = findPoint(chosenCard, populatedRegion);
+
+        if (chosenCard instanceof Spell && populatedRegion != -1) {
+            while (count == 0){
+                tempPosition = findPoint(chosenCard, populatedRegion);
+
+                int side = 1;
+
+                if (chosenCard instanceof Rage)
+                    side = -1;
+
+                for (Creature c : GameManager.getInstance().getBattle().getArena().getCreatures()) {
+                    if (c.getSide() == side && c.getPosition().distance(tempPosition) <= ((c.getCard() instanceof King ? 80 : (c.getCard() instanceof Princess ? 60 : (c.getCard() instanceof Building ? 50 : 40))) * ((Spell) chosenCard).getRange()))
+                        count++;
+                }
+            }
+        }
+        return tempPosition;
+    }
+
+    /**
+     * finds the most populated place for the armies
      * @param chosenCard to decide
      * @return the most populated place
      * */
@@ -113,7 +146,9 @@ public class Bot3 extends Bot
         if(most <= middle)
             most = middle;
 
-        if(most == up)
+        if(most < -1)
+            return -1;
+        else if(most == up)
             return 4;
         else if (most == middle)
             return 6;
@@ -174,7 +209,7 @@ public class Bot3 extends Bot
             effect += 2;
         if(chosenCard instanceof Dragon && (enemy instanceof Barbarians || enemy instanceof Valkyrie || enemy instanceof Pekka || enemy instanceof Giant || enemy instanceof Cannon))
             effect += 3;
-        if(chosenCard instanceof Giant && enemy instanceof Wizard)
+        if(chosenCard instanceof Giant && (enemy instanceof Wizard|| enemy instanceof Dragon))
             effect -= 1;
         if(chosenCard instanceof Archer && enemy instanceof Giant)
             effect += 2;
@@ -184,6 +219,12 @@ public class Bot3 extends Bot
             effect += 1;
         if(chosenCard instanceof Rage && enemy instanceof Giant)
             effect += 1;
+        if((chosenCard instanceof Barbarians || chosenCard instanceof Archer) && enemy instanceof Valkyrie)
+            effect -= 1;
+        if(enemy instanceof Dragon && (chosenCard instanceof Barbarians || chosenCard instanceof Valkyrie || chosenCard instanceof Pekka || chosenCard instanceof Giant || chosenCard instanceof Cannon))
+            effect -= 1;
+        if(enemy instanceof Barbarians && chosenCard instanceof Giant)
+            effect -= 1;
         /*
         *
         * TODO: considering other type of the creatures
@@ -197,8 +238,7 @@ public class Bot3 extends Bot
      * @param status situation to create army//-1->spell//0->arbitrary//1->enemy up princess//2->enemy down princess//3->enemy king//4->up right//5->down right//6-> near to bot king//7->up bridge//8->down bridge
      * @return the appropriate position to create
      * */
-    private Point2D findPoint(Card  chosenCard, int status)
-    {
+    private Point2D findPoint(Card  chosenCard, int status) {
         int x = 0, y = 0;
         Random rand = new Random();
 
