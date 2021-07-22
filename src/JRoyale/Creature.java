@@ -542,7 +542,6 @@ public class Creature
                     }
                 } 
                 else {
-                    if(card instanceof King) System.out.println("king detected????");
                     creature.getHit((damage * (underRage ? 1.4 : 1)), position.getX() < creature.position.getX() ? 6 : 5);
                 }
             }
@@ -770,7 +769,6 @@ public class Creature
         {
             if(target.getPosition().getX() > position.getX() && target.position.getX() > 680)
             {
-                System.out.println("incorrect751");
                 Point2D newTarget = new Point2D(600, ebs == 2 || ebs == 5 ? target.position.getY() : 140);
 
                 if (position.distance(newTarget) > position.distance(target.position))
