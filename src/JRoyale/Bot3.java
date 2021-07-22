@@ -243,6 +243,8 @@ public class Bot3 extends Bot
             effect -= 1;
         if(enemy instanceof Barbarians && chosenCard instanceof Giant)
             effect -= 1;
+        if(chosenCard instanceof Rage && (enemy instanceof Princess || enemy instanceof King))
+            effect -= 1;
 
         return effect;
     }
