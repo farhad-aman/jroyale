@@ -438,7 +438,8 @@ public class GameManager
                 }
             }
         }
-        else{
+        else
+        {
             int spellCount = 0, buildingCount = 0, troopCount = 0;
 
             for(Card c : cards)
