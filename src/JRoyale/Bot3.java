@@ -60,8 +60,10 @@ public class Bot3 extends Bot
         if(populatedRegion != -1 && !(chosenCard instanceof Spell))
             tempPosition = findPoint(chosenCard, populatedRegion);
 
-        if (chosenCard instanceof Spell && populatedRegion != -1) {
-            while (count == 0 && countLoop <= 10){
+        if (chosenCard instanceof Spell && populatedRegion != -1) 
+        {
+            while (count == 0 && countLoop <= 10)
+            {
                 tempPosition = findPoint(chosenCard, populatedRegion);
 
                 int side = 1;
@@ -157,7 +159,8 @@ public class Bot3 extends Bot
         if(most <= middle)
             most = middle;
 
-        if(most < -1 && moveAvoided < 30) {
+        if(most < -1 && moveAvoided < 30) 
+        {
             moveAvoided++;
             return -1;
         }
