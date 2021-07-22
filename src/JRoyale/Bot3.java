@@ -28,9 +28,11 @@ public class Bot3 extends Bot
         {
             Point2D position = findBestPoint(chosenCard);
 
-            if(position != null) {
+            if(position != null) 
+            {
                 ArrayList<Creature> creatures = chosenCard.makeCreature(position, -1);
-                for (Creature c : creatures) {
+                for (Creature c : creatures) 
+                {
                     battle.getArena().getCreatures().add(c);
                 }
                 battle.getBotCardsQueue().remove(cardNumber);
@@ -45,7 +47,8 @@ public class Bot3 extends Bot
      * @param chosenCard to find point for
      * @return the best point for the chosen ard
      * */
-    private Point2D findBestPoint(Card chosenCard){
+    private Point2D findBestPoint(Card chosenCard)
+    {
         int populatedRegion = findPopulated(chosenCard);
         Point2D tempPosition = null;
         int count = 0;
@@ -53,8 +56,10 @@ public class Bot3 extends Bot
         if(populatedRegion != -1)
             tempPosition = findPoint(chosenCard, populatedRegion);
 
-        if (chosenCard instanceof Spell && populatedRegion != -1) {
-            while (count == 0){
+        if(chosenCard instanceof Spell && populatedRegion != -1) 
+        {
+            while (count == 0)
+            {
                 tempPosition = findPoint(chosenCard, populatedRegion);
 
                 int side = 1;
@@ -62,7 +67,8 @@ public class Bot3 extends Bot
                 if (chosenCard instanceof Rage)
                     side = -1;
 
-                for (Creature c : GameManager.getInstance().getBattle().getArena().getCreatures()) {
+                for (Creature c : GameManager.getInstance().getBattle().getArena().getCreatures()) 
+                {
                     if (c.getSide() == side && c.getPosition().distance(tempPosition) <= ((c.getCard() instanceof King ? 80 : (c.getCard() instanceof Princess ? 60 : (c.getCard() instanceof Building ? 50 : 40))) * ((Spell) chosenCard).getRange()))
                         count++;
                 }
@@ -76,7 +82,8 @@ public class Bot3 extends Bot
      * @param chosenCard to decide
      * @return the most populated place
      * */
-    private int findPopulated(Card chosenCard){
+    private int findPopulated(Card chosenCard)
+    {
         int most = 0, up = 0, middle = 0, down = 0, eUp = 0, eDown = 0, eMiddle = 0, downBridge = 0, upBridge = 0, side = 1;
 
         if(chosenCard instanceof Rage)
@@ -121,7 +128,8 @@ public class Bot3 extends Bot
         boolean upDestroyed = GameManager.getInstance().getBattle().getArena().getPlayerUpPrincess().isEliminated();
         boolean downDestroyed = GameManager.getInstance().getBattle().getArena().getPlayerDownPrincess().isEliminated();
 
-        if(!(chosenCard  instanceof Rage)){
+        if(!(chosenCard  instanceof Rage))
+        {
             if (upDestroyed && !downDestroyed)
                 eUp++;
             if (downDestroyed && !upDestroyed)
@@ -195,12 +203,14 @@ public class Bot3 extends Bot
         }
         return 0;
     }
+
     /**
      * checks the enemy type and effect
      * @param chosenCard to create
      * @param enemy to consider its type
      * */
-    private int considerEnemy(Card chosenCard, Card enemy) {
+    private int considerEnemy(Card chosenCard, Card enemy) 
+    {
         int effect = 0;
 
         if(chosenCard instanceof Valkyrie && (enemy instanceof Barbarians || enemy instanceof Archer || enemy instanceof Giant))
@@ -238,7 +248,8 @@ public class Bot3 extends Bot
      * @param status situation to create army//-1->spell//0->arbitrary//1->enemy up princess//2->enemy down princess//3->enemy king//4->up right//5->down right//6-> near to bot king//7->up bridge//8->down bridge
      * @return the appropriate position to create
      * */
-    private Point2D findPoint(Card  chosenCard, int status) {
+    private Point2D findPoint(Card  chosenCard, int status) 
+    {
         int x = 0, y = 0;
         Random rand = new Random();
 
@@ -254,33 +265,39 @@ public class Bot3 extends Bot
         }
         else if(status == 1)
         {
-            if(!(chosenCard instanceof Spell)){
+            if(!(chosenCard instanceof Spell))
+            {
                 x = 440 + rand.nextInt(160);
                 y = 40 + rand.nextInt(200);
             }
-            else{
+            else
+            {
                 x = 200 + rand.nextInt(240);
                 y = 80 + rand.nextInt(120);
             }
         }
         else if(status == 2)
         {
-            if(!(chosenCard instanceof Spell)){
+            if(!(chosenCard instanceof Spell))
+            {
                 x = 440 + rand.nextInt(160);
                 y = 480 + rand.nextInt(200);
             }
-            else{
+            else
+            {
                 x = 200 + rand.nextInt(240);
                 y = 1080 + rand.nextInt(120);
             }
         }
         else if(status == 3)
         {
-            if(!(chosenCard instanceof Spell)){
+            if(!(chosenCard instanceof Spell))
+            {
                 x = 440 + rand.nextInt(160);
                 y = 240 + rand.nextInt(240);
             }
-            else{
+            else
+            {
                 x = 120 + rand.nextInt(280);
                 y = 280 + rand.nextInt(160);
             }
