@@ -147,7 +147,6 @@ public class Player
 
         try
         {
-            System.out.println("salam" + '\"' + xp + '\"');
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/JRoyale";
 

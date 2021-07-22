@@ -195,7 +195,6 @@ public class Bot2 extends Bot
         {
             x = 440 + rand.nextInt(160);
             y = 480 + rand.nextInt(200);
-            System.out.println("eDown created :" + x + ", " + y);
         }
         else if(status == 3)
         {

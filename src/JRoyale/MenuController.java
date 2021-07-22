@@ -232,7 +232,7 @@ public class MenuController
                     else if(status == 1)
                         showMessage("New Password Is Not Equals To Confirm Password", confirmPasswordLabel);
                     else if(status == 2)
-                        showMessage("New Password Lenght Is Not Between 6 & 32", newPasswordLabel);
+                        showMessage("New Password Length Is Not Between 6 & 32", newPasswordLabel);
                     else if(status == 3)
                         showMessage("Password Successfully Changed", oldPasswordLabel);
                 }
@@ -480,7 +480,6 @@ public class MenuController
             System.out.println("cant read fxml");
             e.printStackTrace();
         }
-        System.out.println("battle opened opened!?!?!?!?!");
     }
 
     /**
@@ -506,7 +505,6 @@ public class MenuController
             System.out.println("cant read fxml");
             e.printStackTrace();
         }
-        System.out.println("login opened!?!?!?!?!");
     }
 
     /**
@@ -603,7 +601,7 @@ public class MenuController
         wizardCheckBox.setUserData(new Wizard());
 
         setCurrentDeckPics();
-        
+
         mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
         Thread thread = new Thread(new Runnable()
         {
@@ -658,8 +656,8 @@ public class MenuController
         ArrayList<BattleResult> battles = GameManager.getInstance().getCurrentPlayer().getHistory().getBattleResults();
 
         if(battles != null)
-        for(BattleResult br : battles)
-        data.add(br);
+            for(BattleResult br : battles)
+                data.add(br);
     }
     
     /**

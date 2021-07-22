@@ -232,11 +232,7 @@ public class Bot3 extends Bot
             effect -= 1;
         if(enemy instanceof Barbarians && chosenCard instanceof Giant)
             effect -= 1;
-        /*
-        *
-        * TODO: considering other type of the creatures
-        *
-         */
+
         return effect;
     }
 

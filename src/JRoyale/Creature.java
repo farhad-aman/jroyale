@@ -27,11 +27,6 @@ public class Creature
     private Point2D position;
 
     /**
-     * the current image that creature shown based on status
-     */
-    private ImageView image;
-
-    /**
      * the side that creature fights for
      * -1 -> belongs to bot , 1 -> belongs to player 
      */
@@ -250,7 +245,7 @@ public class Creature
     /**
      * @return remaining time of rage effect
      */
-    public int getRageTimeRemained() 
+    public int getRageTimeRemained()
     {
         return rageTimeRemained;
     }
@@ -261,14 +256,6 @@ public class Creature
     public Point2D getPosition() 
     {
         return position;
-    }
-
-    /**
-     * @return current image of the creature
-     */
-    public ImageView getImage() 
-    {
-        return image;
     }
 
     /**
@@ -286,24 +273,6 @@ public class Creature
      * */
     public int updateBridgeStatus() 
     {
-//        if(position.getY() >= 360)
-//        {
-//            if(position.getX() <= 600 && (position.getY() > 620 || position.getY() < 540))
-//                bridgeStatus = 1;
-//            else if(position.getX() >= 600 && position.getX() <= 680 && position.getY() <= 620 && position.getY() >= 540)
-//                bridgeStatus = 2;
-//            else
-//                bridgeStatus = 3;
-//        }
-//        else
-//        {
-//            if(position.getX() <= 600 && (position.getY() < 100 || position.getY() > 180))
-//                bridgeStatus = 4;
-//            else if(position.getX() >= 600 && position.getX() <= 680 && position.getY() <= 180 && position.getY() >= 100)
-//                bridgeStatus = 5;
-//            else
-//                bridgeStatus = 6;
-//        }
         if(position.getY() >= 360)
         {
             if(position.getX() <= 600)

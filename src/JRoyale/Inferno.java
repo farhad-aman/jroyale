@@ -10,16 +10,6 @@ import java.io.File;
  */
 public class Inferno extends Building
 {
-//    /**
-//     * the temp target that inferno use it
-//     */
-//    private Creature tempTarget;
-//
-//    /**
-//     *
-//     */
-//    private int tempTargetTime;
-
     /**
      * the minimum damage of the inferno
      */
@@ -65,37 +55,6 @@ public class Inferno extends Building
     public int getMinDamage(int level) {
         return minDamage[level];
     }
-//    /**
-//     * calculates new damage of the inferno
-//     * @param level
-//     * @param underRage
-//     * @return
-//     */
-//    public double calculateInfernoDamage(int level, boolean underRage)
-//    {
-//        if(tempTarget == null)
-//            return 0;
-//        return (((maxDamage[level] - minDamage[level]) / 10.0) *  ((Math.min(tempTargetTime, 10000.0)) / 1000.0) + minDamage[level]) * (underRage ? 1.4 : 1);
-//    }
-//
-//    /**
-//     * calculates time that inferno attacks to increase damage
-//     * @param tempTarget
-//     */
-//    public void addTempTargetTime(Creature tempTarget)
-//    {
-//        if(tempTarget == null){
-//            System.out.println("inferno   null");
-//        }
-//        else
-//            System.out.println("inferno " + tempTarget.getCard());
-//        if(tempTarget == this.tempTarget)
-//            this.tempTargetTime += 1000 / GameManager.FPS;
-//        else {
-//            this.tempTarget = tempTarget;
-//            tempTargetTime = 0;
-//        }
-//    }
 
     @Override
     public int getDamage(int level) 

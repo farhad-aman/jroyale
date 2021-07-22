@@ -25,7 +25,7 @@ public class LoginController
     /**
      * the sound that plays when login started
      */
-    private MediaPlayer loginStarted = new MediaPlayer(new Media(new File("resources\\login\\loginStarted.mp3").toURI().toString()));
+    private MediaPlayer loginStarted = new MediaPlayer(new Media(new File("resources/login/loginStarted.mp3").toURI().toString()));
 
     @FXML
     private TextField loginUsernameTextField;
@@ -75,10 +75,10 @@ public class LoginController
                {
                    logIn();
                    System.out.println("login ok");
-                   MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources\\login\\click1.mp3").toURI().toString()));
+                   MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
                    mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                    mediaPlayer.play();
-                   loginButton.setImage(new Image("resources\\login\\loginButtonPressed.png"));
+                   loginButton.setImage(new Image("resources/login/loginButtonPressed.png"));
                }
            });
        }
@@ -98,7 +98,7 @@ public class LoginController
                 @Override
                 public void run()
                 {
-                    loginButton.setImage(new Image("resources\\login\\loginButton.png"));
+                    loginButton.setImage(new Image("resources/login/loginButton.png"));
                 }
             });
         }
@@ -139,10 +139,10 @@ public class LoginController
                 {
                     signUp();
                     System.out.println("sign up ok");
-                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources\\login\\click1.mp3").toURI().toString()));
+                    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("resources/login/click1.mp3").toURI().toString()));
                     mediaPlayer.setVolume(0.5);//volume percentage 0 to 1
                     mediaPlayer.play();
-                    signUpButton.setImage(new Image("resources\\login\\signUpButtonPressed.png"));
+                    signUpButton.setImage(new Image("resources/login/signUpButtonPressed.png"));
                 }
             });
         }
@@ -162,7 +162,7 @@ public class LoginController
                 @Override
                 public void run() 
                 {
-                    signUpButton.setImage(new Image("resources\\login\\signUpButton.png"));
+                    signUpButton.setImage(new Image("resources/login/signUpButton.png"));
                 }
             });
         }
@@ -244,7 +244,6 @@ public class LoginController
             System.out.println("cant read fxml");
             e.printStackTrace();
         }
-        System.out.println("Menu opened!?!?!?!?!");
     }
     
     /**
@@ -302,4 +301,3 @@ public class LoginController
     }
 
 }
-
