@@ -23,7 +23,7 @@ public class King extends Building
         super("building", 
               "King", 
               0, 
-              10000, 
+              1000,
               "both", 
               160, 
               7, 

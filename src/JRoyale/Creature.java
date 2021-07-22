@@ -541,8 +541,10 @@ public class Creature
                                 c.getHit((damage * (underRage ? 1.4 : 1)), position.getX() < c.position.getX() ? 6 : 5);
                     }
                 } 
-                else
+                else {
+                    if(card instanceof King) System.out.println("king detected????");
                     creature.getHit((damage * (underRage ? 1.4 : 1)), position.getX() < creature.position.getX() ? 6 : 5);
+                }
             }
             hitStepValue = 0;
         }

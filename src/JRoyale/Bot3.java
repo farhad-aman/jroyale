@@ -121,21 +121,21 @@ public class Bot3 extends Bot
             return 5;
         else if(most == eUp)
         {
-            if(upDestroyed)
+            if(upDestroyed || chosenCard instanceof Spell)
                 return 1;
             else
                 return 4;
         }
         else if(most == eDown)
         {
-            if(downDestroyed)
+            if(downDestroyed || chosenCard instanceof Spell)
                 return 2;
             else
                 return 5;
         }
         else if(most == downBridge)
         {
-            if(downDestroyed && !(chosenCard instanceof Building))
+            if((downDestroyed && !(chosenCard instanceof Building)) || chosenCard instanceof Spell)
                 return 8;
             else if(downDestroyed)
                 return 2;
@@ -144,7 +144,7 @@ public class Bot3 extends Bot
         }
         else if(most == upBridge)
         {
-            if(upDestroyed && !(chosenCard instanceof Building))
+            if((upDestroyed && !(chosenCard instanceof Building)) || chosenCard instanceof Spell)
                 return 7;
             else if(upDestroyed)
                 return 1;
@@ -153,7 +153,7 @@ public class Bot3 extends Bot
         }
         else if(most == eMiddle)
         {
-            if(upDestroyed && downDestroyed)
+            if((upDestroyed && downDestroyed) || chosenCard instanceof Spell)
                 return 3;
             else
                 return 6;
