@@ -4,7 +4,10 @@ import java.util.Random;
 
 public class Bot3 extends Bot
 {
-
+    /**
+     * number of times that the bot has avoided choosing a card
+     * */
+    private int moveAvoided = 0;
 
     public Bot3() 
     {
@@ -35,6 +38,7 @@ public class Bot3 extends Bot
                 {
                     battle.getArena().getCreatures().add(c);
                 }
+                moveAvoided = 0;
                 battle.getBotCardsQueue().remove(cardNumber);
                 battle.getBotCardsQueue().add(0, chosenCard);
                 battle.getBotElixirBar().takeExir(chosenCard.getCost());
@@ -51,15 +55,13 @@ public class Bot3 extends Bot
     {
         int populatedRegion = findPopulated(chosenCard);
         Point2D tempPosition = null;
-        int count = 0;
+        int count = 0, countLoop = 0;
 
-        if(populatedRegion != -1)
+        if(populatedRegion != -1 && !(chosenCard instanceof Spell))
             tempPosition = findPoint(chosenCard, populatedRegion);
 
-        if(chosenCard instanceof Spell && populatedRegion != -1) 
-        {
-            while (count == 0)
-            {
+        if (chosenCard instanceof Spell && populatedRegion != -1) {
+            while (count == 0 && countLoop <= 10){
                 tempPosition = findPoint(chosenCard, populatedRegion);
 
                 int side = 1;
@@ -72,6 +74,7 @@ public class Bot3 extends Bot
                     if (c.getSide() == side && c.getPosition().distance(tempPosition) <= ((c.getCard() instanceof King ? 80 : (c.getCard() instanceof Princess ? 60 : (c.getCard() instanceof Building ? 50 : 40))) * ((Spell) chosenCard).getRange()))
                         count++;
                 }
+                countLoop++;
             }
         }
         return tempPosition;
@@ -154,8 +157,10 @@ public class Bot3 extends Bot
         if(most <= middle)
             most = middle;
 
-        if(most < -1)
+        if(most < -1 && moveAvoided < 30) {
+            moveAvoided++;
             return -1;
+        }
         else if(most == up)
             return 4;
         else if (most == middle)
@@ -219,7 +224,7 @@ public class Bot3 extends Bot
             effect += 2;
         if(chosenCard instanceof Dragon && (enemy instanceof Barbarians || enemy instanceof Valkyrie || enemy instanceof Pekka || enemy instanceof Giant || enemy instanceof Cannon))
             effect += 3;
-        if(chosenCard instanceof Giant && (enemy instanceof Wizard|| enemy instanceof Dragon))
+        if(chosenCard instanceof Giant &&  enemy instanceof Dragon)
             effect -= 1;
         if(chosenCard instanceof Archer && enemy instanceof Giant)
             effect += 2;
