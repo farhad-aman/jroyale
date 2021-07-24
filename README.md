@@ -2,6 +2,8 @@
 ![mafia-game](src/JRoyale/resources/menu/menuBackground.jpg)
 ## JRoyale Is A Supercell Clash Royale Clone That Developed In Java Programming Language With Javafx Framework
 ### JRoyale is a freemium real-time strategy video game. The game combines elements from collectible card games, tower defense, and battle arena.
+![screenshot_20210724_235424](https://user-images.githubusercontent.com/73396701/126879313-b2b521f1-b89f-4d7b-8a96-fb947dd4b7c7.jpg)
+
 ## Cards
 Playable troops, buildings, and spells are represented as cards. Prior to each battle players construct a deck of eight cards which they use to attack and defend against their opponent's cards. At the start of each game, both players begin with four randomly chosen cards from their deck of eight.
 ### Archer
